@@ -1,0 +1,1271 @@
+<html>
+<title>PLINK</title>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+
+<h1>Conditional haplotype-based association testing</h1>
+
+This page describes <tt>PLINK</tt> functions that are aimed at dissecting 
+a haplotypic association. These functions largely include and extend the functionality
+offered in the older <a href="../whap/">WHAP</a> software package, which is no longer 
+supported. 
+</p>
+
+For reference, the main ways of specifying conditional haplotype tests, that modify 
+the behaviour of main <tt>--chap</tt> command, are given here; they are also described in more 
+detail below. Each row here is mutually exclusive, e.g. you would not want to, or be able to, 
+specify <tt>--control</tt> and <tt>--alt-snp</tt> at the same time:
+<ul>
+<li> Test whether SNPs have independent haplotyic effects (<tt>--independent-effect SNP{,SNP,SNP}</tt>)
+<li> Test whether a set of SNPs explain an omnibus association (<tt>--control SNP{,SNP,...}</tt>)
+<li> Test whether a specific set of haplotypes explain an omnibus association (<tt>--control HAPLOTYPE{,HAPLOTYPE,...}</tt>)
+<li> Test specific haplotypes for association (<tt>--specific-haplotype HAPLOTYPE</tt>)
+<li> Specify alternative and null haplotypic models in terms of sets of SNPs (<tt>--alt-snp SNP{,SNP-SNP,...}</tt> 
+and/or <tt>--null-snp SNP{,SNP-SNP,...}</tt>)
+<li> Specify alternative and null haplotypic models in terms of sets of haplotypes (<tt>--alt-group HAPLOTYPE{,HAPLOTYPE,...}</tt>
+ and/or <tt>--null-group HAPLOTYPE{,HAPLOTYPE,...} </tt>)
+<li> Test a one or more simple SNP effects, potentially controlling for 
+haplotype effects (<tt>--test-snp SNP{,SNP-SNP,...}</tt>)
+</ul>
+
+It is also possible to include one or more continuous or binary 
+covariates, which can include other SNPs outside of the phased region.  
+</p>
+This page contains the following sections:
+<ul>
+ <li> <a href="#whap1">Basic usage</a>
+ <li> <a href="#whap2">Specifying the type of test</a>
+ <li> <a href="#whap3">General specification of haplotype groupings</a>
+ <li> <a href="#whap4">Including covariates and other SNPs</a>
+</ul>
+
+The value of using <tt>--chap</tt> over <tt>--hap-assoc</tt> is that
+covariates can be included, and more complex conditional tests can be
+specified. The value of using <tt>--hap-assoc</tt>
+(described <a href="haplo.shtml#hap3">here</a>) over <tt>--chap</tt>
+is that it is designed to iterate over very many SNPs in a single go,
+whereas the <tt>--chap</tt> test is more designed to focus on one
+specific set of SNPs. The <tt>--hap-logistic</tt>
+and <tt>--hap-linear</tt> commands,
+described <a href="haplo.shtml#hap3c">here</a>, are also designed for
+large numbers of tests; they do allow for covariates and permutation,
+but not the conditional tests described below.
+
+
+<a name="whap1">
+<h2>Basic usage for conditional haplotype-based testing</h2></a>
+</p>
+
+The <tt>--chap</tt> command is used in conjunction with
+the <tt>--hap-snps</tt> command to specify a set of SNPs to phase,
+form haplotypes and test for association (in samples of unreated
+individuals only):
+<p><h5>
+ plink --bfile mydata --hap-snps rs1001-rs1005 --chap
+</h5></p>
+
+which generates a file
+
+<pre>
+     plink.chap
+</pre>
+
+The <tt>--hap-snps</tt> command can take a comma-delimited list of SNPs, including ranges, 
+e.g. if the MAP file specifies the following SNPs and physical positions:
+<pre>
+     1 rs1001 0 101200
+     1 rs1002 0 102030
+     1 rs1003 0 107394
+     1 rs1004 0 107499
+     1 rs1005 0 113990
+</pre>
+then the command 
+<pre>
+     --hap-snps rs1001-rs1003,rs1005
+</pre>
+includes all SNPs except <tt>rs1004</tt>, for example. The hyphen/minus symbol specifies all 
+SNPs within a range (based on sorted physical position).
+</p>
+<strong>NOTE</strong> No spaces are allowed in this kind of
+comma-delimited list. Also, note that currently this will not work if
+SNP names have hypen characters in them. In this case, to use a
+different delimter for any ranges specified on the command line, add
+the "--d" flag (which can be any non-whitespace character except a
+comma (although be cautious if using characters with special meanings
+on command lines)
+<pre>
+     --d + --hap-snps SNP-A10001+SNP-A10020
+</pre>
+to obtain a range between <tt>SNP-A10001</tt> and <tt>SNP-A10020</tt>.
+
+</p>
+
+The default test is an <em>omnibus</em> haplotype test: that is, if there
+are <em>H</em> haplotypes, then <tt>--chap</tt> performs an <em>H-1</em> 
+df test comparing the alternate (each haplotype having a unqiue effect) 
+versus the null (no haplotypes having any different effect). In each case, 
+one haplotype is arbitrarily chosen to be the reference haplotype. The 
+coefficients must be interpreted with respect to that haplotype, but otherwise
+the coding makes no difference.
+</p>
+For binary disease traits, the test is based on a likelihood ratio test. 
+For continuous traits, the test is based on an F-test comparing the 
+alternate and null models. For continuous traits, the <tt>--chap</tt> 
+command also displays the proportion of variance in the outcome explained 
+by the regression model (R-squared) as well as an adjusted R-squared (that 
+takes model complexity into account). 
+</p>
+For example, here is a <tt>plink.chap</tt> output file representing a basic 
+omnibus test:
+<pre>
+     +++ PLINK conditional haplotype test results +++ 
+
+     5 SNPs, and 6 common haplotypes ( MHF >= 0.01 ) from 32 possible
+
+      CHR           BP          SNP   A1   A2          F
+        1       101200       rs1001    C    A       0.45
+        1       102030       rs1002    A    C     0.2362
+        1       107394       rs1003    A    C     0.4325
+        1       107499       rs1004    T    G     0.2362
+        1       113990       rs1005    A    C     0.4487
+
+     Haplogrouping: each {set} allowed a unique effect
+     Alternate model
+        { AAATA }  { AACTA }  { CCCGA }  { ACAGC }  { CCCGC }  { ACCGC }  
+     Null model
+        { AAATA, AACTA, CCCGA, ACAGC, CCCGC, ACCGC }  
+
+          HAPLO         FREQ        OR(A)        OR(N)
+        -------       ------      -------      -------
+          AAATA        0.169      (-ref-)      (-ref-)
+          AACTA       0.0673        2.619         |
+          CCCGA        0.212       0.8942         |
+          ACAGC        0.264       0.6839         |
+          CCCGC        0.237        1.025         |
+          ACCGC       0.0502        1.038         |
+        -------       ------      -------      -------
+
+     Model comparison test statistics:
+
+                                Alternate       Null
+                       -2LL :       535.4      554.5 
+
+       Likelihood ratio test: chi-square = 19.11
+                              df = 5
+                              p = 0.001836
+</pre>
+
+There are several points to note:
+<ul>
+
+ <li> At the top of the output, <tt>PLINK</tt> lists the SNPs (<tt>SNP</tt>) involved in the 
+test, their chromosomal (<tt>CHR</tt>) and base-pair (<tt>BP</tt>) positions, their alleles 
+(<tt>A1</tt> and <tt>A2</tt>) and the minor allele frequency (<tt>F</tt>).
+
+ <li> It is reported that there are 5 common haplotypes: this filter (default value of 0.01)
+can be changed by adding, for example, the <tt>--mhf 0.05</tt> command (minimum haplotype 
+frequency).
+
+ <li> The next section presents the <em>haplogrouping</em> under the null and alternate 
+models. If two haplotypes are in the same <tt>{ set }</tt>, it means they are treated as
+identical in terms of their effect on phenotype (i.e. a single regression coefficient is used
+for that group). For the basic omnibus test the haplogrouping will always take this simple 
+form: under the alternate all haplotypes in their own set, whilst under the null all 
+haplotypes are in one set.  This output is more useful in interpreting some of the other
+conditional haplotype tests that are introduced below.
+
+<li> The next section contains the estimated regression coefficients for each haplotype
+under the alternate and null models, as well as the frequency (<tt>FREQ</tt>) of each 
+haplotype.  For continuous traits, the coefficients are labelled <tt>BETA</tt>; for disease
+traits they are labelled <tt>OR</tt> and are in fact transformed to be odds ratios, i.e. 
+exp(beta). The <tt>(-ref-)</tt> indicates which haplotype has been selected to be the 
+baseline, reference category. If a haplotype has instead a pipe (vertical bar) <tt>|</tt> 
+symbol, it implies that this haplotype is grouped with the one above it (and so it will not 
+have a regression coefficient of its own). In the case of this simple null model as shown 
+here, this implies that all haplotypes are equated with <tt>AAATA</tt>, the reference 
+haplotype (i.e. there is no effect of any haplotype). 
+
+<li> When the null model is not so straightforward (as in the examples below), the rows are 
+separated into the null-model haplogroups for clarity. In this case, certain <em>sub-null</em> 
+model comparisons are also presented, to the right of the table of coefficients: these are 
+shown and described below.
+
+<li> The final section presents the overall model statistics: for a linear trait these are the
+R-squared (sometimes called the coefficient of determination) and adjusted R-squared, as well 
+as the F-test. For disease traits, as in this case, only the sample log-likelihood under 
+each model (-2LL) and the likelihood ratio test are presented. In both cases, the degrees of 
+freedom is the number of parameters in the alternate model minus the number in the null 
+model.
+
+</ul>
+
+The interpretation of this particular analysis would be that overall variation at this 
+locus appears to influence the trait, with p = 0.001836.  Using the commands introduced 
+below, we can perform various conditional tests to explore this <em>omnibus</em> result.
+
+</p>
+<strong>HINT</strong>  To obtain confidence intervals on the estimated odds ratios or 
+regression coefficients, add the flag
+<pre>
+     --ci 0.95
+</pre>
+for example; the output will now be as follows:
+<pre>
+          HAPLO         FREQ                        OR(A)                        OR(N)
+        -------       ------      -----------------------      -----------------------
+          AAATA        0.169                      (-ref-)                      (-ref-)
+          AACTA       0.0673          2.619 (1.24; 5.54 )                         |
+          CCCGA        0.212          0.8942 (0.57; 1.4 )                         |
+          ACAGC        0.264        0.6839 (0.438; 1.07 )                         |
+          CCCGC        0.237          1.025 (0.657; 1.6 )                         |
+          ACCGC       0.0502         1.038 (0.507; 2.12 )                         |
+        -------       ------      -----------------------      -----------------------
+</pre>
+
+
+<a name="whap2">
+<h2>Specifying the type of test</h2></a>
+</p>
+
+If no other commands are given, the <tt>--chap</tt> test will perform an omnibus haplotypic 
+association test.  Various other options can be used to refine the type of test. In this 
+section we introduce three commonly used tests; in the section below we introduce a more 
+general way in which any two (nested) models can be compared.
+
+</p>
+
+<h6>Testing a specific haplotype</h6>
+
+It is possible to specify a particular haplotype to be tested against all others: for example, 
+<tt>CCCGA</tt>
+
+<h5>
+ ./plink --file mydata --hap-snps rs10001-rs10005 --chap --specific-haplotype CCCGA
+</h5></p>
+
+This creates the following two haplogroupings:
+<pre>
+     Alternate model
+        { AAATA, AACTA, ACAGC, CCCGC, ACCGC }  { CCCGA }  
+     Null model
+        { AAATA, AACTA, CCCGA, ACAGC, CCCGC, ACCGC }  
+</pre>
+which hopefully begins to indicate how these groupings should be interpreted in relation to
+the tests they imply.</p>
+
+The main body of the output is:
+<pre>
+          HAPLO         FREQ        OR(A)        OR(N) 
+        -------       ------      -------      ------- 
+          AAATA        0.169      (-ref-)      (-ref-) 
+          AACTA      0.06728         |            |    
+          ACAGC       0.2635         |            |    
+          CCCGC       0.2375         |            |    
+          ACCGC      0.05022         |            |    
+          CCCGA       0.2125       0.9153         |    
+        -------       ------      -------      ------- 
+</pre>
+which shows that now under the alternate all haplotypes are grouped together except for 
+<tt>CCCGA</tt>; versus all other haplotypes, this has an estimated odds ratio of 0.9153.
+</p>
+<strong>NOTE</strong> Of course, the estimated odds ratio for <tt>CCCGA</tt> 
+was different in the first example given above (when it was 0.8942) because the 
+reference category was different (it was then only <tt>AAATA</tt> as opposed to 
+all other SNPs). In other words, remember that the odds ratios are only interpretable
+in relation to some specific baseline, reference category.
+</p>
+Finally, we see the model compariston test is non-significant
+<pre>
+       Likelihood ratio test: chi-square = 0.2653
+                              df = 1
+                              p = 0.6065
+</pre>
+
+
+</p>
+
+The option <tt>--each-vs-others</tt> will add an extra column to the 
+output, if there is more than one haplotype-grouping under the alternate 
+model, which provides p-values for haplotype-specific tests of that 
+haplotye (or haplotype group) versus all others. For example,
+<h5>
+ ./plink --file mydata  --hap-snps rs10001-rs10005 --chap --each-vs-others
+</h5></p>
+which produces output with the new <tt>SPEC(A)</tt> field 
+<pre>
+          HAPLO         FREQ        OR(A)      SPEC(A)        OR(N)
+        -------       ------      -------    ---------      -------
+          AAATA        0.169      (-ref-)        0.537      (-ref-)
+          AACTA      0.06728        2.619    0.0001791         |
+          CCCGA       0.2125       0.8942       0.6065         |
+          ACAGC       0.2635       0.6839     0.003466         |
+          CCCGC       0.2375        1.025       0.5132         |
+          ACCGC      0.05022        1.038        0.787         |
+        -------       ------      -------      -------    ---------
+</pre>
+which contains p-values for all haplotype-specific tests (i.e. as above, 
+the haplotype <tt>CCCGA</tt> has the p-value of 0.6065 as above, i.e. 
+that haplotype versus all others). The benefit of the 
+<tt>--specific-haplotype</tt> command versus <tt>--each-vs-others</tt> is 
+that it also produces the odds ratio for that haplotype. 
+
+</p>
+
+These <em>haplotype specific</em> tests are of course similar to the basic test given 
+by the <tt>--hap-assoc</tt> command, e.g. 
+<h5> 
+./plink --file mydata --hap-snps rs10001-rs10005 --hap-assoc
+</h5></p>
+which generates the output file
+<pre>
+     plink.assoc.hap
+</pre>
+which contains the line
+<pre>
+   LOCUS  HAPLOTYPE    F_A    F_U   CHISQ  DF       P  SNPS
+    WIN1      CCCGA  0.205   0.22  0.2689   1  0.6041  rs1001|rs1002|rs1003|rs1004|rs1005
+</pre>
+
+This command frames the test in a slightly different way and presents different 
+statistics (i.e. it does not use logistic regression, case and control frequencies are presented
+instead of odds ratios, etc) but the p-value is, as expected, very similar (p=0.6041 
+from <tt>--hap-assoc</tt> versus p=0.6065 from the <tt>--chap</tt> test). Note that they  
+are not expected to be numerically identical however.
+</p>
+
+<h6>Testing whether SNPs have independent effects</h6>
+
+It is possible to ask whether one or more SNPs have an effect that is independent
+of the other SNPs in the model, framing the question in terms of haplotypes. This conditional
+test essentially stratifies by the haplotyic background: for the SNP(s) under scruntiny, we 
+only compare the alleles/haplotypes that have a similar haplotypic background. 
+</p>
+Before proceeding to the conditional haplotype tests, let's first consider the simple, 
+single SNP effects for the example dataset:
+<h5> 
+ ./plink --file mydata --assoc
+</h5></p>
+which generates the file <tt>plink.assoc</tt> which is as follows:
+<pre>
+      CHR      SNP        BP   A1      F_A      F_U   A2      CHISQ          P        OR 
+        1   rs1001    101200    C   0.4525   0.4475    A     0.0202      0.887      1.02 
+        1   rs1002    102030    A   0.2775    0.195    C      7.544    0.00602     1.586 
+        1   rs1003    107394    A    0.395     0.47    C      4.584    0.03228    0.7362 
+        1   rs1004    107499    T   0.2775    0.195    G      7.544    0.00602     1.586 
+        1   rs1005    113990    A   0.4825    0.415    C      3.644    0.05495     1.314 
+</pre>
+
+Here we see that SNPs <tt>rs1002</tt> and <tt>rs1004</tt> have the strongest associations, although 
+<tt>rs1003</tt> and <tt>rs1005</tt> show marginal trends. 
+</p>
+
+Next, to obtain a quick view of the LD in this small region, we can generate the matrix of r-squared (LD) 
+values (i.e. note: this is using r-squared as a measure of LD, which is distinct from 
+the coefficient of determination which descibes the fitted regression models).
+<h5>
+ ./plink --file mydata --r2 --ld-window-r2 0
+</h5></p>
+This command, by default, only outputs values for SNPs that have an r-squared greater than 0.2, are
+within 1 Mb and 10 SNPs of each other; these can be changed with the options <tt>--ld-window-r2</tt>, 
+<tt>ld-window-kb</tt> and <tt>--ld-window</tt> respectively; in this case, we requested all SNPs to be reported
+with <tt>--ld-window-r2</tt>. The file
+<pre>
+     plink.ld
+</pre>
+contains the fields
+<pre>
+      CHR_A    SNP_A  CHR_B    SNP_B           R2 
+          1   rs1001      1   rs1002     0.260769 
+          1   rs1001      1   rs1003     0.628703 
+          1   rs1001      1   rs1004     0.260769 
+          1   rs1001      1   rs1005  0.000357147 
+          1   rs1002      1   rs1003    0.0964906 
+          1   rs1002      1   rs1004            1 
+          1   rs1002      1   rs1005     0.398912 
+          1   rs1003      1   rs1004    0.0964906 
+          1   rs1003      1   rs1005   0.00919232 
+          1   rs1004      1   rs1005     0.398912 
+</pre>
+Here we see that <tt>rs1002</tt> and <tt>rs1004</tt> are in complete LD, but that there is 
+also moderate (r-squared above 0.2) LD between many other pairs of SNPs.
+
+</p>
+Moving then to the conditional tests: using the dataset above, to test for an independent effect 
+of <tt>rs1003</tt>, for example (independent of the haplotypic effects formed by the remaining SNPs), 
+one would issue the command: 
+<h5>
+ ./plink --file mydata --hap-snps rs1001-rs1005 --chap --independent-effect rs1003
+</h5></p>
+
+The haplogroupings implied by this command are
+<pre>
+     Alternate model
+        { AAATA }  { AACTA }  { CCCGA }  { ACAGC }  { CCCGC }  { ACCGC }  
+     Null model
+        { AAATA, AACTA }  { CCCGA }  { ACAGC, ACCGC }  { CCCGC }  
+</pre>
+
+The test SNP, <tt>rs1003</tt>, is the middle SNP in the 5-SNP haplotype (an <tt>A/C</tt> 
+SNP). In comparison to the alternate model, we now see that the null is formed by grouping 
+two pairs of haplotypes; each pair is identical except for <tt>rs1003</tt>: i.e.
+<pre>
+     { AA<b><font color="blue">A</font></b>TA, AA<b><font color="blue">C</font></b>TA } 
+</pre>
+and
+<pre>
+     { AC<b><font color="blue">A</font></b>GC, AC<b><font color="blue">C</font></b>GC }
+</pre>
+In each case here, the comparison between alternate and null models is to 
+equate the effects of these haplotypes (i.e. implicitly providing a test for whether 
+<tt>rs1003</tt> has any effect). A haplotype such as <tt>CCCGA</tt> is effectively left 
+out of the analysis: although it contains a <tt>C</tt> allele for <tt>rs1003</tt>, we
+never see the corresponding <tt>CCAGA</tt> haplotype to perform a stratified analysis.
+</p>
+
+The main output for this test is shown below:
+<pre>
+          HAPLO         FREQ        OR(A)        OR(N)    SUBNULL P 
+        -------       ------      -------      -------  ----------- 
+          AAATA        0.169      (-ref-)      (-ref-)     0.008016 
+          AACTA      0.06728        2.619         |    
+
+          CCCGA       0.2125       0.8942       0.6907          n/a 
+
+          ACAGC       0.2635       0.6839       0.5628       0.2643 
+          ACCGC      0.05022        1.038         |    
+
+          CCCGC       0.2375        1.025       0.7897          n/a 
+        -------       ------      -------      -------  ----------- 
+
+     Model comparison test statistics:
+  
+                                Alternate       Null
+                       -2LL :       535.4      544.4 
+
+       Likelihood ratio test: chi-square = 8.982
+                              df = 2
+                              p = 0.01121
+</pre>
+
+There are two new features to note: first, the null model is no longer a simple 
+unitary group; the rows are separated out into the groups defined by the null model. That 
+is, <em>null</em> does <b>not</b> mean <em>no effect of any haplotype</em>; rather, it is
+used in the statistical sense of the default, more simple model compared to 
+the alternate: the model which we want to try to <em>nullify</em>.
+</p>
+Under the null, haplotypes <tt>AAATA</tt> and <tt>AACTA</tt> have a single parameter (both are 
+the reference category); haplotypes <tt>ACAGC</tt> and <tt>ACCGC</tt> have an estimated odds 
+ratio of 0.5628 (versus the reference group).
+</p>
+The second new addition is of the <em>sub-null</em> test p-values in the right-most column. 
+These will only appear when the null model contains more than one group for which there was 
+more than one group in the alternate model (i.e. groups in which haplotype effects have been 
+equated within group).  Whereas the likelihood ratio test at the bottom is a joint 
+2df test (for whether the two sets of haplotypes can be equated; equivalently, for whether 
+<tt>rs1003</tt> has an independent effect), the sub-model p-values represent a test of just 
+that part of the model, i.e. a 1 df likelihood ratio test for whether <tt>AAATA</tt> and 
+<tt>AACTA</tt> do indeed have similar odds ratios has the p-value of 0.008016.
+</p>
+One way of interpreting these results would be that <tt>rs1003</tt> has an effect on the 
+<tt>AA-TA</tt> haplotype background, but not the <tt>AC-GC</tt> background. However, drawing 
+such a conclusion in this simple manner is not advised -- p-values should not be interpreted 
+in this direct manner, and also the power of the test will vary by the frequency of the 
+haplotype background.  ( A feature will be added that enables one to ask specifically whether or 
+not the effect of <tt>rs1003</tt> varies between these two haplotype backgrounds: this 
+involves the specification of linear constraints between parameters.)
+
+</p>
+Note that it is not always possible to perform a test of independent effects: for example, 
+consider <tt>rs1002</tt>: given the set of common haplotypes under study, we see it is perfectly
+correlated with <tt>rs1004</tt> (i.e. we only ever see the <tt>AT</tt> and <tt>CG</tt> haplotypes
+for these two SNPs. We therefore never see both alleles of <tt>rs1002</tt> on the same haplotypic 
+background. As such, the null model is the same as the alternate: PLINK therefore reports
+<pre>
+       Likelihood ratio test:  ( not a valid comparison: identical models, df = 0 )
+</pre>
+&nbsp;
+
+
+</p>
+It is also possible to see whether more than one SNP has an independent effect: this is 
+still a haplotypic test (of haplotypes formed by the two or more SNPs), but the 
+test is stratified by the haplotypic background formed by the remaining SNPs. For example:
+<h5>
+ ./plink --file mydata --hap-snps rs1001-rs1005 --chap --independent-effect rs1003,rs1004
+</h5></p>
+
+leads to the haplogrouping
+
+<pre>
+     Alternate model
+        { AAATA }  { AACTA }  { CCCGA }  { ACAGC }  { CCCGC }  { ACCGC }  
+     Null model
+        { AA<b><font color="blue">AT</font></b>A, AA<b><font color="blue">CT</font></b>A }  { CCCGA }  { AC<b><font color="blue">AG</font></b>C, AC<b><font color="blue">CG</font></b>C }  { CCCGC }  
+</pre>
+and the main test statistics
+<pre>
+          HAPLO         FREQ        OR(A)        OR(N)    SUBNULL P 
+        -------       ------      -------      -------  ----------- 
+          AAATA        0.169      (-ref-)      (-ref-)     0.008016 
+          AACTA      0.06728        2.619         |    
+
+          CCCGA       0.2125       0.8942       0.6907          n/a 
+
+          ACAGC       0.2635       0.6839       0.5628       0.2643 
+          ACCGC      0.05022        1.038         |    
+
+          CCCGC       0.2375        1.025       0.7897          n/a 
+        -------       ------      -------      -------  ----------- 
+
+     Model comparison test statistics:
+
+                                Alternate       Null
+                       -2LL :       535.4      544.4 
+
+       Likelihood ratio test: chi-square = 8.982
+                              df = 2
+                              p = 0.01121
+</pre>
+
+
+In this particular case, this test of independent effects of <tt>rs1003</tt> and 
+<tt>rs1004</tt> happens to give exactly the same results as the test of <tt>rs1003</tt> by itself, 
+which will be made clear from examining the haplogroupings. Note that, in both cases, the 
+test is a two degree of freedom test.
+
+<h6>Omnibus test controlling for X</h6>
+
+To perform an omnibus test but controlling for a particular haplotype of set of haplotypes, 
+you can use the <tt>--control</tt> command.  The haplotypes can either be directly specified, 
+or implied through the list of SNPs specified. This test is a complement to the 
+<tt>--independent-effect</tt> test. 
+</p>
+
+Typically, one would use this test in the case of a significant omnibus assocation result.
+For example, we could ask whether we still see the association even if we control for 
+haplotypes of SNPs <tt>rs1002</tt> and <tt>rs1004</tt> (the two most highly associated SNPs, 
+that are in complete LD with each other):
+<h5>
+./plink --file mydata --hap-snps rs1001-rs1005 --chap --control rs1002,rs1004
+</h5></p>
+which gives implied haplogroupings:
+<pre>
+     Alternate model
+        { AAATA }  { AACTA }  { CCCGA }  { ACAGC }  { CCCGC }  { ACCGC }  
+     Null model
+        { AAATA, AACTA }  { CCCGA, ACAGC, CCCGC, ACCGC }  
+</pre>
+
+In this case, rather than make the null model a single set, the <tt>--control</tt>
+command separates the haplotypes out into distinct groups based on the sub-haplotypes 
+at SNPs <tt>rs1002</tt> and <tt>rs1004</tt>, i.e.
+<pre>
+        { A<b><font color="blue">A</font></b>A<b><font color="blue">T</font></b>A, A<b><font color="blue">A</font></b>C<b><font 
+color="blue">T</font></b>A }  { C<b><font color="blue">C</font></b>C<b><font color="blue">G</font></b>A, A<b><font color="blue">C</font></b>A<b><font color="blue">G</font></b>C, C<b><font color="blue">C</font></b>C<b><font color="blue">G</font></b>C, A<b><font color="blue">C</font></b>C<b><font color="blue">G</font></b>C }
+</pre>
+
+The regression coefficient table is:
+<pre>
+     HAPLO         FREQ        OR(A)        OR(N)    SUBNULL P 
+   -------       ------      -------      -------  ----------- 
+     AAATA        0.169      (-ref-)      (-ref-)     0.008016 
+     AACTA      0.06728        2.619         |    
+
+     CCCGA       0.2125       0.8942       0.6603       0.2087 
+     ACAGC       0.2635       0.6839         |    
+     CCCGC       0.2375        1.025         |    
+     ACCGC      0.05022        1.038         |    
+   -------       ------      -------      -------  ----------- 
+</pre>
+and model comparison statistics are:
+<pre>
+                                Alternate       Null
+                       -2LL :       535.4      547.7 
+
+       Likelihood ratio test: chi-square = 12.32
+                              df = 4
+                              p = 0.01515
+</pre>
+
+This is a 4 df test because 4 haplotypes are grouped with another 
+haplotype (i.e. the 4 <tt>|</tt> symbols in the output). </p>
+
+One would conclude from this analysis that there is still a significant 
+effect at this locus even controlling from the haplotypic effects of 
+<tt>rs1002</tt> and <tt>rs1004</tt>. In otherwords, the command
+<pre>
+     --control rs1002,rs1004
+</pre>
+is identical to
+<pre>
+     --indepedent-effect rs1001,rs1003,rs1005
+</pre>
+in this instance. Unlike the <tt>--independent-effect</tt>, the 
+<tt>--control</tt> command does allow for hapltoype(s) to be specified, 
+instead of SNPs: for example, we might ask whether the omnibus test is 
+significant controlling for <tt>ACAGC</tt>:
+<h5>
+ ./plink --file mydata --hap-snps rs1001-rs1005 --chap --control ACAGC
+</h5></p>
+which gives the following haplogrouping
+<pre>
+     Alternate model
+        { AAATA }  { AACTA }  { CCCGA }  { ACAGC }  { CCCGC }  { ACCGC }  
+     Null model
+        { AAATA, AACTA, CCCGA, CCCGC, ACCGC }  { ACAGC }  
+</pre>
+i.e., effectively leaving <tt>ACAGC</tt> out of the test, 
+and this table of coefficients
+<pre>
+          HAPLO         FREQ        OR(A)        OR(N) 
+        -------       ------      -------      ------- 
+          AAATA        0.169      (-ref-)      (-ref-) 
+          AACTA      0.06728        2.619         |    
+          CCCGA       0.2125       0.8942         |    
+          CCCGC       0.2375        1.025         |    
+          ACCGC      0.05022        1.038         |    
+
+          ACAGC       0.2635       0.6839        0.624 
+        -------       ------      -------      ------- 
+ 
+     Model comparison test statistics:
+
+                                Alternate       Null
+                       -2LL :       535.4        546 
+
+       Likelihood ratio test: chi-square = 10.56
+                              df = 4
+                              p = 0.03194
+</pre>
+In otherwords, there is still a marginal omnibus assocation (p=0.032) 
+after controlling for <tt>ACAGC</tt>. Repeating this test for each 
+haplotype:
+<pre>
+      HAPLOTYPE (--control)      P-VALUE (omnibus association)
+          AAATA                  0.0008895   
+          AACTA                  0.2803
+          CCCGA                  0.0008441
+          CCCGC                  0.0009084
+          ACCGC                  0.0007738
+          ACAGC                  0.03194
+</pre>
+which would suggest that there is no significant signal after controlling
+for <tt>AACTA</tt>, at the p=0.05 level at least.  This is consistent 
+with the true model: these data are in fact simulated, and <tt>AACTA</tt> 
+was in fact the disease haplotype.
+</p>
+Finally, it is possible to specify multiple, comma-delimited haplotypes 
+for the <tt>--control</tt> command.
+
+<a name="whap3">
+<h2>General specification of haplotype groupings</h2></a>
+</p>
+
+Rather than use any of the above <em>convenience</em> functions for 
+specifying tests, one can directly specify the haplogrouping, in one of 
+two ways: by manually specifying the haplotypes, or the SNPs, to include 
+under both alternate and null models.
+
+<h6>Manually specifying haplotypes</h6>
+
+With the <tt>--alt-group</tt> and <tt>--null-group</tt> commands, it 
+is possible to directly specify the haplogrouping. These commands take a 
+comma-delimited list of <em>sets</em>, where the equals symbol is used 
+to specify equality of haplotypes. For example, the command 
+<pre>
+     --independent-effect rs1003
+</pre>
+which gives rise to the following haplogroups
+<pre>
+     Alternate model
+        { AAATA }  { AACTA }  { CCCGA }  { ACAGC }  { CCCGC }  { ACCGC }  
+     Null model
+        { AAATA, AACTA }  { CCCGA }  { ACAGC, ACCGC }  { CCCGC }  
+</pre>
+which could instead have been directly specified
+<pre>
+     --alt-group AAATA,AACTA,CCCGA,ACAGC,CCCGC,ACCGC
+     --null-group AAATA=AACTA,CCCGA,ACAGC=ACCGC,CCCGC
+</pre>
+Note how the <tt>=</tt> symbol is used to define sets. When using these 
+commands, the default for the alternate is as specified above, so this 
+command could have been excluded.  Also, it is not necessary to 
+specify all haplotypes: if a haplotype is not specified, it will revert to its 
+default grouping (i.e. depending on whether this is for the alternate or 
+null). In other words, the same effect could have been achieved just with 
+the single command 
+<pre>
+     --null-group AAATA=AACTA,ACAGC=ACCGC
+</pre>
+
+Finally, there are two <em>wild-cards</em>, one of which can be 
+used in these two commands:
+<pre>
+     *    Group all haplotypes not otherwise explicitly mentioned 
+     %    Separate all haplotypes not otherwise explicitly mentioned
+</pre>
+In other words, implicitly there is always a base-line of
+<pre>
+     --alt-group %
+     --null-group *
+</pre>
+
+To just equate two haplotypes, for instance, but keeping everything else 
+the same, one might use
+<pre>
+     --null-group AAATA=AACTA,%
+</pre>
+i.e. which means "under the null, allow each haplotype to have a unique 
+effect (<tt>%</tt>), with the exception of <tt>AACTA</tt> and 
+<tt>AACTA</tt>, which should be grouped with each other".
+
+</p>
+
+<h6>Manually specifying SNPs</h6>
+
+With the <tt>--alt-snp</tt> and <tt>--null-snp</tt> commands, it is 
+possible to specify which SNPs should be used to form haplotypes. By 
+default, all SNPs are included in the alternate, no SNPs are included in 
+the null: this leads to the default haplogrouping of the omnibus test.
+
+</p>
+To illustrate this command, by reference to the 
+<tt>--independent-effect</tt> specification, for example: the command
+<pre>
+     --independent-effect rs1003
+</pre>
+is equivalent to 
+<pre> 
+     --alt-snp rs1001-rs1005 --null-snp rs1003
+</pre>
+
+
+<a name="whap4">
+<h2>Covariates and additional SNPs</h2></a>
+</p>
+
+Covariates can be included with the <tt>--covar</tt> option, the same as
+for <tt>--linear</tt> and <tt>--logistic</tt> models.  By default, all 
+covariates in that file with be used.  Covariates always feature under 
+both the alternate and null models.
+<h5>
+ ./plink --file mydata --hap-snps rs1001-rs1005 --chap --covar myfile.cov
+</h5></p>
+which generates an additional set of entries in the <tt>plink.chap</tt> 
+output file, representing the coefficients (no other statistical tests 
+are performed for the covariates, i.e. no p-values, etc):
+<pre>
+          COVAR                     OR(A)        OR(N)
+          -----                   -------      -------
+           COV1                    0.7834       0.8499
+</pre>
+
+In a similar manner, additional SNPs can be included, which can be 
+SNPs other than those included in the <tt>--hap-snps</tt> command.  
+These SNPs are not considered in any way during the phasing process: the 
+alleles are simply entered in an allelic dosage manner.  The command 
+<tt>--condition</tt> and a list of SNPs, or <tt>--condition-list</tt> 
+followed by a filename with a list of SNP names, includes these.  
+<h5>
+./plink --file mydata --hap-snps rs1001-rs1005 --chap --condition rs1006 
+</h5></p>
+which adds the following lines in the output file
+<pre>
+           SNPS                     OR(A)        OR(N)
+          -----                   -------      -------
+         rs1006                     1.038        2.899
+</pre>
+
+Unlike for standard covariates, it is also possible to request that a SNP 
+effect be dropped under the null model, which allows, for example, for a test of 
+a SNP controlling for a set of haplotypes at a different locus: here, one 
+would want to include all haplotype effects under the null, and use the 
+<tt>--test-snp</tt> command to drop one or more of the conditioning SNPs:
+<h5>
+./plink --file mydata --hap-snps rs1001-rs1005 --chap --null-group % --condition 
+rs1006 --test-snp rs1006
+</h5></p>
+which would instead show
+<pre>
+           SNPS                     OR(A)        OR(N)
+          -----                   -------      -------
+         rs1006                     1.038    (dropped)
+</pre>
+and an extra degree of freedom would be added to the model comparison
+test.  As the <tt>--null-group %</tt> command was used to effectively
+control for all haplotypic effects whilst testing this particular SNP,
+<tt>rs1006</tt>, the test will be a 1 df test,
+<pre>
+       Likelihood ratio test: chi-square = 0.0007377
+                              df = 1
+                              p = 0.9783
+</pre>
+
+It is also possible to specify more than one conditioning SNP (and to drop 
+none, some or all of these under the null): for example,
+<h5>
+./plink --file mydata --hap-snps rs1001-rs1005 --chap --null-group % --condition 
+rs1006,rs1007 --test-snp rs1006
+</h5></p>
+
+
+<a name="whap5">
+<h2>General setting of linear constraints</h2></a>
+</p>
+
+<em> { to be completed } </em>
+
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:28 EST
+</em>
+
+</body>
+
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>

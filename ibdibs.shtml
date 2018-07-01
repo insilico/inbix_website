@@ -1,0 +1,1123 @@
+
+<html>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+<h1>IBS/IBD estimation</h1>
+
+As well as the standard summary statistics described above,
+<tt>PLINK</tt> offers some alternative measures such as estimated
+inbreeding coefficients for each individual and genome-wide
+identity-by-state and identity-by-descent estimates for all pairs of
+individuals. The latter can be used to detect sample contaminations,
+swaps and duplications as well as pedigree errors and unknown familial
+relationships (e.g. sibling pairs in a case/control population-based
+sample). <tt>PLINK</tt> also has functions to detect specific segments
+shared between distantly-related individuals.
+
+</p>
+<div align="center">
+<strong>All these analyses require a large number of SNPs!</strong>
+</div>
+</p>
+
+<a name="genome">
+<h2>Pairwise IBD estimation</h2></a>
+</p>
+
+The pairwise clustering based on IBS, as outlined in the <a href="strat.shtml">previous section</a> 
+is useful for detecting pairs of individuals who look more different from each other than 
+you'd expect in a random, homogeneous sample.  In this section, we consider using the same 
+genotype data to provide a complementary analysis: using estimates of pairwise IBD to 
+find pairs of individuals who look <em>too similar</em> to eachother, i.e. more than we would 
+expect by chance in a random sample.
+</p>
+<b><em>In a homogeneous sample,</em></b> it is possible to calculate genome-wide IBD
+given IBS information, as long as a large number of SNPs are available
+(probably 1000 independent SNPs at a bare minimum; ideally 100K or
+more).
+
+<h5>
+	plink --file mydata --genome 
+</h5></p>
+which creates the file
+<pre>
+     plink.genome	
+</pre>
+which has the following fields:
+<pre>
+     FID1      Family ID for first individual
+     IID1      Individual ID for first individual
+     FID2      Family ID for second individual
+     IID2      Individual ID for second individual
+     RT        Relationship type given PED file
+     EZ        Expected IBD sharing given PED file
+     Z0        P(IBD=0)
+     Z1        P(IBD=1)
+     Z2        P(IBD=2)
+     PI_HAT    P(IBD=2)+0.5*P(IBD=1) ( proportion IBD )
+     PHE       Pairwise phenotypic code (1,0,-1 = AA, AU and UU pairs)
+     DST       IBS distance (IBS2 + 0.5*IBS1) / ( N SNP pairs )
+     PPC       IBS binomial test
+     RATIO     Of HETHET : IBS 0 SNPs (expected value is 2)
+</pre>
+
+This file will have as many rows as there are unique pairs of individuals
+in the sample -- for large samples with thousands of individuals, this 
+file can be very large (and take considerable time to generate).  
+</p>
+
+<strong>HINT</strong> Instead of <tt>--genome</tt>, using the command
+<tt>--Z-genome</tt> will perform the same analysos but create a
+compressed file, <tt>plink.genome.gz</tt>. The <tt>--read-genome</tt>
+command can directly read compressed files, as of v1.07. This file can 
+be decompressed by the standard <tt>gunzip</tt> utility, or processed 
+with Unix commands such as zgrep, zcat, etc.
+
+</p>
+To calculate IBD only for members of the same family (as designated by 
+the PED file), add the command 
+<pre>
+     --rel-check
+</pre>
+(i.e. this greatly speeds up analysis by not considering all possible pairs of individuals, if the goal is to validate known relationships with genetic data).
+</p>
+
+To create a more verbose version of this file, add the extra command
+<pre>
+     --genome-full
+</pre>
+which will appended the following extra fields to the normal genome file
+create a file with the following fields
+<pre>
+     IBS0      Number of IBS 0 nonmissing loci
+     IBS1      Number of IBS 1 nonmissing loci
+     IBS2      Number of IBS 2 nonmissing loci
+     HOMHOM    Number of IBS 0 SNP pairs used in PPC test
+     HETHET    Number of IBS 2 het/het SNP pairs in PPC test
+</pre>
+
+<strong>HINT</strong>  To
+produce a smaller version of this file use the command
+<tt>--genome-minimal</tt> instead; however, this is only useful if the
+purpose is to subsequently merge the data using
+<tt>--read-genome-minimal</tt> (i.e. when running <tt>--cluster</tt>
+or <tt>--segment</tt>.  A disadvantage is that multiple
+<tt>plink.genome.min</tt> files cannot be concatenated in the same
+manner for normal <tt>plink.genome</tt> files; this will be remedied
+in future releases of PLINK (i.e. to allow parallel computation of the
+genome file. <b>Note: as of 1.07, you are advised to use
+<tt>--Z-genome</tt> instead of this option -- see above</b>.
+</p>
+
+<strong>HINT</strong> In 1.05 onwards, the genome files are indexed by 
+the header row, which must be present. When using <tt>--read-genome</tt>, 
+the only fields extracted are the four ID fields and DST and PPC when 
+using the <tt>--cluster</tt> or <tt>--mds-plot</tt> options.  You can therefore
+extract just these columns, if you do not need the other fields,e.g. 
+<pre>
+   gawk ' { print $1,$2,$3,$4,$12,$13 } ' plink.genome > new.genome
+</pre>
+
+As mentioned above, the IBD estimation part of this analysis relies on the 
+sample being reasonably homogeneous -- otherwise, the estimates will be biased 
+(i.e. individuals within the same strata will show too much apparent IBD). It is 
+therefore important to run the other population stratification measures provided
+by <tt>plink</tt> and other packages before estimating pairwise IBD. In 
+addition, see the notes on the IBS test in the <a href="strat.shtml#options">
+previous section</a> where it is 
+introduced 
+as a constrain on clustering.
+</p>
+
+<strong>HINT</strong> To reduce the file size, use the <tt>--min</tt><em>X</em> option 
+to only output to <tt>plink.genome</tt> pairs where <tt>PI_HAT</tt> is greater
+than <em>X</em>. That is, 
+<h5>
+        plink --file mydata --genome --min 0.05
+</h5></p>
+will only display the pairs of individuals showing reasonably high levels of IBD sharing 
+(i.e. typically it will be these pairs that are of interest, rather than the vast
+majority of pairs that show no excess sharing).
+
+
+</p>
+<strong>Hint</strong> Calculating the average pi-hat for each individual
+and looking for outliers is also useful (in particular, sample
+contamination will lead to too many heterozygote calls, which leads to fewer IBS 0
+calls, which leads to over-estimated IBD with all other people in the
+sample). Be sure to set <tt>--min 0</tt> and <tt>--max 1</tt> in this case to
+obtain pairs for all individuals.
+
+</p>
+<strong>Advanced hint</strong> If you have access to a cluster, use the <tt>--genome-lists</tt>
+option to facilitate parallelization, as described in the <a href="strat.shtml#cluster">IBS clustering</a> 
+section.
+
+
+<a name="inbreeding">
+<h2>Inbreeding coefficients</h2></a>
+</p>
+
+Given a large number of SNPs, in a homogeneous sample, it is possible
+to calculate inbreeding coefficients (i.e. based on the observed
+versus expected number of homozygous genotypes).
+<h5>
+	plink --file mydata --het
+</h5></p>
+which will create the output file:
+<pre>
+     plink.het
+</pre>
+which contains the fields, one row per person in the file:
+<pre>
+     FID       Family ID
+     IID       Individual ID
+     O(HOM)    Observed number of homozygotes
+     E(HOM)    Expected number of homozygotes
+     N(NM)     Number of non-missing genotypes
+     F         F inbreeding coefficient estimate
+</pre>
+
+This analysis will automatically skip haploid markers (male X and Y chromosome
+markers).
+
+</p><strong>Note</strong> With whole genome data, it is probably best to 
+apply this analysis to a subset that are pruned to be in approximate 
+linkage equilibrium, say on the order of 50,000 autosomal SNPs. Use the 
+<tt>--indep-pairwise</tt> and <tt>--indep</tt> commands to achieve this, 
+described <a href="summary.shtml#prune">here</a>.
+
+</p><strong>Note</strong> The estimate of F can sometimes be negative. Often this will just
+reflect random sampling error, but a result that is strongly negative (i.e. an individual has 
+<em>fewer</em> homozygotes than one would expect by chance at the genome-wide level) can 
+reflect other factors, e.g. sample contamination events perhaps. 
+
+<a name="homo">
+<h2>Runs of homozygosity</h2></a>
+</p>
+
+A simple screen for runs of homozygous genotypes within any one individual is 
+provided by the commands <tt>--homozyg-snp</tt> and <tt>--homozyg-kb</tt> which 
+define the run in terms of the required number of homozygous SNPs spanning a 
+certain kb distance, e.g.
+</p>
+The algorithm is as follows: Take a window of <em>X</em> SNPs and slide this 
+across the genome. At each window position determine whether this window looks 
+'homozygous' enough (yes/no) (i.e. allowing for some number of hets or missing 
+calls). Then, for each SNP, calculate the proportion of 'homozygous' windows that
+overlap that position.  Call segments based on this metric, e.g. based on
+a threshold for the average.
+</p>
+
+The exact window size and thresholds, relative to the SNP density and 
+expected size of homozygous segments, etc, is obviously important: sensible 
+default values are supplied for the context of dense SNP maps, scanning for large 
+segments. In general, this approach will ensure that otherwise long runs of 
+homozygosity are not broken by the occassional heterozygote.  (For more accurate 
+detection of smaller segments, one might consider approaches that also take 
+population parameters such as allele frequency and recombination rate into 
+account, in a HMM approach for example: but for now, PLINK only supports this 
+basic detection of long, homozygous segments).
+</P>
+
+To run this option with default values, use the command
+<h5>
+ plink --bfile mydata --homozyg
+</h5></p>
+which generates a file
+<pre>
+     plink.hom
+</pre>
+
+The <tt>plink.hom</tt> file has the following format, one row per identified 
+homozygous region:
+
+<pre>
+     FID      Family ID
+     IID      Individual ID
+     CHR      Chromosome
+     SNP1     SNP at start of region
+     SNP2     SNP at end of region
+     POS1     Physical position (bp) of SNP1
+     POS2     Physical position (bp) of SNP2
+     KB       Length of region (kb)
+     NSNP     Number of SNPs in run
+     DENSITY  Average SNP density (1 SNP per kb)
+     PHOM     Proportion of sites homozygous
+     PHET     Proportion of sites heterozygous
+</pre>
+
+</p>
+
+The options to change the behavior of this function (along with the default values 
+as parameters) are given below.
+</p>
+
+To change the definition of the sliding 'window', use the options
+<pre>
+    --homozyg-window-kb 5000
+    --homozyg-window-snp 50
+</pre>
+To change the number of heterozygotes allowed in a window
+<pre>
+    --homozyg-window-het 1
+</pre>
+To change the number of missing calls allowed in window, e.g.
+<pre>
+    --homozyg-window-missing 5
+</pre>
+To change the proportion of overlapping windows that must be called homozygous
+to define any given SNP as 'in a homozygous segment', use 
+<pre>
+     --homozyg-window-threshold 0.05
+</pre>
+(i.e. this number is relatively low, so that SNPs at the edge of a true segment 
+will be called, as long as the windows are sufficiently large, such that the 
+probability of a window being homozygous by chance is sufficiently small).
+</p>
+The above options define the 'window' that slides across the genome; the options 
+below relate to the final segments that are called as homozygous or not:
+<pre>
+    --homozyg-snp 100
+    --homozyg-kb 1000
+</pre>
+You can also specify the required minimum density (in kb, i.e. 1 SNP per 50 kb)
+<pre>
+    --homozyg-density 50
+</pre>
+Finally, if two SNPs within a segments are too far apart (measured in kb), that 
+segment can be split in two:
+<pre>
+    --homozyg-gap 1000
+</pre>
+
+</p><strong>HINT</strong> As is, this analysis should be performed on sets of SNPs that have been 
+pruned for strong local LD (if the goal is to find long segments that are more likely to represent 
+homozygosity by descent (i.e. autozygosity) rather than simply by chance). 
+
+</p>
+</p>
+
+
+To obtain pools of overlapping and potentially matching segments, 
+we can use <tt>--homozyg-group</tt> in addition to the above, 
+which generates the file
+<pre>
+     plink.hom.overlap
+</pre>
+which contains the fields
+<pre>
+     FID     Family ID
+     IID     Individual ID
+     PHE     Phenotype of individual
+     CHR     Chromosome
+     SNP1    SNP at start of segment
+     SNP2    SNP at end of segment
+     BP1     Physical position of start of segment
+     BP2     Physical position of end of segment
+     KB      Physical size of segment
+     NS      Number of segments in the pool that match this one
+     GRP     Allelic-match grouping of each segment
+</pre>
+
+For example, the command
+
+<h5>
+plink --file test --homozyg --homozyg-group
+</h5></p>
+
+might result in the file <tt>plink.hom.overlap</tt> containing:
+
+<pre>
+ FID  IID   PHE  CHR SNP1 SNP2        BP1      BP2    KB   NS    GRP
+   1    1     2    1 snp1 snp7   1000000   7000000  6000   1     1
+   6    1     1    1 snp1 snp5   1000000   5000000  4000   1     1*
+   2    1     1    1 snp2 snp7   2000000   7000000  5000   0     2*
+ CON    3   1:2    1 snp2 snp5   2000000   5000000  3000
+</pre>
+
+This implies one pool (i.e. each pool is separated by a CON (consensus row)
+and a space. <tt>CON</tt> is the consensus region; the ratio is 
+the case:control segment ratio; under <tt>IID</tt> we have the number of 
+individuals.
+
+</p>
+
+When there is more than one pool, they are ordered by the number 
+of segments in the pool, then physical position. To output only pools of 
+a particular size, use the <tt>--pool-size <em>N</em></tt> option (e.g. <tt>--pool-size 10</tt> to 
+only display pools with at least 10 segments).
+</p>
+
+A pool contains overlapping segments, 
+which may or may not also allelically match. For allelic matching, segments are 
+compared pairwise, and a match is declared if at least 0.95 of jointly non-missing, 
+jointly homozygous sites are identical. This threshold can be changed with the option
+<pre>
+     --homozyg-match 0.99
+</pre>
+
+The number of other segments in the pool that allelically match each segment
+is shown in the <tt>NS</tt> field. The <tt>GRP</tt> field shows how <tt>PLINK</tt>
+attempts to group allelically-matching segments within the pool of overlapping segments.
+It works as follows:
+<ol>
+<li> For each segment, find the number of other segments that match (<tt>NS</tt>).
+<li> Find segment with largest NS, denote as group 1, and put a * to
+indicate this is the index for this group.
+<li> Denote all other segments that match this index as being in GRP 1 (i.e.
+but without the *)
+<li> Continue to next ungrouped segment (2*, etc)
+</ol>
+
+</p>
+
+By default, we compare all segments pairwise when asking if they match; if
+the <tt>--consensus-match</tt> flag is given, then for a pool of overlapping  
+segments, matches are defined only on the basis of the consensus region 
+(i.e. the overlapping region shared by all segments). This is probably 
+not very sensible in many cases, as the consensus region can often be 
+small (i.e. a single SNP).
+
+</p>
+
+The <tt>NS</tt> field can suggest any intransitivity in matching: e.g. 
+if B matches A and C but A does not match C, then if B has already been 
+grouped with A, C would not be added to this group as being an allelic
+match. In this case C would have NS > 0 but belong to a <tt>GRP</tt> of its own.
+
+</p>
+
+Internally, all pools are formed but then pruned if, for instance, a smaller pool is
+included in a larger pool completely.  That means that in certain
+circumstances you will see a segment in more than one pool. For example, imagine
+a grid with three people A, B and C along the columns, each row representing physical 
+position, and the presence of a letter representing a homozygous run:
+<pre>
+     . . .
+     A . .
+     A B .
+     A B C
+     A B C
+     A . C
+     A . .
+     . . .
+</pre>
+
+In this case, {A,B} and {A,C} and {B,C} pools will not be displayed, as they appear
+in the super-pool {A,B,C}.  However, if we instead had:
+
+<pre>
+     . . .
+     A . .
+     A B .
+     A B .
+     A . .
+     A . C
+     A . C
+     A . .
+     . . .
+</pre>
+
+Then you will see {A,B} and {A,C} (i.e. with A shown twice) as we have two
+distinct consensus regions here.
+
+</p>
+
+Finally, if the <tt>--homozyg-verbose</tt> option is added, the <tt>plink.hom.overlap</tt>
+file will then display the actual segments underneath each pool. 
+Here each individual is listed across the page, so the 3 columns refers 
+to the 3 segments in the pool. For example:
+
+<h5>
+plink --file test --homozyg-snp 2 --homozyg-group --homozyg-verbose
+</h5></p>
+now generates <tt>plink.hom.overlap</tt> as follows (with annotation added in <em>italics</em>):
+<pre>
+     FID  IID      PHE  CHR SNP1 SNP2    BP1    BP2       KB   NS    GRP
+       1    1        2    1 snp1 snp7      1      7    0.006   1     1
+       6    1        1    1 snp1 snp5      1      5    0.004   1     1*
+       2    1        1    1 snp2 snp7      2      7    0.005   0     2*
+     CON    3      1:2    1 snp2 snp5      2      5    0.003
+
+     SNP    1    6    2          <em><-- Family ID</em>
+            1    1    1          <em><-- Individual ID</em>
+            1    1    2          <em><-- GRP code</em>
+
+    snp1 [A/A] [A/A]  C/A        <em><-- now SNPs are listed down the page</em>
+                                 
+    snp2 [A/A] [A/A] [C/C]       <em><-- start of consensus region</em>
+    snp3 [A/A] [A/A] [C/C]
+    snp4 [A/A] [A/A] [C/C]
+    snp5 [A/A] [A/A] [C/C]       <em><-- end of consensus region</em>
+                                 
+    snp6 [A/A]  A/C  [C/C]
+    snp7 [A/A]  A/C  [C/C]
+</pre>
+
+A bracket indicates that that genotype is part of the homozygous segment:
+the consensus region is the intersection. The entire union of SNPs is
+displayed and the consensus region is indicated by spaces before and after.
+i.e. the consensus region is that where all genotypes are in [brackets].
+</p>
+Obviously, this file can get quite large (+wide) with real data and 
+it is not very machine-readable.
+</p>
+
+
+<a name="segments">
+<h2>Segmental sharing: detection of extended haplotypes shared IBD</h2></a>
+</p>
+
+<strong>WARNING</strong> This analysis is still in the <em>beta</em> development stage and 
+is considerably more involved than many others provided by this package: currently, 
+you should only perform these analyses if you consider yourself something 
+of <em>an analytic expert</em> and are confident you will be able to interpret the output!
+Over time, we expect that the documentation and features supporting this analysis will improve.
+</p>
+There are five important steps to this analysis:
+<ol>
+<li> Obtain a homogeneous sample
+<li> Remove very closely related individuals
+<li> Prune SNP set
+<li> Detect segments
+<li> Associate with disease
+</ol>
+
+<h6> Check for a homogenous sample</h6>
+
+This analysis requires that all individuals belong to a single, homogeneous population. 
+To ensure this assumption is reasonable: as described <a href="strat.shtml">here</a>, first run 
+<h5>
+  plink --bfile mydata1 --genome
+</h5></p>
+
+to generate a <tt>plink.genome</tt> file. This will be used subsequently in a
+number of steps.
+
+</p>
+
+Then, using the available tools, such as listed here and described more fully in 
+the section on stratification, obtain a relatively homogeneous dataset. Some relevant 
+options are listed here:
+<pre>
+     --cluster    (cluster individuals)
+     --matrix     (generate .mdist file, used to generate MDS plots)
+     --ppc        (threshold for PPC test, not to cluster individuals)
+     --mds-plot   (generate a multidimensional scaling plot)
+     --ibs-test   (as case/control less similar on average?)
+     --neighbour  (option to find individual outliers)
+</pre>
+
+Also, remove individuals who appear to have higher levels of inbreeding than 
+expected (see <a href="#inbreeding">above</a>). If you have a set of individuals you 
+want to exclude from analysis based on these steps, for example, listed in the 
+file <tt>outliers.txt</tt> (FID, IID) then use:
+
+<h5>
+ ./plink --bfile mydata1 --remove outliers.txt --make-bed --out mydata2
+</h5></p>
+
+
+<h6> Remove very closely related individuals</h6>
+
+The focus of this analysis is to look for extended haplotypes shared
+between distantly related individuals: having very closely related
+individuals (siblings, first cousins, etc) will likely swamp the
+results of the analysis.  Scan the <tt>plink.genome</tt> file for any
+individuals with high <tt>PIHAT</tt> values (e.g. greater than
+0.05). Optionally, remove one member of the pair if you find close
+relatives.  (Alternatively, to keep them in but just exclude this
+<em>pair</em> from the segmental analysis, see below).
+
+<h6> Prune the set of SNPs</h6>
+
+The segmental sharing analysis requires approximately independent
+SNPs (i.e. linkage equilibrium). Two options to prune are documented <a href="summary.shtml#prune">here</a>.
+</p> A reasonable strategy might be as follows:
+
+<h5>
+ plink --bfile mydata2 --mind 1 --geno 0.01 --maf 0.05 --make-bed --out mydata3
+</h5></p>
+followed by 
+<h5>
+ plink --bfile mydata3 --indep-pairwise 100 25 0.2
+</h5></p>
+followed by 
+<h5>
+ plink --bfile mydata3 --extract plink.prune.in --make-bed --out mydata4
+</h5></p>
+
+
+<h6> Detecting shared segments (extended, shared haplotypes)</h6>
+
+With a newly pruned fileset, ideally containing only independent, high quality 
+SNPs in individuals who are not very closely related but are from the 
+same population, run the command
+<h5>
+  plink --bfile mydata4 --read-genome plink.genome --segment
+</h5></p>
+
+<tt>PLINK</tt> expects the 3rd column the MAP/BIM file to contain 
+genetic distances in Morgan units. A reasonable approximation is to scale
+from physical position (i.e. column 4) at 1cM=1Mb. If the genetic distances
+are in cM instead of Morgans, add the <tt>--cm</tt> flag.
+</p>
+
+To set threshold on who to include/exclude based on genome wide IBD use
+<pre>
+     --min 0.01
+     --max 0.10
+</pre>
+For example, this would exclude pairs who share >10% of their genomes. 
+Alternatively, to include all pairs, irrespective of whether we estimate
+any genome-wide sharing or not, add the option
+<pre>
+     --all-pairs
+</pre>
+instead. This will use all pairs, allowing for a small prior probability
+of sharing for pairs that otherwise are at the boundary of IBD sharing
+(i.e. sharing 0% IBD).  Naturally, for a large sample, it may become prohibitive
+to consider all possible pairs.
+</p>
+
+The <tt>--segment</tt> option generates a file 
+<pre>
+     plink.segment
+</pre>
+which has the fields:
+<pre>
+     FID1       Family ID of first individual
+     IID1       Individual ID of first individual
+     FID2       Family ID of second individual
+     IID2       Individual ID of second individual
+     PHE        Phenotype concordance: -1,0,1
+     CHR        Chromosome code
+     BP1        Start physical position of segment (bp)
+     BP2        End physical position of segment (bp)
+     SNP1       Start SNP of segment
+     SNP2       End SNP of segment
+     NSNP       Number of SNPs in this segment
+     KB         Physical length of segment (kb)
+</pre>
+
+Here one row represents one segment. The <tt>PHE</tt> field is coded 
+-1,0,1 for control/control, case/control, or case/case pairs respectively. 
+</p>
+The option 
+<pre>
+     --segment-length 2000
+</pre>
+means to only select segments that are at least 2000 kb in length, for example. The option 
+<pre>
+     --segment-snp 100
+</pre>
+means only to select segments that contain at least 100 SNPs, for example. 
+</p>
+For ease of interpretation, and to increase the probably that the segments are 
+truly shared IBD and thus tags shared rare variation between two individuals, 
+it makes sense to restrict ones focus to very extended segments (e.g. over 1Mb
+in size, for example).
+
+</p>
+
+Another option is the <tt>--segment-group</tt> option, which generates
+output similar to <tt>--homozyg-group</tt>, described above;
+similarly, <tt>--segment-verbose</tt> prints out the actual genotypes
+for the individuals that overlap. However, these can be large files
+that are not necessarily easy to interpret.
+
+
+<h6> Association with disease</h6>
+
+Along with the <tt>--segment</tt> option, as above, if you also add:
+<pre>
+     --mperm N
+</pre>
+then, for case/control data, this performs a test of whether segments
+stack up more in case/case pairs versus non-case/case pairs at any
+position, performing <em>N</em> permutations. Equivalently, you can 
+use an already-created segment file:
+<h5> 
+./plink --bfile mydata4 --read-segment plink.segment --mperm 10000
+</h5></p>
+This will generate two files:
+<pre>
+     plink.segment.summary
+</pre>
+which contains one row corresponding to one SNP; there are five fields:
+<pre>
+     CHR    Chromosome code
+     SNP    SNP identifier
+     CONU   Number of control/control segments over this SNP
+     DISC   Case/control segments spanning this position 
+     CONA   Case/case segment count
+</pre>
+The file
+<pre>
+     plink.segment.summary.mperm
+</pre>
+contains empirical significance values for each position, asking
+whether there is a higher rate of case/case sharing than expected. It
+is important to note that the test statistic is still under
+developemtn: in this current release, it should merely be interpreted
+as a rough guide to the data.  Naturally, the thresholds for declaring
+significance will be much lower than for genome-wide association
+analysis; precise guidelines will be put in place presently.
+
+</p>
+&nbsp;
+</p>
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:27 EST
+</em>
+
+</body>
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>

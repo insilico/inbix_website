@@ -1,0 +1,900 @@
+<html>
+<title>PLINK</title>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+
+<h1>SNP imputation and association testing</h1>
+
+This page describes <tt>PLINK</tt> functions to impute SNPs that are
+not directly genotyped but are present on a reference panel such as
+the HapMap. As well as imputing genotypes (either making the most
+likely call, or outputting the posterior probabilities of each
+genotype, or the dosage) some simple association tests can be framed
+in this context. These methods do not necessarily need whole-genome
+data to work however: with dense SNP genotyping in a particular
+region, these methods could still straightforwardly be applied. These
+methods utilise the <a href="proxy.shtml">proxy association</a> set of
+commands.
+
+</p>
+
+</p>
+In the text below, an <em>observed</em> SNP refers to one that was genotyped 
+in both the reference and the WGAS sample. An <em>imputed</em> SNP refers
+to one that only appears in the reference panel.
+
+</p>
+<strong>IMPORTANT</strong> The approach is a simple one, essentially
+based around the concept of multi-marker tagging, designed to provide
+a straightforward albeit <em>quick and dirty</em> approach to
+imputation for common variants. It is unlikely to be optimal,
+particularly for rarer alleles, when compared to other imputation
+methods available. These features are also still in <em>beta</em>
+meaning that they are still under development. As such, you are
+advised only to use these routines in an exploratory manner, if at
+all.
+
+</p>
+
+<a name="impute1">
+<h2>Basic steps for using PLINK imputation functions</h2></a>
+</p>
+
+The first step is to create a single fileset with the reference panel 
+merged in with your dataset. We assume that the HapMap CEU founders 
+will be used in this example. 
+</p>
+
+<strong>HINT</strong> A PLINK binary fileset of the Phase 2 HapMap
+data can be <a href="res.shtml">downloaded from here</a>. For studies
+of individuals of European ancestry, the CEU founder fileset will be
+the one to download from that link.
+
+</p>
+
+Given the HapMap data, <tt>hapmap-ceu.*</tt>
+or <tt>hapmap-ceu-all.*</tt>, for example, you merge in your WGAS data
+as follows,
+<h5>
+ ./plink --bfile hapmap-ceu --bmerge mydata.bed mydata.bim mydata.fam 
+--make-bed --out merged
+</h5></p>
+
+</p>
+
+In imputation mode, the reference panel is denoted by making
+those individuals have a <b><em>missing value for the
+phenotype</em></b>. You will therefore need to edit the <tt>.fam</tt>
+files to make the 6th column (phenotype) <tt>0</tt> for all HapMap
+individuals and <tt>1</tt> (control) or <tt>2</tt> (case) for the
+individuals in your sample.  If you have trio data, make sure that no
+observed individuals have missing phenotypes (i.e. set parents to
+controls in a TDT context, rather than have a missing phenotype code).
+
+
+<h6>Strand issues</h6>
+
+The HapMap SNPs are all given on the +ve strand, and so it is your
+responsibility to ensure that your data are aligned also, for the
+merge to work.  The <a href="dataman.shtml#flip"><tt>--flip</tt></a>
+command can help changing strand. If there are strand problems, PLINK
+will report a list of SNPs that did not match in terms of strand.
+Naturally, if there are SNPs
+<tt>A/T</tt> or <tt>C/G</tt> SNPs in your dataset, these will
+potentially go unflagged.  As such, it is always a good idea to check
+allele frequencies between the HapMap and the WGAS sample to identify
+grossly deviant SNPs and/or undetected strand issues (i.e. create an
+alternate phenotype file with the HapMap individuals coded as controls
+and the rest of WGAS data as cases, and run a basic association
+command). The <a href="dataman.shtml#flipscan"><tt>--flip-scan</tt></a>
+command can also help to detect some incorrectly aligned variants.
+
+
+</p>
+&nbsp;
+</p>
+
+<strong>NOTE</strong> This will create a <b>very large</b> dataset 
+and take some time; particularly if you have a parallel computing 
+environment available, you might want to split the files and the 
+merge procedures up by chromosomes, e.g. first download the archive 
+with the HapMap CEU founder fileset split by chromosome, then 
+merge each chromosome separately:
+
+<h5> 
+./plink --bfile mydata --chr 1 --make-bed --out data-1
+</h5></p>
+<h5> 
+./plink --bfile mydata --chr 2 --make-bed --out data-2
+</h5></p>
+etc, followed by 
+<h5> 
+./plink --bfile hapmap-ceu-chr1 --bmerge data-1.bed data-1.bim data-1.fam  --make-bed --out merged-1
+</h5></p>
+<h5> 
+./plink --bfile hapmap-ceu-chr2 --bmerge data-2.bed data-2.bim data-2.fam  --make-bed --out merged-2
+</h5></p>
+
+This will create 22 separate filesets
+(<tt>merged-1</tt>, <tt>merged-2</tt>, etc) and all the following
+routines can then be run separately on each.
+
+</p>
+
+
+<a name="impute2">
+<h2>Combined imputation and association analysis of case/control data</h2></a>
+</p>
+
+Given the merged fileset, containing both the reference panel and the
+(more sparse) WGAS samples, PLINK will attempt to perform case/control
+association for every SNP (both observed and imputed) with the following command:
+
+<h5>
+ ./plink --bfile merged-1 --proxy-assoc all 
+</h5></p>
+
+which will generate an output file
+
+<pre>
+     plink.assoc.proxy
+</pre>
+
+with the fields
+
+<pre>
+     CHR     Chromosome code
+     SNP     SNP identifier
+     BP      Physical position (base-pairs)
+     A1      First allele code (not necessarily minor allele)
+     A2      Second allele code (not necessarily major allele)
+     GENO    Genotyping rate in entire sample <em>and</em> reference panel
+     NPRX    Number of proxy SNPs selected
+     INFO    Information content metric
+     F_A     Allele 1 frequency in cases
+     F_U     Allele 1 frequency in controls
+     OR      Odds ratio 
+     P       Significance value of case/control association test
+</pre>
+
+The fields <tt>INFO</tt> and <tt>NPRX</tt> refer to how well PLINK
+managed, if at all, to impute the SNP.  If <tt>NPRX</tt> is zero, then
+it could not be even poorly imputed.  If <tt>INFO</tt> ranges from
+between 0 and 1, although it can be greater than 1 occasionally. A
+higher value general means a better imputed SNP; roughly speaking,
+only looking at imputed SNPs with a <tt>INFO</tt> value greater than
+0.8 or so is probably good practice. More specific details on these
+metrics will be posted soon.
+
+</p>
+
+<a name="impute3">
+<h2>Modifying options for basic imputation/association testing</h2></a>
+</p>
+
+One of the most important modofying options for
+the <tt>--proxy-assoc</tt> test is <tt>--proxy-drop</tt>, which means
+that the <em>observed</em> SNPs are dropped, one at a time, from the
+WGAS sample when they are tested as the reference SNP (i.e. they will
+be re-imputed given the surrounding SNPs). That is, the command,
+
+<h5>
+ ./plink --bfile merged-1  --proxy-assoc all --proxy-drop
+</h5></p>
+
+would mean that every single SNP test statistic
+in <tt>plink.assoc.proxy</tt> would not involve a single observed
+genotype for that particular SNP; as such, running this association
+test with the <tt>--proxy-drop</tt> command is a good idea as it will
+provide both a means to assess the performance of the imputation (by
+comparing the results against the results of the observed genotypes)
+but also of an extra level of QC (if you still see a significant
+result, it cannot be due to technical artifacts specific to that SNP,
+as no observed genotypes were used in the test for that SNP).
+</p>
+  The value of not using <tt>--proxy-drop</tt> always
+with <tt>--proxy-assoc</tt> (given that the basic <tt>--assoc</tt>
+command more straightforwardly calculates association for observed
+SNPs) is if there is a reasonable amount of missing genotype data for
+an observed SNP and you want to use imputation to recover
+it. (Although, in this case, there is perhaps less need to use a
+separate reference panel in any case, and so the
+standard <a href="proxy.shtml">proxy association</a> approach, without
+any reference panel, can be used.)
+
+
+<h6>Parameters modifying selection of proxies</h6>
+
+Imputation in this context works simply by selecting a set of proxy
+SNPs (using the reference panel information) and then phasing these
+SNPs in both reference panel and WGAS sample jointly. By grouping
+haplotypes, the corresponding single SNP tests of <em>imputed</em>
+SNPs can then be straightforwardly performed.
+</p>
+
+There are a number of parameters that impact the choice of proxy
+SNPs. Fine tuning of these parameters is still in progress. These
+parameters will be described in more detail shortly.  For now, the
+default parameters should be sufficient in most cases. See
+the <a href="proxy.shtml">proxy association</a> page for a description of
+the parameters, the defaults, and how they can be changed.
+
+
+</p>
+
+<a name="impute4">
+<h2>Imputing discrete genotype calls</h2></a>
+</p>
+
+The association test described above performs imputation on-the-fly
+and does not save the imputed genotype calls or probabilities. To do
+so, and to generate other metrics of imputation performance, use
+the <tt>--proxy-impute</tt> command.
+</p>
+
+To generate summary statistics for the imputation performance of each
+SNP, use the command
+
+<h5>
+ ./plink --bfile merged-1  --proxy-impute all
+</h5></p>
+
+which produces a file
+
+<pre>
+     plink.proxy.impute
+</pre>
+
+which has the fields
+
+<pre>
+     CHR       Chromosome
+     SNP       SNP ID
+     NPRX      Number of proxy SNPs
+     INFO      Information metric
+     TOTAL_N   Total number of WGAS sample genotypes (exc. reference panel)
+     OBSERVD   Proportion of these w/ observerd genotypes
+     IMPUTED   Proportion of these imputed
+     OVERLAP   Proportion of SNPs with both an imputed and overlapping
+     CONCORD   Concordance rate in the overlapping set
+</pre>
+
+Here are some example lines: 
+
+<pre>
+ CHR             SNP NPRX     INFO  TOTAL_N  OBSERVD  IMPUTED  OVERLAP  CONCORD 
+  18       rs7233673    5    0.993     3469        0    0.991        0       NA 
+  18       rs7233597    5    0.998     3469    0.999    0.993    0.992    0.986 
+  18       rs7505507    4    0.632     3469    0.999    0.332    0.332    0.891 
+</pre>
+
+e.g. the first line represents an unobserved SNP, for which 99% of
+individuals were imputed; the second line was an observed SNP, but if
+we drop it and try to re-impute, we get 99.3%; the concordance rate
+between imputed and genotyped is 98.6% for this SNP. The final line
+represents a SNP that did not perform as well: we only impute a third
+of genotypes and these are less than 90% concordant (this was an
+observed SNP also).  In this case, we see the <tt>INFO</tt> score is
+lower (below 0.8) for this third SNP than for the other two: at the
+standard 0.8 threshold this SNP would have been ignored in any case.
+</p>
+
+&nbsp; </p>
+
+The required confidence threshold for making a call can be changed with, 
+for example,
+<pre>
+     --proxy-impute-threshold 0.8
+</pre>
+(it is set to 0.95 by default currently).
+
+
+</p>&nbsp; </p>
+
+To give genotype-specific concordances, use the additional option:
+<pre>
+     --proxy-genotypic-concordance
+</pre>
+then a set of extra fields are append to the <tt>plink.proxy.impute</tt> output
+<pre>
+     F_AA     Frequency of true 'AA' genotype
+     I_AA     Proportion imputed for true AA genotype
+     C_AA     Concordance rate for true AA genotype
+     F_AB     As above, for 'AB' genotype
+     ...      ...
+</pre>
+
+That is, for a very rare SNP, overall concordance would be high just
+by chance, even if none of the rare genotypes were correctly
+called. This option is therefore useful to get a better picture of
+imputation performance (when the observed genotype is also available).
+
+</p>&nbsp; </p>
+
+In additon, if 
+<pre>
+     --proxy-show-proxies
+</pre>
+
+is also specified, an extra <tt>PROXIES</tt> field will appear
+in <tt>plink.proxy.impute</tt> showing the specific SNPs selected.
+
+</p>&nbsp; </p>
+
+To perform imputation and save the dosages (fractional count of 0 to 2 alleles for each genotype), 
+add the <tt>--proxy-dosage</tt> option;
+<h5>
+ ./plink --bfile merged-1  --proxy-impute all  --proxy-dosage
+</h5></p>
+which produces a file
+<pre>
+     plink.proxy.impute.dosage
+</pre>
+in which each imputed SNP is represented as a row; the fields (which does not have any header row)
+<pre>
+     SNP Identifier
+     Allele 1 code
+     Allele 2 code
+     Information content score for SNP
+     Allele dosage for first individual in sample
+     Allele dosage for second individual in sample
+     ...
+     Allele dosage for final individual in sample
+</pre>
+
+This file can then be analysed outside of <tt>PLINK</tt>.
+
+</p>&nbsp; </p>
+
+To perform imputation and save the called (most likely) genotypes in a new fileset, 
+add the <tt>--make-bed</tt> option;
+<h5>
+ ./plink --bfile merged-1 --proxy-impute all --make-bed --out imputed-1
+</h5></p>
+
+By default, <tt>PLINK</tt> will only replace genotypes that were missing in the original WGAS sample;
+to make PLINK re-impute all genotypes (whether they were actually observed or not), add the <tt>--proxy-replace</tt>
+flag,
+<h5>
+ ./plink --bfile merged-1 --proxy-impute all --proxy-replace --make-bed --out imputed-1
+</h5></p>
+
+&nbsp; </p>
+
+<strong>Note</strong> Future versions will do obvious things, like 
+let you generate proxy-impute and proxy-assoc output files in the 
+same run (you can't now).
+</p>
+
+<strong>Important</strong> Making discrete calls for the most likely
+genotype will necessarily introduce error and bias in the all but
+perfectly imputed SNPs. As such, one should take care in the analysis
+and interpretation of imputed datasets -- they should not be treated
+as if they were directly observed with certainty.  In particular, one
+should be particularly cautious when combining multiple imputed files,
+particularly if different platforms were used and/or if the files also
+differ by disease state. Indeed, such an analysis is currently not
+recommended.
+</p>
+
+
+
+<a name="impute5">
+<h2>Verbose output options</h2></a>
+</p>
+
+To get a verbose output for a single SNP in the association mode, use
+instead of the <tt>all</tt> keyword the specific SNP name:
+<pre>
+     --proxy-assoc rs123235
+</pre>
+See the web-page on <a href="proxy.shtml">proxy association</a> methods 
+to interpret this output.
+</p>
+You can also specify verbose imputation for one or more SNPs, e.g. 
+<pre>
+     --proxy-impute rs8096534  --proxy-verbose
+</pre>
+which will add extra lines to the file <tt>plink.proxy.impute</tt>
+representing the actual calls per person: 
+<pre>
+     rs8096534       78-03C15376 TBI-78-03C15376-1   01 01 0 1 0
+     rs8096534       78-03C15377 TBI-78-03C15377-1   00 00 1 0 0
+     rs8096534       78-03C15378 TBI-78-03C15378-1   01 01 0 1 0
+     rs8096534       78-03C15398 TBI-78-03C15398-1   00 00 1 0 0
+     rs8096534       78-03C15448 TBI-78-03C15448-1   01 01 0 1 0
+     rs8096534       78-03C20292 TBI-78-03C20292-1   11 11 0 0 1
+     rs8096534       78-03C20300 TBI-78-03C20300-1   11 10 0 0.08199 0.918
+     rs8096534       78-03C20317 TBI-78-03C20317-1   01 01 0 1 0
+     rs8096534       78-03C20335 TBI-78-03C20335-1   01 01 0 1 0
+     ...
+</pre>
+where the fields are (note: currently there is no header for these fields)
+<pre>
+     SNP     SNP identifier
+     FID     Family ID
+     IID     Individual ID
+     OBS     Observed genotype (coded 00,01,11 = AA,AB,BB,  10 = missing)
+     IMP     Imputed genotype (as above)
+     PAA     Probability of 'AA' genotype
+     PAB     Probability of 'AB' genotype
+     PBB     Probability of 'BB' genotype (i.e. these last 3 numbers sum to 1.00)
+</pre>
+
+In addition, after these lines you will see a table of counts which
+summarises the actual calls versus the true values (if known). Ideally, you would 
+observe high numbers down the diagonal therefore (the columns are the same as the rows):
+<pre>
+     Imputation matrix (rows observed, columns imputed)
+     A/A     292     2       0       1
+     A/G     0       1389    8       55
+     G/G     0       5       1585    130
+     0/0     1       1       0       0
+</pre>
+and this is then followed by the normal, single-line non-verbose report for that SNP
+<pre>
+ CHR             SNP NPRX     INFO  TOTAL_N  OBSERVD  IMPUTED  OVERLAP  CONCORD 
+  18       rs8096534    5    0.961     3469    0.999    0.946    0.946    0.995 
+</pre>
+
+Although you are able to specify <tt>--proxy-impute all</tt>
+and <tt>--proxy-verbose</tt> together, be warned that this will
+typically result in a very large output file for real data. It is
+better used for single SNPs in its current format.
+</p>
+<hr>
+
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:28 EST
+</em>
+
+</body>
+
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>

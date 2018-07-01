@@ -1,0 +1,790 @@
+<html>
+<title>PLINK</title>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+
+<h1>SNP simulation routine</h1>
+
+<tt>PLINK</tt> provides an interface to a very simplistic SNP 
+simulation routine, designed to generate large SNP datasets for
+population-based, case/control studies.  This function is largely
+intended as a convenience function for generating data to 
+prototype new methods, comparing the power of different approaches, 
+etc, rather than producing <em>realistic</em> whole genome data. 
+Critically, all SNPs simulated are <b><em>unlinked and in linkage 
+equilibrium</b></em>.
+
+</p>
+<a name="sim1">
+<h2>Basic usage</h2>
+</a>
+</p>
+
+The basic command to simulate a SNP data file is the <tt>--simulate</tt> option,
+<h5>
+ ./plink --simulate wgas.sim --make-bed --out sim1
+</h5></p>
+
+which takes as a parameter the name of a file (here <tt>wgas.sim</tt>)
+that describes the to-be-simulated data.
+
+</p>
+The simulation file <tt>wgas.sim</tt> is as follows:
+<pre>
+     100000  null      0.00 1.00  1.00 1.00
+     100     disease   0.00 1.00  2.00 mult
+</pre>
+These files can have 1 or more rows, where each row has exactly five fields, as follows
+<pre>
+     Number of SNPs in this <em>set</em>
+     Label of this set of SNPs
+     Lower allele frequency range
+     Upper allele frequency range
+     Odds ratio for disease, heterozygote
+     Odds ratio for disease, homozyygote (or "mult")
+</pre>
+
+Specifying <tt>mult</tt> implies a multiplicative risk for the
+homozygote, e.g. 2*2=4 in the above example.
+</p>
+Given this file, <tt>PLINK</tt> would generate 100,000 SNPs with no
+association with disease. Each SNP would have its own population
+allele frequency, generated as a uniform number between, in this case,
+0.00 and 1.00.  In addition, 100 extra SNPs will be simulated that are
+associated with disease (population odds ratio of 2.00).
+
+</p>
+
+The names of each SNP would follow from the label (which must be unqiue), 
+with a number appended, e.g. 
+
+<pre>
+     null_0
+     null_1
+     null_2
+     ...
+     disease_99
+</pre>
+
+An exception is that if a set only contains a single SNP, nothing is
+appended to the label. This is useful in generating multiple samples
+from the same population, as described below.
+
+</p>
+Obviously, a uniform allele frequency range is not realistic: one could instead specify a series of bins 
+to enrich for rarer SNPs, if so desired, to build a more realistic spectrum of allele frequencies (not that the example 
+below is meant to be more realistic).
+<pre>
+     20000  nullA     0.00 0.05  1.00 1.00
+     10000  nullB     0.05 0.10  1.00 1.00
+      5000  nullC     0.10 0.20  1.00 1.00
+     10000  nullD     0.20 0.99  1.00 1.00
+      ... 
+</pre>
+
+As well as generating the actual data, the <tt>--simulate</tt> outputs to the LOG file the following:
+<pre>
+     Reading simulation parameters from [ wgas.sim ]
+     Writing SNP population frequencies to [ plink.simfreq ]
+     Read 2 sets of SNPs, specifying 100100 SNPs in total
+     Simulating 100 cases and 100 controls
+     Assuming a disease prevalence of 0.01
+</pre>
+
+The <tt>plink.simfreq</tt> file is described <a href="#sim2">below</a>.  By default, 100 cases and 100 controls are generated. This 
+can be changed with the command-line options
+<pre>
+     --simulate-ncases 5000
+</pre>and<pre>
+     --simulate-ncontrols 5000
+</pre>
+for example.  Likewise, the default disease prevalence is assumed to be 0.01. This can be changed with 
+<pre>
+     --simulate-prevalence 0.05
+</pre>
+for example. 
+
+</p>
+
+In the example above, the simulated data were directly saved to a binary fileset: this need not be the case. For example, 
+any other analysis command could instead have been applied, e.g. <tt>--simulate</tt> acts just like <tt>--file</tt> or <tt>--bfile</tt>: 
+
+<h5>
+ ./plink --simulate wgas.sim --assoc 
+</h5></p> 
+
+although the actual simulated data would be subsequently lost of course. 
+
+</p>
+
+<strong>Hint</strong> This tool only generates individuals drawn from
+a homogeneous population, but you can easily imagine using several
+<tt>--simulate</tt> runs then using <tt>PLINK</tt> commands to merge
+the resulting files to specify more complex scenarios,
+e.g. representing population stratification, allelic heterogeneity,
+etc.
+</p>
+
+The command
+<pre>
+     --simulate-label POP1
+</pre>
+
+will append the text label <tt>POP1</tt> to the ID of each individual
+generated. This can be useful when generating and subsequently merging
+multiple simulated samples (so unique IDs can be specified across all
+samples).
+
+</p>
+
+
+
+</p>
+<a name="sim1b">
+<h2>Specification of LD between marker and causal variant</h2>
+</a>
+</p>
+It is also possible to simulate data in which the observed marker SNP
+is only in incomplete LD with the actual causal allele. This is
+achieved with either the <tt>--simulate-tags</tt> or <tt>--simulate-haps</tt>
+options, e.g. 
+<h5>
+ plink --simulate ld.sim --simulate-tags  
+</h5></p>
+PLINK now expects 9 fields instead of 6 in the simulation file: namely, 
+<pre>
+     Number of SNPs in this <em>set</em>
+     Label of this set of SNPs
+     Lower allele frequency range, causal variant
+     Upper allele frequency range, causal variant
+     Lower allele frequency range, marker
+     Upper allele frequency range, marker
+     Marker / causal variant LD (D-prime)
+     Odds ratio for disease, heterozygote causal variant
+     Odds ratio for disease, homozyygote causval variant, (or "mult")
+</pre>
+For example, 
+<pre>
+     5    snp    0.05 0.05      0.5 0.5    0.5   2 mult
+</pre>
+Implies 5 CVs, each of 5% MAF and 2-fold multiplicative effect size
+(each in linkage equilibrium still) but with 10 additional markers,
+each of 50% MAF, each in complete LD with D'=0.5 with their respective
+CV (i.e. pairs of markers are simulated). The command
+<h5>
+ plink --simulate ld.sim --simulate-tags --assoc
+</h5></p>
+will therefore generate only 10 SNPs, that are the markers that tag the CVs, i.e. 
+note the frequency of these variants is around 50%
+<pre>
+ CHR     SNP         BP   A1      F_A      F_U   A2        CHISQ            P           OR
+   1   snp_0          1    D    0.474   0.5045    d        3.723      0.05368       0.8851
+   1   snp_1          2    D    0.484   0.4985    d       0.8413        0.359       0.9436
+   1   snp_2          3    D    0.493   0.4775    d       0.9618       0.3267        1.064
+   1   snp_3          4    D    0.486    0.494    d       0.2561       0.6128       0.9685
+   1   snp_4          5    D   0.4925   0.5005    d        0.256       0.6129       0.9685
+</pre>
+In contrast, the related command
+<h5>
+ plink --simulate ld.sim --simulate-haps --assoc
+</h5></p>
+will output both the causal variant and the marker, with <tt>_M</tt>
+appended to the marker name:
+<pre>
+ CHR     SNP         BP   A1      F_A      F_U   A2        CHISQ            P           OR
+   1   snp_0          1    D   0.0995    0.044    d        46.25    1.042e-11        2.401
+   1 snp_0_M          2    B   0.4885    0.494    A        0.121       0.7279       0.9782
+   1   snp_1          3    D   0.0875    0.044    d         30.8    2.853e-08        2.083
+   1 snp_1_M          4    B   0.4815   0.5055    A        2.304        0.129       0.9084
+   1   snp_2          5    D    0.088   0.0575    d        13.79    0.0002044        1.582
+   1 snp_2_M          6    B    0.459   0.5115    A        11.03    0.0008943       0.8103
+   1   snp_3          7    D   0.0965    0.047    d        36.79    1.316e-09        2.166
+   1 snp_3_M          8    B   0.5005    0.491    A        0.361       0.5479        1.039
+   1   snp_4          9    D    0.093   0.0535    d        22.98    1.634e-06        1.814
+   1 snp_4_M         10    B   0.4895    0.496    A        0.169        0.681       0.9743
+</pre>
+
+<strong>WARNING</strong> Again, please note that this procedure does
+not produce anything like realistic patterns of LD as one would expect
+to observe in whole genome datasets: rather, this simply simulates
+pairs of markers, for which there is LD within, but not between,
+pairs.  
+</p>
+
+<a name="sim2">
+<h2>Resimulating a sample from the same population</h2>
+</a>
+</p>
+
+The <tt>--simulate</tt> command also generates the file <tt>plink.simfreq</tt>. This records, for each SNP of the two sets, <tt>null</tt> and 
+<tt>disease</tt> from the <tt>wgas.sim</tt> example, the <em>actual</em> allele frequency chosen for that particular SNP when simulating the 
+data. For example, 
+<pre>
+     1 null_0   0.1885 0.1885       1.00 1.00
+     1 null_1   0.424675 0.424675   1.00 1.00
+     1 null_2   0.12797 0.12797     1.00 1.00
+     1 null_3   0.544394 0.544394   1.00 1.00
+     1 null_4   0.938641 0.938641   1.00 1.00
+     ....
+</pre>
+
+Conveniently, this information is output in the same format as the original simulation file: note how the upper and lower allele frequency 
+range is converged to specify a particular value, i.e. the first row shows a range of 0.1885 to 0.1885, i.e. effectively forcing the allele 
+frequency for the first SNP to be 0.1885.  This can be useful, as to generate a new independent dataset <em>from the same population as the 
+first</em>, you would simply use the 
+<tt>plink.simfreq</tt> output file, as input for a new <tt>--simulate</tt> command, see below. 
+
+</p>
+Putting this together, one might imagine setting up a simple screen/replicate simulation design: first we generate the original
+WGAS screening data
+
+<h5>
+ ./plink --simulate wgas.sim --make-bed --out screen
+</h5></p>
+run our association test
+<h5>
+ ./plink --bfile screen --assoc 
+</h5></p>
+and extract a list of significant SNPs (here using the Unix <tt>gawk</tt> command, to filter on the p-value column, 9)
+<h5>
+ gawk ' NR>1 && $9 < 1e-3 { print $2 } ' plink.assoc > positives
+</h5></p>
+
+and then generate and test these same SNPs in an independent sample
+<h5>
+ ./plink --simulate screen.simfreq --extract positives --assoc --out replication
+</h5></p>
+
+etc.  By labeling true disease SNPs and null SNPs sensibly as above,
+you can tell how many true positives and false positives appear at the
+screening and the replication stages, e.g. using Unix <tt>bash</tt>
+shell scripting to summarise results:
+
+<pre>
+   t=1e-3
+   s0=`fgrep null plink.assoc | gawk ' $9 < t ' t=$t | wc -l`
+   s1=`fgrep disease plink.assoc | gawk ' $9 < t ' t=$t | wc -l`
+   echo "Detected $s1 true positives and $s0 false positives in screening"
+
+   t=1e-2
+   s0=`fgrep null replication.assoc | gawk ' $9 < t ' t=$t | wc -l`
+   s1=`fgrep disease replication.assoc | gawk ' $9 < t ' t=$t | wc -l`
+   echo "Of these, $s1 true positives and $s0 false positives replicate"
+</pre>
+
+</p>
+<a name="sim3">
+<h2>Simulating a quantitative trait</h2>
+</a>
+</p>
+
+To simulate a quantitative trait based on one or more unlinked SNPs, 
+use the command 
+<h5>
+ plink --simulate-qt myfile.sim  --simulate-n 1000
+</h5></p>
+where <tt>myfile.sim</tt> is similar in format to the file taken by the standard <tt>--simulate</tt> option, except
+the two final fields represent the additive genetic variance, and the ratio of dominance to additive effects, e.g. if
+<tt>myfile.sim</tt> is
+<pre>
+ 10 qtl 0.05 0.95  0.01 0
+</pre>
+then
+<h5>
+ plink --simulate-qt myfile.sim
+</h5></p>
+will generate ten unlinked QTLs, with allele frequency between 0.05
+and 0.95 for the trait-increasing allele. In each case, the effect
+size will be calculated to give a population variance explained of 0.01. The 
+final 0 indicates the effects are additive (1 means complete dominance, -1 
+means complete recessive). In this case, the output is 
+<pre>
+      Reading QT simulation parameters from [ sim1.sim ]
+      Writing SNP population frequencies to [ plink.simfreq ]
+      Read 1 sets of SNPs, specifying 10 SNPs in total
+      Simulating QT for 1000 individuals 
+      Total QTL variance is 0.1
+      Simulating disease variants (direct association)
+</pre>
+This lists the total population variance explained by all QTLs -- in this case, 0.1.  If the variance
+explained is greater than 1, an error message will be reported.
+</p>
+If the <tt>--assoc</tt> command were also specified along with the above command, standard QT association 
+tests would be performed for each simulate SNP, e.g. <tt>plink.qassoc</tt>:
+<pre>
+      CHR     SNP         BP    NMISS       BETA         SE         R2        T            P 
+        1   qtl_0          1     1000     0.1988    0.05263     0.0141    3.777    0.0001678 
+        1   qtl_1          2     1000    0.09956    0.04623   0.004626    2.154      0.03151 
+        1   qtl_2          3     1000    -0.2101     0.0683   0.009391   -3.076     0.002156 
+        1   qtl_3          4     1000      0.186    0.04728    0.01528    3.935    8.911e-05 
+        1   qtl_4          5     1000     0.1489    0.04714   0.009899    3.159     0.001632 
+        1   qtl_5          6     1000    -0.1854    0.04569    0.01623   -4.057    5.351e-05 
+        1   qtl_6          7     1000     0.2287    0.05745    0.01563    3.981    7.355e-05 
+        1   qtl_7          8     1000    -0.2011    0.08519   0.005551    -2.36      0.01845 
+        1   qtl_8          9     1000      0.166    0.04337    0.01446    3.827    0.0001377 
+        1   qtl_9         10     1000    -0.1007    0.04773   0.004437   -2.109       0.0352 
+</pre>
+
+showing <tt>R2</tt> (variance explained) values around 0.01, as
+expected, with the sampling variation due to sample of 1000
+individuals (the default sample size, if <tt>--simulate-n</tt> is not
+specified).
+</p>
+
+The additional commands such as <tt>--simulate-label</tt> and
+<tt>--simulate-tags</tt>, etc, can be used with the
+<tt>--simulate-qt</tt> option.
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:28 EST
+</em>
+
+</body>
+
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>

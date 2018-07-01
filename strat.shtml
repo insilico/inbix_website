@@ -1,0 +1,1220 @@
+<html>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+<h1>Population stratification</h1>
+
+<tt>PLINK</tt> offers a simple but potentially powerful approach to population 
+stratification, that can use whole genome SNP data (the number of 
+individuals is a greater determinant of how long it will take to run). 
+We use complete linkage agglomerative clustering, based on pairwise 
+identity-by-state (IBS) distance, but with some modifications to 
+the clustering process: restrictions based on a significance test 
+for whether two individuals belong to the same population (i.e. do 
+not merge clusters that contain significantly different individuals) , 
+a phenotype criterion (i.e. all pairs must contain at least one case 
+and one control) and cluster size restrictions (i.e. such that, with a 
+cluster size of 2, for example, the subsequent association test 
+would implicitly match every case with its nearest control, as long 
+as the case and control do not show evidence of belonging to 
+different populations). In addition, external matching criteria 
+can be specified, to match on age and sex, for example, as well 
+as genetic information. Any evidence of population substructure 
+(from this or any other analysis) can be incorporated in subsequent 
+association tests via the specification of
+<a href="data.shtml#clst">clusters</a>.
+
+
+</p>
+<div align="center">
+<strong>All these analyses require genome-wide coverage of autosomal SNPs!</strong>
+</div>
+</p>
+
+</p>
+<a name="cluster">
+<h2>IBS clustering</h2></a>
+</p>
+
+To perform complete linkage clustering of individuals on the basis of autosomal genome-wide SNP 
+data, the basic command is:
+<h5>
+  plink --file mydata --cluster 
+</h5></p>
+which generates four output files:
+<pre>
+     plink.cluster0
+     plink.cluster1
+     plink.cluster2
+     plink.cluster3
+</pre>
+that contain similar information but in different formats. The 
+
+</p>The <tt>*.cluster0</tt> file contains some information on the clustering process. 
+This file can be safely ignored by most users. 
+
+</p>The <tt>*.cluster1</tt> file contains information on the final solution, listed by cluster: 
+e.g. for 4 individuals with the following Family and Individual IDs
+<pre>
+     A 1
+     B 1
+     C 1
+     D 1
+</pre>
+we see 3 clusters, one line of output per cluster:
+<pre>
+     0   A_1
+     1   B_1 C_1
+     2   D_1
+</pre>
+
+(note how family and individuals IDs are concatenated with the underscore character in the 
+output)
+
+</p>The <tt>*.cluster2</tt> file contains the same information but listed 
+one line per individual: the three columns are family ID, individual ID 
+and assigned cluster:
+<pre>
+     A 1 0
+     B 1 1
+     C 1 1
+     D 1 2
+</pre>
+
+</p>The <tt>*.cluster3</tt> file is in the same format as <tt>cluster2</tt> (one line per 
+individual) but contains all solutions (i.e. every step of the clustering from moving from N 
+clusters each of 1 individual (leftmost column after family and individual ID) to 1 cluster 
+(labelled 0) containing all N individuals (the final, rightmost column): 
+also shown is the dendrogram this represents:
+e.g.
+<pre>
+     A 1 0 0 0 0
+     B 1 1 1 1 0
+     C 1 2 1 1 0
+     D 1 3 2 0 0
+</pre><img src="tree1.png">
+
+</p><strong>NOTE</strong> If any constraints have been placed upon the clustering, then 
+solutions represented in the <tt>*.cluster3</tt> file may not go as far as 1 cluster with 
+all N individuals: in this case, the file <tt>*.cluster2</tt> will contain the final solution 
+(i.e. as far as the clustering could go before running up against constraints, e.g. based on 
+maximum cluster size, etc).
+
+
+</p><strong>HINT!</strong> In large samples, cluster analyses can be 
+very slow. Often the most time consuming step is calculating the 
+pairwise IBS metrics: these only need to be calculated once however, even  
+if you want to run the cluster analysis multiple times (e.g. with  
+different constraints). This is achieved with the <tt>--read-genome</tt> 
+option, assuming you have previously run the <tt>--genome</tt> command. It 
+is a good idea to not impose a threshold of the <tt>--genome</tt> output 
+in this case. For example: 
+
+<h5>
+plink --bfile mydata --genome --out mydata
+</h5></p>
+
+followed by multiple clustering commands (see below for descriptions of 
+the cluster constraint parameters used here)
+
+<h5>
+plink --bfile mydata --read-genome mydata.genome --cluster --ppc 0.01
+</h5></p>
+
+and
+
+<h5>
+plink --bfile mydata --read-genome mydata.genome --cluster --mc 2 --ibm 0.01
+</h5></p>
+etc.
+
+
+</p><strong>ADVANCED HINT!</strong> In very large samples, cluster analyses can be 
+very, very slow. When calculating the <tt>plink.genome</tt> file (as described 
+above), if you have access to a cluster of computers for parallel computing, you can 
+use the following approach to greatly reduce the time this step takes.  In this case, 
+we will assume you are familiar with and using a Linux operating system, and that the 
+<tt>bsub</tt> prefix is used to send a job to the cluster -- obviously, change the
+script below as appropriate.  This uses the <tt>--genome-lists</tt> option to calculate
+IBS statistics for only a subset of the sample at a time. If the binary fileset is <tt>data.*</tt>
+then create multiple lists of, for example, 100 individuals per list
+<pre>
+     gawk '{print $1,$2}' data.fam | split -d -a 3 -l 100 - tmp.list
+</pre>
+If this creates, for example, 39 separate files (labelled 0 to 38), then 
+run these in all unqiue pairwise  combinations in parallel with something 
+like the following script: (i.e. edit the first line as appropriate)
+<pre>
+     let i=0 a=38
+     let j=0
+
+     while [ $i -le $a ]
+     do
+      while [ $j -le $a ]
+      do
+
+         bsub -o /dev/null -e /dev/null ./plink --bfile data \
+                 --read-freq plink.frq \
+                 --genome \
+                 --genome-lists tmp.list`printf "%03i\n" $i` \
+                                tmp.list`printf "%03i\n" $j` \
+                 --out data.sub.$i.$j
+
+      let j=$j+1
+      done
+
+      let i=$i+1
+      let j=$i
+
+     done
+</pre>
+
+</p><strong>NOTE</strong> If you use this approach to calculate the IBD probabilities, 
+then you should first perform <tt>--freq</tt> on the whole dataset, then add the line
+<tt>--read-freq plink.frq</tt> (obviously replacing the filename with your file) 
+to make sure that everybody has the sample frequencies used in the 
+<a href="ibdibs.shtml#genome">IBD calculations</a>.
+</p>
+
+The finally, concatenate these individual files back into one
+(multiple header rows will be ignored, as FID is a reserved ID):
+
+<pre>
+     cat data.sub*genome > data.genome
+     rm tmp.list*
+     rm data.sub.*
+</pre>
+
+<strong>HINT</strong> As of v1.07, PLINK can directly read and write
+compressed .genome files. This is the preferred mode for large samples. For example
+<h5>
+ plink --bfile mydata --Z-genome --out mydata
+</h5></p>
+creates a file
+<pre>
+     mydata.genome.gz
+</pre>
+This can be handled with the gunzip tool, or zcat, zgrep, zless, etc. PLINK can 
+read such a file with <tt>--read-genome</tt>. Whether or not the file is compressed
+will be automatically detected (indicated by a <tt>.gz</tt> extension)
+<h5>
+ plink --bfile mydata --read-genome mydata.genome.gz  ...
+</h5></p>
+Note that several compressed files can be directly concatenated with the Unix cat command, without 
+being decompressed first:
+<h5>
+     cat mydata-1.genome.gz mydata-2.genome.gz mydata-3.genome.gz > alldata.genome.gz
+</h5></p>
+
+<h5>
+     plink --bfile example --read-genome alldata.genome.gz ...
+</h5></p>
+
+
+
+
+<a name="permtest">
+<h2>Permutation test for between group IBS differences</h2></a>
+</p>
+
+Given that pairwise IBS distances between all individuals have been calculated, 
+we can asked whether or not there are group differences in this metric, with 
+respect to a binary phenotype. The command 
+<h5>
+ ./plink --bfile mydata --ibs-test
+</h5></p>
+or, if an appropriate <tt>plink.genome</tt> file has already been created, 
+<h5>
+ ./plink --bfile mydata --read-genome plink.genome --ibs-test
+</h5></p>
+will permute case/control label, and then recalculate several between-group 
+metrics based on average IBS within that group. This command uses a fixed 10,000 
+permutations. 
+</p>
+
+All results are written to the LOG file. First, the observed means and
+standard deviation of each of the 3 groups (case/control, case/case and control/control, in 
+that order) will be displayed: e.g. 
+<pre>
+     Between-group IBS (mean, SD) = 0.782377, 0.00203459
+     In-group (2) IBS (mean, SD) = 0.782101, 0.00232296
+     In-group (1) IBS (mean, SD) = 0.78273, 0.00170816
+</pre>
+Then 12 separate tests are presented, which have self-explanatory names. If the
+label does not explicitly mention a comparison pair-type, it implies
+that the first pair type is being compared to the other two
+pair-types. 
+<pre>
+      T1: Case/control less similar                     p = 0.97674
+      T2: Case/control more similar                     p = 0.0232698
+
+      T3: Case/case less similar than control/control   p = 0.00285997
+      T4: Case/case more similar than control/control   p = 0.99715
+
+      T5: Case/case less similar                        p = 0.00430996
+      T6: Case/case more similar                        p = 0.9957
+
+      T7: Control/control less similar                  p = 0.99883
+      T8: Control/control more similar                  p = 0.00117999
+
+      T9: Case/case less similar than case/control      p = 0.00726993
+     T10: Case/case more similar than case/control      p = 0.99274
+
+     T11: Control/control less similar than case/control p = 1
+     T12: Control/control more similar than case/control p = 9.9999e-06
+</pre>
+
+For the purpose of stratification effects between cases and conrtols,
+the test <tt>T1</tt> is probably most appropriate, as it directly asks
+whether or not, on average, an individual is less similar to another
+phenotypically-discordant individual than would be expected by chance
+(i.e. if we randomized phenotype labels). That is, to the extent that
+cases and controls are from two separate populations, you would expect
+pairs within a phenotype group to be more similar than pairs across
+the two groups, i.e. <tt>T1</tt>.  Of course, the opposite could also
+be true (tested by <tt>T2</tt>), which would probably represent
+certain ascertainment procedures (i.e. taking this to an extreme,
+imagine a discordant sibling pair design: case/control pairs would on
+average be more similar than case/case and control/control pairs).
+
+</p>
+
+The other tests are provided for completeness and give a more general
+description of the variability between and within each group. The
+general pattern shown above would suggest that there is relatively
+more variability within the case sample than the control
+sample.  Bear in mind when interpreting the empirical p-values
+that the relative sizes of case and control samples will have an
+impact on the exact p-value (i.e. these significance tests should not
+be taken to directly represent the magnitude of differences between
+groups).
+</p>
+
+<strong>Note</strong> This test assumes that individuals have a
+disease phenotype; obviously, one could swap in other labels
+(e.g. site of collection) via the <tt>--pheno</tt> command, as long as
+they are dichotomous.
+</p>
+
+
+<a name="options">
+<h2>Constraints on clustering</h2></a>
+</p>
+
+This section describes the extra constraints that can be placed on the 
+clustering procedure, specified via other options in addition to the 
+<tt>--cluster</tt> option. As further described in the 
+<a href="anal.shtml">association analysis</a> and 
+<a href="perm.shtml">permutation</a> sections, these 
+options can be used to set up various types of analyses
+that control for potential stratification in the sample.
+
+
+</p>
+
+<b>1) Based on pairwise population concordance (PPC) test:</b><br>
+This is a simple significance test for whether two individuals belong to the 
+same random-mating population. To only merge clusters that do not 
+contain individuals differing at a certain p-value:
+
+<h5>
+     --ppc 0.0001  
+</h5></p>
+
+</p><strong>NOTE</strong> This command has been changed from <tt>--pmerge</tt> 
+in older versions of PLINK (pre 0.99n).</p>
+
+This test is based on the observed binomial proportion of IBS 0 loci pairs 
+to IBS 2 het/het pairs: counts of these two types should be in the 
+ratio of 1:2 if the two individuals come from the same population. The 
+significant p-value indicates fewer IBS2 het/het loci than expected 
+(based on normal approximation to binomial). These tests are also given by 
+the <tt>--genome</tt> command.</p>
+
+</p><strong>WARNING!</strong> Unlike the basic IBS clustering, which 
+places no restrictions on the SNPs that can be used in the analysis, 
+this test assumes that the SNPs used are in linkage equilibrium. By 
+default, this test will only count an 'informative' SNP pair (i.e. one 
+that, for a particular pair of individuals, has two of each allele) as 
+either an IBS 0 or IBS 2 count for this test (the <tt>HOMHOM</tt> and 
+<tt>HETHET</tt> counts from the <a href="ibdibs.shtml#genome">
+<tt>--genome</tt></a> option) if it is more 
+than 500 kb more the previous informative pair of SNPs, for that 
+particular pair of individuals.  This gap parameter can be changed with 
+the option
+<h5>
+--ppc-gap 100
+</h5></p>
+which would, in this case, reduce that gap to 100kb. (Note: all SNPs will 
+still be used to calculate the main IBS distance metric, upon which the 
+clustering is based). 
+
+                                                                                
+</p>
+<strong>HINT</strong> Also, this test is susceptible to non-random missingness
+in genotypes, particularly if heterozygotes are more likely to be dropped.
+It is therefore good practice to set the <tt>--geno</tt> very low for
+this analysis, i.e. so only SNPs with virtually complete genotyping are
+included.
+</p>
+
+
+<b>2) Based on phenotype:</b><br>
+To ensure that every cluster has at least one case and one control:
+
+<h5>
+	--cc
+</h5></p>
+
+<b>3) Based on maximum cluster size:</b><br>
+To set the maximum cluster size to a certain value, e.g. 2:
+<h5>
+	--mc 2 
+</h5></p>
+Alternatively, to specify a maximum number of cases and a maximum number of controls per 
+cluster, use the option:
+<h5>
+	--mcc 1 3 
+</h5></p>
+which, in this case, specifies that each cluster can have up to 1 case and 3 controls. Note 
+the different syntax: <tt>-mcc</tt> as opposed to <tt>--mc</tt>. Using this in conjunction 
+with the <tt>--cc</tt> constraint (that ensures at least 1 case and 1 control per cluster) 
+this is an easy way to achieve a certain matching scheme, say 1 case to 3 controls, or 2 
+cases to 2 controls, etc. 
+</p>
+
+<b>4) Based on fixed number of clusters:</b><br>
+
+To request that the clustering process stops at a certain fixed number of 
+clusters, for example, a 2 cluster solution, use:
+<h5>
+       --K 2
+</h5></p>
+
+<strong>Note</strong> If other clustering constraints are in place, it is 
+possible that clustering may stop <em>before</em> reaching the specified 
+number of clusters with the <tt>--K</tt> option; if other constraints are
+specified, you can think of this as stating the <em>minimum</em> number 
+of clusters possible. 
+</p>
+	
+<b>5) Based on pattern of missing genotype data:</b><br>
+
+To only cluster individuals with sufficiently similar profiles of missing
+genotype data (genome-wide) use the option:
+<h5>
+  --ibm 0.02
+</h5></p>
+which would only match people if they are discordantly missing (i.e. 
+one person is missing a particular SNP but the other person is not) 
+for 2 percent of the genome or less. Another way to incorporate missingness
+would be by defining overall call rate per individual as an external quantitative
+matching criteria (see below); this approach is preferrable however (as it does not
+match just on average rate, but also on whether it tends to be the 
+same SNPs that are missing).
+
+</p>
+
+<b>6) Based on user-specified external matching criteria:</b><br>
+
+To use external matching criteria: for categorical matching 
+criteria, use the option: 
+<h5>
+	--match mydata.match
+</h5></p>
+where the file <tt>mydata.match</tt> contains the following columns: 
+family and individual ID and the one or more matching variables, one row 
+per person:
+ <pre>
+     Family ID
+     Individual ID
+     Matching criteria 1
+     Matching criteria 2
+     ...
+     Matching criteria N
+</pre>	
+
+The default behavior is that only individuals with the same matching 
+criteria across all the measures will be paired to make clusters. For example, 
+if the file were:
+<pre>
+     F1 I1   1  1  1
+     F2 I2   1  2  1
+     F3 I3   2  2  2
+     F4 I4   1  2  1
+     F5 I5   1  1  1
+     ...
+</pre>
+then only F1/I1 and F5/I5 could be paired; also F2/I2 and F4/I4 could be 
+paired. No other combinations of pairings would be possible. Therefore, no 
+cluster would ever be formed that contained both individuals F1/I1 and 
+F2/I2, for example. 
+</p>
+One application of this option would be to ensure that individuals are 
+sex-matched, or matched on some relevant environmental exposure, in 
+addition to the genetic IBS matching.
+
+</p>
+It is possible to adjust the default behaviour to consider two individuals as
+potentially 'pairable' is they <em>differ</em> on a particular categorical criteria. 
+This is achieved with the optional command:
+<h5>
+--match-type mydata.bt
+</h5></p>
+where <tt>mydata.bt</tt> is the name of a file that contains a series of 0s and 1s (or "-" 
+and "+" characters), whitespace delimited, that indicate whether a criteria should be a 
+"postive match" (i.e. two individuals are potentially pairable only if they have the 
+<em>same</em> values for this variable) or a "negative match" (i.e. two individuals are 
+potentially pairable only if they have <em>different values</em> for this variable). In the 
+above example, if the file <tt>mydata.bt</tt> were
+<pre>
++ - +
+</pre>
+then the following pairs are potentially pairable:
+<pre>
+     F1/I1 and F2/I2
+     F1/I1 and F4/I4
+     F5/I5 and F2/I2
+     F5/I5 and F4/I4
+</pre>
+i.e. <tt>F1/I1</tt> can no longer be paired with <tt>F5/I5</tt> because they have the 
+same value for the second matching variable, which is now a negative match criteria.
+
+</p><strong>Note</strong> In this example, the matching variables only took two values: 
+in practice, one can have any number of categories per matching variable.
+
+</p><strong>Note</strong> Missing variables can be specified for matching variables -- this
+means that the criteria will be ignored. As all pairs start out as potentially pairable, this 
+means that missing matching criteria data will never be used to make a pair unpairable.
+
+</P>
+A second form a matching is based on quantitative traits -- in this case, 
+a maximum difference threshold is specified for each measure, such that 
+individuals will not be matched if they differ beyond the threshold on the 
+quantitative traits. This is achieved by the following options:
+<h5>
+	--qmatch mydata.match --qt mydata.qt
+</h5></p>
+Note that a second <tt>--qt</tt> option is necessary as well as the 
+<tt>--qmatch</tt> option. The <tt>--qt</tt> specifies a file that contains 
+the thresholds, e.g. for 3 external quantitative criteria, this should 
+contain 3 values: 
+<pre>
+    5
+    0.333
+    120
+</pre>
+The <tt>--qmatch</tt> should then contain the same number of quantitative 
+matching criteria per person (again, one row per person):
+<pre>
+     F1 I1   27  -0.23   1003
+     F2 I2   34   2.22   1038
+     F3 I3   45   1.99    987
+     F4 I4   19  -9      2374
+     F5 I5   18  -0.45    996
+     ...
+</pre>
+In this case, for example, for the first measure only F4/I4 and F5/I5 are 
+pairable, as |19-18| is not more than 5. This measure might represent age, 
+for example. This pair is not matchable on the basis on the third metric, 
+however, as |2374-996| > 120. As such, no pairs could be formed between 
+any of these five individuals, in this particular case.  Note that 
+individual is actually missing (default <tt>--missing-phenotype</tt> value 
+is -9) for the second criterion: see below for a description of how 
+missing data are handled in this context.
+</P>
+The <tt>.match</tt> and <tt>.qmatch</tt> files do not need to contain all 
+individuals and do not need to be in the same order as the original PED 
+files. Any individuals in these files who are not in the original files 
+will be ignored. </p> 
+
+Missing phenotypes are simply ignored (i.e. two individuals would not be 
+called non-matching if either one or both had missing matching criteria). 
+That is, the default for two individuals is that they are pairable -- only 
+non-missing, non-matching external criteria (as well as the p-value test 
+based on genetic data, described above) will make a pair unpairable.</p>
+
+
+<a name="matrix">
+<h2>IBS similarity matrix</h2></a>
+</p>
+
+For the <em>N</em> individuals in a sample, to create a <em>N x N</em> 
+matrix of genome-wide average IBS pairwise identities:
+<h5>
+    plink --file mydata --cluster --matrix
+</h5></p>
+creates the file
+<pre>
+     plink.mibs
+</pre>
+which contains a square, symmetric matrix of the IBS distances for all 
+pairs of individuals. These values range, in theory, from 0 to 1. In 
+practice, one would never expect to observe values near 0 -- even 
+completely unrelated individuals would be expected to share a very large 
+proportion of the genome identical by state by chance alone (i.e. as 
+opposed to identity by descent). A value of 1 would indicate a MZ 
+twin pair, or a sample duplication. More details on pairwise relatedness can 
+be obtained by using the <a href="ibdibs.shtml#genome">
+<tt>--genome</tt></a> command.
+
+</p>
+The default behavior of <tt>--matrix</tt> to to output similarities (proportions of alleles IBS). 
+To generate a distance matrix (1-IBS) then use the command 
+<h5>
+    plink --file mydata --cluster --distance-matrix
+</h5></p>
+instead. This will generate a file
+<pre>
+     plink.mdist
+</pre>
+
+</p> 
+<strong>HINT</strong> See the <a href="faq.shtml">FAQ
+page</a> for instructions on using using R to visualise these results; alternatively, 
+use the <tt>--mds-plot</tt> option described below.
+
+</p> 
+<strong>NOTE</strong> In versions prior to v1.00, there is no <tt>--distance-matrix</tt>
+command and <tt>--matrix</tt> outputs a file called <tt>plink.mdist</tt> rather than <tt>plink.mibs</tt> -- 
+these are still similarities, not distances.
+ 
+
+<a name="mds">
+<h2>Multidimensional scaling plots</h2></a>
+</p>
+
+To perform multidimensional scaling analysis on the <em>N x N</em> matrix of genome-wide 
+IBS pairwise distances, use the <tt>--mds-plot</tt> option in conjunction with <tt>--cluster</tt>.
+This command takes a single parameter, the number of dimensions to be extracted.  For example, 
+assuming we have already calculated the <tt>plink.genome</tt> file,
+<h5>
+    plink --file mydata --read-genome plink.genome --cluster --mds-plot 4 
+</h5></p>
+creates the file
+<pre>
+     plink.mds
+</pre>
+which contains one row per individual, with the fields
+<pre>
+     FID    Family ID
+     IID    Individual ID
+     SOL    Assigned solution code (from <tt>--cluster</tt>)
+     C1     Position on first dimension
+     C2     Position on second dimension
+     C3     Position on third dimension
+     C4     Position on fourth dimension
+</pre>
+
+Plotting the <tt>C1</tt> values against <tt>C2</tt>, for example, will give a 
+scatter plot in which each point is an individual; the two axes correspond to 
+a reduced representation of the data in two dimensions, which can be useful 
+for identifying any clustering.  Standard classical (metric) multidimensional 
+scaling is used. 
+</p>
+
+Instead of using each individual as the unit of analysis, you can make each point 
+a cluster from the final solution (as determined by <tt>--cluster</tt> along with 
+whatever constraints were imposed) and the distances between clusters 
+are the average distances of all individuals in those clusters. Use the <tt>--mds-cluster</tt>
+flag (as well as <tt>--cluster --mds-plot <em>K</em></tt>) for this.
+
+<h6>Speeding up MDS plots: 1. Use the LAPACK library</h6>
+
+If you compile PLINK to use
+the <a href="http://www.netlib.org/lapack/">LAPACK library</a> to
+perform the SVD used in the MDS analysis, this can significantly speed
+things up. This involves, LAPACK being available on your system, and
+compiling PLINK from source, with a flag set to use that library.
+Otherwise, no changes are made to the command: the
+same <tt>--mds-plot</tt> command is used.  A line will be written the
+LOG file file indicating that the LAPACK library was used
+<pre>
+    Writing MDS solution to [ v2.mds ]
+    MDS plot of individuals (not clusters)
+    Using LAPACK SVD library function...
+</pre>
+
+</p>
+
+<strong>NOTE</strong> This should give similar results, although it is
+possible that the sign of various components might be flipped: this is
+expected and of no concern.  </p>
+
+See <a href="download.shtml#compilation">these notes</a> for help on
+how to compile PLINK to use LAPACK. Please note that I cannot provide
+support on how to compile LAPACK on your specific system. LAPACK is a
+set of FORTRAN programs (and requires <tt>gfortran</tt> to compile) --
+ask your IT people for help if needed.
+
+</p>
+
+
+
+<h6>Speeding up MDS plots: 2. pre-cluster individuals</h6>
+
+With large samples (over 10,000 individuals say) MDS plots can become
+very slow.  One possible way to speed things up slightly is to first
+group individuals into groups of fairly similar individuals, and then
+perform the MDS analysis on the groups rather than the individuals
+(i.e.  based on the mean distances between groups). PLINK will output
+a file in which each individual in the same group has the identical
+MDS components therefore.  To use this option,
+add <tt>--mds-cluster</tt> and <tt>--within</tt>, for example
+<h5><pre>
+plink --bfile mydata 
+      --read-genome mydata.genome 
+      --mds-plot 4
+      --mds-cluster
+      --within clst.cluster2
+</pre></h5></p>
+This would be appropriate, for example, if the <tt>clst.cluster2</tt>
+file resulted from a prior cluster analysis (using <tt>--cluster</tt>)
+with a setting such as
+<pre>
+     --mc 10
+</pre>
+to create a fairly large number of small groups (max 10 per group).
+Obviously, <tt>--mds-cluster</tt> will not give sensible results if
+there are too few clusters, or if the clusters are too big.
+
+
+
+<a name="outlier">
+<h2>Outlier detecion diagnostics</h2></a>
+</p>
+
+Sometimes it can be useful to detect a handful of individuals who do not
+cluster with an otherwise fairly homogeneous sample. It is possible to 
+generate some metrics describing much of an 'outlier' an individual is 
+with respect to the other individuals in that sample, based on the genome-wide 
+IBS information, as decribed above. 
+</p>
+
+For any one individual, we can rank order all other individuals on the basis 
+of how similar (in IBS terms) they are to this particular proband individual. 
+We can then ask, is the proband's closest neighbour significantly more distant 
+to the proband than all other individuals' nearest neighbour is to them. In 
+otherwords, from the distribution of 'nearest neighbour' scores, one for each individual, 
+we can calculate a sample mean and variance and transform this measure into a Z score. 
+If an individual has an extreme low Z score, say less than 4 standard deviation units, 
+this would indicate that this individual is an outlier with respect to the rest of the sample
+(i.e. this individual's nearest neighbour is a lot less near than the average nearest 
+neighbour).  As well as performing this test with the nearest neighbour, we can also perform
+it with the distribution of second-closest neighbours for each individual; then third closest 
+neighbours, etc.  It might sometimes be more informative to look at these 'second-closest' 
+and 'third-closest' measures, to detect, for instance, a pair of individuals who are very 
+similar to each other, but very distant from the rest of the sample -- they would score 
+normally on the 'first-closest' neighbour test, but not on the 'second-closest', 
+'third-closest' tests, etc. It might sometimes be informative to look at the whole distribution 
+of these 'neighbour' metrics, going to 1st nearest to the Nth nearest.
+</p>
+Another metric which can be used to identify potential outliers is, for each individual, to 
+calculate the proportion of binomial IBS tests (described in the constaints section above), for 
+each individual, that showed a significant difference at the 
+<tt>--ppc</tt> threshold. 
+
+</p>
+The basic option is, for example:
+<h5>
+plink --file data --cluster --neighbour 1 5
+</h5></p>
+This command always takes two arguments, specifying, in this case, to consider from 
+the 1st nearest neighbour to the 5th nearest neighbour; this option generates the output 
+file:
+<pre>
+     plink.nearest
+</pre>
+which contains the fields:
+<pre>
+     FID          Family ID
+     IID          Individual ID
+     NN	          Nearest neighbour level (see below)
+     MIN_DST      IBS distance of nth nearest neighbour (see below)
+     Z            MIN_DST converted to a Z score (see below)
+     FID2         Family ID of the nth nearest neighbour
+     IID2         Individual ID of the nth nearest neighbour
+     PROP_DIFF    Proportion of significantly different others (see below)
+</pre>
+
+Looking at some example output, in this case for two individuals from the Asian HapMap 
+samples, measured on around 50K random SNPs, for nearest neighbours 1 to 5, we see:	
+<pre><b><em>   FID      IID     NN      MIN_DST            Z   FID2   IID2  PROP_DIFF</em></b>
+   JPT256     1      1       0.7422       0.8897   JPT265    1    0.01136
+   JPT256     1      2        0.742        1.223   JPT236    1    0.01136
+   JPT256     1      3       0.7408       0.6503   JPT261    1    0.01136
+   JPT256     1      4       0.7405       0.7285   JPT250    1    0.01136
+   JPT256     1      5       0.7402       0.6204   JPT269    1    0.01136
+
+   JPT257     1      1       0.7368       -3.701   JPT242    1     0.9318
+   JPT257     1      2       0.7364       -3.463   JPT238    1     0.9318
+   JPT257     1      3       0.7359       -3.832   JPT244    1     0.9318
+   JPT257     1      4       0.7356       -3.974   JPT245    1     0.9318
+   JPT257     1      5       0.7353       -4.046   JPT228    1     0.9318
+</pre>
+
+Here we clearly see that the individual coded as JPT257 seems to be an outlier, with 
+these first five measures being around 4 standard deviations below the group mean. In 
+contrast, individual JPT256 does not appear to be an outlier, as the Z scores are 
+above the mean (greater than 0). Plotting the Z scores for the entire sample makes 
+it clear that JPT257 is indeed an outlier, as does the result for the IBS test -- 
+JPT257 is significant different from 93% of the rest of the sample (the threshold for 
+the IBS test is set to be quite stringent here, 0.0005 -- this is changed with the 
+<tt>--ppc</tt> option as described above). At this fairly strict level, 
+the subtle differences between Japanese and Han Chinese individuals are 
+not detected -- using a threshold at 0.05, for example, one would see   
+that many individuals show greater than the expected 0.05 in the 
+<tt>PROP_DIFF</tt> field, as it is now picking up this group 
+difference. 
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<hr>
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:28 EST
+</em>
+
+</body>
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>

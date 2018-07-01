@@ -1,0 +1,1143 @@
+<html>
+<title>PLINK</title>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+
+<h1>Proxy association</h1>
+
+This page describes a convenience function designed to provide a quick
+representation of a single SNP association, in terms of the
+surrounding haplotypic background. Specifically, given a particular
+(reference) SNP this approach involves a) finding flanking markers and
+haplotypes (proxies) that are in strong linkage disequilibrium with
+the reference SNP and, b) testing these proxies for association with
+disease, within a haplotype-based framework.
+
+</p>
+
+There are three main applications of this utility, which are described
+in more detail and with examples in the main text below:
+
+<ul>
+
+ <li> technical validation of single SNP results ( by looking for
+flanking haplotypes involving different markers that also show the
+same result )
+
+ <li> refining a single SNP association signal ( is there a stronger
+ association with a local haplotype? )
+
+ <li> more robust single SNP tests ( by framing single SNP tests
+  within a haplotypic framework, some degree of control against
+  non-random genotyping failure can be achieved )
+
+</ul>
+
+The proxy approach also forms the basis of the imputation methods in
+PLINK, described <a href="pimputation.shtml">separately</a>. The
+methods are identical in fact, the only difference in imputation mode
+is the presence of a reference set of individuals that is handled
+specially.
+
+</p>
+
+The proxy methods use the same basic EM algorithm used by the other
+<a href="haplo.shtml">haplotyping</a> methods in PLINK. The only
+difference is that the proxy methods put a wrapper around the basic
+haplotyping procedure that a) provides some methods to automatically
+select proxies to phase given a designated reference SNP, and b)
+frames the subsequent tests and summaries in terms of groups of
+haplotypes that track the reference SNP.
+
+<a name="proxy1">
+<h2>Proxy association: basic usage</h2></a>
+</p>
+
+The basic proxy association method for a particular SNP is invoked
+with the <tt>--proxy-assoc</tt> option:
+
+<p><h5>
+ plink --file mydata --proxy-assoc rs6703905
+</h5></p>
+
+which generates a file
+<pre>
+     plink.proxy.report
+</pre>
+
+This file contains three main sections, describing the local flanking
+SNPs, haplotypes and "proxies" for the reference SNP, and will be
+described below in turn. The full output file is shown here:
+
+<pre><font size="-1">
+
+     *** Proxy haplotype association report for rs13232128 *** 
+
+            SNP      MAF     GENO       KB      RSQ       OR    CHISQ        P
+      rs1389273    0.286  0.00173    -99.2   0.0932    0.916     2.61    0.106
+     rs10236783    0.253   0.0236    -66.9    0.214    0.875      5.7    0.017
+     rs17556689    0.328  0.00259    -66.7    0.282      1.1     3.09    0.079
+     rs17135491    0.153  0.00317    -2.59    0.153    0.934    0.955    0.328
+     rs13232128    0.494   0.0179        0        *    0.828     14.9 0.000112
+      rs1826529    0.487  0.00461     9.72    0.674    0.883     6.58   0.0103
+
+
+        ....*.       FREQ         OR      CHISQ          P
+        GTTGAG     0.0171       1.02     0.0221      0.882
+        AGTGAG     0.0166      0.876      0.712      0.399
+        GGTGAG      0.103       0.91       1.56      0.212
+        GGCAAG     0.0226       0.97     0.0475      0.827
+        ATTAAG      0.111      0.853       4.96      0.026
+        GTTAAG     0.0615      0.877       2.09      0.149
+        AGTAAG     0.0557      0.881       1.73      0.188
+        GGTAAG     0.0513      0.949      0.306       0.58
+        GGCAGG     0.0365       1.39       7.56    0.00596
+        ATTAAT     0.0233      0.825       1.78      0.183
+        GGCAGT      0.249       1.05      0.893      0.345
+        ATTAGT     0.0201       1.31       3.26     0.0711
+        AGTAGT      0.049       1.08      0.741      0.389
+        GGTAGT       0.13       1.16       5.17      0.023
+
+Haplotype frequency estimation based on 6938 of 6938 founder chromosomes
+Omnibus haplotype test statistic: 23.3, df = 13, p = 0.0377
+
+Of 125 subhaplotypes considered, 8 met proxy criteria
+
+           HAP       FREQ        RSQ         OR      CHISQ          P
+        ..T. G      0.422       0.72      0.843       12.3   0.000449
+        .G.. T      0.453      0.705       1.15       8.62    0.00333
+        .G.A T      0.445      0.693       1.14       7.22     0.0072
+        GG.. T      0.399      0.561       1.14       7.15     0.0075
+        .... G      0.487      0.674      0.883       6.58     0.0103
+        ...A T      0.505      0.661       1.12       5.56     0.0184
+        G... T      0.415      0.542       1.11       4.99     0.0255
+        G..A T      0.408      0.535        1.1       4.19     0.0408
+</font></pre>
+
+The first section lists the reference SNP (rs13232128) and 5 flanking
+SNPs that have been automatically selected as proxies. For each SNP,
+the minor allele frequency (MAF), genotyping failure rate (GENO) and
+distance to the reference SNP (KB) is given. A measure of single SNP
+association is also given for each SNP: odds ratio (OR), chi-squared
+statistic (CHISQ) and asymptotic p-value (P).
+</p>
+<b><em>Importantly</em></b>, however, these single SNP tests are not
+quite the same as from the basic <tt>--assoc</tt> command, as they are
+formed within the haplotypic context of the flanking SNPs. That is,
+for example, a single SNP test of the 5th SNP is formed by grouping
+the haplotypes as shown below, and testing for a difference in the
+frequency of the first group (containing <tt>A</tt> at the 5th
+position) versus the second group (all containing <tt>G</tt>).
+<pre>
+     GTTG-<b>A</b>-G
+     AGTG-<b>A</b>-G
+     GGTG-<b>A</b>-G
+     GGCA-<b>A</b>-G
+     ATTA-<b>A</b>-G
+     GTTA-<b>A</b>-G
+     AGTA-<b>A</b>-G
+     GGTA-<b>A</b>-G
+     ATTA-<b>A</b>-T
+    
+      <em>versus</em>
+
+     GGCA-<b>G</b>-G
+     GGCA-<b>G</b>-T
+     ATTA-<b>G</b>-T
+     AGTA-<b>G</b>-T
+     GGTA-<b>G</b>-T
+</pre>
+
+Because the test is conducted in the context of a haplotypic test, it
+has some slightly different properties to the standard association
+test, which can sometimes be used to advantage. In particular, when
+there is strong LD in the region, the haplotype information will often
+help to fill in missing genotype data for single SNPs. Therefore,
+rather than throwing away individuals with missing genotype data, it
+is possible to try to reconstruct it from the surrounding region: this
+can lessen the impact of non-random genotyping failure causing
+spurious associations, as described below.
+
+</p>
+
+In this example, note that no other surrounding SNPs appear to show
+strong association with disease, compared to the reference SNP: when
+looking at the pattern of LD (RSQ column) we see that there are no
+SNPs with very high LD (e.g. over 0.8) to the reference SNP, so this
+is not necessarily surprising. Other <em>haplotypes</em> might be,
+however: this is what the rest of the report considers. The second
+section lists the haplotypes formed in that region given all flanking
+proxy SNPs (including the reference SNP) and the frequency and
+association with disease of each of these haplotypes.
+
+</p> 
+
+Finally, the third part of the report contains that information on
+single proxies SNPs or haplotypes of two of more proxies
+(subhaplotypes) but excluding the reference SNP, that are in LD with
+the reference SNP; this list is sorted by strength of association with
+disease and filtered by other criteria, described below. For example,
+the first line in the above example is:
+<pre> 
+        HAP       FREQ        RSQ         OR      CHISQ          P
+     ..T. G      0.422       0.72      0.843       12.3   0.000449
+</pre>
+This suggest although no single SNP shows a similar association to the
+reference SNP in this region, a haplotype does show association
+results of a similar magnitude and is correlated with the reference
+SNP (in this case, the <tt>TG</tt> haplotype formed by the third and
+last proxy SNPs).
+</p>
+
+So, in this particular example, this might be taken as additional
+support for the association: it is of course still possible that the
+association is just due to chance, or due to population
+stratification, etc, but this would suggest that it is unlikely to be
+due to some technical genotyping artefact that was specific to the
+reference SNP, as we are also seeing the same signal from other SNPs
+(or, as in this case, a haplotype formed from two other SNPs).
+
+</p>
+
+Naturally, if one considers enough proxy haplotypes, some are bound to
+show stronger association with disease than the reference SNP merely
+due to chance. One should therefore be careful in how these tests are
+interpreted, i.e. not to forget the multiple testing that is implicit
+here.
+
+</p>
+
+This kind of analysis represents the typical use case for proxy
+association: we may have a single SNP association result, but the SNP
+might be rare or have a higher genotyping failure rate than we would
+like. Rather than exclude that SNP altogether, one option is to
+include the SNP in analysis, assess evidence for assocation, and then
+also ask whether other SNPs show the same signal.  The assumption is
+that although the true alleles at the proxy SNPs are (hopefully) not
+independent of the reference SNP (i.e. there is LD) any technical
+genotyping artefact that influenced the reference SNP is unlikely to
+also be impacting the proxy SNPs (i.e. the implicit model of
+genotyping failure is that most SNPs are okay, but a few SNPs might
+fail: as such, we can use the surrounding genotype data to fill-in
+failed genotypes, even if these SNPs failed in a very biased way,
+e.g. if only <tt>TT</tt> homozygotes tended to fail and only in
+cases).
+
+
+<h6>Heuristic for selection of proxy SNPs</h6>
+
+The main parameters for SNP selection are:
+<ul>
+ <li> LD thresholds between the index and proxies, and between the proxies themselves
+ <li> Maximum number of SNPs and kb range to search for proxies
+ <li> Maximum number of proxies to include
+</ul>
+There are four main commands to influence the search strategy for
+proxies:
+<pre>
+     --proxy-r2       <em>A</em>  <em>B</em>  <em>C</em> 
+     --proxy-window   <em># SNPs to search</em>
+     --proxy-kb       <em>kb distance</em>
+     --proxy-maxsnp   <em># SNPs to include in final set</em>
+</pre>
+
+Proxies are chosen based on LD with the reference SNP as
+follows. Proxies are examined one at a time in order of strongest to
+weakest LD with the reference. A proxy must be above a certain minimum
+r-squared threshold with the reference (criterion <em>A</em>),
+although if we already have two proxies selected, a different
+threshold is used (criterion <em>B</em>). In both cases, for a proxy
+to be added, it must not have an r-squared greater than
+criterion <em>C</em> with any proxy already selected. For common SNPs,
+the default values for A, B and C are:
+<pre>
+    Is a proxy? 
+          A) r-sq > 0.00 with reference          if < 2 proxies selected
+          B) r-sq > 0.25 with reference          if 2 or more proxies selected
+          C) r-sq < 0.50 with any other proxy
+</pre>
+
+Setting <em>A</em> lower than <em>B</em>, and to 0 by default, ensures
+that we always allow a chance of finding a 2-SNP haplotype that might
+tag the reference SNP, even if no single SNP does.
+</p>
+
+By default, proxy association selects up to 5
+(<tt>--proxy-maxsnp</tt>) SNPs flanking the reference SNP, from a
+search of 15 SNPs (<tt>--proxy-window</tt>) either side of the
+reference, at most 250 kb away (<tt>--proxy-kb</tt>).
+</p>
+The defaults vary depending on the frequency of the index SNP: for
+rarer SNPs (MAF less than 0.1), a slightly larger search space will be
+used. This threshold can be changed with the command
+<pre>
+     --proxy-b-threshold 0.05
+</pre>
+
+In contrast to common SNPs, for which the defaults are:
+<pre>
+     --proxy-r2       0.00  0.25  0.50
+     --proxy-window   15
+     --proxy-kb       250
+     --proxy-maxsnp   5 
+</pre>
+these values for rarer SNPs (as defined by <tt>--proxy-b-threshold</tt>) and the commands that can be used to change them:
+<pre>
+     --proxy-b-r2       0.00  0.01  0.50
+     --proxy-b-window   30
+     --proxy-b-kb       500
+     --proxy-b-maxsnp   510
+</pre>
+In other words, the search space is increased for rarer SNPs, to
+increase the chance that a good haplotypic proxy is found even if
+there is no other single SNP that well captures the variation at the
+index site.
+</p>
+
+In addition, proxies must by default be above 0.01 MAF and below 0.05
+genotyping failure rate. To explicitly select only more common proxies
+with very high genotyping rate (e.g. to verify association at a
+reference SNP with lower genotyping rate and a very rare allele), then
+set values for 
+<pre>
+     --proxy-maf
+</pre>
+and
+<pre>
+     --proxy-geno
+</pre>
+</tt> 
+appropriately (these mirror the basic <tt>--maf</tt>
+and <tt>--geno</tt> commands).
+
+</p>
+
+Finally, there are some parameters that determine the behavior of the
+haplotypic proxy search (the 3rd section of the verbose
+output). Haplotypes formed by proxies must have a frequency of at
+least 0.01; these haplotypes must show an r-squared of at least 0.5
+with the reference; when considering all possible subhaplotypes, only
+permutations of up to 3 SNP-haplotypes are considered.
+</p>
+
+Overall, it is possible to change the behaviour of the basic proxy
+selection heuristic with the following commands:
+
+<ul>
+ <li> to select a different number of flanking SNPs (<tt>--proxy-window</tt>)
+ <li> to filter proxy SNPs on distance to reference (<tt>--proxy-kb</tt>)
+ <li> to specify the maximum number of proxies (<tt>--proxy-maxsnp</tt>)
+ <li> to filter proxy SNPs on LD with reference (<tt>--proxy-r2</tt>)
+ <li> to not filter proxy SNPs on LD (<tt>--proxy-no-r2-filter</tt>, i.e. same as <tt>--proxy-r2 0 0 1</tt>)
+ <li> to filter proxy SNPs on MAF (<tt>--proxy-maf</tt>)
+ <li> to filter proxy SNPs on genotyping rate (<tt>--proxy-geno</tt>)
+ <li> to select a specifc set of flanking SNPs (<tt>--proxy-flanking</tt>)
+</p>
+ <li> to filter haplotypes based on frequency (<tt>--proxy-mhf</tt>)
+ <li> to filter haplotypes based on LD with reference (<tt>--proxy-sub-r2</tt>)
+ <li> to select different levels of subhaplotype search (<tt>--proxy-sub-maxsnp</tt>)
+</ul>
+
+For example, to select up to 6 SNPs, that are above 0.10 MAF and 0.01
+genotyping failure rate, that are within 100 kb and 10 SNPs of the
+reference SNP and that have an r-squared of at least 0.1 with the
+refernce but no greater than 0.5 with an already-selected proxy SNP;
+and then to look at all haplotype proxies that are above 0.005 minor
+haplotype frequency and have an r-squared of at least 0.8 with the
+reference SNP, use the command (line breaks added for clarity):
+
+<h5>
+<pre>
+ plink --file mydata --proxy-assoc rs6703905
+                     --proxy-maxsnp 6
+                     --proxy-r2 0.1 0.1 0.5
+                     --proxy-window 10
+                     --proxy-kb 100
+                     --proxy-maf 0.1 
+                     --proxy-geno 0.01 
+                     --proxy-sub-r2 0.8 
+                     --proxy-mhf 0.005 
+</pre>
+</h5></p>
+
+As mentioned, rather than use the heuristic above, you can specify a
+particular set of SNPs with the command
+
+<h5>
+ plink --file mydata --proxy-assoc rs6703905 --proxy-flanking my.proxy.list
+</h5></p>
+where <tt>my.proxy.list</tt> is a file listing the SNPs you wish to use as proxies for 
+<tt>rs6703905</tt>, for example.
+</p>
+
+</p><strong>Warning</strong> There will possibly be a very, very large
+number of possible combinations to consider if you make
+both <tt>--proxy-maxsnp</tt> and <tt>--proxy-sub-maxsnp</tt> too
+large, meaning that the analysis will take a very long time to
+run. You should probably keep <tt>--proxy-maxsnp</tt> less than 10
+and <tt>--proxy-sub-maxsnp</tt> less than 6.
+
+</p><strong>HINT</strong> To speed up the proxy report, you need only
+load in the relevant chromosomal region: that is, use
+the <tt>--snp</tt> and <tt>--window</tt> options:
+
+<h5>
+ plink --bfile mydata --proxy-assoc rs12345 --snp rs12345 --window 300 
+</h5></p>
+
+
+<h6>Specifying the type of association test</h6>
+
+By default, the <tt>--proxy-assoc</tt> command only applies to
+population-based samples of unrelated individuals. It is suitable for
+either disease (case/control) or quantitative trait outcomes: the
+appropriate test will automatically be selected depending on the
+phenotype.
+
+</p>
+
+The basic command cannot include covariates: however, if the
+flag <tt>--proxy-glm</tt> is added, then the routines that correspond
+to <tt>--linear</tt> and <tt>--logistic</tt> are used instead to test
+the proxy association, meaning that covariates can be included (this
+is slightly slower than the default analysis), e.g. 
+<h5>
+plink --bfile mydata --proxy-assoc rs12345 --proxy-glm --covar mycov.txt
+</h5></p>
+
+<strong>BETA</strong> There is preliminary support for the TDT in this
+context with the <tt>--proxy-tdt</tt> option; this has not yet been
+fully tested however, and we do not yet suggest you use it generally.
+
+</p>
+
+<a name="proxy2">
+<h2>Refining a single SNP association</h2></a>
+</p>
+
+The proxy association report is primarily designed simply to provide a
+convenient way to automatically scan for evidence of the same
+association signal coming from different sets of markers (that are
+assumed to be independent in terms of technical artefact but not LD).
+Of course, it is entirely possible that a 'proxy' may show a markedly
+stronger association than the original reference SNP.  In this way,
+one might think of using the <tt>--proxy-assoc</tt> method as a way to
+refine an association signal, or fine-map a region.  In a whole genome
+context, there is clearly nothing special about the particular SNP
+genotyped that shows association: it may be representing just the tip
+of an iceberg in association space, and certain haplotypes might have
+a stronger association. One strategy and way of using haplotype
+inflormation in a whole genome context, therefore, might be to scan
+all single SNPs for modest levels of association, and then
+exhaustively search the haplotype space surrounding those
+SNPs, <em>but constraining the search to only haplotypes that are in
+LD with the original SNP</em> (in this way, keeping the multiple
+testing burden somewhat under control, as although many more tests are
+added, they will all be quite highly correlated). 
+</p>
+
+As implied in the section above, remember that taking just the best
+proxy association result (i.e. the top listed in the 3rd section of
+the report) will capitalize on chance and so these best values will
+not follow asymptotic null test statistic distributions. These
+p-values are perhaps best interpreted either against a set genome-wide
+significance threshold, or corrected for the number of subhaplotypes
+tested for a given reference SNP.
+
+</p>
+<a name="proxy2b">
+<h2>Automating for multiple references SNPs</h2></a>
+</p>
+
+</p>
+To faciliate looking at more than one reference SNP at a time, you can 
+use the command 
+<h5>
+ plink --bfile mydata --proxy-assoc all
+</h5></p>
+or
+<h5>
+ plink --bfile mydata --proxy-assoc all --proxy-list hits.list
+</h5></p> 
+
+That is, instead of a SNP name after <tt>--proxy-assoc</tt>, put the
+keyword <tt>all</tt>. PLINK will then treat as the reference, one at a
+time, either all SNPs in the dataset (first usage) or in the subset
+listed in the file <tt>hits.list</tt> (second usage). 
+</p>
+By default, only a restricted degree of output is given, and no
+"subhaplotype" tests are performed when more than one SNP is specified
+as the reference (i.e. these correspond to the third section in the
+above example output). To get the full report for every SNP (all
+listed in a single file) add the option
+<pre>
+     --proxy-verbose
+</pre>
+In non-verbose mode, the output is as follows, in a file 
+<pre>
+     plink.assoc.proxy
+</pre>
+with fields
+<pre>
+     CHR        Chromosome code
+     SNP        Reference SNP
+     BP         Physical position 
+     A1         Name of first allele
+     A2         Name of second allele
+     GENO       Genotyping for the reference SNP
+     NPRX       Number of proxy SNPs used to tag reference SNP
+     INFO       Information metric for each reference SNP
+     F_A        Reference SNP allele frequency in cases (disease traits)
+     F_U        Reference SNP allele frequency in controls (disease traits)
+     OR         Odds ratio (for disease traits)
+     P          Asymptotic p-value for test of association
+     PROXIES    (Optional, given --proxy-show-proxies)  Displays actual proxy SNPs used
+</pre>
+
+For, example, here are some lines from such an output file, in this case with the
+<pre>
+     --proxy-show-proxies
+</pre>
+flag added, which appends the final <tt>PROXIES</tt> field to the output (lines truncated)
+<pre><font size="-1">
+CHR        SNP       BP A1 A2    GENO NPRX  INFO    F_A    F_U   OR     P PROXIES
+ 17   rs731971 29529017  T  A 0.00605    3  1.01  0.103  0.104 1.02 0.849 rs4794990|rs11652429|...
+ 17  rs4794990 29529302  T  C 0.00346    3  1.01  0.102  0.104 1.02 0.838 rs731971|rs11652429|...
+ 17 rs12938546 29530562  C  A 0.00115    3 0.996 0.0322 0.0381 1.19 0.186 rs7359592|rs887071|...
+ 17 rs11652429 29531710  G  C 0.00115    5     1   0.32   0.32    1 0.984 rs11080256|rs1024613|...
+</font></pre>
+
+The p-values reported here take account of the fact that the SNP has
+been probabilistically reconstructed. For example, the first line indicates that for 
+<tt>rs731971</tt> three proxy SNPs were
+selected, <tt>rs4794990</tt>, <tt>rs11652429</tt>
+and <tt>rs887071</tt>.
+
+</p>
+
+The <tt>GENO</tt> and <tt>INFO</tt> have more meaning in the context
+of <em>imputation</em>, as
+described <a href="pimputation.shtml">here</a>, which involves running
+proxy association/imputation with a reference panel, such as the
+HapMap.
+
+<a name="proxy3">
+<h2>Providing some degree of robustness to non-random genotyping failure</h2></a>
+</p>
+
+When performing tests in a haplotype-context, the E-M algorithm is used to estimate
+haplotpe frequencies and each individual's posterior haplotype phase probabilities. 
+The association test is then based on these fractional counts (i.e. allowing for ambiguity 
+in inferred haplotypes). As such, missing genotypes are quite naturally accommodated in this framework: if
+for example an individual has genotypes for these 3 SNPs, then two haplotype phases are considered:
+<pre>
+  Observed           Possible
+  genotypes    -->   haplotypes            
+
+  A/C A/C G/G  -->   AAG / CCG
+                     ACG / CAG
+</pre>
+whereas if the third SNP has a missing genotype (and if the other allele 
+is <tt>T</tt>, for example) then 
+the standard approach is just to consider a larger, consistent set (which 
+are of course weighted by the current 
+estimate of the population haploytpe frequencies):
+<pre>
+  Observed           Possible            Possible 
+  genotypes    -->   genotypes     -->   haplotypes            
+
+  A/C A/C 0/0  -->   A/C A/C G/G   -->   AAG / CCG 
+                                         ACG / CAG
+
+               -->   A/C A/C T/T   -->   AAT / CCT
+                                         ACT / CAT
+
+               -->   A/C A/C G/T   -->   AAG / CCT
+                                         ACG / CAT
+                                         AAT / CCG
+                                         ACT / CAG
+</pre>
+
+In this way, <b><em>if</em></b> there is strong LD between SNPs, we can 
+use the genotypes  at flanking SNPs to effectively 'fill-in' missing 
+genotype data. One advantage of this is that, if the genotypes are not 
+missing at random for any given SNP, then it can 
+give a less biased test to fill in the true values using LD information, 
+rather than just to treat those genotypes as missing.  This motivates a 
+reframing of the basic single SNP association statistic in terms of 
+groups of haplotypes rather than just as single SNPs (as shown above in 
+the first example). Consider this example, involving simulated data, 
+where the following haplotypes were simulated with these frequencies (in 
+both cases and controls, so we would not expect any association with 
+disease; 500 cases and 500 controls were generated).
+
+<pre>
+     Haplotype    Population frequency
+     AABAB        0.4
+     AABBA        0.2
+     ABBBA        0.2
+     BBBBB        0.1
+     AAABB        0.1
+</pre>
+
+We will label the five SNPs, <tt>snp1</tt>, <tt>snp2</tt>, etc.  Some 
+non-random genotyping failure was simulated: in cases only, the 
+<tt>BB</tt> genotype of <tt>snp3</tt> only has a genotyping rate of 0.5 
+(i.e. half were set to missing). Such as pattern of genotyping failure, 
+which is non-random with respect to both phenotype and genotype, 
+can tend to produce spurious association results.  For example, here are 
+the basic single SNP results:
+<h5>
+ plink --file sim1 --assoc
+</h5></p>
+which gives the output
+<pre>
+     CHR  SNP   A1      F_A      F_U   A2        CHISQ            P           OR
+       1 snp1    B    0.102    0.106    A      0.08585       0.7695        0.958
+       1 snp2    B    0.297     0.31    A       0.3997       0.5272       0.9403
+       1 snp3    A   0.1812    0.118    B        12.02    <b>0.0005271</b>        1.654  
+       1 snp4    A    0.406    0.383    B        1.107       0.2927        1.101
+       1 snp5    A    0.388    0.393    B      0.05252       0.8187       0.9792
+</pre>
+Note how <tt>snp3</tt> shows a strong association (this is solely due to 
+the non-random drop-out of genotypes for this SNP). However, the proxy 
+association will, in this case, correct this:
+
+<h5>
+ plink --file sim1 --proxy-assoc snp3 --mind 1 --geno 1 
+</h5></p>
+Note that we use <tt>--mind</tt> and <tt>--geno</tt> to ensure that PLINK 
+does not discard any individuals, in this particular case (i.e. we will 
+use the flanking SNPs to fill in the missing data). This analysis gives the following 
+output
+<pre>
+
+
+     *** Proxy haplotype association report for snp3 ***
+
+ SNP      MAF     GENO       KB      RSQ       OR    CHISQ        P
+snp1    0.104        0   -0.002   0.0145    0.958   0.0859     0.77
+snp2    0.303        0   -0.001   0.0544     0.94      0.4    0.527
+snp3    0.141    0.213        0        *    0.868    0.993    <b>0.319</b>
+snp4    0.394        0    0.001   0.0813      1.1     1.11    0.293
+snp5     0.39        0    0.002     0.08    0.979   0.0525    0.819
+
+
+         ..*..       FREQ         OR      CHISQ          P
+         ABBBA      0.199      0.945      0.254      0.615
+         AABBA      0.191       1.03     0.0518       0.82
+         AABAB      0.394        1.1       1.11      0.293
+         AAABB      0.111      0.868      0.993      0.319
+         BBBBB      0.104      0.958     0.0859       0.77
+
+Haplotype frequency estimation based on 2000 of 2000 founder chromosomes
+Omnibus haplotype test statistic: 1.88, df = 4, p = 0.759
+
+           HAP       FREQ        RSQ         OR      CHISQ          P
+         .A BB      0.111          1      0.868      0.993      0.319
+         A. BB      0.111          1      0.868      0.993      0.319
+</pre>
+
+In otherwords, instead of removing individuals who are missing for 
+<tt>snp3</tt> (which is implicitly what a single SNP association 
+statistic would do) we use the flanking data to fill in the unobserved 
+genotypes. Even if these are misssing not-at-random, if there is strong 
+LD then we will often be able to do a good job at guessing the true 
+genotype. Note that the other SNPs (that have no missing genotype data) 
+have identical association p-values under basic association test as under 
+this constrained haplotype test, as would be expected (i.e. under 
+most normal conditions, there is no loss of power in using a 
+proxy-association approach).
+
+</p><strong>IMPORTANT</strong> It is very important to remember that this 
+test is not a panacea for the problem of missing data: many times there 
+will not be sufficient LD to accurately 
+reconstruct the missing genotype within the E-M. Future versions of PLINK 
+aim to add diagnostics to indicate when this is the case; also, one might 
+select the SNPs that define the flanking region more intelligently (e.g. 
+making use of known patterns of LD, etc).
+
+</p>
+As such, thie results of this test should most probably be interpreted as 
+follows: if a highly significant basic single SNP association result is 
+not significant by this method, one would worry about biased missingness 
+for that SNP; if a highly significant basic single SNP result 
+remains highly significant, this is only meaningful when there is strong 
+LD.
+ 
+</p>
+Of course, it is possible that other biases that are specific to 
+haplotype analysis (the ability to estimate rare haplotype frequencies, 
+etc) will impact these proxy tests, the effects of stratification may be 
+more pronounced, etc. As such, these tests should be interpreted only as 
+complementary pieces of information along with the basic SNP result, 
+rather than as water-tight proof of an unbiased association <em>per 
+se</em>. 
+</p>
+
+However, if one knew up front that non-random genotyping drop-out 
+might be an issue (for example, cases and controls from from different 
+labs, different genotyping procedures used, etc) then it might seem  
+prudent to take this approach. 
+
+
+</p><strong>Note</strong> Normally individuals are removed from the 
+haplotype analysis if they are missing more than 50% of their genotypes 
+for a given haplotype: in this case, we try to not remove individuals, 
+but rather let the E-M fill in the missing data, so the rate is changed 
+to 0.9 by default; this can be altered with the <tt>--hap-miss</tt> 
+option.
+
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:52:28 EST
+</em>
+
+</body>
+
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>

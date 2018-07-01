@@ -1,0 +1,1797 @@
+<html>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+This page is not currently completely up-to-date as of v1.07, although
+the majority of commands and output files are listed.
+
+<a name="options">
+<h2>Options</h2></a>
+</p>
+
+<table border=0><tr>
+<td width=25%><em><b>Option</b></em></td>
+<td width=25%><em><b>Parameter/default</b></em></td>
+<td><em><b>Description</b></em></td></tr>
+
+<tr><td colspan="3"><b><font color="green">Basic input/output</font></b></td></tr>
+
+<td><tt>--file</tt></td><td> {plink}         </td><td>  Specify .ped and .map files</td></tr>
+<td><tt>--ped</tt></td><td>  {plink.ped}     </td><td>  Specify .ped file</td></tr>
+<td><tt>--map</tt></td><td>  {plink.map}     </td><td>  Specify .map file</td></tr>
+
+<tr><td> </td> <td> </td> <td> </td> </tr>
+
+<td><tt>--no-sex</tt></td>     <td> </td> <td> PED file does not contain column 5 (sex)        </td></tr>
+<td><tt>--no-parents</tt></td> <td> </td> <td> PED file does not contain columns 3,4 (parents) </td></tr>
+<td><tt>--no-fid</tt></td>     <td> </td> <td> PED file does not contain column 1 (family ID)  </td></tr>
+<td><tt>--no-pheno</tt></td>   <td> </td> <td> PED file does not contain column 6 (phenotype)  </td></tr>
+<td><tt>--liability</tt></td>  <td> </td> <td> PED file does contain liability (column 7) </td></tr>
+<td><tt>--map3</tt></td>       <td> </td> <td> Specify 3-column MAP file format </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--tfile</tt></td><td> {plink}         </td><td>  Specify .tped and .tfam files</td></tr>
+<td><tt>--tped</tt></td><td>  {plink.tped}           </td><td>  Specify .tped file</td></tr>
+<td><tt>--tfam</tt></td><td>  {plink.tfam}           </td><td>  Specify .tfam file</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--lfile</tt></td><td> {plink}         </td><td>  Specify long-format: LGEN, FAM and MAP</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--bfile</tt></td><td> {plink}        </td><td>  Specify .bed, .bim and .fam</td></tr>
+<td><tt>--bed</tt></td><td> {plink.bed}           </td><td>  Specify .bed file</td></tr>
+<td><tt>--bim</tt></td><td> {plink.bim}           </td><td>  Specify .bim file</td></tr>
+<td><tt>--fam</tt></td><td> {plink.fam}           </td><td>  Specify .fam file</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--out</tt></td><td> {plink}          </td><td>  Specify output root filename</td></tr>
+<td><tt>--silent</tt></td><td>               </td><td>  Suppress output to console</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--pheno</tt></td><td> {phenofile}       </td><td>  Specify alternate phenotype</td></tr>
+<td><tt>--make-pheno</tt></td><td> {file} {value}      </td><td>  Specify binary phenotype, with cases have value</td></tr>
+<td><tt>--make-pheno</tt></td><td> {file} *    </td><td> Specify binary phenotype, with cases are present</td></tr>
+
+<td><tt>--mpheno</tt></td><td> {var #}          </td><td>  Specify which, if >1 phenotype column</td></tr>
+<td><tt>--pheno-name</tt></td><td> {var name}   </td><td>  Instead of <tt>--mpheno</tt>, if a header row exists</td></tr>
+<td><tt>--all-pheno</tt></td><td>               </td><td>  Perform association for all phenotypes in file </td></tr>
+<td><tt>--loop-assoc</tt></td><td> {clusterfile} </td><td> Perform association for each level of cluster versis all others </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--covar</tt></td><td> {covarfile}         </td><td>  Specify covariate</td></tr>
+<td><tt>--mcovar</tt></td><td> {var #}            </td><td>  Specify which, if >1 covariate column (for use with <tt>--gxe</tt>) </td></tr>
+<td><tt>--covar-name</tt></td><td> {list}         </td><td>  Specify 1 or more covariates by name</td></tr>
+<td><tt>--covar-number</tt></td><td> {list}       </td><td>  Specify 1 or more covariates by number</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--within</tt></td><td> {filename}       </td><td>  Specify clustering scheme</td></tr>
+<td><tt>--mwithin</tt></td><td> {var #}         </td><td>  Specify which, if >1 cluster column</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+
+<td><tt>--script</tt></td><td> {filename}         </td><td>  Include command-line options from file</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Selection of SNPs and 
+individuals</font></b></td></tr>
+
+<td><tt>--chr</tt></td><td> {N}           </td><td>  Select a particular chromosome N</td></tr>
+<td><tt>--gene</tt></td><td> {name}       </td><td>  Select a particular gene, given a SET file (<tt>--set</tt>)</td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--from</tt></td><td> {SNP}        </td><td>  Select range from this SNP ... </td></tr>
+<td><tt>--to</tt></td><td> {SNP}          </td><td>  ... to this SNP (must be on same chromosome)</td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--snps</tt></td><td> {SNP list}  </td><td>  Select comma-delimited list of SNPs, allowing for ranges,
+e.g. snp1,snp2,snp6-snp12 
+</td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--snp</tt></td><td> {SNP}         </td><td>  Select this SNP ... </td></tr>
+<td><tt>--window</tt></td><td> {kb}       </td><td>  ... and (optionally) all SNPs in the surrounding kb window </td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--from-bp</tt></td><td> {bp}        </td><td>  Select SNPs within this window... </td></tr>
+<td><tt>--to-bp</tt></td><td> {bp}          </td><td>  ... specified in base-pair position </td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--from-kb</tt></td><td> {kb}        </td><td>  Select SNPs within this window... </td></tr>
+<td><tt>--to-kb</tt></td><td> {kb}          </td><td>  ... specified in kilobases </td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--from-mb</tt></td><td> {mb}        </td><td>  Select SNPs within this window... </td></tr>
+<td><tt>--to-mb</tt></td><td> {mb}          </td><td>  ... specified in megabases </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--extract</tt></td><td> {snplist}         </td><td>  Extract list of SNPs</td></tr>
+<td><tt>--exclude</tt></td><td> {snplist}         </td><td>  Exclude list of SNPs</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--keep</tt></td><td> {indlist}            </td><td>  Keep only these individuals</td></tr>
+<td><tt>--remove</tt></td><td> {indlist}          </td><td>  Remove these individuals</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--keep-before-remove</tt></td><td>    </td><td>  Perform keep before remove (default opposite)</td></tr>
+<td><tt>--exclude-before-extract</tt></td><td>      </td><td> Perform exclude before extract (default opposite) </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--filter</tt></td><td> {filename} {value}    </td><td> Filter individuals matching value </td></tr>
+<td><tt>--mfilter</tt></td><td> {var #}     </td><td> Specify filter value, if >1 filter column </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--filter-cases</tt></td><td>                   </td><td> Include only cases </td></tr>
+<td><tt>--filter-controls</tt></td><td>                </td><td> Include only controls </td></tr>
+<td><tt>--filter-males</tt></td><td>                   </td><td> Include only males </td></tr>
+<td><tt>--filter-females</tt></td><td>                 </td><td> Include only females </td></tr>
+<td><tt>--filter-founders</tt></td><td>                </td><td> Include only founders </td></tr>
+<td><tt>--filter-nonfounders</tt></td><td>             </td><td> Include only nonfounders </td></tr>
+<td><tt>--prune</tt></td><td>                   </td><td>  Remove individuals with missing phenotypes</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Other data management options</font></b></td></tr>
+
+<td><tt>--make-bed</tt></td><td>                  </td><td>  Make .bed, .fam and .bim</td></tr>
+<td><tt>--recode</tt></td><td>                    </td><td>  Output new .ped and .map files</td></tr>
+<td><tt>--recode12</tt></td><td>                  </td><td>  As above, with 1/2 allele coding</td></tr>
+<td><tt>--recode-rlist</tt></td><td>               </td><td>  List individuals with minor allele genotypes</td></tr>
+<td><tt>--recode-lgen</tt></td><td>                </td><td>  Output data in long LGEN format</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--recodeHV</tt></td><td>                  </td><td>  As above, with <tt>Haploview</tt> .info file</td></tr>
+<td><tt>--recode-fastphase</tt></td><td>          </td><td>  Ouput <tt>fastphase</tt> format file</td></tr>
+<td><tt>--recode-bimbam</tt></td><td>          </td><td>  Ouput <tt>bimbam</tt> format file</td></tr>
+<td><tt>--recode-structure</tt></td><td>          </td><td>  Ouput <tt>structure</tt> format file</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--recodeA</tt></td><td>                   </td><td>  Raw data file with additive coding</td></tr>
+<td><tt>--recodeAD</tt></td><td>                  </td><td>  Raw data file with additive/dominance coding</td></tr>
+<td><tt>--tab</tt></td><td>                       </td><td>  Delimit <tt>--recode</tt> and <tt>--recode12</tt> with tabs </td></tr>
+<td><tt>--list</tt></td><td>                      </td><td>  Output one genotype per line, list of FIDs and IIDs </td></tr>
+<td><tt>--plist</tt></td><td> {FID1 IID1 FID2 IID2} </td><td> Pairwise listing of genotypes for two individuals </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<td><tt>--write-snplist</tt></td><td>               </td><td>  List only the (filtered) SNPs in the dataset</td></tr>
+<td><tt>--update-map</tt></td><td> {filename}       </td><td>  Update physical positions in a map file </td></tr>
+<td><tt>--update-cm</tt></td><td>                   </td><td>  Update genetic distances in a map file </td></tr>
+<td><tt>--update-name</tt></td><td>                 </td><td>  Update SNP names in a map file </td></tr>
+<td><tt>--update-chr</tt></td><td>                   </td><td> Update chromosome codes in a map file </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--update-ids</tt></td><td> {file}                  </td><td> Update FIDs and IIDs in a file </td></tr>
+<td><tt>--update-sex</tt></td><td>  {file}                 </td><td> Update sex information in a file </td></tr>
+<td><tt>--update-parents</tt></td><td> {file}              </td><td> Update parent codes in a file </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<td><tt>--write-covar</tt></td><td>               </td><td>  Output ordered, filtered covariate file </td></tr>
+<td><tt>--with-phenotype</tt></td><td>            </td><td>  Include PED/phenotype information in new covariate file </td></tr>
+<td><tt>--dummy-coding</tt></td><td>            </td><td>  Downcode categorical covariates to binary dummy variables </td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--merge</tt></td><td> {pedfile}, {mapfile} </td><td> Merge in a PED/MAP fileset </td></tr>
+<td><tt>--bmerge</tt></td><td> {bedfile}, {bimfile}, {famfile} </td><td> Merge in a binary fileset </td></tr>
+<td><tt>--merge-list</tt></td><td> {list file}    </td><td> Merge multiple standard and/or binary filesets </td></tr>
+<td><tt>--merge-mode</tt></td><td> {1}            </td><td> Specify merge mode (1-7) </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--zero-cluster</tt></td><td> {filename}  </td><td> Zero-out specific SNPs for specific clusters </td></tr>
+<td><tt>--oblig-missing</tt></td><td> {filename} </td><td> SNPs/clusters that are obligatory missing </td></tr>
+<td><tt>--oblig-cluster</tt></td><td> {filename} </td><td> Individuals/clusters defining obligatory missingness </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--flip</tt></td><td> {snplist}               </td><td>  Flip strand of SNPs in list</td></tr>
+<td><tt>--flip-subset</tt></td><td> {individual-list}     </td><td>  Flip strand of SNPs only for these individuals in list</td></tr>
+<td><tt>--flip-scan</tt></td><td>      </td><td>  LD-based heuristic to look for SNPs flipped between cases and controls </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+	
+<td><tt>--1</tt></td><td>                       </td><td>  0/1 unaffected/affected coding</td></tr>
+
+<td><tt>--compound-genotypes</tt></td><td>                       </td><td>  Use AA, AG, 00 coding (no spaces between alleles in PED file)</td></tr>
+
+<td><tt>--missing-phenotype</tt></td><td> {-9}  </td><td>  Missing phenotype code</td></tr>
+<td><tt>--missing-genotype</tt></td><td> {0}    </td><td>  Missing genotype code</td></tr>
+
+<td><tt>--output-missing-phenotype</tt></td><td> {-9}  </td><td>  Missing phenotype code for output</td></tr>
+<td><tt>--output-missing-genotype</tt></td><td> {0}    </td><td>  Missing genotype code for output</td></tr>
+
+<td><tt>--allele1234</tt></td><td>     </td><td> Convert (A,C,G,T) to (1,2,3,4) </td></tr>
+<td><tt>--alleleACGT</tt></td><td>     </td><td> Convert (1,2,3,4) to (A,C,G,T) </td></tr>
+
+<td><tt>--update-alleles</tt></td><td>  {file}       </td><td> Update allele codes in a file  </td></tr>
+<td><tt>--reference-allele</tt></td><td> {file}      </td><td> Force a particular reference (A1) allele  </td></tr>
+<td><tt>--keep-allele-order</tt></td><td>     </td><td> Do not flip <tt>A1</tt> to be the minor allele </td></tr>
+
+
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--allow-no-sex</tt></td><td>         </td><td> Do not set ambiguously-sexed individuals missing</td></tr>
+<td><tt>--must-have-sex</tt></td><td>         </td><td> When making a new dataset, do set ambiguously-sexed individuals missing</td></tr>
+<td><tt>--set-hh-missing</tt></td><td>       </td><td> Making new fileset, set heterozygous haploids missing</td></tr>
+<td><tt>--set-me-missing</tt></td><td>       </td><td> Making new fileset, set Mendel errors missing</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--make-founders</tt></td><td>        </td><td>  Set non-founders without two parents to founders</td></tr>
+<td><tt>--pedigree</tt></td><td></td>            <td> When performing TDT, dump parsed family structure</td></tr>
+<td><tt>--tucc</tt></td><td></td>            <td> Make pseudo case/control pairs form trio data</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<tr><td colspan="3"><b><font color="green">Reporting summary statistics</font></b></td></tr>
+
+<td><tt>--freq</tt></td><td>                    </td><td>  Allele frequencies</td></tr>
+<td><tt>--counts</tt></td><td>                  </td><td>  Modifies <tt>--freq</tt> to report actual allele counts</td></tr>
+<td><tt>--nonfounders</tt></td><td>          </td><td>  Include all individuals in MAF/HWE calculations</td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<td><tt>--missing</tt></td><td>                 </td><td>  Missing rates (per individual, per SNP) </td></tr>
+<td><tt>--test-missing</tt></td><td>            </td><td>  Test of missingness differing by case/control status</tr>
+<td><tt>--test-mishap</tt></td><td>             </td><td>  Haplotype-based test for non-random missingness</td></tr>
+<td><tt>--cluster-missing</tt></td><td>         </td><td>  IBM clustering </td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--hardy</tt></td><td>                   </td><td>  Report Hardy-Weinberg disequilibrium tests (exact)</td></tr>
+<td><tt>--hardy2</tt></td><td>                  </td><td>  Report Hardy-Weinberg disequilibrium tests (asymptotic)</td></tr>
+<td><tt>--mendel</tt></td><td>                  </td><td>  Report Mendel error checks </td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<td><tt>--check-sex</tt></td><td>               </td><td>  Use X chromosome data to check an individual's assigned sex</td></tr>
+<td><tt>--impute-sex</tt></td><td>              </td><td>  Use X chromosome data to impute an individual's assigned sex</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<td><tt>--within</tt></td><td> {cluster file}   </td><td>  Stratify frequencies and missing rates by clusters </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Inclusion thresholds</font></b></td></tr>
+
+<td><tt>--maf</tt></td><td> {0.01}              </td><td>  Minor allele frequency</td></tr>
+<td><tt>--max-maf</tt></td><td> {1}             </td><td>  Maximum minor allele frequency</td></tr>
+<td><tt>--geno</tt></td><td> {0.1}              </td><td>  Maximum per-SNP missing</td></tr>
+<td><tt>--mind</tt></td><td> {0.1}              </td><td>  Maximum per-person missing</td></tr>
+<td><tt>--hwe</tt></td><td> {0.001}             </td><td>  Hardy-Weinberg disequilibrium p-value (exact)</td></tr>
+<td><tt>--hwe2</tt></td><td> {0.001}            </td><td>  Hardy-Weinberg disequilibrium p-value (asymptotic)</td></tr>
+<td><tt>--hwe-all</tt></td><td>                 </td><td>  HW filtering based on all founder individuals for binary trait 
+(instead of just unaffecteds)</td></tr>
+<td><tt>--me</tt></td><td> {0.1} {0.1}          </td><td>  Mendel error rate thresholds (per SNP, per family) </td></tr>
+<td><tt>--cell</tt></td><td> {5}                </td><td>  Minimum genotype cell count for <tt>--model</tt></td></tr>
+<td><tt>--min</tt></td><td> {0}              </td><td>  Minimum pi-hat  
+for <tt>--genome</tt> output</td></tr>
+<td><tt>--max</tt></td><td> {1}         </td><td>  Maximum pi-hat for <tt>--genome</tt> output</td></tr>
+
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Quality scores</font></b></td></tr>
+
+<td><tt>--qual-scores</tt></td><td> {file}         </td><td>  SNP based quality scores filter </td></tr>
+<td><tt>--qual-threshold</tt></td><td> {0.8}       </td><td>  SNP quality score threshold </td></tr>
+<td><tt>--qual-max-threshold</tt></td><td> {1}     </td><td>  SNP maximum quality scores threshold </td></tr>
+
+<td><tt>--qual-geno-scores</tt></td><td> {file}         </td><td>  Genotype-based quality scores filter </td></tr>
+<td><tt>--qual-geno-threshold</tt></td><td> {0.8}       </td><td>  Genotype quality score threshold </td></tr>
+<td><tt>--qual-geno-max-threshold</tt></td><td> {1}     </td><td>  Genotype maximum quality scores threshold </td></tr>
+
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">IBS stratification / clustering</font></b></td></tr>
+
+      <td><tt>--genome</tt></td><td>                 </td><td>   Calculate IBS distances between all individuals</td></tr>
+      <td><tt>--cluster</tt></td><td>                 </td><td>  Perform clustering</td></tr>
+      <td><tt>--matrix</tt></td><td>                  </td><td>  Output IBS (similarity) matrix</td></tr>
+      <td><tt>--distance-matrix</tt></td><td>         </td><td>  Output 1-IBS (distance) matrix</td></tr>
+      <td><tt>--mc</tt></td><td> {0}                  </td><td>  Maximum cluster size</td></tr>
+      <td><tt>--cc</tt></td><td>                      </td><td>  Cluster by phenotype</td></tr>
+      <td><tt>--mcc</tt></td><td> {0 0}               </td><td>  Maximum number of cases/controls per cluster</td></tr>
+      <td><tt>--ibm</tt></td><td> {0.01}              </td><td>  Constrain IBS matching on IBM matching </td></tr>
+      <td><tt>--ppc</tt></td><td> {0.01}              </td><td>  IBS test p-value threshold (was <tt>--pmerge</tt>)</td></tr>
+      <td><tt>--ppc-gap</tt></td><td> {500kb}        </td><td>  Skip SNPs within this for PPC test</td></tr>
+      <td><tt>--match</tt></td><td> {match-file}      </td><td>  Specify external categorical matching criteria</td></tr>
+      <td><tt>--match-type</tt></td><td> {match-type-file}      </td><td>  Specify external categorical matching direction (+/- match)</td></tr>
+      <td><tt>--qmatch</tt></td><td> {match-file}     </td><td>  Specify external quantitative matching criteria</td></tr>
+      <td><tt>--qt</tt></td><td> {threshold-file}     </td><td>  Specify quantitative matching thresholds</td></tr>
+      <td><tt>--neighbour</tt></td><td> {N} {M}       </td><td>  Outlier statistics (for nearest neighbours N to M)</td></tr>
+
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Whole genome summary statistics</font></b></td></tr>
+  
+      <td><tt>--genome</tt></td><td>                  </td><td>  Output genome-wide IBS/IBD</td></tr>
+      <td><tt>--rel-check</tt></td><td>               </td><td>  Only calculate IBS/IBD for members of same family (FID)</td></tr>
+      <td><tt>--read-genome</tt></td><td> {genome-file} </td><td> Read previously-computed genome values</td></tr>
+      <td><tt>--nudge</tt></td><td>                  </td><td>  Adjusted estimated IBD values </td></tr>
+      <td><tt>--impossible</tt></td><td>                  </td><td> Indicate 'impossible' estimated IBD values</td></tr>
+
+      <td><tt>--het</tt></td><td>                     </td><td>  Individual inbreeding F / heterozygosity</td></tr>
+      <td><tt>--homozyg-kb</tt></td><td> {kb}              </td><td>  Identify runs of homozygosity (kb)</td></tr>
+      <td><tt>--homozyg-snp</tt></td><td> {N SNPs}         </td><td>  Identify runs of homozygosity (# SNPs)</td></tr>
+      <td><tt>--homozyg-het</tt></td><td> {N hets}  </td><td>Allow for N hets in run of homozygosity </td></tr>
+      <td><tt>--homozyg-group</tt></td><td>         </td><td>Group pools of overlapping segments </td></tr>
+      <td><tt>--homozyg-match</tt></td><td> {0.95}  </td><td>Identity threshold for allelic matching overlapping segments </td></tr>
+      <td><tt>--homozyg-verbose</tt></td><td>       </td><td>Display actual genotypes for each pool </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Association analysis procedures</font></b></td></tr>
+      <td><tt>--assoc</tt></td><td>                   </td><td>  Case/control or QTL association</td></tr>
+      <td><tt>--fisher</tt></td><td>                  </td><td>  Fisher's exact (allelic) test </td></tr>
+      <td><tt>--model</tt></td><td>                   </td><td>  Cochran-Armitage and full-model C/C association</td></tr> 
+      <td><tt>--model --fisher</tt></td><td>          </td><td>  Exact full-model tests </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--T2</tt></td><td>                      </td><td>  Hotelling's T(2) multilocus test</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--mh</tt></td><td>                     </td><td>  Cochran-Mantel-Haenszel SNPxDISEASE|STRATA</td></tr> 
+      <td><tt>--mh2</tt></td><td>                     </td><td>  Cochran-Mantel-Haenszel SNPxSTRATA|DISEASE</td></tr> 
+      <td><tt>--bd</tt></td><td>                      </td><td>  Breslow-Day homogeneity of odds ratios test</td></tr> 
+      <td><tt>--homog</tt></td><td>                   </td><td>  Partitioning chi-square homogeneity of odds ratios test</td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+      <td><tt>--gxe</tt></td><td>                     </td><td>  QTL interaction test (dichotomous covariate only)</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+     
+      <td><tt>--linear</tt></td><td>              </td><td> Test for quantitative traits and multiple covariates</td></tr> 
+      <td><tt>--logistic</tt></td><td>            </td><td> Test for disease traits and multiple covariates</td></tr> 
+      <td><tt>--genotypic</tt></td><td>           </td><td> Include dominance term in model, and 2df model</td></tr> 
+
+      <td><tt>--dominant</tt></td><td>           </td><td> Fit dominant model for minor allele</td></tr> 
+      <td><tt>--recessive</tt></td><td>           </td><td> Fit recessive model for minor allele</td></tr> 
+
+      <td><tt>--condition</tt></td><td> {SNP}       </td><td> Include additive effect of SNP in model</td></tr>
+      <td><tt>--condition-list</tt></td><td> {filename}  </td><td> Include additive effects of these SNPs in model</td></tr>
+
+      <td><tt>--sex</tt></td><td>                 </td><td> Include sex effect in model</td></tr>
+      <td><tt>--interaction</tt></td><td>         </td><td> Include SNP x covariate interactions </td></tr> 
+      <td><tt>--test-all</tt></td><td>            </td><td> Joint test of all terms in model</td></tr> 
+      <td><tt>--parameters</tt></td><td> {1,2,...} </td><td> Fit only a subset of model terms<td></tr> 
+      <td><tt>--tests</tt></td><td> {1,2,...}      </td><td> Joint test of user-specified set of parameters</td></tr> 
+      <td><tt>--beta</tt></td><td>               </td><td> Make <tt>--logistic</tt> return coefficients, not odds ratios</td></tr> 
+           
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+      <td><tt>--tdt</tt></td><td>                     </td><td>  Family-based TDT and parenTDT (permute TDT)</td></tr>
+      <td><tt>--parentdt1</tt></td><td>               </td><td>  As above, except permuted statistic is parental test</td></tr>
+      <td><tt>--parentdt2</tt></td><td>               </td><td>  As above, except permuted statistic is combined test</td></tr>
+      <td><tt>--poo</tt></td><td>                     </td><td>  Parent-of-origin analysis in TDT</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+      <td><tt>--dfam</tt></td><td>                     </td><td>  Disease family-test (families and 
+unrelateds) </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--ci</tt></td><td> {0.95}               </td><td>  Confidence interval for CMH odds ratios</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+      <td><tt>--set-test</tt></td><td>                 </td><td> Set-based association (requires <tt>--mperm</tt>) </td></tr>
+      <td><tt>--set-p</tt></td><td> {p-value}          </td><td> p-value threshold for set-based test</td></tr>
+      <td><tt>--set-r2</tt></td><td> {r^2}             </td><td> R-squared threshold for set-based test </td></tr>
+      <td><tt>--set-max</tt></td><td> {N SNPs}         </td><td> Maximum number of SNPs in set</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Permutation procedure options</font></b></td></tr>
+
+      <td><tt>--perm</tt></td><td>                    </td><td>  Run permutations (adaptive-mode)</td></tr>
+      <td><tt>--mperm</tt></td><td> {1000}            </td><td>  # of permutations in max-perm mode</td></tr>
+      <td><tt>--aperm</tt></td><td> {...}             </td><td>  Parameters (six) for adaptive permutation mode</td></tr>
+      <td><tt>--rank</tt></td><td>                    </td><td>  Modifies <tt>--mperm</tt> for rank-based permutation</td></tr>
+ 
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--model-trend</tt></td><td>                 </td><td> Use CA-trend test from <tt>--model</tt> </td></tr> 
+      <td><tt>--model-gen</tt></td><td>                   </td><td> Use genotypic test from <tt>--model</tt> </td></tr> 
+      <td><tt>--model-dom</tt></td><td>                   </td><td> Use dominant test from <tt>--model</tt> </td></tr> 
+      <td><tt>--model-rec</tt></td><td>                   </td><td> Use recessive test from <tt>--model</tt> </td></tr> 
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+
+      <td><tt>--genedrop</tt></td><td>                 </td><td>  Permutation by gene-dropping simulation (family-data)</td></tr>
+      <td><tt>--swap-parents</tt></td><td>                 </td><td> Labal-swap permutation for parents when gene-dropping</td></tr>
+      <td><tt>--swap-sibs</tt></td><td>                    </td><td> Labal-swap permutation for siblings when gene-dropping</td></tr>
+      <td><tt>--swap-unrel</tt></td><td>                   </td><td> Labal-swap permutation for unrelateds when gene-dropping</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+      <td><tt>--family</tt></td><td>                  </td><td>  Make Family ID the cluster</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+      <td><tt>--p2</tt></td><td>                      </td><td>  Alternate permutation scheme (C/C only)</td></tr>
+
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Epistasis analysis</font></b></td></tr>
+ 
+      <td><tt>--epistasis</tt></td><td>               </td><td> Perform SNP x SNP epistatic analysis</td></tr>
+      <td><tt>--fast-epistasis</tt></td><td>          </td><td> Quick SNP x SNP screening for C/C data</td></tr>
+      <td><tt>--twolocus</tt></td><td> {SNP} {SNP}    </td><td> Display contingency table for two SNPs </td></tr>
+      <td><tt>--case-only</tt></td><td>               </td><td> Case-only epistatic analysis</td></tr>
+      <td><tt>--gap</tt></td><td> {1000}              </td><td> Gap (kb) for SNP x SNP case-only epistasis tests</td></tr>
+      <td><tt>--epi1</tt></td><td> {0.0001}           </td><td> Output p-value threshold: pairs</td></tr>
+<!---      <td><tt>--epi2</tt></td><td> {0.01}             </td><td> Output p-value threshold: summary</td></tr>  -->
+      <td><tt>--set-by-all</tt></td><td>              </td><td> Test set 1 SNPs paired with all others</td></tr>
+      <td><tt>--nop</tt></td><td>                     </td><td> Do not calculate p-values (fast screening)</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--genepi</tt></td><td>                  </td><td> Gene-based test for epistasis</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Haplotype inference and linkage disequilibrium</font></b></td></tr>
+
+      <td><tt>--hap-snps</tt></td><td> {snplist}  </td><td>  Specify a list of SNPs to phase</td></tr>
+      <td><tt>--hap-window</tt></td><td> {N}      </td><td>  Specify haplotype sliding window</td></tr>
+      <td><tt>--hap</tt></td><td> {tagfilename}   </td><td>  Multimarker predictor / haplotype list</td></tr>
+      <td><tt>--whap</tt></td><td> {tagfilename}      </td><td>  Weighted haplotype test list </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+      <td><tt>--hap-assoc</tt></td><td>               </td><td>  Perform haplotype-based case/control association</td></tr>
+      <td><tt>--hap-tdt</tt></td><td>                 </td><td>  Perform haplotype-based TDT</td></tr>
+      <td><tt>--hap-freq</tt></td><td>                </td><td>  Output haplotype frequencies for entire sample</td></tr>
+      <td><tt>--hap-phase</tt></td><td>           </td><td>  Output individual haplotype phases</td></tr>
+      <td><tt>--hap-phase-wide</tt></td><td>      </td><td>  Output individual haplotype phases, wide-format</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+      <td><tt>--hap-impute</tt></td><td>              </td><td>  Create fileset with imputed haplotypes as SNPs</td></tr>
+      <td><tt>--hap-pp</tt></td><td> {0.8}       </td><td>  Posterior probability threshold</td></tr>
+
+      <td><tt>--hap-miss</tt></td><td> {0.5}     </td><td>  Proportion of missing genotypes allowed</td></tr>
+      <td><tt>--hap-min-phase-prob</tt></td><td> {0.01}  </td><td> Minimum reported phase probability</td></tr>
+      <td><tt>--hap-max-phase</tt></td><td> {N}  </td><td> Maximum number of phases considered per person</td></tr>
+      <td><tt>--mhf</tt></td><td> {0.01}  </td><td> Minor haplotype frequency threshold</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Proxy association and imputation methods</font></b></td></tr>
+
+      <td><tt>--proxy-assoc</tt></td><td> {SNP/all}  </td><td> Proxy association methods</td></tr>
+      <td><tt>--proxy-glm</tt></td><td>    </td><td> Use linear models in proxy association </td></tr>
+      <td><tt>--proxy-drop</tt></td><td>    </td><td> Drop then re-impute observed genotypes</td></tr>
+      <td><tt>--proxy-tdt</tt></td><td> {SNP/all}  </td><td> Proxy TDT association methods</td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--proxy-impute</tt></td><td> {SNP/all}  </td><td> Proxy imputation methods</td></tr>
+      <td><tt>--proxy-replace</tt></td><td>     </td><td> Replace observed genotypes </td></tr>
+      <td><tt>--proxy-dosage</tt></td><td>     </td><td> Also output dosage file </td></tr>
+      <td><tt>--proxy-impute-threshold</tt></td><td>  {0.95}   </td><td> Per-genotype threshold to impute for an individual</td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--proxy-list</tt></td><td>  {file}   </td><td> Specify SNPs to impute/test </td></tr>
+      <td><tt>--proxy-flanking</tt></td><td>  {file}   </td><td> Specify proxies for single reference SNP </td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--proxy-r2</tt></td><td>  {0 0.05 0.5}   </td><td> Proxy selection LD parameters </td></tr>
+      <td><tt>--proxy-maxsnp</tt></td><td>  {5}   </td><td> Maximum number of proxies tto select</td></tr>
+      <td><tt>--proxy-window</tt></td><td>  {15}   </td><td> Proxy SNP search space (SNPs) </td></tr>
+      <td><tt>--proxy-kb</tt></td><td>  {250}   </td><td> Proxy SNP search space (kb) </td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--proxy-b-threshold</tt></td><td>  {0.1}   </td><td> MAF threshold for <em>rare</em> alleles (plan B)</td></tr>
+      <td><tt>--proxy-b-r2</tt></td><td>  {0 0.05 0.5}   </td><td> Alternate proxy selection LD parameters</td></tr>
+      <td><tt>--proxy-b-maxsnp</tt></td><td>  {0.1}   </td><td> Alternate maximum number of proxies to use </td></tr>
+      <td><tt>--proxy-b-window</tt></td><td>  {0.1}   </td><td> Alternate proxy SNP search space (SNPs)</td></tr>
+      <td><tt>--proxy-b-kb</tt></td><td> {250}   </td><td> Alternate proxy SNP search space (kb)</td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--proxy-maf</tt></td><td>  {0.01}   </td><td> Proxy SNP MAF threshold</td></tr>
+      <td><tt>--proxy-geno</tt></td><td>  {0.05}   </td><td> Proxy SNP missingness threshold</td></tr>
+      <td><tt>--proxy-r2-no-filter</tt></td><td>    </td><td> No LD-based proxy selection</td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--proxy-mhf</tt></td><td>  {0.05}   </td><td> Proxy haplotype frequency threshold</td></tr>
+      <td><tt>--proxy-sub-r2</tt></td><td>  {0.8}   </td><td> Minimum r-squared with reference for haplotypic proxies (verbose mode)</td></tr>
+      <td><tt>--proxy-sub-maxsnp</tt></td><td>  {3}   </td><td> Maximum number of SNPs per haplotypic proxy (verbose mode)</td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--proxy-verbose</tt></td><td>     </td><td> Verbose mode </td></tr>
+      <td><tt>--proxy-show-proxies</tt></td><td>     </td><td> List actual proxies in non-verbose mode </td></tr>
+      <td><tt>--proxy-genotypic-concordance</tt></td><td>     </td><td> In imputation, show genotypic-specific concordance </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Conditional haplotype association tests</font></b></td></tr>
+      <td><tt>--chap</tt></td><td>          </td><td> Main conditional-haplotype test command </td></tr>
+      <td><tt>--specific-haplotype </tt></td><td> {haplotype(s)}  </td><td> Test for specific haplogroup effect </td></tr>
+      <td><tt>--independent-effect</tt></td><td> {snp{s}} </td><td> Test for independent effect </td></tr>
+      <td><tt>--control </tt></td><td> {snp(s)/haplotype(s)} </td><td> Control for certain effects </td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--alt-snp</tt></td><td>  </td><td> Specify SNP groupings under alternate </td></tr>
+      <td><tt>--null-snp</tt></td><td>  </td><td> Specify SNP groupings under null </td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--alt-group</tt></td><td>  </td><td> Specify haplogroupings under alternate </td></tr>
+      <td><tt>--null-group</tt></td><td>  </td><td> Specify haplogroupings under null </td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--test-snp</tt></td><td>  </td><td> Drop 1 or more conditioning SNPs</td></tr>
+      <td><tt>--each-versus-others</tt></td><td>  </td><td> Each all haplogroup-specific p-values </td></tr>
+      <td><tt>--each-vs-others</tt></td><td>  </td><td> As above </td></tr>
+
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">LD-based result clumping</font></b></td></tr>
+      <td><tt>--clump</tt></td><td> {file(s)}  </td><td> Comma-delimited result files</td></tr>
+      <td><tt>--clump-p1</tt></td><td> {1e-4}  </td><td> p-value threshold for index SNPs</td></tr>
+      <td><tt>--clump-p2</tt></td><td> {1e-2}  </td><td> p-value threshold for clumped SNPs</td></tr>
+      <td><tt>--clump-r2</tt></td><td> {0.2}  </td><td> r^2 (LD) threshold for clumping</td></tr>
+      <td><tt>--clump-kb</tt></td><td> {250}  </td><td> kb-threshold for clumping</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+      <td><tt>--clump-replicate</tt></td><td>  </td><td> Only report multi-file clumps</td></tr>
+      <td><tt>--clump-best</tt></td><td> </td><td> For each SNP in the first file, find the best proxy from the other files </td></tr>
+      <td><tt>--clump-verbose</tt></td><td>  </td><td> Specifty verbose output </td></tr>
+      <td><tt>--clump-range</tt></td><td> {filename} </td><td> Add gene/region range information to clumped output</td></tr>
+      <td><tt>--clump-range-border</tt></td><td> {kb} </td><td> Use a kb border around each gene/region</td></tr>
+      <td><tt>--clump-annotate</tt></td><td> {field(s)}  </td><td> Include these fields in verbose mode</td></tr>
+      <td><tt>--clump-field</tt></td><td> {field}  </td><td> Specifty p-value field other than <tt>P</tt> </td></tr>
+      <td><tt>--clump-index-first</tt></td><td>  </td><td> Only index based on first results file</td></tr>
+      <td><tt>--clump-allow-overlap</tt></td><td>  </td><td> Specify that a SNP can appear in more than one clump</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Annotation and meta-analysis of results</font></b></td></tr>
+
+      <td><tt>--annotate</tt></td><td> {filename}        </td><td> Annotate result file </td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+
+      <td><tt>--meta-analysis</tt></td><td> {filenames}        </td><td> Meta-analysis of multiple result files </td></tr>
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--gene-report</tt></td><td> {filename}        </td><td> Results file to perform gene-report on </td></tr>
+      <td><tt>--gene-list</tt></td><td> {filename}          </td><td> List of genes/regions for reporting </td></tr>
+      <td><tt>--gene-list-border</tt></td><td> {kb}         </td><td> Add a kb border aroud each gene/region </td></tr>
+      <td><tt>--gene-subset</tt></td><td> {filename}        </td><td> Only report on a subset of genes, listed here </td></tr>
+      <td><tt>--gene-report-empty</tt></td><td>             </td><td> Report genes without any informative SNPs </td></tr>
+
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">LD pruning and pairwise LD</font></b></td></tr>
+
+      <td><tt>--indep</tt></td><td> {N M VIF}          </td><td> VIF pruning (N-SNP window, shifted at M-SNP intervals) </td></tr>
+      <td><tt>--indep-pairwise</tt></td><td> {N M r^2} </td><td> r^2 pruning (as above) </td></tr>
+
+
+      <td><tt>--r</tt></td><td>                       </td><td>  Pairwise SNPxSNP LD (r) </td></tr>
+      <td><tt>--r2</tt></td><td>                      </td><td>  Pairwise SNPxSNP LD (r^2)</td></tr>
+      <td><tt>--ld-window</tt></td><td> {N}           </td><td>  Limit pairwise SNPxSNP to within a <em>N</em> SNP window </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Definition of SETs</font></b></td></tr>
+      <td><tt>--set</tt></td><td> {setfilename}       </td><td>  SET definitions </td></tr>
+      <td><tt>--subset</tt></td><td> {filename}       </td><td>  Only read of subset of SETs from <tt>--set</tt> </td></tr>
+      <td><tt>--set-table</tt></td><td>               </td><td>  Output a SNP by SET matrix </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Copy number variants (CNV) analysis</font></b></td></tr>
+      <td><tt>--gfile</tt></td><td> {fileset}      </td><td>  Load generic variant file</td></tr>
+      <td><tt>--cfile</tt></td><td> {fileset}      </td><td>  Load segmental CNV fileset (CNV, FAM, MAP)</td></tr>
+      <td><tt>--cnv-list</tt></td><td> {filename}   </td><td>  Load segmental CNV list</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--cnv-del</tt></td><td>              </td><td>  Filter only deletions</td></tr>
+      <td><tt>--cnv-dup</tt></td><td>              </td><td>  Filter only duplications</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--cnv-intersect</tt></td><td> {filename}        </td><td> Include segments intersecting with regions</td></tr>
+      <td><tt>--cnv-exclude</tt></td><td> {filename}       </td><td> Exclude segments intersecting with regions</td></tr>
+      <td><tt>--cnv-disrupt</tt></td><td>                 </td><td> Include/Exclude segments that start or stop within a gene/region</td></tr>
+      <td><tt>--cnv-count</tt></td><td> {filename}        </td><td> Count number of regions intersected by CNVs</td></tr>
+      <td><tt>--cnv-border</tt></td><td> {kb}             </td><td> Add a kb border around each region</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--cnv-freq-excldue-above</tt></td><td> N             </td><td> Exclude CNVs overlapping regions with more than N CNVs</td></tr>
+      <td><tt>--cnv-freq-excldue-below</tt></td><td> N             </td><td> Exclude CNVs overlapping regions with fewer than N CNVs</td></tr>
+      <td><tt>--cnv-freq-excldue-exact</tt></td><td> N             </td><td> Exclude CNVs overlapping regions with exactly N CNVs</td></tr>
+      <td><tt>--cnv-freq-incldue-exact</tt></td><td> N             </td><td> Include CNVs overlapping regions with exactly N CNVs</td></tr>
+      <td><tt>--cnv-freq-method2</tt></td><td>                     </td><td> Use alternative method for determining CNV frequency</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--cnv-overlap </tt></td><td> {N}              </td><td> Define overlap of CNV and region by CNV length</td></tr>
+      <td><tt>--cnv-union-overlap </tt></td><td> {N}        </td><td> Define overlap of CNV and region by union</td></tr>
+      <td><tt>--cnv-region-overlap </tt></td><td> {N}       </td><td> Define overlap of CNV and region by region length</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--cnv-write </tt></td><td>              </td><td> Create a new CNV and FAM file</td></tr>
+      <td><tt>--cnv-write-freq </tt></td><td>         </td><td> Include frequency counts if <tt>--cnv-freq-method2</tt> specified</td></tr> 
+      <td><tt>--cnv-make-map </tt></td><td>           </td><td> Create a new MAP file from a CNV and FAM file</td></tr>
+      <td><tt>--cnv-report-regions</tt></td><td>      </td><td> List regions that are intersected by CNVs</td></tr>
+      <td><tt>--cnv-verbose-report-regions</tt></td><td>      </td><td> Verbose listing of regions that are intersected by CNVs</td></tr>
+      <td><tt>--cnv-subset </tt></td><td> {filename}  </td><td> Define overlap of CNV and region by region length</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--cnv-track</tt></td><td> {kb}        </td><td>  Create a UCSC-compatible BED track for viewing CNVs</td></tr>
+      <td><tt>--cnv-blue</tt></td><td> {kb}        </td><td>  Make this CNV track blue</td></tr>
+      <td><tt>--cnv-red</tt></td><td> {kb}        </td><td>  Make this CNV track red</td></tr>
+      <td><tt>--cnv-green</tt></td><td> {kb}        </td><td>  Make this CNV track green</td></tr>
+      <td><tt>--cnv-brown</tt></td><td> {kb}        </td><td>  Make this CNV track brown</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--cnv-kb</tt></td><td> {N}              </td><td>  Exclude segments below N kb</td></tr>
+      <td><tt>--cnv-max-kb</tt></td><td> {N}          </td><td>  Exclude segments above N kb</td></tr>
+      <td><tt>--cnv-score</tt></td><td> {N}              </td><td>  Exclude segments below N score</td></tr>
+      <td><tt>--cnv-max-score</tt></td><td> {N}          </td><td>  Exclude segments above N score</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--cnv-drop-no-segment</tt></td><td>        </td><td>  Remove individuals with no segments</td></tr>
+      <td><tt>--cnv-unique</tt></td><td>                           </td><td> Exclude CNVs seen in both cases and controls </td></tr>
+      <td><tt>--cnv-seglist</tt></td><td> {kb}        </td><td>  Create a printout of CNVs</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--cnv-indiv-perm</tt></td><td>             </td><td>  Permutation test for genome-wide CNV burden</td></tr>
+      <td><tt>--cnv-test-2sided</tt></td><td>             </td><td>  Use 2-sided approach for empirical p-values</td></tr>
+      <td><tt>--cnv-test-window</tt></td><td> {kb}        </td><td>  Extend test to a region extending kb distance on either side of position</td></tr>
+      <td><tt>--cnv-test-region</tt></td><td> {kb}        </td><td>  Test regions for CNV case/control differences</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Data simulation options</font></b></td></tr>
+      <td><tt>--simulate</tt></td><td> {filename}    </td><td> Simulate SNP population-based data</td></tr>
+      <td><tt>--simulate-ncases</tt></td><td> {100}   </td><td> Number of cases to simulate</td></tr>
+      <td><tt>--simulate-ncontrols</tt></td><td> {100}  </td><td> Number of controls to simulate</td></tr>
+      <td><tt>--simulate-prevalence</tt></td><td> {0.01}  </td><td> Disease prevalence in population</td></tr>
+      <td><tt>--simulate-qt</tt></td><td> {filename}  </td><td> Simulate quantitative trait dataset</td></tr>
+      <td><tt>--simulate-label</tt></td><td> {label}  </td><td> Add identifier label to simulated individuals</td></tr>
+      <td><tt>--simulate-tags</tt></td><td>   </td><td> Simulate tags instead of causal variants</td></tr>
+      <td><tt>--simulate-haps</tt></td><td>   </td><td> Simulate causal variant / tag SNP pairs</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--dummy</tt></td><td> {N} {M}  </td><td> Generate dataset of N individuals on M SNPs</td></tr>
+
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Misc analysis output options</font></b></td></tr>
+      <td><tt>--adjust</tt></td><td>                </td><td> Output adjusted p-values and calculate genomic control</td></tr>
+      <td><tt>--lambda</tt></td><td> {X}            </td><td> Set lambda to X instead of estimating from data</td></tr>
+      <td><tt>--qq-plot</tt></td><td>               </td><td> Generate entries to faciliate a Q-Q plot in adjusted output </td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+<tr><td colspan="3"><b><font color="green">Misc.</font></b></td></tr>
+
+      <td><tt>--help</tt></td><td>                </td><td>  Display list of options</td></tr>
+      <td><tt>--dog</tt></td><td>                 </td><td>  Set chromosome codes for dog</td></tr>
+      <td><tt>--mouse</tt></td><td>                 </td><td>  Set chromosome codes for mouse</td></tr>
+      <td><tt>--horse</tt></td><td>                 </td><td>  Set chromosome codes for horse</td></tr>
+      <td><tt>--cow</tt></td><td>                 </td><td>  Set chromosome codes for cow</td></tr>
+      <td><tt>--sheep</tt></td><td>                 </td><td>  Set chromosome codes for sheep</td></tr>
+
+<tr><td> &nbsp;</td> <td> &nbsp;</td> <td> &nbsp;</td> </tr>
+      <td><tt>--lookup</tt></td><td> {SNP rs#}    </td><td> Lookup WGAS SNP annotation information</td></tr>
+      <td><tt>--lookup-gene</tt></td><td> {gene name}    </td><td> List all SNPs in gene</td></tr>
+      <td><tt>--lookup-list</tt></td><td> {snplist filename}  </td><td> SNP annotation for multiple 
+SNPs</td></tr>
+
+	
+</table>
+</p>
+
+
+
+<a name="output">
+<h2>Output files (alphabetical listing: <b>not up-to-date</b>)</h2></a>
+</p> 
+
+<table border=0><tr>
+<td width=25%><em><b>Filename</b></em></td>
+<td width=30%><em><b>Main associated command(s)</b></em></td>
+<td><em><b>Description</b></em></td>
+</tr>
+
+<tr>
+<td> plink.adjust    </td>
+<td><tt> --adjust</tt></td>
+<td> Adjusted significance values (multiple testing) </td>
+</tr>
+
+
+<tr>
+<td> plink.assoc       </td>
+<td><tt> --assoc </tt></td>
+<td> Association results </td>
+</tr>
+
+<tr>
+<td> plink.assoc.hap       </td>
+<td><tt> --hap-assoc </tt></td>
+<td> Haplotype-based association results </td>
+</tr>
+
+
+<tr>
+<td> plink.assoc.linear       </td>
+<td><tt> --linear </tt></td>
+<td> Linear regression model </td>
+</tr>
+
+<tr>
+<td> plink.assoc.logistic   </td>
+<td><tt> --logistic  </tt></td>
+<td> Logistic regression model </td>
+</tr>
+
+<tr>
+<td> plink.assoc.mperm       </td>
+<td><tt> --assoc --mperm </tt></td>
+<td> maxT permutation empirical p-values </td>
+</tr>
+
+
+<tr>
+<td> plink.assoc.perm  </td>
+<td><tt> --assoc --perm </tt></td>
+<td> Adaptive permutation empirical p-values </td>
+</tr>
+
+<tr>
+<td> plink.assoc.proxy  </td>
+<td><tt> --proxy-assoc </tt></td>
+<td> Proxy association results </td>
+</tr>
+
+
+<tr>
+<td> plink.assoc.set       </td>
+<td><tt> --assoc --set </tt></td>
+<td> Set-based association results </td>
+</tr>
+
+
+
+<tr>
+<td> plink.bed  </td>
+<td><tt> --make-bed</tt></td>
+<td> Binary PED file </td>
+</tr>
+
+<tr>
+<td> plink.bim  </td>
+<td><tt> --make-bed</tt></td>
+<td> Binary MAP file </td>
+</tr>
+
+<tr>
+<td> plink.chap    </td>
+<td><tt> --chap </tt></td>
+<td> Conditional haplotype tests </td>
+</tr>
+
+<tr>
+<td> plink.cov    </td>
+<td><tt> --write-covar </tt></td>
+<td> Ordered, filtered covariate file </td>
+</tr>
+
+<tr>
+<td> plink.clumped    </td>
+<td><tt> --clump </tt></td>
+<td> LD-based results clumping </td>
+</tr>
+
+<tr>
+<td> plink.clumped.best  </td>
+<td><tt> --clump-best </tt></td>
+<td> Single best LD-based clumping </td>
+</tr>
+
+<tr>
+<td> plink.clumped.ranges  </td>
+<td><tt> --clump-range </tt></td>
+<td> Gene/region report for clumps </td>
+</tr>
+
+<tr>
+<td> plink.cluster0    </td>
+<td><tt> --cluster </tt></td>
+<td> Progress of IBS clustering </td>
+</tr>
+
+<tr>
+<td> plink.cluster1    </td>
+<td><tt> --cluster </tt></td>
+<td> IBS cluster solution, format 1 </td>
+</tr>
+
+<tr>
+<td> plink.cluster2    </td>
+<td><tt> --cluster </tt></td>
+<td> IBS cluster solution, format 2  </td>
+</tr>
+
+<tr>
+<td> plink.cluster3    </td>
+<td><tt> --cluster </tt></td>
+<td> IBS cluster solution, format 3  </td>
+</tr>
+
+<tr>
+<td> plink.cluster3.missing    </td>
+<td><tt> --cluster-missing </tt></td>
+<td> IBM cluster solution, format 3  </td>
+</tr>
+
+
+<tr>
+<td> plink.cmh  </td>
+<td><tt> --mh   </tt></td>
+<td> Cochran-Mantel-Haenszel test 1 </td>
+</tr>
+
+<tr>
+<td> plink.cmh2        </td>
+<td><tt> --mh2   </tt></td>
+<td> Cochran-Mantel-Haenszel test 2 </td>
+</tr>
+
+<tr>
+<td> plink.cnv.indiv   </td>
+<td><tt> --cnv-list   </tt></td>
+<td> Copy number variant per individual summary </td>
+</tr>
+
+<tr>
+<td> plink.cnv.overlap   </td>
+<td><tt> --cnv-list   </tt></td>
+<td> Copy number variant overlap </td>
+</tr>
+
+<tr>
+<td> plink.cnv.summary   </td>
+<td><tt> --cnv-list   </tt></td>
+<td> Copy number variant summary </td>
+</tr>
+
+<tr>
+<td> plink.cnv.summary.mperm   </td>
+<td><tt> --cnv-list   </tt></td>
+<td> Copy number variant test </td>
+</tr>
+
+<tr>
+<td> plink.diff        </td>
+<td><tt> --merge-mode 6/7 </tt></td>
+<td> Difference file</td>
+</tr>
+
+<tr>
+<td> plink.epi-cc1     </td>
+<td><tt> --epistasis</tt></td>
+<td> Epistasis: case/control pairwise results </td>
+</tr>
+
+<tr>
+<td> plink.epi-cc2     </td>
+<td><tt> --epistasis</tt></td>
+<td> Epistasis: case/control summary results </td>
+</tr>
+
+<tr>
+<td> plink.epi-co1     </td>
+<td><tt> --epistasis --case-only</tt></td>
+<td> Epistasis: case-only pairwise results </td>
+</tr>
+
+<tr>
+<td> plink.epi-co2     </td>
+<td><tt> --epistasis --case-only</tt></td>
+<td> Epistasis: case-only summary results </td>
+</tr>
+
+<tr>
+<td> plink.fam  </td>
+<td><tt> --make-bed</tt></td>
+<td> Binary FAM file </td>
+</tr>
+
+<tr>
+<td> plink.fmendel     </td>
+<td><tt> --mendel</tt></td>
+<td> Mendel errors, per family </td>
+</tr>
+
+<tr>
+<td> plink.frq         </td>
+<td><tt> --freq</tt></td>
+<td> Allele frequency table </td>
+</tr>
+
+<tr>
+<td> plink.frq.count    </td>
+<td><tt> --freq --counts </tt></td>
+<td> Allele counts table </td>
+</tr>
+
+<tr>
+<td> plink.frq.hap       </td>
+<td><tt> --hap-freq</tt></td>
+<td> Allele frequency table </td>
+</tr>
+
+<tr>
+<td> plink.genepi.dat   </td>
+<td><tt> --genepi</tt></td>
+<td> Gene-based epistasis R dataset </td>
+</tr>
+
+<tr>
+<td> plink.genepi.R   </td>
+<td><tt> --genepi</tt></td>
+<td> Gene-based epistasis R script </td>
+</tr>
+
+<tr>
+<td> plink.genome      </td>
+<td><tt> --genome</tt></td>
+<td> Genome-wide IBD/IBS pairwise measures </td>
+</tr>
+
+<tr>
+<td> plink.het         </td>
+<td><tt> --het</tt></td>
+<td> Individual inbreeding coefficients </td>
+</tr>
+
+<tr>
+<td> plink.hh </td>
+<td> </td>
+<td> List of heterozygous haploid genotypes (SNPs/individuals) </td>
+</tr>
+
+<tr>
+<td> plink.hom         </td>
+<td><tt> --homozyg-snp --homozyg-kb</tt></td>
+<td> Runs of homozygosity </td>
+</tr>
+
+<tr>
+<td> plink.hom.overlap  </td>
+<td><tt> --homozyg-group </tt></td>
+<td> Pools of overlapping runs of homozygosity </td>
+</tr>
+
+<tr>
+<td> plink.homog       </td>
+<td><tt> --homog </tt></td>
+<td> Between strata homogeneity test </td>
+</tr>
+
+<tr>
+<td> plink.hwe         </td>
+<td><tt> --hardy</tt></td>
+<td> Hardy-Weinberg test statistics </td>
+</tr>
+
+<tr>
+<td> plink.imendel     </td>
+<td><tt> --mendel</tt></td>
+<td> Mendel errors, per individual </td>
+</tr>
+
+<tr>
+<td> plink.imiss       </td>
+<td><tt> --missing</tt></td>
+<td> Missing rates, per individual </td>
+</tr>
+
+<tr>
+<td> plink.info       </td>
+<td><tt> --recodeHV</tt></td>
+<td> Info file for Haploview filesets </td>
+</tr>
+
+<tr>
+<td> plink.irem </td>
+<td><tt> --mind </tt> </td>
+<td> List of individuals removed for low genotyping </td>
+</tr>
+
+<tr>
+<td> plink.imputed.map </td>
+<td><tt> --hap-impute </tt> </td>
+<td> Imputed from multi-marker predictors </td>
+</tr>
+
+<tr>
+<td> plink.impute.ped </td>
+<td><tt> --hap-impute </tt> </td>
+<td> Imputed from multi-marker predictors </td>
+</tr>
+
+
+<tr>
+<td> plink.list  </td>
+<td><tt> --list</tt></td>
+<td> Recoded LIST file </td>
+</tr>
+
+
+<tr>
+<td> plink.lmendel     </td>
+<td><tt> --mendel</tt></td>
+<td> Mendel errors, per locus </td>
+</tr>
+
+<tr>
+<td> plink.lmiss       </td>
+<td><tt> --missing</tt></td>
+<td> Missing rates, per locus </td>
+</tr>
+
+<tr>
+<td> plink.log </td>
+<td> </td>
+<td> Log file (always generated) </td>
+</tr>
+
+<tr>
+<td> plink.map  </td>
+<td><tt> --recode</tt></td>
+<td> Recoded MAP file </td>
+</tr>
+
+
+<tr>
+<td> plink.mdist       </td>
+<td><tt> --cluster --matrix</tt></td>
+<td> IBS distance matrix </td>
+</tr>
+
+<tr>
+<td> plink.mdist.missing       </td>
+<td><tt> --cluster-missing</tt></td>
+<td> IBM distance matrix </td>
+</tr>
+
+
+<tr>
+<td> plink.mendel      </td>
+<td><tt> --mendel</tt></td>
+<td> Mendel errors, per error </td>
+</tr>
+
+<tr>
+<td> plink.mishap </td>
+<td> <tt>--hap</tt> </td>
+<td> List of SNPs that show problem phasing (could not be found or on wrong chromosome) </td>
+</tr>
+
+
+<tr>
+<td> plink.missing       </td>
+<td><tt> --test-missing </tt></td>
+<td> Test of differences in C/C missing rates </td>
+</tr>
+
+<tr>
+<td> plink.missing.hap    </td>
+<td><tt> --test-mishap </tt></td>
+<td> Haplotype-based test of non-random genotyping failure </td>
+</tr>
+
+
+<tr>
+<td> plink.missnp </td>
+<td> <tt>--merge</tt> </td>
+<td> List of SNPs that show strand problems when merging files (more than 2 alleles) </td>
+</tr>
+
+
+<tr>
+<td> plink.model       </td>
+<td><tt> --model</tt></td>
+<td> Full-model association results </td>
+</tr>
+
+<tr>
+<td> plink.model.best.mperm </td>
+<td><tt> --model --mperm</tt></td>
+<td> Best full-model association max(T) permutation results </td>
+</tr>
+
+<tr>
+<td> plink.model.best.perm </td>
+<td><tt> --model --perm</tt></td>
+<td> Best full-model association adaptive permutation results </td>
+</tr>
+
+
+<tr>
+<td> plink.model.gen.mperm </td>
+<td><tt> --model --mperm --model-gen</tt></td>
+<td> Genotypic association max(T) permutation results </td>
+</tr>
+
+<tr>
+<td> plink.model.gen.perm </td>
+<td><tt> --model --perm --model-gen</tt></td>
+<td> Genotypic association adaptive permutation results </td>
+</tr>
+
+
+<tr>
+<td> plink.model.dom.mperm </td>
+<td><tt> --model --mperm --model-dom</tt></td>
+<td> Dominant association max(T) permutation results </td>
+</tr>
+
+<tr>
+<td> plink.model.dom.perm </td>
+<td><tt> --model --perm --model-dom</tt></td>
+<td> Dominant association adaptive permutation results </td>
+</tr>
+
+
+<tr>
+<td> plink.model.trend.mperm </td>
+<td><tt> --model --mperm --model-trend</tt></td>
+<td> Trend test association max(T) permutation results </td>
+</tr>
+
+<tr>
+<td> plink.model.trend.perm </td>
+<td><tt> --model --perm --model-trend</tt></td>
+<td> Trend test association adaptive permutation results </td>
+</tr>
+
+
+<tr>
+<td> plink.model.rec.mperm </td>
+<td><tt> --model --mperm --model-rec</tt></td>
+<td> Recessive association max(T) permutation results </td>
+</tr>
+
+<tr>
+<td> plink.model.rec.perm </td>
+<td><tt> --model --perm --model-rec</tt></td>
+<td> Recessive association adaptive permutation results </td>
+</tr>
+
+
+<tr>
+<td> plink.nof       </td>
+<td><tt>  </tt></td>
+<td> List of SNPs with no observed founders </td>
+</tr>
+
+<tr>
+<td> plink.nosex       </td>
+<td><tt>  </tt></td>
+<td> List of individuals with ambiguous sex code </td>
+</tr>
+
+<tr>
+<td> plink.nearest     </td>
+<td><tt>--cluster --neighbour </tt></td>
+<td> Nearest neighbour (IBS) statistics </td>
+</tr>
+
+<tr>
+<td> plink.pdump  </td>
+<td><tt> --pedigree </tt></td>
+<td> Information on pedigree structure </td>
+</tr>
+
+<tr>
+<td> plink.ped  </td>
+<td><tt> --recode</tt></td>
+<td> Recoded PED file </td>
+</tr>
+
+<tr>
+<td> plink.phase-*      </td>
+<td><tt> --hap --phase</tt></td>
+<td> Haplotype phases (one file per locus) </td>
+</tr>
+
+<tr>
+<td> plink.plist      </td>
+<td><tt> --plist </tt></td>
+<td> Pairwise list of two people's genotypes </td>
+</tr>
+
+<tr>
+<td> plink.proxy.impute      </td>
+<td><tt> --proxy-impute </tt></td>
+<td> Proxy imputation output </td>
+</tr>
+
+<tr>
+<td> plink.proxy.impute.dosage      </td>
+<td><tt> --proxy-impute --proxy-dosage </tt></td>
+<td> Proxy imputation dosage output </td>
+</tr>
+
+<tr>
+<td> plink.proxy.report      </td>
+<td><tt> --proxy-assoc </tt></td>
+<td> Verbose proxy association output </td>
+</tr>
+
+<tr>
+<td> plink.prune.in      </td>
+<td><tt> --indep --indep-pairwise </tt></td>
+<td> List of remaining SNPs (i.e. not pruned) </td>
+</tr>
+
+<tr>
+<td> plink.prune.out      </td>
+<td><tt> --indep --indep-pairwise </tt></td>
+<td> List of pruned-out SNPs </td>
+</tr>
+
+
+<tr>
+<td> plink.qassoc      </td>
+<td><tt> --assoc</tt></td>
+<td> Quantitative trait association results </td>
+</tr>
+
+
+<tr>
+<td> plink.qassoc.gxe      </td>
+<td><tt> --gxe</tt></td>
+<td> Quantitative trait interaction results </td>
+</tr>
+
+<tr>
+<td> plink.range.report  </td>
+<td><tt> --cnv-verbose-report-regions</tt></td>
+<td> Listing of CNVs by genes/regions </td>
+</tr>
+
+<tr>
+<td> plink.raw  </td>
+<td><tt> --recodeAD</tt></td>
+<td> Recoded additive/dominance format file </td>
+</tr>
+
+<tr>
+<td> plink.snplist    </td>
+<td><tt> --write-snplist </tt></td>
+<td> List of SNPs in the dataset </td>
+</tr>
+
+<tr>
+<td> plink.T2    </td>
+<td><tt> --T2</tt></td>
+<td> Hotelling's T(2) test results </td>
+</tr>
+
+<tr>
+<td> plink.tdt    </td>
+<td><tt> --tdt</tt></td>
+<td> TDT/parenTDT asymptotic results </td>
+</tr>
+
+<tr>
+<td> plink.tdt.hap    </td>
+<td><tt> --tdt</tt></td>
+<td> TDT/parenTDT permutaion results </td>
+</tr>
+
+<tr>
+<td> plink.tdt.mperm    </td>
+<td><tt> --tdt</tt></td>
+<td> TDT/parenTDT max(T) permutation results </td>
+</tr>
+
+<tr>
+<td> plink.tdt.perm    </td>
+<td><tt> --tdt</tt></td>
+<td> TDT/parenTDT adaptive permutation results </td>
+</tr>
+
+<tr>
+<td> plink.tdt.poo    </td>
+<td><tt> --tdt --poo</tt></td>
+<td> TDT parent-of-origin results </td>
+</tr>
+
+<tr>
+<td> plink.tdt.poo.mperm    </td>
+<td><tt> --tdt --poo --mperm</tt></td>
+<td> TDT parent-of-origin max(T) permutation results </td>
+</tr>
+
+<tr>
+<td> plink.tdt.poo.perm    </td>
+<td><tt> --tdt --poo --perm</tt></td>
+<td> TDT parent-of-origin adaptive permutation results </td>
+</tr>
+
+
+<tr>
+<td> plink.tdt.poo.set    </td>
+<td><tt> --tdt --poo --set --mperm</tt></td>
+<td> TDT parent-of-origin set-based results </td>
+</tr>
+
+
+<tr>
+<td> plink.tdt.set    </td>
+<td><tt> --tdt --set --mperm </tt></td>
+<td> TDT/parenTDT set-based results </td>
+</tr>
+
+
+<tr>
+<td> plink.tfam    </td>
+<td><tt> --transpose / --tfile</tt></td>
+<td> FAM for for transposed fileset </td>
+</tr>
+
+<tr>
+<td> plink.tped    </td>
+<td><tt> --transpose / --tfile </tt></td>
+<td> PED file for transposed fileset </td>
+</tr>
+
+<tr>
+<td> plink.twolocus    </td>
+<td><tt> --twolocus</tt></td>
+<td> SNP x SNP contingency table </td>
+</tr>
+
+
+</table>
+
+
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:28 EST
+</em>
+
+</body>
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>

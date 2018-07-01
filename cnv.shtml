@@ -1,0 +1,1630 @@
+
+<html>
+<title>PLINK</title>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+
+<h1>Rare copy number variant (CNV) data</h1>
+
+This page describes some basic file formats, convenience functions and
+analysis options for rare copy number variant (CNV) data. Support
+for common copy number polymorphisms (CNPs) is
+described <a href="gvar.shtml">here</a>.
+</p>
+
+Copy number variants are represented as <em>segments</em>. These
+segments are essentially represented and analysed in a similar manner
+to how PLINK handles runs of homozygosity (defined by a start and stop
+site on a given chromosome). Allelic (i.e. basic SNP) information is
+not considered here: <tt>PLINK</tt> skips the usual procedure of
+reading in SNP genotype data.
+</p>
+
+Here we assume that some other software package such as
+the <a href="http://www.broad.mit.edu/mpg/birdsuite/">Birdsuite</a>
+package has previously been used to make calls for either specific
+copy-number variable genotypes or to identify particular genomic
+regions in individuals that are deletions or duplications, based on
+the raw data. That is, PLINK only offers functions for downstream
+analysis of CNV data, not for identifying CNVs in the first place,
+i.e. similar to the distinction between SNP genotype calling versus
+the subsequent analysis of those calls.
+</p>
+
+In this section, we describe the basic 
+<a href="#format">format</a> for rare CNV data; the steps involved in 
+<a href="#maps">making a MAP file</a> and
+<a href="#loading">loading</a> the data. We consider ways to filter the
+CNV lists by 
+<a href="#type_filter">type</a>,
+<a href="#gene_filter">genomic location</a> or
+<a href="#freq_filter">frequency</a>. We describe options for relating CNVs 
+to phenotype, either at the level of 
+<a href="#burden">genome-wide burden</a> or looking for 
+<a href="#assoc">specific associations</a>. Finally, we detail the tools for 
+producing reports of any 
+<a href="#report">genes intersected by CNVs</a> and for displaying groups of 
+<a href="#groups">overlapping CNVs</a>.
+
+</p>
+
+<a name="format">
+<h2>Basic support for segmental CNV data</h2>
+</a></p>
+
+The basic command for reading a list of segmental CN variants is
+<p><h5><pre>
+  plink --cnv-list mydata.cnv
+        --fam mydata.fam
+        --map mydata.cnv.map
+</pre>
+</h5></p>
+which can be abbreviated
+<h5>
+plink --cfile mydata
+</h5></p>
+(note that the map file must have the <tt>.cnv.map</tt> map extension). The CNV list file
+<tt>mydata.cnv</tt> has the format
+<pre>
+     FID     Family ID
+     IID     Individual ID
+     CHR     Chromosome
+     BP1     Start position (base-pair)
+     BP2     End position (base-pair)
+     TYPE    Type of variant, e.g. 0,1 or 3,4 copies
+     SCORE   Confidence score associated with variant 
+     SITES   Number of probes in the variant
+</pre>
+Having a header row is optional; if the first line starts with <tt>FID</tt>
+it will be ignored.
+
+</p><strong>Note</strong> The <tt>SCORE</tt> and <tt>SITES</tt> values
+are not used in any direct way, except potentially as variates to filter
+segments on, as described below. That is, the values of these do not
+fundamentally impact the way analysis is performed by <tt>PLINK</tt>
+itself (they might alter the meaning of the results of course, e.g. if
+including low-confidence calls into the analysis!). In other words, if
+whatever software was used to generate the CNV calls does not supply
+some conceptually similar values, it is okay to simply put dummy codes
+(e.g. all 0) in these two fields.
+</p>
+The first few lines of a small example file is shown here:
+
+<pre>
+     FID    IID   CHR       BP1       BP2  TYPE   SCORE  SITE
+     P1     P1      4  71338469  71459318     1      27     0
+     P1     P1      5  31250352  32213542     1    34.2     0
+     P1     P1      7  53205351  53481230     3    18.2     0
+     P2     P2     11  86736484  87074601     1      22     0  
+     P2     P2     14  47817280  47930190     4    55.1     0
+     ...
+</pre>
+
+The FAM file format is the first 6 fields of a PED file,
+described <a href="data.shtml#ped">here</a>; this file lists the sex,
+phenotype and founder status of each individual. The MAP file format
+is described <a href="data.shtml#map">here</a>, although the next
+section how this can be automatically created using
+the <tt>--cnv-make-map</tt> command.
+</p>
+
+<a name="maps">
+<h2>Creating MAP files for CNV data</h2>
+</a></p>
+
+Prior to any analysis, a dummy MAP first needs to be created (this
+step only needs to be performed once per CNV file). This
+PLINK-generated MAP file has dummy entries that correspond to the
+start and stop sites of all segments.  This facilitates subsequent
+parsing and analysis of CNV data by <tt>PLINK</tt>. 
+The <tt>--cnv-make-map</tt> command is used as follows:
+<h5>
+   plink --cnv-list mydata.cnv --cnv-make-map 
+</h5></p>
+which creates a file 
+<pre>
+     plink.cnv.map
+</pre>
+which will look just like a standard MAP file but with
+dummy markers:
+<pre>
+     1       p1-51593   0    51593
+     1       p1-51598   0    51598
+     1       p1-51666   0    51666
+     1       p1-52282   0    52282
+     1       p1-69061   0    69061
+     ...
+</pre>
+where the marker names start with the <tt>p</tt> prefix and contain
+chromosome and base-position information. </p>
+
+As an (unrealistic) example to illustrate how the mapping works,
+consider the following, with 3 segments, spanning "positions" 1 to 8,
+4 to 12 and 16 to 23.  In this case, 6 unqiue map positions would be 
+created, the three start positions and the three stop positions. 
+<pre>
+        Base                1111111111222222
+        Position   1234567890123456789012345  
+
+        Marker #   1..2...3...4...5......6..
+                   |  |   |   |   |      |
+                              |   |      |
+        Segments   *------*       |      |
+                      *-------*             
+                                  *------*
+</pre>
+The new MAP file would then be
+<pre>
+     1 p1-1   0  1
+     1 p1-4   0  4
+     1 p1-8   0  8
+     1 p1-12  0  12
+     1 p1-16  0  16
+     1 p1-23  0  23
+</pre>
+
+Given such a MAP file, these three segments would then be perfectly
+mapped to the corresponding markers (<tt>p1-1</tt> to <tt>p1-8</tt>,
+<tt>p1-4</tt> to <tt>p1-12</tt> and <tt>p1-16</tt>
+to <tt>p1-23</tt>). The created MAP file is then specified in
+subsequent segmental CNV analyses (using <tt>--cnv-list</tt>) with the
+standard <tt>--map</tt> command (or <tt>--cfile</tt> command).
+
+<a name="loading">
+<h2>Loading CNV data files</h2>
+</a></p>
+
+Once a suitable MAP file has been created, i.e. with dummy markers
+that correspond to the position of every start and stop site of all
+segments, use the <tt>--cnv-list</tt> command again to load in the CNV
+segment data. As mentioned above, in addition to the basic CNV file, a
+MAP (previously generated) and FAM file (continaing ID and phenotype
+information) also need to be specified. For example.
+<h5>
+  plink --map plink.cnv.map  --fam mydata.fam  --cnv-list mydata.cnv
+</h5></p>
+
+Alternatively, if the MAP, FAM and CNV list files all have the same
+root, the command
+<h5>
+  plink --cfile study1
+</h5></p>
+is equivalent, i.e. it implies the following files exist
+<pre>
+     study1.cnv
+     study1.cnv.map
+     study1.fam
+</pre>
+
+By default either command will simply load in the CNV data and produce
+a report in the LOG file, enumerating the number of CN states in the
+total dataset and any filtering processes applied. For example,
+
+<pre>
+     Reading segment list (CNVs) from [ cnv1.list ]
+     714 of 2203 mapped as valid segments
+     1872 mapped to a person, of which 714 passed filters
+        CopyN  Count
+        0      46
+        1      339
+        3      200
+        4      129
+     Writing segment summary to [ plink.cnv.indiv ]
+</pre>
+
+This indicates that of 2203 total segments (i.e. should correspond to
+number of lines in the <tt>cnv1.list</tt> file, allowing for any
+header) 1872 are mapped to a person in the dataset. In other words,
+some of the segments in <tt>cnv1.list</tt> are for individuals not in
+<tt>cnv1.fam</tt>.  These are simply ignored; for example, these
+individuals might have been filtered out of the study for other
+reasons, e.g. QC based on standard SNP genotypes. Of these, 714 passed
+the further set of filters, as described below. As described below,
+segments can be filtered based on genomic location, frequency, size,
+quality score/number of sites and type (duplication or deletion).
+
+</p>
+It will also be reported in the LOG file if some of the segments do
+not map to a marker in the MAP file: if this is because you've
+used <tt>--chr</tt> or similar commands to restrict the portion of the
+data examined, you can safely ignore this line; otherwise, it might
+mean that the appropriate MAP file wasn't created
+(e.g. using <tt>--cnv-make-map</tt>) for that CNV file.
+</p>
+By default, <tt>PLINK</tt> will create a file that summarises per
+individual events (after any filtering has been applied), in a file
+named
+<pre>
+     plink.cnv.indiv
+</pre>
+which has the fields, one row per person, in the same order as the original FAM file:
+<pre>
+     FID     Family ID
+     IID     Individual ID
+     PHE     Phenotype 
+     NSEG    Number of segments that individual has
+     KB      Total kilobase distance spanned by segments 
+     KBAVG   Average segment size
+</pre>
+PLINK will also create a file
+<pre>
+     plink.cnv.summary
+</pre>
+that represents a count of CNVs, in cases (<tt>AFF</tt>) and controls (<tt>UNAFF</tt>)
+that overlap each map position.
+</p>
+
+
+<a name="olap_check">
+<h2>Checking for overlapping CNV calls (within the same individual)</h2>
+</a></p>
+
+As a sanity check of a CNV file: to check whether segments are
+overlapping for the same person (e.g. if a deletion and a duplication
+event had been specified for the same person in the same region, or if
+the same event is listed twice), use the option
+<h5>
+ plink --cfile mydata --cnv-check-no-overlap
+</h5></p>
+If there is overlap, this writes a warning to the LOG, with the number of 
+implicated events:
+<pre>
+     Within-individual CNV overlap detected, involving 2 CNVs
+</pre>
+and creates a file
+<pre>
+     plink.cnv.overlap
+</pre>
+that lists these offending segments, with the format:
+<pre>
+     FID   Family ID
+     IID   Individual ID
+     CHR   Chromosome code
+     BP1   Segment start (bp)
+     BP2   Segment end (bp) 
+</pre>
+
+
+<a name="type_filter">
+<h2>Filtering of CNV data based on CNV type</h2>
+</a></p>
+
+The segments read in can be filtered in a number of ways. First, one
+can specify to read in only either deletions (<tt>TYPE</tt> is less
+than 2) or duplications (<tt>TYPE</tt> is greater than 2), with the
+options,
+<pre>
+   --cnv-del
+</pre>
+and
+<pre>
+   --cnv-dup
+</pre>
+
+Segments can also be filtered based on a minimum size (kb), score or
+number of sites contributing with the following commands:
+<pre>
+   --cnv-kb 50 
+   --cnv-score 3
+   --cnv-sites 5
+</pre>
+The default minimum segment size is 20kb; none of the other filters
+have a default setting that would exclude anything. Also,
+corresponding maximum thresholds can be set:
+<pre>
+   --cnv-max-kb 2000
+   --cnv-max-score 10
+   --cnv-max-sites 10
+</pre>
+
+</p>
+As mentioned above, the <tt>SCORE</tt> and <tt>SITES</tt> fields are not used for any other purpose in analysis, and
+so if you do not have this information, can can safely enter dummy information (e.g. a value of 1 for every CNV).
+
+</p>
+
+The set of individuals for whom segment data are based on can be
+modified with the standard <tt>--keep</tt> and <tt>--remove</tt>
+options, to exclude people from the analysis.
+
+
+<a name="gene_filter">
+<h2>Filtering of CNV data based on genomic location</h2>
+</a></p>
+  
+It is possible to extract a specific set of segments that overlap with
+one or more regions as specified in a file, e.g. that might contain
+the genomic co-ordinates for genes or segmental duplications, etc. Use the command 
+<pre>
+     --cnv-intersect regions.list
+</pre>
+The file <tt>regions.list</tt> should be in the following format: one range per line, whitespace-separated:
+<pre>
+     CHR     Chromosome code (1-22, X, Y, XY, MT, 0)
+     BP1     Start of range, physical position in base units
+     BP2     End of range, as above
+     MISC    Any other fields after 3rd ignored
+</pre>
+For example, if <tt>regions.list</tt> were
+<pre>
+     2 30000000 35000000  REGION1
+     2 60000000 62000000
+     X 10000000 20000000  Linkage hotspot
+</pre>
+then
+<h5>
+plink --cfile mydata --cnv-intersect regions.list
+</h5></p>
+would extract all segments in <tt>mydata.cnv</tt> that at least partially span these
+three regions (5Mb and 2Mb on chromosome 2 and 10Mb on chromosome X), ignoring
+the comments or gene names. A typical type of file used with <tt>--cnv-intersect</tt> 
+will often be a list of genes (such as available in the <a href="res.shtml#glist">resources page</a>).
+
+</p>
+Alternatively, you can use
+<pre>
+     --cnv-exclude regions.list
+</pre> 
+to filter out a specific set of segments, i.e. to remove any CNVs that overlap with
+one or more regions specified in the file <tt>regions.list</tt>.
+
+</p>
+Assuming the region file has consistent, unique names in the fourth field, the command
+<pre>
+     --cnv-subset mylist.txt
+</pre>
+takes a list of region names and extracts just these from the
+main <tt>--cnv-intersect</tt>, <tt>--cnv-exclude</tt>
+(or <tt>--cnv-count</tt>, as described below) list. e.g. if <tt>mylist.txt</tt> contained
+<pre>
+     REGION1
+     REGION2
+</pre>
+and <tt>region.list</tt> where
+<pre>
+     2 30000000 35000000  REGION1
+     2 60000000 62000000  GENE22
+     X 10000000 20000000  LinkageHotspot
+</pre>
+then only the first region (chromosome 3, 30Mb to 35Mb, labelled
+<tt>REGION1</tt>) would be extracted, as <tt>REGION2</tt> does not exist. The <tt>--cnv-subset</tt>
+command requires that the <tt>regions.list</tt> file  has exactly four fields 
+(i.e. always a unique region/gene name in the fourth field).
+
+</p>
+<h6> Defining overlap for partially overlapping CNVs and regions</h6>
+
+The basic intersection or exclusion commands will select all segments 
+that are at least partially in the specified region. Alternatively, 
+one can select only segments that have at least <em>X</em> percent 
+of them in the specified region, for example
+<pre>
+     --cnv-overlap 0.50
+</pre>
+
+would only include (<tt>--cnv-intersect</tt>), or exclude (<tt>--cnv-exclude</tt>), 
+events that have at least 50% of their length spanned by the region.  
+</p>
+
+There are two other variant forms of the overlap command, which change
+the denominator in calculating the proportion overlap:
+<pre>
+     --cnv-union-overlap 0.50 
+</pre>
+which defines overlap as the ratio of the intersection and the union,
+also
+<pre>
+     --cnv-region-overlap 0.50
+</pre>
+which defines overlap as the ratio of the intersection and the length
+of the region (rather than the CNV).  For example, 
+
+<pre>
+
+     ------|-----|---------------------   Region/gene
+     ----------+++++++++++++++---------   CNV (duplication, +)
+
+     ----------XXX---------------------   Intersection
+
+     ----------XXXXXXXXXXXXXXX---------   Denominator for basic overlap
+     ------XXXXXXXXXXXXXXXXXXX---------   Denominator for union overlap
+     ------XXXXXXX---------------------   Denominator for region overlap
+
+</pre>
+In this example, if we take each character to represent a standard length
+<pre>
+     Default overlap = 3 / 15
+     Union overlap = 3 / 19
+     Region overlap = 3 / 7  
+</pre>
+
+This next example illustrates how the overlap statistics can then
+subsequently be used to include or exclude specific CNVs: if overlap 
+threshold were set to 0.5, then only the first of therse two CNVs would
+be selected by <tt>--cnv-intersect</tt>
+<pre>
+     ------|----------|----------------     
+         
+     --------OOOOOOOOOOXXX-------------   Selected
+
+     ------------OOOOOOXXXXXXXXXXXXXX--   Not selected
+</pre>
+
+The default setting is equivalent to setting
+<tt>--cnv-overlap 0</tt> (i.e. <em>more than</em> 0% must
+overlap).
+</p>
+Finally, the command
+<pre>
+     --cnv-disrupt
+</pre>
+will select only CNVs that start or stop <em>within</em> a region
+specified in the region list (i.e. resulting in a partially deleted or
+duplicated gene or region). The normal overlap commands cannot be used
+in conjunction with the <tt>--cnv-disrupt</tt> defintion of whether or 
+not a CNV overlaps a gene.
+
+<h6>Filtering by chromosomal co-ordinates</h6>
+
+In addition, the standard commands for filtering chromosomal positions
+are still applicable, for example
+<pre>
+     --chr 5
+</pre>
+or
+<pre>
+     --chr 2 --from-mb 20 --to-mb 25
+</pre>
+Note that for a CNV to be included when using these filters, both the start and stop site must fall <em>within</em> 
+the prespecified range (i.e. a CNV spanning from 19 to 24Mb on chromosome 2 would not be included in the above example).
+
+<a name="freq_filter">
+<h2>Filtering of CNV data based on frequency</h2>
+</a></p>
+
+It is also possible to exclude based on the frequency of CNVs at a
+particular position. There are two main approaches to this: by
+assigning frequencies for <em>regions</em> and then applying the
+same routines as for the range-intersection command described above,
+or alternatively by assigning each CNV a single, specific count.
+</p>
+
+These commands, and the differences between them, are described more
+fully on <a href="cnvfreqs.shtml">this page</a>. As well as the two
+basic approaches described above, one can specify different degrees of
+overlap when calculating frequencies, which can alter the result of
+frequency filtering.
+</p>
+
+The key commands and some examples are given here. To remove segments that map to regions
+with more than 10 segments
+<pre>
+     --cnv-freq-exclude-above 10
+</pre>
+To remove any segments that only have at most 4 copies
+<pre>
+     --cnv-freq-exclude-below 5
+</pre>
+To remove any segments not in regions with exactly 5 copies
+<pre>
+     --cnv-freq-exclude-exact 5
+</pre>
+and correspondingly to include only segments in regions with exactly 5 copies
+<pre>
+     --cnv-freq-include-exact 5
+</pre>
+
+As with the earlier range intersection commands, the definition
+of <em>intersection</em> can be <em>soft</em>, specified with
+the <tt>--cnv-overlap</tt> option. In most cases here, one would
+probably want to allow for a soft filtering,
+e.g. with <tt>--cnv-overlap 0.5</tt> for example.
+
+</p>
+
+For example, given the following segments, and counts below
+
+<pre>
+        Segments   *------*       
+                      *------------*             
+                                  *------*
+          Counts 001112222211111112211111100000
+  Common regions      XXXXX       XX             
+</pre>
+
+then <tt>--cnv-freq-exclude-above 1</tt> would remove all three
+segments if <tt>--cnv-overlap 0</tt> (the default) were set.  This is
+because each CNV has at least some part of it that intersects with a
+region that contains more than 1 CNV. However,
+if <tt>--cnv-overlap</tt> were instead set to 0.5, for example, then
+only the top segment would be removed (as the other two segments have
+more than 50% of their length outside of a region with more than 1
+segment). If the overlap were set higher still, then in this example no
+CNVs would be removed by the command <tt>--cnv-freq-exclude-above 1</tt>.
+</p>
+
+<strong>NOTE</strong> Because multiple CNVs at the same region will
+not all exactly overlap, and may be spanned by distinct larger events,
+or contain smaller events, in other individuals, then requesting that
+you include only CNVs with exactly five copies for example
+(<tt>--cnv-freq-include-exact 5</tt>) does <b>not</b> mean that at all
+positions in the genome you will always see either 0 or 5
+copies. Rather, the selection process works exactly as specified
+above. Please see <a href="cnvfreqs.shtml">this page</a> for further
+details.
+</p>
+
+<h6>Alternative frequency filtering specification</h6>
+
+The alternate approach is invoked with the command
+<pre>
+     --cnv-freq-method2 0.5
+</pre>
+where the value following it represents an overlap parameter (there is no
+need to specify the <tt>--cnv-overlap</tt> command directly when using
+<tt>--cnv-freq-method2</tt>). Based on this overlap, PLINK will assign a specific 
+count to each CNV that represents the number of CNVs that overlap it (including itself) 
+based on a union intersection overlap definition with the specified proportion parameter, 
+between that CNV and all CNVs.
+ </p>
+This approach is illustrated in the <a href="cnvfreqs.shtml">page</a>, that gives more details
+on the frequency filtering commands including a comparison to the region-based approach to filtering,
+described above.
+</p>
+If the <tt>--cnv-freq-method2</tt> command is used, then the other frequency filtering commands
+will use the CNV-based counts to include of exclude CNVs, for example
+<h5><pre>
+ plink --cfile mydata 
+       --cnv-freq-method2 0.5
+       --cnv-freq-exclude-above 10
+</pre>
+</h5></p>
+If <tt>--cnv-write</tt> (see <a href="#write_cnvlist">below</a>) is specified with <tt>--cnv-freq-method2</tt>, 
+then the additional command
+<pre>
+     --cnv-write-freq
+</pre>
+will add a field <tt>FREQ</tt> to the <tt>plink.cnv</tt> file generated that shows the frequency for each CNV.
+Also, the <tt>--cnv-seglist</tt> command (see <a href="#write_cnvlist">below</a>) can be modified with <tt>--cnv-write-freq</tt>
+(to report the frequency as a number at the start and stop of each CNV instead of the usual codes).
+
+
+<h6>Miscellaneous commands frequency filtering commands</h6>
+To keep only segments that are
+unique to either cases or to controls
+<pre>
+     --cnv-unique
+</pre>
+
+This can be used in conjunction with other frequency filter
+commands. To drop individuals from the file who do not have at least
+one segment after filtering, add the flag
+<pre>
+     --cnv-drop-no-segment
+</pre>
+This can make the <tt>plink.cnv.indiv</tt> summary files easy to
+browse, for example.
+
+
+
+<a name="burden">
+<h2>Burden analysis of segmental CNV data</h2>
+</a></p>
+
+To perform a set of global test of CNV burden in cases versus
+controls, add the 
+
+<pre>
+     --cnv-indiv-perm
+</pre>
+option as well as 
+<pre>
+     --mperm 10000
+</pre>
+for example (i.e. permutation is required). By default, this reports on four tests, 
+which use these metrics to calculate burden in both cases and controls
+<pre>
+     RATE    Number of segments
+     PROP    Proportion of sample with one or more segment
+     TOTKB   Total kb length spanned
+     AVGKB   Average segment size
+</pre>
+Tests are based (1-sided) on comparing these metrics in cases versus controls, 
+evaluated by permutation.
+</p>
+If a list of regions is supplied in a file, e.g. <tt>gene.list</tt> and the command 
+<pre>
+     --cnv-count gene.list
+</pre>
+then an extra test is added
+<pre>
+     GRATE   Number of regions/genes spanned by CNVs
+     GPROP   Number of CNVs with at least one gene
+     GRICH   Number of regions/genes per total CNV kb
+</pre>
+These tests respect all the normal filtering commands, with the exception 
+that <tt>--cnv-intersect</tt> and <tt>--cnv-exclude</tt> cannot be used if 
+<tt>--cnv-count</tt> is also being used.
+</p>
+The mean metrics in cases and controls are reported in the file
+<pre>
+     plink.cnv.grp.summary
+</pre>
+when the <tt>--cnv-indiv-perm</tt> command is used. For example: this gives 
+the number of events (<tt>N</tt>) in cases and controls, the rate per person, 
+the proportion of cases/controls to have at least one event, the total distance
+spanned per person and the average event size per person.
+<pre>
+        TEST      GRP      AFF    UNAFF
+           N      ALL      528      362
+        RATE      ALL   0.1557   0.1138
+        PROP      ALL   0.1309   0.1041
+       TOTKB      ALL    290.8    265.4
+       AVGKB      ALL    249.8    243.3
+</pre>
+
+</p>
+
+As usual, if the <tt>--within</tt> command is added and a cluster file
+specified, then any permutations are performed within cluster. In this
+case, the statistics displayed in the <tt>plink.cnv.grp.summary</tt>
+file are also split out by the strata as well as presented in total
+(as indicated by the <tt>GRP</tt> field).
+
+
+<a name="burden2">
+<h2>Improved gene-set enrichment analysis for segmental CNV data</h2>
+</a></p>
+
+<p>This test implements a geneset-enrichment method for CNV data
+described in <a
+href="http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1001097">Raychaudhuri
+et al, 2010</a>. It is appropriate for either continuous or disease
+traits and allows for the inclusion of multiple other covariates and
+for empirical significance tests.</p>
+
+<p>The following examples illustrate basic usage. If the file
+<tt>genes.dat</tt> contains the locations of all genes (i.e. as
+available from <a href="res.shtml#glist">here</a> and the file
+<tt>pathway.txt</tt> is a file of gene names forming the pathway to be
+tested for enrichment and the CNV data are in the files <tt>mycnv.cnv</tt>,
+<tt>mycnv.cnv.map</tt> and <tt>mycnv.fam</tt> as described above, then
+one can ask whether a) genes are enriched for CNVs, b) a subset of
+genes are enriched, relative to the whole genome, c) a subset of genes
+are enriched, relative to all genes. The latter form of the enrichment
+test might be desirable, for example, to determine whether any
+enrichment is general to all genes, or specific to a subset of
+genes.</p>
+
+<p>To test for enrichment of genic CNVs:</p>
+
+<pre>
+  plink --cfile mycnv
+        --cnv-count genes.dat
+        --cnv-enrichment-test
+</pre>
+
+<p>Enrichment of pathway genes CNVs, relative to all CNVs</p>
+
+<pre>
+  plink --cfile mycnv
+        --cnv-count genes.dat
+        --cnv-subset pathway.txt
+        --cnv-enrichment-test
+</pre>
+
+<p>To test for enrichment of pathway genes CNVs, relative to all genic CNVs</p>
+
+<pre>
+  plink --cfile mycnv
+        --cnv-intersect genes.dat
+        --cnv-write my-genic-cnv
+</pre>
+
+<pre>
+  plink --cfile my-genic-cnv
+        --cnv-count genes.dat
+        --cnv-subset pathway.txt
+        --cnv-enrichment-test
+</pre>
+
+<p>The usual modifiers (to define intersection differently, allow for a
+certain kb border around each gene, filter on CNV size, type or
+frequency, etc) are all available. Under all circumstances, 2-sided
+asymptotic p-values are returned. Alternatively, permutation testing
+can be applied and 1-sided empirical p-values are returned (positive
+enrichment in cases, based on estimated regression coefficient), by adding the flag:</p>
+
+<pre>
+  --mperm 10000
+</pre>
+
+<a name="assoc">
+<h2>Association mapping with segmental CNV data</h2>
+</a></p>
+
+To perform a simple permutation-based test of association of segmental
+CNV data for case/control phenotypes, add the option 
+<pre>
+     --mperm 50000
+</pre>
+to perform, for example, 50,000 null permutations to generate empirical p-values.  T
+he results are saved in the file
+<pre>
+     plink.cnv.summary.mperm
+</pre>
+This is a standard empirical p-value file: <tt>EMP1</tt> and <tt>EMP2</tt> represent pointwise 
+and genome-wide corrected p-values, respectively. Both tests are 1-sided by default.
+</p>
+You can consult the corresponding
+<pre>
+     plink.cnv.summary
+</pre>
+that is also generated for details of the association: this file has the fields
+<pre>
+     CHR    Chromosome code
+     SNP    SNP identifier (dummy SNP, see below)
+     BP     Base-pair position
+     AFF    Number of affected individuals with a segment at this position
+     UNAFF  Number of unaffected individuals 
+</pre>
+
+To instead perform a 2-sided test (i.e. allowing that events might be more common in controls) add 
+the flag
+<pre>
+     --cnv-test-2sided
+</pre>
+</p>
+
+To perform an analysis in which the total number of events within a
+sliding window is compared between cases and controls (rather than the
+number overlapping a single position) add the flag
+
+<pre>
+     --cnv-test-window 50
+</pre>
+where the parameter is the kb window either side of the test
+position. As before, the association results are reported per marker,
+but now the counts indicate the total number of segments that overlap
+any of the 100kb window surrounding the test position (+/- 50kb),
+rather than just the test position itself. Significance is evaluated
+by permutation as before.
+
+
+
+<a name="reg-assoc">
+<h2>Association mapping with segmental CNV data: regional tests</h2>
+</a></p>
+
+To perform a test of association for CNVs in particular regions, use the command
+<h5>
+ ./plink --cfile mydata  --cnv-intersect glist-hg18  --cnv-test-region --mperm 10000
+</h5></p>
+where <tt>glist-hg18</tt> contains a list of genes (as available from the <a
+href="res.shtml#glist">resources</a> page. The output is written to
+<pre>
+     plink.cnv.regional.summary
+</pre>
+which has the fields
+<pre>
+     CHR       Chromosome code
+     REGION    Name of region
+     BP1       Start position of region
+     BP2       End position of region
+     AFF       Number of case CNVs spanning region
+     UNAFF     Number of control CNVs spanning region
+</pre>
+and the permutation results are written to
+<pre>
+     plink.cnv.regional.summary.mperm
+</pre>
+which has the fields
+<pre>
+     CHR     Chromosome code
+     REGION  Name of region
+     STAT    Statistic
+     EMP1    Empirical p-value, per region
+     EMP2    Empirical p-value, corrected for all tests
+</pre>
+
+For example, the line
+<pre>
+ CHR           REGION          BP1          BP2      AFF    UNAFF
+   1           TTLL10      1079148      1143176        2        3
+   ...
+</pre>
+
+implies 2 case CNVs (note, PLINK does not distinguish whether these
+CNVs belong to the same individual or not) and 3 control CNVs span the
+gene <tt>TTLL10</tt>. The standard commands for regions in CNV
+analysis such as <tt>--cnv-border</tt> and <tt>--cnv-overlap</tt> 
+can be used in this context.
+
+
+
+<a name="qt-assoc">
+<h2>Association mapping with segmental CNV data: quantitative traits</h2>
+</a></p>
+
+To test for association between rare CNVs and a quantitative trait,
+use the same commands as for disease traits.  PLINK will automatically
+detect that the phenotype is continuous.  For example, if the file
+<tt>pheno.qt</tt> contains a quantitative trait, the command
+<h5>
+ ./plink --cfile mydata --pheno qt.dat --mperm 10000
+</h5></p>
+will generate a file
+<pre>
+     plink.cnv.qt.summary
+</pre>
+which contains the fields
+<pre>
+     CHR    Chromosome code
+     SNP    Dummy label for map position
+     BP     Physical position (base-pairs)
+     NCNV   Number of individiuals with a CNV here
+     M1     QT mean in individuls with a CNV here
+     M0     QT mean in individuals without a CNV here
+</pre>
+and the file
+<pre>
+     plink.cnv.qt.summary.mperm
+</pre>
+that contains the empirical p-values, <tt>EMP1</tt> and <tt>EMP2</tt>,
+as for disease traits.  The only difference is that the quantitative
+trait test is, by default, two-sided.  To perform a 1-sided CNV test,
+add the command
+<pre>
+     --cnv-test-1sided
+</pre>
+
+</p><strong>NOTE</strong> Currently, genome-wide burden
+(<tt>--cnv-indiv-perm</tt>), window-based (<tt>--cnv-test-window</tt>)
+and region-based (<tt>--cnv-test-region</tt>) CNV association tests
+are not available for quantitative traits. </p>
+
+
+<a name="write_cnvlist">
+<h2>Writing new CNV lists</h2>
+</a></p>
+
+Given a set of filters applied, you can output as a new CNV file the
+filtered subset, with the command
+
+<pre>
+     --cnv-write
+</pre>
+
+For example, to make a new file using only deletions over 200kb but not more 
+than 1000kb, with a quality score of 10 or more, use the command
+
+<h5>
+<pre>
+ plink --cfile cnv1 
+       --cnv-del 
+       --cnv-kb 200 
+       --cnv-max-kb 1000 
+       --cnv-score 10
+       --cnv-write 
+       --out hiqual-large-deletions 
+</pre></h5></p>
+which will generate two new files 
+<pre>
+     hiqual-large-deletions.cnv
+     hiqual-large-deletions.fam
+</pre>
+To obtan a corresponding MAP file, so that you can subsequently use
+<pre>
+     --cfile hiqual-large-deletions
+</pre>
+give the command
+<h5>
+ plink --cnv-list hiqual-large-deletions.cnv --cnv-make-map --out hiqual-large-deletions
+</h5></p>
+(although note that this will overwrite the LOG file generated by the <tt>--cnv-write</tt> 
+command).
+</p>
+
+<h6>Creating UCSC browser CNV tracks</h6>
+
+As opposed to listing CNVs in PLINK format with <tt>--cnv-write</tt>,
+the command <tt>--cnv-track</tt> will generate a UCSC-friendly BED
+file (note: this is distinct from a PLINK binary PED file) that can be
+uploaded to their browser for convenient viewing. 
+<h5>
+ plink --cfile mydata --cnv-track --out mycnvs
+</h5></p>
+which generates a file
+<pre>
+     plink.cnv.bed
+</pre>
+The filtering commands described above can be combined with this option.
+</p>
+
+By using the <em>Manage custom tracks</em> option on
+the <a href="http://genome.ucsc.edu/cgi-bin/hgGateway">UCSC genome
+browser</a>, one can easily visualise the CNV data, along side other
+genomic features. For example, the file (IID
+and <tt>SCORE</tt>, <tt>SITES</tt> information is omitted for clarity)
+
+<pre>
+    FID IID  CHR        BP1          BP2  TYPE    SCORE    SITES
+    ... ...   22   20140420     20241877     1      ...      ...
+    ... ...   22   20140420     20241877     1      ...      ...
+    ... ...   22   20129453     20241877     1      ...      ...    
+    ... ...   22   20140609     20241877     1      ...      ...    
+    ... ...   22   20140420     20241877     1      ...      ...    
+    ... ...   22   20140420     20241877     1      ...      ...    
+    ... ...   22   20639721     20793965     1      ...      ...    
+    ... ...   22   20639721     20765489     1      ...      ...    
+    ... ...   22   20305076     20591362     3      ...      ...    
+    ... ...   22   20646213     20756780     3      ...      ...    
+    ... ...   22   20140420     20259122     1      ...      ...    
+    ... ...   22   20639866     20787533     3      ...      ...    
+    ... ...   22   20140420     20241877     1      ...      ...    
+    ... ...   22   20140420     20241877     1      ...      ...    
+    ... ...   22   20140420     20241877     1      ...      ...    
+    ... ...   22   20140420     20241877     1      ...      ...    
+    ... ...   22   20348901     20498220     3      ...      ...    
+    ... ...   22   20140420     20241877     1      ...      ...    
+    ... ...   22   20140420     20241877     1      ...      ...    
+    ... ...   22   20639643     20793173     3      ...      ...    
+    ... ...   22   20140420     20241877     1      ...      ...    
+    ... ...   22   20141114     20241877     1      ...      ...    
+    ... ...   22   20140420     20254215     1      ...      ...    
+    ... ...   22   20140420     20241877     1      ...      ...    
+    ... ...   22   20129130     20241877     1      ...      ...    
+</pre>
+is rendered
+</p>
+<img src="cnvtrack1.png">
+</p>
+Note that the CNVs are split by deletion versus duplication (red versus blue) and case versus control (light versus dark).
+</p>
+Additionally, a poor-man's version of this plot can be obtained with the 
+command
+<pre>
+     --cnv-seglist
+</pre>
+which produces a file
+<pre>
+     plink.cnv.seglist
+</pre>
+which, for the CNV list above, can be seen <a href="plink.cnv.seglist">here</a>. Deletions 
+and duplications are represented by <tt>+</tt> and <tt>-</tt> symbols at the start of each CNV; case
+and control status is represented as <tt>A</tt> and <tt>U</tt>.
+</p>
+
+Finally, it is also possible to report CNVs annotated by the regions or genes
+they span (see <tt>--cnv-verbose-report-regions</tt>
+described <a href="#report">below</a>.
+</p>
+
+
+<a name="report">
+<h2>Listing intersected genes and regions</h2>
+</a></p>
+
+With the <tt>--cnv-intersect</tt> (or <tt>--cnv-exclude</tt>) command, 
+you can add the flag
+<pre>
+     --cnv-report-regions
+</pre>
+which will create a file
+<pre>
+     plink.reg
+</pre>
+listing only the regions that intersect (or do not intersect) with any of the 
+CNVs (given the filtering and overlap commands that might also be specified). For example, 
+to obtain a list of genes that are intersected by a rare case singleton deletions over 500kb (i.e. event seen only once)
+<h5><pre>
+ plink --cfile mydata 
+       --filter-cases
+       --cnv-freq-exclude-above 1
+       --cnv-del
+       --cnv-kb 500
+       --cnv-report-regions
+       --cnv-intersect glist-hg18
+</pre></h5></p>
+Alternatively, the command
+<pre>
+     --cnv-verbose-report-regions
+</pre>
+produces a verbose form of <tt>plink.reg</tt>, which does not just list the regions or genes intersected 
+but lists the specific segmental CNVs also. This can be used in conjunction with, for example,
+<pre>
+     --cnv-subset genes.txt
+</pre>
+in order to produce reports on specific genes of interest. For example if <tt>genes.txt</tt> contained
+<pre>
+     HES4
+     ISG15
+</pre>
+then
+<h5><pre>
+ plink --cfile mydata 
+       --cnv-verbose-report-regions 
+       --cnv-intersect glist-hg18 
+       --cnv-border 20
+       --cnv-subset genes.txt
+</pre></h5></p>
+would produce a file
+<pre>
+     plink.reg
+</pre>
+that, for each gene/region, contains the following fields
+<pre>
+     FID        Family ID
+     IID        Individual ID
+     PHE        Phenotype
+     CHR        Chromosome code
+     BP1        Start position (base-pair)
+     BP2        Stop position (base-pair)
+     TYPE       DELetion or DUPlication
+     KB         Kilobase length of CNV
+     OLAP       Overlap (extent of CNV covered by gene)
+     OLAP_U     Union overlap (ration of intersection to union)
+     OLAP_R     Region overlap (extent of gene covered by CNV)
+</pre>
+that might contain something like the following report
+<pre><font size="-1">
+  RANGE (+/- 20kb )  [ 1 924206 925333 HES4 ]
+       FID   IID   PHE  CHR        BP1      BP2  TYPE      KB     OLAP   OLAP_U   OLAP_R
+      P001     1     2    1     789258  1232396   DUP   443.1  0.09281  0.09281        1
+      P002     1     1    1     826576  1304312   DEL   477.7  0.08609  0.08609        1
+      P003     1     2    1     864765  1913364   DUP    1049  0.03922  0.03922        1
+      P004     1     1    1     890974  1258710   DUP   367.7   0.1118   0.1118        1
+
+  RANGE (+/- 20kb )  [ 1 938709 939782 ISG15 ]
+       FID   IID   PHE  CHR        BP1      BP2  TYPE      KB     OLAP   OLAP_U   OLAP_R
+      P001     1     2    1     789258  1232396   DUP   443.1  0.09269  0.09269        1
+      P002     1     1    1     826576  1304312   DEL   477.7  0.08598  0.08598        1
+      P003     1     2    1     864765  1913364   DUP    1049  0.03917  0.03917        1
+      P004     1     1    1     890974  1258710   DUP   367.7   0.1117   0.1117        1
+</font></pre>
+
+That is, this is a list of any CNV that at least partially overlaps
+these two genes.  The exact behavior can be modified with flags such
+as <tt>--cnv-del</tt>, <tt>--cnv-kb</tt>, <tt>--cnv-disrupt</tt>, <tt>--cnv-overlap</tt>,
+<tt>--filter-cases</tt>, etc.
+
+<a name="groups">
+<h2>Reporting sets of overlapping segmental CNVs</h2>
+</a></p>
+
+Finally, there are two option to group or report sets of segments that 
+span a particular position. In the first case, use the option
+<pre>
+     --segment-group
+</pre>
+which takes all segments in a given region (whole genome unless
+otherwise specified) and forms "pools" of overlapping
+segments. Several pools of overlapping segments will be created; these
+will be listed in order of decreasing size (number of segments); note
+that the same segment can appear in multiple pools (e.g. if A overlaps
+with C, and B overlaps with C, but A and B do not overlap). The pools
+give information as described below.
+
+</p>
+
+The more restricted form of this command forms a single pool of all
+segments that overlap a particular position, which takes a single
+parameter of a marker name; typically these will be the dummy <tt>pos*</tt> 
+markers created by the <tt>--cnv-make-map</tt> command.
+<pre>
+     --segment-spanning pos119
+</pre>
+In this case, for some made-up data, we see from
+the <tt>plink.cnv.summary</tt> file that there are 8 cases and 6
+controls with a segment spanning a particular
+position, <tt>pos586</tt>
+<pre>
+      CHR        SNP           BP      AFF    UNAFF
+      ...        ...          ...      ...      ...
+        1     pos586     16631570        8        6
+      ...        ...          ...      ...      ...
+</pre>
+In this case, there is unsurprisingly no association between segmental
+CNVs and disease: for example, the corresponding position in
+the <tt>plink.cnv.summary.mperm</tt> file shows an empirical p-value
+of 0.35, but of p=1 if adjusted for multiple testing (<tt>EMP2</tt>)
+<pre>
+      CHR     SNP         STAT         EMP1         EMP2
+      ...     ...          ...          ...          ...
+        1  pos586     0.419408     0.351324            1
+      ...     ...          ...          ...          ...
+</pre>
+
+Naturally, one would usually be more interested in following up significantly
+associated regions of course...  Nonetheless, if so desired we can see which 
+segments (given any of the filtering specified) are spanning this position, with 
+<tt>--segment-spanning</tt>, which gives the following:
+<pre><font size="-1">
+    POOL       FID       IID    PHE  CHR        BP1       BP2       KB  TYPE  SCORE
+      S1   PT-2378   PT-2378      2   12   16631570  16751087  119.517   DEL  10.23
+      S1   PT-268D   PT-268D      2   12   16631494  16732162  100.668   DEL    9.3
+      S1   PT-2M8O   PT-2M8O      1   12   16631441  16751082  119.641   DEL  31.23
+      S1   PT-2FZ9   PT-2FZ9      2   12   16631436  16751045  119.609   DEL   15.2
+      S1   PT-287D   PT-287D      1   12   16616579  17183201  566.622   DUP  200.3
+      S1   PT-2C91   PT-2C91      2   12   16616579  16751045  134.466   DEL   14.3
+      S1   PT-28A8   PT-28A8      1   12   16616579  16751045  134.466   DEL    8.3
+      S1   PT-2FPB   PT-2FPB      1   12   16616579  16714372   97.793   DEL   11.1
+      S1   PT-28IG   PT-28IG      2   12   16616579  16708856   92.277   DEL   10.3
+      S1   PT-2E5N   PT-2E5N      2   12   16614664  16715703  101.039   DEL   9.87
+      S1   PT-2FVL   PT-2FVL      1   12   16614664  16751045  136.381   DEL  10.67
+      S1   PT-2DYE   PT-2DYE      2   12   16614664  16715489  100.825   DEL  11.82
+      S1   PT-264I   PT-264I      2   12   16614664  16751045  136.381   DEL   14.2
+      S1   PT-25WZ   PT-25WZ      1   12   16591338  16715767  124.429   DEL   14.7
+      S1       CON        14    8:6   12   16631570  16708856   77.286    NA     NA
+      S1     UNION        14    8:6   12   16591338  17183201  591.863    NA     NA
+</font></pre>
+
+For CNV data (in contrast to shared segments based on homozygosity or IBD sharing) the 
+extra fields of <tt>TYPE</tt> (deletion or duplication) and <tt>SCORE</tt> (some metric
+of quality/confidence of CNV call) are also presented.
+</p>
+Here we see the 14 segments listed, 8 cases and 6
+controls. The <tt>CON</tt> and <tt>UNION</tt> lines at the end of the
+pool give the consensus region (i.e. shared by all segments) and the
+total distance spanned by all. The <tt>PHE</tt> field gives the
+phenotype for each individual.
+</p>
+Note that the way in which the dummy markers are selected will effectively mean that every 
+possibly unique position, in terms of counts of segments, is evaluated.  The actual base 
+pair regions of any dummy marker is itself probably not of interest: given a sigificant (set of) 
+SNPs, the strategy would be to select any one and generate the corresponding pool to see 
+what and where the association maps to.
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:26 EST
+</em>
+
+</body>
+
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>
+

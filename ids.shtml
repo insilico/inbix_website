@@ -1,0 +1,1254 @@
+<html>
+<title>PLINK</title>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+<h1>ID helper</h1>
+
+PLINK includes a set of utitily options designed to help manage
+ID-related project data. In large projects, ID schemes can be
+difficult to manage. This set of options is aimed at scenarios in
+which individuals have been assigned multiple IDs, meaning that
+multiple lookup tables are needed to translate between schemes,
+although more basic tasks (e.g. joining multiple files based on a
+single shared ID) are supported.  In particular, these options will:
+
+<ul>
+ <li> Combine multiple (partially overlapping) ID schemes
+ <li> Spot inconsistencies
+ <li> Track other (non-unique) attributes along with identifier information
+ <li> Filter subsets of this database, for quick look-ups
+ <li> Allow ID aliases
+ <li> Allow individuals to be uniquely specified by two or more IDs, such as family ID and individual ID
+ <li> Automatically collate and update ID schemes in external files
+ <li> Merge multiple files based on multiple ID schemes
+</ul>
+
+These functions are generic, in that they are not tied to any
+particular format or scheme of IDs used by PLINK. In fact, the
+"individuals" need not be samples, but could be anything, e.g. SNPs
+with RS numbers and vendor-specific codes. These options are
+specifically aimed for cases where ID data, along with limited amounts
+of secondary attributes (e.g. sex, age, etc; or chromosome, map
+position in the case of SNPs, etc) are stored in flat, rectangular
+text files.
+
+</p>
+
+Obviously there are many other ways to perform such tasks, for
+example, using any standard relational database, a perl script or
+Excel. Depending on your needs, you may or may not find the options
+implemented here quicker, easier or more reliable than some these
+alternatives.
+
+
+</p>
+
+
+<a name="example">
+<h2>Example of usage</h2></a>
+</p>
+
+As an example: consider the following case, in which ID information is
+spread across four files: family and individual IDs from two
+sites, <tt>collab12.txt</tt> (site ID, family ID and individual ID)
+<pre>
+     1    F00001  1
+     1    F00001  2
+     1    F00001  3
+     1    F00002  1
+     1    F00002  2
+     1    F00002  3
+     2    C101    P1
+     2    C101    M2
+     2    C101    C2
+</pre>
+Similar information from a third sample, but with some additional information appended:
+<pre>
+     3 1 F00001_1    3/12/09         F
+     3 1 F00001_2    NA              NA
+     3 1 F00001_3    3/17/09         M
+</pre>
+Then we have a report back from the genotyping lab, on some of the
+samples (and which also includes some other samples)
+<pre>
+     SITE FID       IID    GENO   PASS
+     1    F00001      1    S001      Y
+     1    F00001      2    S002      Y
+     1    F00001      3    S003      Y
+     1    F00002      2    S004      N
+     1    F00002      3    S005      Y
+     2    C101       P1    S006      Y
+     2    C101       M2    S007      N
+     2    C101       C2    S008      Y
+     2    X1         X1    S009      Y
+</pre>
+
+Finally, we also have information on yet a further set of IDs assigned
+in a follow-up stage of the project, that are tied to the IDs assigned
+by the genotyping lab, rather than the original collaborator IDs:
+<pre>
+     S001    fu_01_a
+     S002    fu_01_b
+     S003    fu_01_c
+     S005    fu_01_d
+     S006    fu_01_e
+     S008    fu_01_f
+     S009    fu_01_g
+</pre>
+
+As described, below, the following <em>dictionary</em> file
+(<tt>proj1.dict</tt>) is specified to track this information:
+
+<pre>
+     collab12.txt  SITE FID IID           : joint=SITE,FID,IID
+     collab3.txt   SITE FID IID DATE SEX  : attrib=DATE,SEX missing=NA
+     geno.txt      SITE FID IID GENO PASS : attrib=PASS header
+     followup.txt  GENO FUID
+</pre>
+and the command 
+<h5>
+ plink --id-dict proj1.dict 
+</h5></p>
+will collate all the files (after checking for inconsistencies, etc) into 
+a single table, with missing values inserted where appropriate:
+<pre>
+       DATE        FID        FUID     GENO          IID  PASS   SEX  SITE
+          .     F00001     fu_01_a     S001            1     Y     .     1
+          .     F00001     fu_01_b     S002            2     Y     .     1
+          .     F00001     fu_01_c     S003            3     Y     .     1
+          .     F00002           .        .            1     .     .     1
+          .     F00002           .     S004            2     N     .     1
+          .     F00002     fu_01_d     S005            3     Y     .     1
+          .       C101     fu_01_e     S006           P1     Y     .     2
+          .       C101           .     S007           M2     N     .     2
+          .       C101     fu_01_f     S008           C2     Y     .     2
+    3/12/09          1           .        .     F00001_1     .     F     3
+          .          1           .        .     F00001_2     .     .     3
+    3/17/09          1           .        .     F00001_3     .     M     3
+          .         X1     fu_01_g     S009           X1     Y     .     2
+</pre>
+
+There are then numerous commands that can search this database, and
+update or match external files based on any of the ID schemes.  There
+is also a command for joining two or more files based on a single ID
+scheme, which does not require a dictionary/database to be
+specified. This could be of use, for example, to quickly line up
+partially overlapping output from PLINK, based on SNP RS numbers, for
+example.
+
+</p>
+
+
+<a name="overview">
+<h2>Overview</h2></a>
+</p>
+
+The idea is that all data are kept in simple plain text files, and
+that the complete "master file" is then generated on-the-fly. This
+makes it easier to add and edit individual components of the ID
+database (i.e. the individual files).
+
+</p>
+
+<strong>Note</strong> In contrast to a full database, there is no
+support for hierarchical, relational data structures. That is, all
+observations in all tables must be of the same fundamental unit
+(e.g. a single individual).
+</p>
+
+Consider we have three sets of IDs, labelled A, B and C, on up to four
+individuals. These are described across two files, <tt>id1.txt</tt>, which 
+lists the A and B schemes (coded here for clarity to simply be <tt>a1</tt>, <tt>a2</tt>, etc)
+<pre>
+     a1 b1
+     a2 b2
+     a3 b3
+     a4 b4
+</pre>
+and <tt>id2.txt</tt>, which contains the B and C codes for 3 individuals:
+<pre>
+     b2 c2
+     b1 c1
+     b3 c3
+</pre>
+
+For example, the individual labelled <tt>a1</tt> under the A scheme is
+called <tt>b1</tt> under the B scheme.  Note that in <tt>id2.txt</tt>
+the individuals are in a different order and one individual (<tt>a4/b4</tt>)
+does not appear in the second file.
+</p>
+
+Importantly, all ID values and files should conform to the following:
+<ul>
+ <li> values are delimited by 1 or more whitespace characters (tab or space)
+ <li> one observation/individual per row/line; each line must have same number of fields
+ <li> values cannot contain spaces, tabs, commas (,) or plus (+) characters
+ <li> missing values must be explicitly indicated (by "." or another specified code, see below)
+</ul>
+
+
+A <em>dicitonary</em> file describing these ID tables would be as
+follows, e.g. in the file <tt>example.dict</tt>
+<pre>
+     id1.txt A B
+     id2.txt B C
+</pre>
+
+The dictionary file lists each file in the database, followed by the
+field names in each. This dictionary thereby specifies that the second
+field in <tt>id1.txt</tt> should correspond with the first field
+in <tt>id2.txt</tt> as they both represent the B ID scheme. The dictionary file
+can also contain other commands, described below. Dictionaries can include full paths
+(i.e. database files can reside in different directories).
+
+</p>
+The basic command
+<h5>
+plink --id-dict example.dict
+</h5></p>
+
+will load all the ID data, check for consistency and generate the
+following in the LOG file
+<pre>
+     ID helper, with dictionary [ example.dict ]
+     Read 3 unique fields
+     Reading [ id1.txt ] with fields : A, B
+     Reading [ id2.txt ] with fields : B, C
+     Writing output to [ plink.id ]
+     4 unique records retrieved
+</pre>
+
+The default behavior is to generate a file 
+<pre>
+     plink.id
+</pre>
+that contains all the fields, with a header row included:
+<pre>
+     A       B       C
+     a1      b1      c1
+     a2      b2      c2
+     a3      b3      c3
+     a4      b4      .
+</pre>
+
+Because the last individual wasn't listed for the C field, a missing
+character (period/full stop ".") is entered.
+
+<a name="checks">
+<h2>Consistency checks</h2></a>
+</p>
+
+Imagine that one of the IDs had been entered incorrectly, for example
+if <tt>id2.txt</tt> has <tt>c2</tt> repeated:
+<pre>
+     b2 c2
+     b1 c1
+     b3 c2
+</pre>
+
+PLINK would report this probelm when loading the file, pointing out the inconsistency:
+<pre>
+     *** Problems were detected in the ID lists:
+
+     Two unique entries [ B = b2 and b3 ] that match elsewhere
+      a) A=a2 B=b2 C=c2
+      b) B=b3 C=c2
+</pre>
+
+That is, PLINK has spotted that two entries are matched for the C
+field, but have different values for the B field. As these values are
+assumed to be unique identifiers, this is an inconsistency that must
+be fixed by the user. Inconsistencies across files or involving more
+than 2 ID fields can also be spotted.
+
+</p>
+
+<a name="attrib">
+<h2>Attributes</h2></a>
+</p>
+
+In the example above, consider that <tt>id2.txt</tt> has been fixed,
+but that we now have a third file, <tt>id3.txt</tt>:
+<pre>
+     a1 c1 M Wave1
+     a2 c2 M Wave2
+     a3 c3 F Wave2
+     a4 c4 F Wave1
+</pre>
+
+The third and fourth fields have non-unique values (e.g. M, for male,
+is repeated). In this example, this is because they contain
+information (attributes) that we want to track along with the sample
+IDs, but which is not an ID itself, i.e. the sex and source of the
+sample. It is possible to indicate the certain fields are to be
+treated not as <em>identifiers</em> (that, by definition, should be
+unique for each individual) but instead as <em>attributes</em>, as
+follows: the dictionary now reads:
+<pre>
+     id1.txt A B
+     id2.txt B C
+     id3.txt A C Sex Source : attrib=Sex,Source
+</pre>
+using the <tt>attrib=</tt> keyword after a colon <tt>:</tt> character
+to specify that the fields <tt>Sex</tt> and <tt>Source</tt> are
+attributes, not idenitifiers. This effectively means that duplicates
+are allowed, and that these values will not be considered when attempting 
+to reconcile individuals across files.
+</p>
+
+<strong>Note</strong> All dictionary commands follow the filename and
+field headings; a colon character must come before any keyword; all
+items must be on the same line.
+
+</p>
+The LOG file now reads
+<pre>
+     ID helper, with dictionary [ e.dict ]
+     Read 5 unique fields
+        Attribute fields: Sex Source
+     Reading [ id1.txt ] with fields : A, B
+     Reading [ id2.txt ] with fields : B, C
+     Reading [ id3.txt ] with fields : A, C, Sex, Source
+</pre>
+noting that <tt>Sex</tt> and <tt>Source</tt> are attributes. The
+output file <tt>plink.id</tt> now reads
+<pre>
+      A       B       C     Sex    Source
+     a1      b1      c1       M     Wave1
+     a2      b2      c2       M     Wave2
+     a3      b3      c3       F     Wave2
+     a4      b4      c4       F     Wave1
+</pre>
+
+Note that the columns are sorted in alphabetical order. Also note that
+we now see the fourth individual's value for the <tt>C</tt> field
+in this third file (<tt>c4</tt>) and so it is no longer missing.
+
+
+<a name="equiv">
+<h2>Aliases</h2></a>
+</p>
+
+PLINK supports the use of aliases, where variant forms of an ID value
+are understood to map to the same individual. For example, an
+individual sample might have been sent for genotyping twice and
+received two distinct IDs, that we really want to treat as refering 
+to the same person.
+</p>
+Aliases can be specified in two ways: either by listing the same ID
+field twice (or more) in a file, or by entering a comma-delimited list
+of terms as a single value. For example, if the dictionary line is
+<pre>
+     a.txt C C
+</pre>
+and the file <tt>a.txt</tt> is
+<pre>
+     c1 .
+     c2 .
+     c3 c3_w2
+</pre>
+For the first two individuals, there are no aliases specified (as
+there is a missing value for the second field). For the third
+individual, this indicates that any instance of <tt>c3_w2</tt> for the
+C field should be treated as an alias for <tt>c3</tt>.
+</p>
+Equivalently, the original <tt>id2.txt</tt> could simply be modified as follows:
+<pre>
+     b2 c2
+     b1 c1
+     b3 c3,c3_w2
+</pre>
+i.e. a comma-delimited list of two or more values indicates the
+additional values are aliases for the original value.  Note that
+aliases must always be unique. The first value encountered is always the
+preferred value, to which aliases are converted.
+</p>
+For example, if the file <tt>id3.txt</tt> was in fact,
+<pre>
+     a1 c1    10 Wave1
+     a2 c2    10 Wave2
+     a3 c3_w2 12 Wave2
+     a4 c4    23 Wave1
+</pre>
+
+but the appropriate alias for <tt>c3</tt> had been specified in one of
+the two ways mentioned above, PLINK should run correctly,
+automatically converting <tt>c3_w2</tt> to <tt>c3</tt> and producing
+the output file <tt>plink.id</tt>
+<pre>
+     A       B       C       Sex     Source
+     a1      b1      c1      M       Wave1
+     a2      b2      c2      M       Wave2
+     a3      b3      c3      F       Wave2
+     a4      b4      c4      F       Wave1
+</pre>
+
+</p>
+Finally, the command <tt>--id-alias</tt> generates a file 
+<tt>plink.id.eq</tt> that lists all aliases and the preferred value 
+that are found in the database: e.g. (other aliases listed here 
+just for illustration)
+<pre>
+     FIELD     PREF      EQUIV
+         C       c3      c3_w2
+         C       c3         C3
+         A       a1      ID-a1
+</pre>
+
+<a name="joint">
+<h2>Joint ID specification</h2></a>
+</p>
+
+An individual can be uniquely specified by a combination of two or
+more IDs instead of a single ID, for example, by a family ID and
+individual ID, or a project ID and an individual ID.  This is
+represented in the dictionary as follows:
+<pre> 
+     id1.list  PROJ  FID  IID  : joint=FID,IID
+</pre>
+Note, if a joint ID is specified, then all joint IDs must appear in
+subsequent files, e.g. a dictionary file that read as follows:
+<pre>
+     id1.list  PROJ     FID   IID  : joint=FID,IID
+     id2.list  CLIN_ID  IID 
+</pre>
+
+would give an error
+<pre>
+     ERROR: Need to specify all joint fields in dictionary, [id2.list ]
+</pre>
+A correct dictionary would read: (note, the order of the fields within the file is not important)
+<pre>
+     id1.list  PROJ     FID   IID  : joint=FID,IID
+     id2.list  CLIN_ID  IID   FID
+</pre>
+
+This means that a different individuals can share the same <tt>FID</tt>, 
+for example:
+<pre>
+     FID     IID
+     F0001   1
+     F0001   2
+     F0002   1
+     F0002   2
+</pre>
+now denote four unique individuals.
+</p>
+<strong>NOTE</strong> You can create joint IDs containing more than
+two fields, e.g. <tt>joint=X,Y,Z</tt>. The order of the joint fields
+does not need to be the same in all files. Also, you only need to
+specify the "joint=X,Y,.." command once in the dictionary. Finally,
+you can also have multiple joint fields:
+<pre> 
+     id1.list  SITE   PROJ   FID        IID  : joint=FID,IID joint=SITE,PROJ
+     id2.list  FID    IID    CLIN_ID
+     id3.list  SITE   PROJ   RECRUIT_ID
+</pre>
+
+</p>
+<strong>HINT</strong> The <tt>set:field=value</tt> command, described 
+below, can be used to create joint IDs. This can be useful to ensure 
+no accidental overlap of ID schemes between files from different sources. 
+See below for an example.
+
+<a name="lookup">
+<h2>Filtering / lookup options</h2></a>
+</p>
+
+It is possible to restrict the output to certain rows or columns of
+the total database.  For example, to only output fields <tt>C</tt>
+and <tt>Sex</tt>, add the command
+<pre>
+     --id-table C,Sex
+</pre>
+
+To lookup all fields on a particular individual, e.g. with a given ID value for the B ID scheme, use the command
+<pre>
+     --id-lookup B=b2
+</pre>
+
+This prints a message to the LOG indicating that a lookup is being
+performed
+<pre>
+     Lookup up items matching:
+       B = b2  (id)
+</pre>
+and the output file now only contains a single row
+<pre>
+      A      B      C   Sex    Source
+     a2     b2     c2     M     Wave2
+</pre>
+
+It is possible to lookup an individual based on an alias, e.g. in the
+example above,
+<pre>
+     --id-lookup C=c3_w2
+</pre>
+produces the output in the LOG
+<pre>
+     Lookup up items matching:
+       C = c3  (id)
+</pre>
+indicating that the query term alias has been replaced with the preferred value, and the output is
+<pre>
+      A      B      C   Sex    Source
+     a3     b3     c3     F     Wave2
+</pre>
+
+Lookups can also be based on attributes and involve multiple
+fields, in which case the row must match all the specified field 
+values:
+<pre>
+        --id-lookup Sex=M,Source=Wave2
+</pre>
+for example
+<pre>
+     Looking up items matching: 
+       Sex = M  (attribute)
+       Source = Wave2  (attribute)
+     Writing output to [ plink.id ]
+     1 unique records retrieved
+</pre>
+and the output in <tt>plink.id</tt> is
+<pre>
+      A      B      C   Sex    Source
+     a2     b2     c2     M     Wave2
+</pre>
+
+</p>
+
+<strong>NOTE</strong> It is <b>not</b> currently possible to specify
+ranges of numerical values (e.g. less than 10) or wildcards,
+(e.g. Wave*) when performing <tt>--id-lookup</tt>.
+
+
+<a name="replace">
+<h2>Replace ID schemes in external files</h2></a>
+</p>
+
+The command takes three fixed arguments, possibly followed by additional options:
+<pre>
+     --id-replace <em> file  old-ID  new-ID  {options}</em>
+</pre>
+
+will use the information specified in the dictionary to read in an
+external file (i.e. not specified in the dictionary) and replace or
+update the IDs as requested. Consider the data file <tt>mydata.dat</tt>:
+<pre>
+      A   v1 v2 v3 v4   v5
+     a1    0  0  1  1 0.23
+     a3    1  1  0  1 0.35
+     a5    0  0  0  1 0.54
+</pre>
+
+Then the command
+<h5>
+ plink --id-dict ex.dict --id-replace mydata.dat A C header
+</h5></p> will lookup up the value for <tt>A</tt> in <tt>mydata.dat</tt>, using the fact 
+that this file has a header row, and replace it, if possible, with the value 
+for <tt>C</tt> for that person. This prints the following in the LOG:
+<pre>
+    Replacing A with C from [ mydata.dat ]
+    Writing new file to [ plink.rep ]
+    Set to keep original value for unmatched observations
+    Could not find matches for 1 lines
+</pre>
+
+The file <tt>plink.rep</tt> contains the updated file:
+<pre>
+    C  v1  v2  v3  v4  v5
+    c1  0  0  1  1  0.23
+    c3  1  1  0  1  0.35
+    a5  0  0  0  1  0.54
+</pre>
+
+The last line did not match any entry in the database (<tt>a5</tt>)
+and so, by default, it is left as is. Otherwise, the appropriate C ID
+schemes have been swapped in for the other two indiviauls, and the header
+has been changed.
+</p>
+To change to default behavior when a non-matching individual is
+encountered, use one of the following
+options: <tt>warn</tt>, <tt>skip</tt>, <tt>miss</tt> or <tt>list</tt>. For example, 
+
+<h5> 
+ plink --id-dict ex.dict --id-replace mydata.dat A C header warn
+</h5></p>
+will produce an error in the LOG file
+<pre>
+     ERROR: Could not find replacement for a5
+</pre>
+and not proceed any further. The option
+<h5> 
+ plink --id-dict ex.dict --id-replace mydata.dat A C header skip
+</h5></p>
+will simply ignore that line, not printing it in <tt>plink.rep</tt> which 
+will now read
+<pre>
+    C  v1  v2  v3  v4  v5
+    c1  0  0  1  1  0.23
+    c3  1  1  0  1  0.35
+</pre>
+The option 
+<h5> 
+ plink --id-dict ex.dict --id-replace mydata.dat A C header miss
+</h5></p>
+will replace the non-matching ID with the missing code <tt>NA</tt>, 
+<pre>
+    C  v1  v2  v3  v4  v5
+    c1  0  0  1  1  0.23
+    c3  1  1  0  1  0.35
+    NA  0  0  0  1  0.54
+</pre>
+Finally, the option
+<h5> 
+plink --id-dict ex.dict --id-replace mydata.dat A C header list 
+</h5></p>
+will list in <tt>plink.rep</tt> any individual that <em>did not match</em>: in this 
+case, it will just list
+<pre>
+     a5
+</pre>
+
+</p>
+
+It is possible to combine both aliases (in the target file) and joint
+IDs (as both the target and replacement ID) with
+the <tt>--id-replace</tt> function. This is specified by use of the plus "+"
+symbol, e.g. 
+
+<h5>
+plink --id-dict ex.dict --id-replace mydata2.dat GENOID FID+IID  header
+</h5></p>
+will replace the single entry of <tt>GENOID</tt> with the two values for <tt>FID</tt> 
+and <tt>IID</tt>. 
+</p>
+Finally, if the file does not contain a header row, use the <tt>field</tt> option:
+<h5>
+plink --id-dict ex.dict --id-replace mydata.dat A C  field=1
+</h5></p>
+which tells PLINK that column 1 of <tt>mydata.dat</tt> contains the <tt>A</tt> file. If the target ID 
+is a joint ID, the same notation can be used in this case:
+<h5>
+plink --id-dict ex.dict --id-replace mydata2.dat FID+IID GENOID field=2+5
+</h5></p>
+for example, to indicate that <tt>FID</tt> is in column 2 and <tt>IID</tt> is in column 3. 
+In this case, column 5 will be printed as blank, and so effectively skipped. When the 
+replacing ID is a joint ID, all joint values replace the first matched field, i.e. in this 
+case would have been inserted as columns 2, 3, etc, if the replacement field was in fact 
+a joint ID rather than just <tt>GENOID</tt>.
+
+
+<a name="match">
+<h2>Match multiple files based on IDs</h2></a>
+</p>
+
+This option takes an index file and one or more other files and sorts
+these files to match the order of the index file (inserting blank rows
+if needed, or dropping rows if they are not present in the index file,
+as specified), using IDs as defined in the dictionary, in the format
+<pre><em>
+     --id-match {file} {ID}  {file} {ID}  {file} {ID} ...  { + options }
+</em></pre> 
+where <tt>N</tt> is the number of files to be matched. For example, 
+<h5>
+plink --id-dict ex.dict --id-match dat1.dat A,1 dat2.txt C dat3.txt C
+</h5></p>
+would generate a new file
+<pre>
+     plink.match
+</pre>
+that lines up the the rows in <tt>dat2.txt</tt> and <tt>dat3.txt</tt>
+to match <tt>dat1.dat</tt>, using the ID database specified
+by <tt>ex.dict</tt>. The IDs are specified as follows:
+<pre>
+     A       Field A, assume header exists and contains A
+     A,2     Field A, 2nd column of file, assume no header
+     A+B     Joint ID A and B, assume header exists
+     A+B,2+3 Joint ID A and B, in 2nd and 3rd columns, no header
+</pre>
+
+Therefore, the above implies that <tt>dat1.dat</tt> does not contain a
+header row, but the other two files do. That is, by specifying a
+number following a comma, we implicitly tell PLINK both that no header
+exists, and which column to look in. Otherwise we assume the header
+should contain the named field (an error will be reported
+otherwise). In all cases the files to be matched must be rectangular,
+i.e. having the same number of whitespace-delimited fields.
+</p>
+To print only the rows that are present in all files, add the option
+<tt>complete</tt> as follows:
+<pre>
+   --id-match f1.txt ID f2.txt ID + complete
+</pre>
+Otherwise by default, missing values are printed when the data are not 
+present in one of the files. 
+</p>
+<strong>NOTE</strong> For any individuals not found in the database, they 
+are listed in a file named <tt>plink.noid</tt> and a message is printed 
+in the LOG file.
+</p>
+
+
+<a name="quickmatch">
+<h2>Quick match multiple files based on IDs, without a dictionary</h2></a>
+</p>
+
+If the <tt>--id-match</tt> command is used without specifying a data
+dictionary, i.e. there is no <tt>--id-dict</tt>, then we assume a
+simple correspondence of ID schemes between files. This can provide a
+quick way to join up rectangular text files based on a common key, e.g. 
+<h5> 
+ ./plink --id-match f1.txt ID  f2.txt ID,2  f3.txt IID
+</h5></p>
+Note: when a field position is specified, it does not matter what the field 
+is named (as there is no database to look it up in, in any case). Similarly, 
+the ID field may have a different name in some files, e.g. <tt>IID</tt> not
+<tt>ID</tt> in <tt>f3.txt</tt>. Importantly, however, we assume the specific
+entries in these files all come from the same ID scheme, i.e. otherwise a 
+dictionary should be specified to map between schemes.
+
+
+<a name="misc">
+<h2>Miscellaneous</h2></a>
+</p>
+
+The dictionary file can specify whether the file has a header row by
+adding the keyword <tt>header</tt> in the dictionary. The <tt>missing=</tt>
+keyword can also be used to specify one or more missing value codes, that 
+are specific to that file.
+
+<pre>
+   id1.list A B : header
+   id2.list B C 
+   id3.list C D : attrib=D header missing=NA,-9
+</pre>
+
+<h6>The <tt>set</tt> command</h6>
+
+For an attribute, or part of a joint ID, it is possible to use
+the <tt>set</tt> command to specify that all individuals in that file
+have a particular ID value inserted. This can be useful, for example,
+if samples from several sources are being grouped, and one wants to
+ensure no accidental overlap between samples: e.g.  if one site sends
+a file <tt>site1.txt</tt> with individuals
+<pre>
+   ID
+    1
+    2
+    3 
+    4
+</pre>
+
+and another site sends a similar file, <tt>site2.txt</tt>, that refers to three different individuals
+
+<pre>
+     1
+     2 
+     3
+</pre>
+
+the dictionary <tt>ex2.dict</tt> could read
+<pre>
+     site1.txt ID : set:SITE=1 joint=ID,SITE header
+     site2.txt ID : set:SITE=2
+</pre>
+then
+<h5>
+plink --id-dict ex2.dict
+</h5></p>
+will produce a file <tt>plink.id</tt> that reads
+<pre>
+  ID  SITE
+   1     1
+   2     1
+   3     1
+   4     1
+   1     2
+   2     2
+   3     2
+</pre>
+
+Note the specific format, with a colon and equals sign but no spaces:
+<pre>
+     set:field=value
+</pre>
+
+
+<h6>List all instances of an ID across files</h6>
+
+To get a list of all instances of an ID value across multiple files, use the command
+<h5>
+plink --id-dict ex.dict --id-dump A=a1
+</h5></p>
+will list to the LOG file
+<pre>
+     Reporting rows that match [ A=a1 ]
+
+     id1.txt : A = a1
+     id1.txt : B = b1
+
+     id3.txt : A = a1
+     id3.txt : C = c1
+     id3.txt : Sex = M
+     id3.txt : Source = Wave1
+</pre>
+
+This can be useful in tracking down where incorrect IDs are located across multiple files, for example, in order
+to manually resolve inconsistencies, etc.
+
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:27 EST
+</em>
+
+</body>
+
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>
+
+

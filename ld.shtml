@@ -1,0 +1,808 @@
+<html>
+<title>PLINK</title>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+<h1>LD calculations</h1>
+
+PLINK includes a set of options to calculate pairwise linkage
+disequilibrium between SNPs, and to present or process this
+information in various ways. Also see the functions
+on <a href="haplo.shtml">haplotype analyisis</a>.
+</p>
+
+<a name="ld1">
+<h2>Pairwise LD measures for a single pair of SNPs</h2></a>
+</p>
+
+The command <tt>--ld</tt> followed by two SNP identifiers prints the
+following LD statistics to the LOG file, for a single pair of SNPs:
+r-squared, D', the estimated haplotype frequencies and those expected
+under linkage equilibrium, and indicates which haplotypes are in phase
+(i.e. occuring more often than expected by chance). For example:
+<h5>
+plink --bfile mydata --ld rs2840528 rs7545940
+</h5></p> 
+gives the following output
+<pre>
+     LD information for SNP pair [ rs2840528 rs7545940 ]
+
+        R-sq = 0.592     D' = 0.936
+
+        Haplotype     Frequency    Expectation under LE
+        ---------     ---------    --------------------
+            GC          0.013            0.199
+            AC          0.435            0.245
+            GT          0.441            0.250
+            AT          0.111            0.307
+
+        In phase alleles are GT/AC
+</pre>
+
+The LD statistics presented here are based on haplotype frequencies
+estimated via the EM algorithm. Only founders are used in these
+calculations.
+
+</p>
+
+<a name="ld2">
+<h2>Pairwise LD measures for multiple SNPs (genome-wide)</h2></a>
+</p>
+
+Correlations based on genotype allele counts (i.e. w/out phasing, and
+for founders only) can be obtained with the commands
+<h5>
+plink --file mydata --r
+</h5></p>
+or
+<p><h5>
+plink --file mydata --r2
+</h5></p>
+
+That is, this calculates for each SNP the correlation between two
+variables, coded 0, 1 or 2 to represent the number of non-reference
+alleles at each. The squared correlation based on genotypic allele
+counts is therefore not identical to the r-sq as estimated from
+haplotype frequencies (see above), although it will typically be very
+similar. Because it is faster to calculate, it provides a good way to
+screen for strong LD.  The estimated value for the example in the
+section above (rs2840528,rs7545940) is 0.5748 (versus 0.592).
+</p>
+Both commands create a file called
+<pre>
+	plink.ld
+</pre>
+
+with a list of R or R-squared values in it.
+
+<h6>Filtering the output</h6>
+
+By default, several filters on imposed on which pairwise calculations
+are calculated and reported. To only analyse SNPs that are not more
+than 10 SNPs apart, for example, use the option (default is 10 SNPs)
+<pre>
+     --ld-window 10
+</pre>
+to specify a kb window in addition (default 1Mb)
+<pre>
+     --ld-window-kb 1000
+</pre>
+and to report only values above a particular value (this only applies when the <tt>--r2</tt> 
+and not the <tt>--r</tt> command is used) (default is 0.2)
+<pre>
+     --ld-window-r2 0.2
+</pre>
+
+The default for <tt>--ld-window-r2</tt> is set at 0.2 to reduce the
+size of output files when many comparisons are made: to get all pairs
+reported, set <tt>--ld-window-r2</tt> to 0.
+
+
+<h6> Obtaining LD values for a specific SNP versus all others</h6>
+
+To obtain all LD values for a set of SNPs versus one specific SNP, use the <tt>--ld-snp</tt>
+command in conjunction with <tt>--r2</tt>. For example, to get a list of all values for 
+every SNP within 1Mb of <tt>rs12345</tt>, use the command 
+<h5>
+<pre>
+    plink --file mydata 
+          --r2 
+          --ld-snp rs12345 
+          --ld-window-kb 1000 
+          --ld-window 99999 
+          --ld-window-r2 0
+</pre>
+</h5></p>
+The <tt>--ld-window</tt> and <tt>--ld-window-r2</tt> commands effectively means that output 
+will be shown for <em>all</em> other SNPs within 1Mb of <tt>rs12345</tt>.
+
+</p>
+
+Similar to the <tt>--ld-snp</tt> command, but for multiple seed SNPs:
+to obtain all LD values from a group of SNPs with other SNPs, use the
+command
+<pre>
+     --ld-snp-list mysnps.txt
+</pre>
+where <tt>mysnps.txt</tt> is a list of SNPs.  
+
+
+<h6>Obtaining a matrix of LD values</h6>
+
+Alternatively, it is possible to add the <tt>--matrix</tt> option,
+which creates a matrix of LD values rather than a list: in this case,
+all SNP pairs are calculated and reported, even for SNPs on different 
+chromosomes.  
+</p>
+
+<strong>Note</strong> To force all SNP-by-SNP cross-chromosome comparisons 
+with the standard output format (e.g. without <tt>--matrix</tt>) add the flag 
+<pre>
+     --inter-chr
+</pre>
+instead.  This can be combined
+with <tt>--ld-window-r2</tt>, for example to list all
+inter-chromosomal SNPs pairs with very high R-squared
+values.  <b>Warning</b>: this command could take an excessively long
+time to run if applied to large datasets with many SNPs.
+
+
+
+
+
+<a name="tags">
+<h2>Functions to select tag SNPs for specified SNP sets</h2></a>
+</p>
+
+The command
+<h5>
+ plink --bfile mydata --show-tags mysnps.txt
+</h5></p>
+where <tt>mysnps.txt</tt> is just a list of SNP IDs, generates a file
+<pre>
+     plink.tags
+</pre>
+that lists all the SNPs in the dataset that tag the SNPs
+in <tt>mysnps.txt</tt> (including the SNPs in the original file).
+A message is also written to the LOG file that indicates how many new
+SNPs were added
+<pre>
+     Reading SNPs to tag from [ mysnps.txt ]
+     Read 10 SNPs to tag, of which 10 are unique and present
+     In total, added 2 tag SNPs
+     Writing tag list to [ plink.tags ]
+</pre>
+meaning that <tt>plink.tags</tt> will contain 12 SNPs. This command
+could be useful, for example, if one wants to generate a list of SNPs
+that tag all known coding SNPs, or a list of known disease-associated
+SNPs.
+</p>
+If the option 
+<pre>
+     --list-all
+</pre>
+is also added, then an additional file is generated that gives some
+more details for each target SNP (i.e. each SNP listed
+in <tt>mysnps.txt</tt>, in the above example) regarding how many and
+which tags were set for it. The file is named 
+<pre>
+     plink.tags.list
+</pre>
+and has the following fields
+<pre>
+       SNP   Target SNP ID
+       CHR   Chromosome code
+        BP   Physical position (base-pair)
+      NTAG   Number of other SNPs that tag this SNP
+      LEFT   Physical position of left-most (5') tagging SNP (bp)
+     RIGHT   Physical position of right-most (3') tagging SNP (bp)
+    KBSPAN   Kilobase size of region implied by LEFT-RIGHT
+      TAGS   List of SNPs that tag target
+</pre>
+For example:
+<pre><small>
+            SNP  CHR         BP NTAG       LEFT      RIGHT   KBSPAN TAGS
+      rs2542334   22   16694612    2   16693517   16695440    1.923 rs415170|rs2587108
+      rs2587108   22   16695440    2   16693517   16695440    1.923 rs415170|rs2542334
+       rs873387   22   16713566    0   16713566   16713566        0 NONE
+        rs11917   22   16717565    2   16717565   16742194   24.629 rs1057721|rs2075444
+      rs1057721   22   16718397    2   16717565   16742194   24.629 rs11917|rs2075444
+      rs9605422   22   16737494    0   16737494   16737494        0 NONE
+      rs2075444   22   16742194    2   16717565   16742194   24.629 rs11917|rs1057721
+      rs4819644   22   16744470    0   16744470   16744470        0 NONE
+      rs2083882   22   16769795    0   16769795   16769795        0 NONE
+      rs5992907   22   16796453    5   16796453   16830384   33.931 rs400509|rs396012|rs415651|rs384215|rs453557
+       rs400509   22   16800853    3   16796453   16813039   16.586 rs5992907|rs396012|rs384215
+       rs396012   22   16806587    3   16796453   16813039   16.586 rs5992907|rs400509|rs384215
+      rs7293187   22   16807274    0   16807274   16807274        0 NONE
+</small></pre>
+
+</p>
+
+The settings for declaring that a SNP tags another SNP can be varied with the 
+commands
+<pre>
+     --tag-r2 0.5
+</pre>
+to specify a minimum r-squared (based on the genotypic correlation,
+see above); in this case it is set to a value of 0.5 as being
+necessary to declare that one SNP tags another (the default is 0.8). Also, 
+<pre>
+     --tag-kb 1000
+</pre>
+will constrain the search for tags to be within a megabase (the default
+is 250kb).
+
+</p>
+
+<strong>HINT</strong> If you specify the filename for
+the <tt>--show-tags</tt> command to be the keyword <tt>all</tt>, then
+PLINK will only generate the <tt>plink.tags.list</tt> file, but for
+all SNPs in the dataset.  (This means that you cannot have a file
+actually called <tt>all</tt> used as the input for
+the <tt>--show-tags</tt> command of course).
+</p>
+
+<strong>NOTE</strong> You can add the <tt>--tag-mode2</tt> command to
+specify an alternative input and output format. In this case, we
+assume the input file contains two columns, with the second field being 
+either 0 or 1 to indicate whether or not this is a target SNP:
+<pre>
+     rs00001  0
+     rs00002  0
+     rs00003  1
+     rs00004  0
+     rs00005  1
+     rs00006  0
+</pre>
+The output is in a similar form, except that tagging SNPs will now have a <tt>1</tt> in the second field:
+<pre>
+     rs00001  0
+     rs00002  0
+     rs00003  1
+     rs00004  1
+     rs00005  1
+     rs00006  1
+</pre>
+i.e. this above example would be equivalent to the original input file
+<pre>
+     rs00003  
+     rs00005  
+</pre>
+and output file
+<pre>
+     rs00003  
+     rs00004  
+     rs00005  
+     rs00006  
+</pre>
+indicating that SNPs <tt>rs00004</tt> and <tt>rs00006</tt> have been added as tags.
+</p>
+
+<strong>NOTE</strong> This function does not pick the minimal set of
+SNPs required to tag all common variation in a region, in the way
+tagging algorithms typically work (e.g. such
+as <a href="http://www.broad.mit.edu/mpg/tagger/">Tagger</a>). Rather,
+this utility function is designed merely to indicate which other SNPs
+tag a one or more of a pre-specified list of SNPs.
+
+
+<a name="blox">
+<h2>Haplotyp block estimation</h2></a>
+</p>
+
+The command 
+<h5>
+ plink --bfile mydata --blocks
+</h5></p> 
+generates two files
+<pre>
+     plink.blocks
+</pre>
+and
+<pre>
+     plink.blocks.det
+</pre>
+
+Haplotype blocks are estimated following the default procedure in <a
+href="http://www.broad.mit.edu/mpg/haploview/">Haploview</a>. Note
+that only individuals with a non-missing phenotype are included in
+this analysis.
+</p>
+
+By default, pairwise LD is only calculated for SNPs within 200kb. If
+needed, this parameter can be changed via the <tt>--ld-window-kb</tt>
+option.
+
+</p>
+
+The first file lists each block (2 or more SNPs) on a row, starting
+with an asterisk symbol (*), for example:
+<pre>
+     * rs7527871 rs2840528 rs7545940
+     * rs2296442 rs2246732
+     * rs10752728 rs897635
+     * rs10489588 rs9661525 rs2993510
+</pre>
+
+
+ This format can be used with the <tt>--hap</tt> command, for example
+to test each haplotype in each block for assocaition, or to estimate
+the haplotype frequencies: for example,
+<h5>
+ plink --bfile mydata --hap plink.blocks --hap-freq
+</h5></p>
+The second file, <tt>plink.blocks.det</tt> is similar to the first, but 
+contains some addition information:
+<pre>
+     CHR      Chromosome identifier
+     BP1      The start position (base-pair units) of this block
+     BP2      The end position (base-pair units) of this block
+     KB       The kilobase distanced spanned by this block
+     NSNPS    The number of SNPs in this block
+     SNPS     List of SNPs in this block
+</pre>
+for example
+<pre>
+     CHR          BP1          BP2           KB  NSNPS SNPS
+       1      2313888      2331789       17.902      3 rs7527871|rs2840528|rs7545940
+       1      2462779      2482556       19.778      2 rs2296442|rs2246732
+       1      2867411      2869431        2.021      2 rs10752728|rs897635
+       1      2974991      2979823        4.833      3 rs10489588|rs9661525|rs2993510
+       ....
+</pre>
+
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:27 EST
+</em>
+
+</body>
+
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>
+
+

@@ -1,0 +1,937 @@
+<html>
+<title>PLINK</title>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+
+<h1>LD-based result clumping procedure</h1>
+
+This page describes <tt>PLINK</tt>'s ability to group SNP-based
+results across one or more datasets or analyses, based on empirical 
+estimates of linkage disequilibrium between SNPs. The basic procedure 
+was inspired by a script written by Ben Voight.
+
+</p>
+
+There are probably two main applications for this method:
+
+<ul>
+
+<li> To report the top <em>X</em> single SNP results from a genome-wide scan
+in terms of a smaller number of <em>clumps</em> of correlated SNPs (i.e. to 
+assess how many independent loci are associated, for example)
+
+<li> To provide a quick way to combine sets of results from two or 
+more studies, when the studies might also be genotyped on different 
+marker sets
+</ul>
+
+
+<a name="clump1">
+<h2>Basic usage for LD-based clumping</h2>
+</a></p>
+
+The <tt>--clump</tt> command is used to specify one or more result files 
+(i.e. precomputed analyses of some kind). By default, <tt>PLINK</tt> scans these files and extracts 
+fields with the headers <tt>SNP</tt> and <tt>P</tt>.  For example:
+
+<p><h5>
+ plink --file mydata --clump mytest1.assoc
+</h5></p>
+which generates a file
+<pre>
+     plink.clumped
+</pre>
+
+The actual genotype dataset specified here (i.e. the <tt>mydata.*</tt> fileset) may or may not be the same dataset 
+that was used to generate the results in <tt>mytest1.assoc</tt>.  The <tt>mydata</tt> fileset is only used to calculate 
+linkage disequilibrium between the SNPs that feature in <tt>mytest1.assoc</tt> (i.e. the analyses are not re-run).
+
+</p>
+
+There are four main parameters that determine the level of clumping, listed here in terms 
+of the command flag used to change them and their default values:
+<pre>
+     --clump-p1 0.0001            Significance threshold for <em>index</em> SNPs
+     
+     --clump-p2 0.01              Secondary significance threshold for <em>clumped</em> SNPs
+ 
+     --clump-r2 0.50              LD threshold for clumping
+
+     --clump-kb 250               Physical distance threshold for clumping
+</pre>
+
+The clumping procedure takes all SNPs that are significant at threshold <em>p1</em> that have not already been 
+clumped (denoting these as <em>index SNPs</em>) and forms clumps of all other SNPs that are within a certain kb 
+distance from the index SNP (default 250kb) and that are in linkage disequilibrium with the index SNP, 
+based on an r-squared threshold (default 0.50). These SNPs are then subsetted based on the result for that SNP, 
+as illustrated below. This is a greedy algorithm and so each SNP will only appear in a single clump, if 
+at all.
+</p>
+
+In the default, non-verbose mode, the default output lists all index SNPs and a summary of the other SNPs that 
+are clumped with this SNP: (note, SNP IDs and positions are made-up in the example below):
+<pre><font size="-1">
+    CHR  F         SNP         BP         P  TOTAL   NSIG    S05    S01   S001  S0001    SP2
+      8  1   rs1234564   15716326  5.01e-07      0      0      0      0      0      0   NONE
+     14  1   rs1205236   69831825  1.46e-06      0      0      0      0      0      0   NONE
+      2  1  rs16331058  114547107  2.33e-06      3      0      0      0      0      3   rs2366902(1),...
+      2  1    rs759966   54902416  9.28e-06      4      0      0      0      3      1   rs12538389(1),...
+     11  1   rs8031586   44633498  9.75e-06      1      0      0      0      0      1   rs802328(1)
+     12  1  rs12431413   30028246  9.89e-06      0      0      0      0      0      0   NONE
+      6  1  rs14966070   62091121  1.07e-05      0      0      0      0      0      0   NONE
+</font></pre>
+where the fields are as follows
+<pre><font size="-1">
+     CHR     Chromosome code
+     F       Results fileset code (1,2,...)
+     SNP     SNP identifier
+     BP      Physical position of SNP (base-pairs)
+     TOTAL   Total number of other SNPs in clump (i.e. passing <tt>--clump-kb</tt> and <tt>--clump-r2</tt> thresholds)
+     NSIG    Number of clumped SNPs that are not significant ( p > 0.05 )
+     S05     Number of clumped SNPs 0.01 < p < 0.05
+     S01     Number of clumped SNPs 0.001 < p < 0.01
+     S001    Number of clumped SNPs 0.0001 < p < 0.001 
+     S0001   Number of clumped SNPs p < 0.0001
+     SP2     List of SNPs names (and fileset code) clumped and significant at <tt>--clump-p2</tt>
+</font></pre>
+
+That is, the <tt>TOTAL</tt> field lists all SNPs that are clumped with the index SNP, irrespective of the p-value for those SNPs. 
+This number is then split into those clumped SNPs that are not significant (p>0.05) and various other groups defined by significance 
+thresholds. For SNPs that are significant at the <em>p2</em> threshold, they are listed explicitly. The <tt>(1)</tt> after each SNP name refers to the 
+results file they came from (in this case, there is only a single result file specified, so all values are 1).
+</p>
+To specify more than a single result file, use a comma-delimited list after <tt>--clump</tt> (without any spaces between file 
+names), for example:
+<h5>
+ plink --bfile mydata --clump mytest1.assoc,mytest2.assoc
+</h5></p>
+
+</P>
+To specify a field labelled other than <tt>P</tt>, use the command
+<h5>
+ plink --bfile mydata  --clump mytest1.assoc  --clump-field P_CMH 
+</h5></p>
+for example.
+
+</p><strong>NOTE</strong> The same fields are extracted from all
+results files (e.g. <tt>SNP</tt> and <tt>P</tt>) -- i.e. it is not
+possible to specify different fields from different files.
+
+</p><strong>NOTE</strong> All results are interpreted as p-values --
+i.e. it is not possible to specify a Z-statistic, as significance is
+always defined as less than the threshold.
+
+Finally, by default a SNP is not allowed to appear in more than one
+clump, either as an index or non-index SNP. If you add the command,
+then a SNP that has appeared as a non-index SNP in one clump can
+appear as a non-index SNP in other clumps:
+<pre>
+     --clump-allow-overlap
+</pre>
+
+</p>
+
+
+<a name="clump2">
+<h2>Verbose report</h2>
+</a></p>
+
+For a more detailed report of the SNPs in each clump, add the flag <tt>--clump-verbose</tt>
+<h5>
+ plink --bfile mydata --clump mytest1.assoc  --clump-verbose
+</h5></p>
+
+which produces a report as follows:
+<pre><font size="-1">
+ CHR    F             SNP         BP          P    TOTAL   NSIG    S05    S01   S001  S0001
+   8    1       rs1234564   15716326  5.019e-07        0      0      0      0      0      0
+
+------------------------------------------------------------------
+
+ CHR    F             SNP         BP          P    TOTAL   NSIG    S05    S01   S001  S0001
+  14    1       rs1205236   69831825  1.469e-06        0      0      0      0      0      0
+
+------------------------------------------------------------------
+
+ CHR    F             SNP         BP          P    TOTAL   NSIG    S05    S01   S001  S0001  
+   2    1      rs16331058  114547107  2.337e-06        3      0      0      0      0      3
+
+                                  KB      RSQ  ALLELES    F            P 
+  (INDEX)      rs16331058        0.0    1.000        A    1     2.34e-06 
+
+                rs2366902      -75.4    0.611    AT/GC    1     4.42e-05 
+                rs1274528      -47.4    0.555    AC/GT    1     1.28e-05
+                rs3200591      -22.3    0.964    AT/GC    1     2.68e-05
+
+------------------------------------------------------------------
+
+  etc
+</font></pre>
+
+For example, for the third SNP, <tt>rs16331058</tt> we see there are 3 other SNPs that fulfil the specified 
+criteria (kb distance less than 250kb, r-squared greater then 0.5 and p-value of less than <em>p2</em> threshold of 
+0.01), and they are listed explicitly in verbose mode. As well as the kb and r-squared for each SNP (relative to <tt>rs16331058</tt>)
+we see listed the fileset which the result comes from (<tt>F</tt> -- in this case, all are listed 1, as there was only one result
+file specified) and p-value.  Also, the alleles column indicates for the index SNP what the minor allele is (<tt>A</tt>); for the
+other SNPs, the two haplotypes that are more common than expected are listed (e.g. for SNPs <tt>A/B</tt> and <tt>1/2</tt>, then 
+if <tt>P(A1) > P(A)P(1)</tt> it will list <tt>A1/B2</tt>, otherwise <tt>A2/B1</tt>. 
+</P>
+
+<h6>Annotation by SNP details and genomic co-ordinates</h6>
+
+Another useful verbose-mode option is <tt>--clump-anotate</tt> which takes as a parameter a comma-delimited list of header names, e.g.
+<pre>
+     --clump-annotate A1,OR
+</pre>
+and will then list these items in the verbose report mode (e.g. minor allele and odds ratio, in this case, if the
+results file were a <tt>plink.assoc</tt> file). The output would then appear as, for example,
+<pre><font size="-1">
+ CHR    F             SNP         BP          P    TOTAL   NSIG    S05    S01   S001  S0001  
+   2    1      rs16331058  114547107  2.337e-06        3      0      0      0      0      3
+
+                                  KB      RSQ  ALLELES    F            P       ANNOT
+  (INDEX)      rs16331058        0.0    1.000        A    1     2.34e-06     A, 1.23
+
+                rs2366902      -75.4    0.611    AT/GC    1     4.42e-05     T, 1.17
+                rs1274528      -47.4    0.555    AC/GT    1     1.28e-05     C, 1.22
+                rs3200591      -22.3    0.964    AT/GC    1     2.68e-05     T, 1.19
+</font></pre>
+
+i.e. here we can see that for <tt>rs2366902</tt> the minor allele <tt>T</tt> had an odds ratio of 1.17; this 
+is consistent with the index SNP, as the haplotype <tt>AT</tt> is more common than expected (i.e. indicating 
+the direction of the LD). 
+
+</p>
+<strong>NOTE</strong> The allele coding in the <tt>ALLELES</tt> field is taken directly from the specified genotype data, 
+i.e. <tt>mydata.*</tt> in this case, whereas the allele coding in the <tt>ANNOT</tt> field is taken (if available and <tt>--clump-annotate</tt>
+selects an allele field) from the results file. It is up to the user to ensure that these match to be interpretable (i.e. in terms of number versus
+letter coding, but more importantly in terms of strand, etc, which might be an issue if the genotype data is a file different from that which 
+the results were calculated on, e.g. see below for an example).
+
+</p>
+
+A further option is <tt>--clump-range</tt>, which takes a gene-list or region-list file as a parameter. For example, this might be a list of 
+all RefSeq genes, as available <a href="res.shtml#glist">here</a>. The command
+<h5>
+ plink --bfile mydata --clump myresults.assoc --clump-range glist-hg18 
+</h5></p>
+would, for example, generate the additional file
+<pre>
+     plink.clumped.ranges
+</pre>
+which has the fields
+<pre>
+     CHR      Chromosome code
+     SNP      Index SNP per clump
+     P        p-value 
+     N        Number of clumped SNPs
+     POS      Genomic co-ordinates
+     KB       kb span of clumped SNPs 
+     RANGES   List of ranges/genes that intersect the clumped region
+</pre>
+For example, the first four rows of a simulated, random study are:
+<pre>
+      CHR         SNP          P      N                          POS         KB RANGES
+       17   rs9944528  1.927e-05      2     chr17:77894039..77933018     38.979 [UTS2R,SKIP,FLJ35767]
+        9  rs17534370  1.958e-05      1      chr9:70297172..70297172          0 [PGM5]
+       11  rs12418173  1.965e-05      7   chr11:112102294..112133479     31.185 []
+</pre>
+
+which indicates that rs9944528 has one other SNP that clumps with it (N=2), which is just under 40kb away, spanning three genes; 
+the next SNP doesn't have any clumped partners and falls in the <em>PGM5</em> gene; the third SNP has 6 other clumped SNPs, spanning just over
+30kb, but no genes are in that interval.
+
+</p>
+If the <tt>--clump-range</tt> flag is added in <tt>--clump-verbose</tt> mode, the output looks slightly different. In this case, 
+the special <tt>plink.clumped.ranges</tt> file is not produced: now all the output is in the <tt>plink.clumped</tt> file:
+<pre><font size="-1">
+
+      CHR    F         SNP         BP          P    TOTAL   NSIG    S05    S01   S001  S0001
+       17    1   rs9944528   77894039   1.93e-05        1      0      0      0      0      1 
+
+                                   KB      RSQ  ALLELES    F            P 
+       (INDEX)   rs9944528          0    1.000        C    1     1.93e-05 
+  
+                 rs7207095         39    0.648    CG/GA    1     2.83e-05 
+
+               RANGE: chr17:77894039..77933018
+                SPAN: 38kb
+          GENES w/SNPs: SKIP
+                 GENES: UTS2R,SKIP,FLJ35767
+
+     ------------------------------------------------------------------
+
+
+      CHR    F         SNP         BP          P    TOTAL   NSIG    S05    S01   S001  S0001
+        9    1  rs17534370   70297172   1.96e-05        0      0      0      0      0      0 
+                 GENES: PGM5
+     
+     ------------------------------------------------------------------
+     
+     
+      CHR    F         SNP         BP          P    TOTAL   NSIG    S05    S01   S001  S0001
+       11    1  rs12418173  112133479   1.96e-05        6      0      0      0      2      4 
+     
+                                   KB      RSQ  ALLELES    F            P 
+       (INDEX)  rs12418173          0    1.000        G    1     1.96e-05 
+     
+                rs12800322      -31.2    0.902    GG/AC    1     0.000133 
+                 rs1870496      -30.7    0.853    GC/AT    1     0.000267 
+                 rs2199197      -20.1        1    GG/AA    1     9.76e-05 
+                 rs7931135      -16.7        1    GG/AA    1     1.96e-05 
+                rs12418739      -10.8        1    GA/AC    1      3.5e-05 
+                  rs898311      -4.98        1    GT/AC    1     1.96e-05 
+     
+               RANGE: chr11:112102294..112133479
+                SPAN: 31kb
+          GENES w/SNPs: 
+                 GENES: 
+     
+     ------------------------------------------------------------------
+</font></pre>
+     
+Note, if there is more than 1 SNP in a clump, we distinguish here
+between whether or not one of the clumped SNPs is actually within the
+a specified region or gene (<tt>GENES w/SNPs</tt>) versus whether that
+gene or region is just within the general clumped range
+(<tt>GENES</tt>).
+     
+</p>
+Naturally, any file can be used with <tt>--clump-range</tt> -- the regions do not have to correspond to 
+actual genes, but they could be regions of interest identified by other means.
+</p>
+Finally, the command
+<pre>
+     --clump-range-border 20
+</pre>
+adds a 20kb border to the start and stop of each gene or region.
+     
+<a name="clump3">
+<h2>Combining multiple result files (potentially from different SNP panels)</h2>
+</a></p>
+     
+When more than one output file is specified, e.g. as
+<h5>
+ plink --bfile mydata --clump mytest1.assoc,mytest2.assoc,mytest3.assoc
+</h5></p>
+
+there are two other options that can modify the behaviour of <tt>--clump</tt>. First, 
+<pre>
+     --clump-index-first
+</pre>
+indicates that index SNPs should only taken from the first result file listed 
+(<tt>mytest1.assoc</tt> in the example above). In other words, this allows for 
+an asymmetric comparison, in which we ask only whether or not a result in a 
+particular file has any other SNPs (in that same, or in different files) that 
+could be clumped.  
+</p>
+Second, the additional option
+<pre>
+     --clump-replicate
+</pre>
+means that only clumps containing clumped SNPs with <em>p2</em>-significant results in <em>more than one</em> 
+result file are shown.  This could be used in the following context: imagine one had data for two different whole-genome 
+scans, for the same phenotype but performed on different platforms, e.g. Affymetrix and Illumina. A quick way to compare these
+sets of results would be to use the HapMap as a common dataset (i.e. containing all SNPs on both platforms, or the majority of these 
+in any case) as follows:
+<h5>
+ plink --bfile hapmap --clump affymetrix.assoc,illumina.assoc --clump-verbose --clump-replicate
+</h5></p>
+This assumes that you have made the fileset <tt>hapmap.*</tt> to contain all SNPs for one of the analysis panels, 
+e.g. CEU. In this context, we are only interested in hits (e.g. p-values less than 1e-3) that are seen across the 
+studies, by using the <tt>--clump-replicate</tt> flag (i.e. only clumps where <tt>F</tt> is seen to have values of both 1 and
+2 for <em>p2</em>-significant SNPs). In this case, it also probably makes sense to equate the <em>p1</em> and <em>p2</em> thresholds, 
+by adding, for example,
+<pre>
+     --clump-p1 1e-3 --clump-p2 1e-3 
+</pre>
+Finally, by also adding the 
+<pre>
+     --clump-annotate A1,OR
+</pre>
+flag, you can see whether or not there appears to 
+be a consistent direction of effect also (by putting together 
+the direction of odds ratios with the over-represented 
+haplotype to tie together the two or three SNPs).
+</p>
+
+<a name="clump4">
+<h2>Selecting the single best proxy</h2>
+</a></p>
+
+The command 
+<pre>
+     --clump-best
+</pre>
+produces an additional file 
+<pre>
+     plink.clumped.best
+</pre>
+which contains the fields
+<pre>
+     INDEX     Index SNP identifier
+     PSNP      Best proxy SNP
+     RSQ       LD (r-squared) between index and proxy
+     KB        Physical distance between index and proxy
+     P         p-value for proxy SNP
+     ALLELES   The associated haplotypes for the index and proxy SNP
+     F         Which file (from --clump) this result came from
+</pre>
+
+For example, if we use the command
+<h5>
+plink --bfile mydata --clump myresults-a.assoc,myresults-b.assoc --clump-best
+</h5></p>
+
+based on dummy simulated data result files <tt>myresults-a.assoc</tt> 
+and <tt>myresults-b.assoc</tt>, the first few lines of <tt>plink.clumped</tt> are as follows:
+
+<pre><font size="-1">
+    CHR    F         SNP         BP         P  TOTAL  NSIG  S05  S01 S001 S0001  SP2
+     11    1   rs2513514   75922141  2.27e-07      3     0    0    0    1     2  rs2508756(1),...
+     20    1   rs6110115   13911728  8.24e-07      9     0    2    3    2     2  rs6079243(1),...
+     11    1   rs2508756   75921549  1.07e-06      0     0    0    0    0     0  NONE
+     15    1  rs16976702   54120691  1.15e-06      1     0    0    0    1     0  rs16976702(2)
+</font></pre>
+
+The corresponding <tt>plink.clumped.best</tt> file shows the single
+best proxy SNP for each index SNP. This information could have been
+extracted manually after using the <tt>--clump-verbose</tt>, but the
+<tt>--clump-best</tt> option simply makes this easier.
+
+<pre>
+         INDEX        PSNP    RSQ       KB        P  ALLELES        F
+     rs2513514   rs2513514      1        0 8.04e-05    AA/GG        2 
+     rs6110115   rs6110115      1        0  0.00145    CC/AA        2 
+     rs2508756          NA     NA       NA       NA       NA       NA 
+    rs16976702  rs16976702      1        0   0.0009    GG/CC        2 
+</pre>
+
+For example, the best SNP, rs2513514 (which had the lowest p-value in
+this case for <tt>F</tt> 1, i.e. <tt>myresults-a.assoc</tt>) has a
+single best proxy of rs2513514, the same SNP, but in <tt>F</tt> 2,
+i.e. <tt>myresults-b.assoc</tt>. The third SNP here, rs2508756, does
+not have any proxy SNP that meets the criteria for clumping
+(<tt>--clump-r2</tt>, <tt>--clump-p2</tt>, etc).
+
+</p>
+<strong>Warning</strong> If the same SNP existed in both <tt>myresults-a.assoc</tt> and 
+<tt>myresults-b.assoc</tt> then the <tt>P</tt> value and <tt>ALLELES</tt> would always, 
+arbitrarily be selected from the first file. See the note below also.
+
+</p>
+
+One might often want to add the three options
+<pre>
+     --clump-index-first
+     --clump-replicate
+     --clump-allow-overlap
+</pre>
+along with <tt>--clump-best</tt>.  This would pose the question: what
+is the best proxy in <tt>myresults-b.assoc</tt>
+(i.e. <tt>--clump-replicate</tt> forces a cross-file proxy) for the
+top results in <tt>myresults-a.assoc</tt>
+(e.g. <tt>--clump-index-first</tt> forces the first-listed file to
+contain index SNPs only). The <tt>--clump-allow-overlap</tt> will mean
+that a proxy SNP can be selected for more than one index SNP, if it is
+the best. These may sometimes be the same SNP, if it is present in
+both result sets, otherwise it will rely on all SNPs being present in
+the <tt>mydata</tt> fileset, and will use LD information to select the
+best proxy.
+</p>
+
+<strong>NOTE</strong> By <em>best</em> proxy, we mean the SNP with the
+strongest LD to the index, rather than the best p-value. Which SNP has
+the greatest LD will be based on the genotype data and will therefore
+be the same for all result files.  As such, this command should be
+used in such a way that only one result file is being queried for the
+best proxy at a time.  That is, used
+without <tt>--clump-replicate</tt>, only a single result file should
+be specified with <tt>--clump</tt>.  If used
+with <tt>--clump-replicate</tt> then a) <tt>--clump-index-first</tt>
+should always be used and no more than two result files should be
+specified with <tt>--clump</tt>. That is, in this second usage, this
+command will try to find the best proxy in the second result file for
+each index SNP selected from the first file. Otherwise, if the same
+SNP is present in more than one result file, only details for the first 
+encountered will be reported. 
+
+</p>
+
+Overall, the most command usage of this will be to select the best SNP 
+proxy in file <tt>B</tt> for the hits in <tt>A</tt>, i.e. in the form:
+<h5><pre>
+./plink --bfile mydata
+        --clump myresults-a.assoc,myresults-b.assoc 
+        --clump-best
+        --clump-replicate
+        --clump-index-first
+        --clump-allow-overlap
+        --clump-p1 1e-4 
+        --clump-p2 1
+        --clump-kb 250 
+        --clump-r2 0.2
+</pre></h5></p>
+
+That is: this will select the SNP from <tt>B</tt> that is in highest LD with
+each SNP in <tt>A</tt> that has a p-value less than 1e-4
+in <tt>A</tt>. The same SNP in <tt>B</tt> is allowed to be the best
+proxy for more than one SNP in <tt>A</tt>
+(<tt>--clump-allow-overlap</tt>). The best proxy will be reported no
+matter what p-value it has in <tt>B</tt> (<tt>--clump-p2 1</tt>)
+although it must satisfy the criteria of being at least above r-sq of
+0.2 and within 250kb.
+
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:26 EST
+</em>
+
+</body>
+
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>

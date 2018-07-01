@@ -1,0 +1,1078 @@
+<html>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+
+<a name="changelog">
+<h2>Changelog</h2>
+</a>
+
+</p>
+
+This page contains a version history recording changes and additions
+to <tt>PLINK</tt>.
+
+</p>
+<b>V1.07</b> (10-Oct-2009)
+<ul>
+</p>
+ <li> Added <tt>--meta-analysis</tt> function
+ <li> Added <tt>--annotate</tt> function
+ <li> Added <tt>--dosage</tt>, <tt>--write-dosage</tt>, etc
+ <li> Added <tt>--Z-genome</tt> and ability to read compressed <tt>.genome.gz</tt>
+ <li> Added <tt>--simulate-qt</tt> to simulate quantitative trait data
+ <li> Added <tt>--recode-rlist</tt> and <tt>--recode-lgen</tt>/<tt>--with-reference</tt>
+ <li> Added preliminary ZLIB support for reading and writing compressed files directly
+ <li> Added <tt>--standard-beta</tt> for <tt>--linear</tt>
+ <li> Added <tt>--counts</tt> to modify <tt>--assoc</tt> output
+ <li> Added dosage-based score analysis
+<br>&nbsp; 
+ <li> Changed how options are passed to commands
+ <li> Changed order of <tt>--reference-allele</tt> and <tt>--freq</tt>, so that the reference is 
+      now fixed prior to calculating and reporting allele frequencies
+ <li> Improved speed of binary file merging
+ <li> MAF-based SNP removal for <tt>--indep-pairwise</tt> option
+<br>&nbsp; 
+ <li> Fixed bug in <tt>--blocks</tt> routine
+ <li> Fixed bug in <tt>--adjust</tt> with quantitative trait <tt>--assoc</tt>
+ <li> Fixed bug in <tt>--fisher</tt> and <tt>--adjust</tt>
+ <li> Fixed bug in <tt>--set-test</tt> with selection of SNPs in LE
+</ul>
+
+
+</p>
+<b>V1.06</b> (24-Apr-2009)
+<ul>
+</p>
+ <li> Added <tt>--show-tags</tt> and modifiers, including <tt>--list-all</tt>
+ <li> Added <tt>--blocks</tt> command
+ <li> Added <tt>--hap-logistic</tt> and <tt>--hap-linear</tt> (with support for covariates and permutation)
+ <li> Added <tt>--hap-omnibus</tt> that modifies <tt>--hap-linear</tt> and <tt>--hap-logistic</tt>
+ <li> Add multiple sizes for sliding window (<tt>--hap-window 1,2,3</tt>)
+ <li> Fixed issue with D' calculation in <tt>--ld</tt> command
+ <li> Added <tt>--inter-chr</tt> option 
+ <li> Now enable <tt>--ci</tt> to work with <tt>--chap</tt> 
+</p>
+ <li> Added <tt>--id-dict</tt>, <tt>--id-match</tt>, <tt>--id-replace</tt>, <tt>--id-alias</tt>, <tt>--id-table</tt>, <tt>--id-lookup</tt>, etc
+</p>
+ <li> Added SVD speedup using LAPACK compile-time option
+</p>
+ <li> Added <tt>--reference {file}</tt> to complement <tt>--lfile</tt>
+ <li> Added <tt>--allele-count</tt> and <tt>--compound-genotype</tt> support for LGEN files
+ <li> Added <tt>--attrib</tt> and <tt>--attrib-indiv</tt> options
+ <li> Added <tt>--thin</tt> command to prune SNPs randomly
+</p>
+ <li> Added <tt>--hide-covar</tt> option for GLM tests
+</p>
+ <li> Added <tt>--make-perm-pheno {N}</tt> to create <tt>plink.pphe</tt>
+</p>
+ <li> Added <tt>--cnv-check-no-overlap</tt>
+ <li> Fixed bug that stopped <tt>--cnv-method2</tt> from working
+</p>
+ <li> Can now make sets on-the-fly; added <tt>--write-set</tt> option
+ <li> Added <tt>--make-set-complement {label}</tt>
+ <li> Now added a group field to ranges; added <tt>--make-set-collapse-group</tt>, <tt>--make-set-complement-group</tt>
+ <li> Fixed issue when mapping ranges to SNPs, would not properly include all end SNPs
+ <li> Fixed it that <tt>--range</tt> can take >3 cols (<tt>--extract file.txt --range</tt> )
+</p>
+ <li> Added <tt>--update-pheno</tt> (i.e. similar to <tt>--pheno</tt>, but doesn't set to missing all non-included people
+ <li> Fixed bug in <tt>--update-sex</tt> and <tt>--update-parents</tt>
+ <li> Fixed problem with <tt>--update-chr</tt>
+</p>
+ <li> Changed basic <tt>--assoc</tt> OR calculation to avoid <tt>int</tt> size limits in v. large samples
+ <li> Changed <tt>--model --perm</tt> to only consider ALLELIC, DOM, REC (not GENO)
+</p>
+ <li> Add chr XY for <tt>--dog</tt>
+ <li> Added <tt>--mouse</tt> support
+</p>
+ <li> Fixed input to now allow comment lines (starting with <tt>#</tt>) in MAP files
+ <li> Added <tt>--R-port</tt> command
+ <li> Skip zero-ing MEs when rel-check/genome mode
+ <li> Add <tt>--q-score-range</tt> and <tt>--q-score-file</tt> options to modify <tt>--score</tt>
+ <li> Added <tt>--simulate-haps</tt>, and format/error checks for <tt>--simulate</tt> files
+</ul>
+
+
+</p>
+<b>V1.05</b> (11-Dec-2008)
+<ul>
+<li> Added support for multiple return values from R-plugins; changed basic protocol
+<li> Added <tt>--beta</tt> modifier to <tt>--logistic</tt>, to return beta coefficients, not odds ratios
+<li> Fixed minor inconsistencies in <tt>--cnv-freq-include-exact</tt>:
+now <tt>--cnv-freq-exclude-above 1</tt>
+equals <tt>--cnv-freq-include-exact 1</tt> when used with default
+overlap thresholds
+<li> Fixed problem with HWE output
+<li> Added <tt>--cnv-test-region</tt> option for CNV mapping
+<li> Added the <tt>--subset</tt> command to work with <tt>--set</tt>
+<li> Changed <tt>--clump-best</tt> to preferentially take the same SNP
+<li> Added option to downweight set-based tests with <tt>--lambda</tt>
+<li> Added option <tt>--reference-allele</tt> to specify manually which 
+is reference allele <tt>A1</tt>, i.e. instead of minor allele
+<li> Added support for <tt>--rice</tt> chromosomes
+<li> Added <tt>--ld-snp-list</tt> option
+<li> Added <tt>--make-set-collapse</tt>
+<li> Added <tt>--update-alleles</tt>, <tt>--update-chr</tt>, <tt>--update-name</tt>, 
+<tt>--update-ids</tt>, <tt>--update-sex</tt> and <tt>--update-parents</tt>
+<li> The <tt>--pfilter</tt> command now works for <tt>--mh</tt>
+<li> Fixed problem with the <tt>--hap-tdt</tt> command (wasn't working in 1.04 at all)
+<li> Added support for SNP-specific and genotype-specific quality
+score filters (<tt>--qual-scores</tt> and <tt>--qual-geno-scores</tt>, with corresponding commands 
+<tt>--qual-threshold</tt> and <tt>--qual-max-threshold</tt>
+and <tt>--qual-geno-threshold</tt> and <tt>--qual-geno-max-threshold</tt>
+<li> Made default <tt>--score</tt> behavior to impute missing genotype scores based on sample frequency, 
+unless <tt>--score-no-mean-imputation</tt> specified
+<li> Fixed minor issue with <tt>--simulation</tt> routine (now we do not assume HWE holds within 
+cases and controls, but only in the population as a whole).
+<li> Output format of <tt>.genome</tt> file is changed
+<li> Modified <tt>--genome</tt> to display the type of relationship,
+ and expected IBD sharing level, if pair are in same family; also
+ changed output format
+<li> Added <tt>--rel-check</tt> modifier to <tt>--genome</tt>, so that
+only pairs within the same FID code are considered
+<li> Modified <tt>--read-genome</tt> option to accept different format .genome files, by looking for header rows rather than assuming fixed column number/order
+<li> Added <tt>--set-table</tt> command to make a SNP by SET matrix
+<li> Added <tt>--tucc</tt> option to make pseudo case/control units from trio data
+</ul>
+
+</p>
+<b>V1.04</b> (26-Aug-2008)
+<ul>
+<li> Added <tt>-gene-report</tt> function (with <tt>--gene-list</tt>, etc)
+<li> Added <tt>--cnv-subset</tt> option
+<li> Added <tt>--cnv-verbose-report-regions</tt> option
+<li> Added <tt>--clump-best</tt>, <tt>--clump-range</tt> and <tt>--clump-range-border</tt>
+<li> Added new LD-aware set-based test and functions <tt>--set-p</tt>, <tt>--set-r2</tt>
+<li> Added ability to include <tt>--covar</tt> with <tt>--gvar</tt>
+<li> Added <tt>--flip-subset</tt> option, to flip strand only for some individuals
+<li> Added <tt>--flip-scan</tt> procedure, to identify likely strand-flip errors
+<li> Added <tt>--mperm-save</tt> and <tt>--mperm-save-all</tt> options
+<li> Now reports sample summary after filtering for QTs, as for case/control data
+<li> Now <tt>--pfilter</tt> works on <tt>.adjusted</tt> output files also
+<li> Changed default behavior to not set pheotype to missing if sex code is missing 
+<li> Changed <tt>--recode</tt>, etc, output names to <tt>plink.ped</tt>, etc, rather than <tt>plink.recode.ped</tt>
+<li> Added <tt>--must-have-sex</tt> option to set phenotype to missing when recoding data
+<li> Added <tt>--make-pheno {file} *</tt> feature to set as cases people in {file}, else control 
+<li> <tt>N_GENO</tt> field is now always reported in the missing data output
+<li> Added fields <tt>PHOM</tt> and <tt>PHET</tt> to <tt>.hom</tt> output (and modified <tt>--read-homozyg</tt> also)
+<li> Added function <tt>--compound-genotype</tt> to allele <tt>AG</tt>, <tt>11</tt>, <tt>00</tt>, etc in PED files only
+<li> Changed default thresholds (to be similar to <tt>--all</tt>)
+<li> Added <tt>--output-missing-phenotype</tt> and <tt>--output-missing-genotype</tt> options
+<li> Added <tt>--keep-allele-order</tt> to stop flipping of allele codes when minor allele frequency is greater than 0.5
+<li> Added <tt>--proxy-b-r2</tt> to specify alternate proxy parameters for rarer alleles
+<li> Added allele codes and frequencies to <tt>--homog</tt> output files
+<li> Added allele code fields to <tt>--hardy</tt> and <tt>--model</tt> output
+<li> Fixed female Y chromosome genotype rate counting
+<li> Fixed a problem with <tt>--proxy-glm</tt> and missing haplotypic data
+<li> Fixed <tt>--R</tt> function to send counts of minor, not major, allele
+<li> Fixed issue with missing genotypes and <tt>--gvar</tt> association statistics
+<li> Fixed minor bug with <tt>--hardy2</tt> and <tt>--hwe2</tt>
+<li> Fixed problem when <tt>--sex</tt> used with <tt>--chap</tt> test
+<li> Fixed problem with <tt>--qfam</tt> routine when there are no valid observations
+<li> Fixed a bug with the <tt>--score</tt> function
+<li> Fixed a bug with <tt>--hap-impute</tt> when used on the X chromosome 
+<li> Fixed a bug in the CNV frequency filter commands
+<li> Corrected mislabelling of distances/similarities for IBM clustering
+<li> Removed Hotelling's T2 test from this version 
+<li> Updated the <tt>--lookup</tt> routines; changed the backend server considerably
+<li> Updated <tt>Rserve</tt> client code for use with <tt>Rserve</tt> version 0.5.2 
+<li> Added gene-lists to resources section on web
+<li> Updated HapMap resource to latest release
+</ul>
+
+</p>
+<b>V1.03</b> (10-Jun-2008)
+<ul>
+<li> Added teaching material/tutorial to resources section of web
+<li> Added <tt>--write-cluster</tt>, which can handle strings
+<li> Added <tt>--cnv-freq-exclude-exact</tt> and <tt>--cnv-freq-include-exact</tt>
+<li> Added <tt>--cnv-region-overlap</tt>
+<li> Displays type and score display in <tt>--segment-group</tt> for CNVs
+<li> Fixed problem with <tt>--read-freq</tt>
+<li> Fixed problem with <tt>--hethom</tt> and X chromosome data
+<li> Fixed problem when <tt>--condition</tt> and <tt>--genotypic</tt> used together
+<li> Added <tt>--genome-minimal</tt> and <tt>--read-genome-minimal</tt>
+<li> Now possible to <tt>--filter</tt> on strings and lists of strings
+<li> Added <tt>--make-pheno</tt> command to generate a binary phenotype given string filter
+<li> Allow <tt>--keep</tt> and <tt>--remove</tt> files to have additional columns beyond two
+<li> Additional case/control statistics given in LOG after filtering
+<li> Fixed a bug in the <tt>--hap-tdt</tt> and <tt>--proxy-tdt</tt> analyses
+<li> Added the <tt>--make-set</tt> and <tt>--make-set-border</tt> commands
+<li> Added <tt>--lookup-kb</tt> and <tt>--lookup-gene-kb</tt>
+<li> Added <tt>--lookup-gene-list</tt> (to create a SET file)
+<li> Added additional output information to SNP and gene lookups
+<li> Added <tt>--ld-snp</tt> command to modify the behaviour of <tt>--r2</tt>
+<li> LD pruning now considers non-autosomal markers
+<li> Fixed some issues with non-human data and the IBS/IBD calculation (previously skipped chromosomes over 22)
+</ul>
+
+</p>
+
+<b>V1.02</b> (27-Mar-2008)
+<ul>
+<li> Added beta versions of CNV and generic variant commands, described <a href="cnv.shtml">here</a>
+<li> Created a PDF version of the web page
+<li> Added <tt>--hethom</tt> flag to modify <tt>--genotypic</tt>
+<li> Added <tt>--seed</tt> to specify a fixed random seed
+<li> Added <tt>--recode-allele</tt> to modify <tt>--recodeA</tt>
+<li> Fixed issue with <tt>--clump-index-first</tt> option
+<li> Enabled PED files to be input from standard input (<tt>--ped -</tt>)
+<li> Fixed potential error in <tt>--chap</tt> output when test not defined
+</ul>
+
+</p>
+
+<b>V1.01</b> (28-Jan-2008)
+<ul>
+<li> Added <tt>--dummy-coding</tt> modifier for <tt>--write-covar</tt>
+<li> Added <tt>--upate-map</tt>
+<li> Outputs phenotype names for <tt>--all-pheno</tt> if given
+<li> Reworked <tt>--mds-plot</tt> and <tt>--mds-cluster</tt> option to
+work with <tt>--within</tt> and without re-running the clustering
+<li> Fixed <tt>--qfam</tt> issues with permutation test
+<li> Changed defaults for <tt>--proxy-assoc</tt> and <tt>--proxy-impute</tt>
+<li> Changed direction of allele coding for proxy association options
+<li> Changed <tt>--proxy-r2-filter</tt> command (3 parameters) and naming
+<li> Changed syntax for proxy association options, <tt>--proxy-r2</tt>, etc
+<li> Added <tt>--proxy-glm</tt> method
+<li> Fixed problems with <tt>--hap-impute</tt>
+<li> Fixed problem with <tt>--hap-window</tt>
+<li> Issue with hyphens in SNP names and use as range delimiter (<tt>--d</tt>)
+<li> Fixed issue with numeric chromosome codes greater than 22 and <tt>--file</tt>
+<li> Changed output format of TDT and CMH commands
+<li> Make monomorphic SNPs have missing alleles in output if forced
+<li> Fixed minor problem with <tt>--bmerge</tt> when more than 2 alleles seen per SNP
+<li> Physical position output correctly with <tt>--genotypic</tt> option
+<li> Changed threshold to print <tt>NA</tt> in logistic
+<li> Changed headers <tt>BETA</tt> or <tt>OR</tt> in GLM output for clarity
+<li> Now <tt>--recodeA</tt> and <tt>--recodeAD</tt> count number of minor alleles
+<li> Added <tt>--sheep</tt> option
+<li> Fixed problem with <tt>--homozyg</tt>
+</ul>
+</p>
+
+<b>V1.00</b> (4-Dec-2007)
+<ul>
+<li> Added conditional haplotype-based testing (<tt>--chap</tt>)
+<li> Added simple data simulation option (<tt>--simulate</tt>)
+<li> Added/extended SNP imputation functions (<tt>--proxy-assoc</tt> and <tt>--proxy-impute</tt>)
+<li> Added LD-based results clumping procedure (<tt>--clump</tt>)
+<li> Added option to select specific covariates (<tt>--values</tt>)
+<li> Added ability to specify lists and ranges of SNPs (<tt>--snps</tt>)
+<li> Added ability to select ranges based on regions (<tt>--range</tt>)
+<li> Added proxy selection features based on LD (<tt>--proxy-r2-filter</tt>)
+<li> Added simple "risk-profile" tool (<tt>--score</tt>)
+<li> Fixed issue with scaling of covariates in GLMs
+<li> Added <tt>--rerun</tt> option to repeat analysis given LOG file
+<li> Added <tt>--write-snplist</tt> option
+<li> Fixed dirction-of-effect error in haplotypic QTL test
+<li> Enabled <tt>--fisher</tt> to work with <tt>--model</tt>
+<li> Made variance inflation factor default value less stringent 
+<li> Fixed some problems with haplotype TDT 
+<li> Fixed problem with slightly different p-values for QTL tests from <tt>--adjust</tt>
+<li> Fixed bug in <tt>--all-pheno</tt> option when used with disease traits
+<li> Fixed bug in <tt>--epistasis</tt> routine regarding handling of missing data
+</ul>
+
+
+<b>V0.99s</b> (26-July-2007)
+<ul>
+<li> Added SNP annotation <tt>--lookup</tt> set of options
+<li> Added proxy assocition functions (<tt>--proxy-assoc</tt>, etc)
+<li> Added extensible R plugin functionality (<tt>--R</tt>)
+<li> Added <tt>--lfile</tt> option for long-format input
+<li> Fixed problem with all-male or all-female X chromosome test
+<li> Added r-squared calculation for two SNPs based on haplotype frequencies
+<li> Added geno-grouping speedup to E-M algorithm; fixed minor problem with
+ treatment of missing genotype data
+<li> Added <tt>--oblig-missing</tt> and <tt>--oblig-cluster</tt> options, to specify obligatory-missing genotypes
+<li> Added <tt>--impute-sex</tt> option
+<li> Added concordance calculation to <tt>--merge-mode</tt> 6 and 7
+<li> Added haplotype support for X and haploid chromosomes
+<li> Added haplotype support for quantitative trait analysis
+<li> Mendel error filter now zero's out the people implicated as per heurtistic described 
+<a href="summary.shtml#mendel">here</a>
+<li> Fixed output commands to use user-defined missing phenotype and genotype values
+<li> Added dominant and recessive models for <tt>--linear</tt> and <tt>--logistic</tt>
+<li> Improved convergence of EM haplotyping routine
+<li> Fixed minor bug in <tt>--parameters</tt> function
+<li> Added <tt>--lambda</tt> option to fix genomic control factor
+<li> Added <tt>--log10</tt> option to change output in <tt>*.adjusted</tt>
+<li> Added <tt>--horse</tt> species option
+<li> Added <tt>--qq-plot</tt> function
+<li> Added <tt>--loop-assoc</tt> option
+<li> Added <tt>--distance-matrix</tt> option
+<li> Changed implementation and interface of the <tt>--homozyg-*</tt> methods
+<li> Enabled permutation and set-tests with <tt>--dfam</tt>
+<li> Added ability to constrain <tt>--cluster</tt> with <tt>--within</tt>
+<li> Added <tt>--recode-bimbam</tt>, <tt>--recode-fastphase</tt> and 
+<tt>--recode-structure</tt> options
+<li> Fixed minor issue with <tt>--het</tt> command 
+<li> Added <tt>--liability</tt> option
+<li> Fixed issue with <tt>--genotypic</tt> and <tt>--covar</tt>
+<li> Fixed issue with <tt>--dfam</tt>
+</ul>
+
+<b>V0.99r</b> (29-April-2007)
+<ul>
+<li> Added <tt>--parameters</tt> and <tt>--tests</tt> options 
+<li> Added <tt>--zero-cluster</tt> option
+<li> Added <tt>--no-fid</tt>, <tt>--no-parents</tt>, <tt>--no-sex</tt> and <tt>--no-pheno</tt> options
+<li> Added <tt>--with-phenotype</tt> flag to modify <tt>--write-covar</tt>
+<li> Now give a warning if fileroots contain a fullstop/period character
+<li> Added <tt>--fisher</tt> for Fisher's exact test; use this in <tt>--test-missing</tt>
+<li> Added <tt>--set-test</tt> option
+<li> DFAM can include unrelateds (possibly in clusters) as well as 
+families in a combined test
+<li> Improved multicollinearity check in linear model tests
+<li> Added <tt>--all-pheno</tt> option for some tests
+<li> Enabled permutation for <tt>--mh</tt>
+<li> Added XY and MT chromosome support
+<li> Fixed problem with <tt>--hap-window</tt> introduced in 0.99q
+<li> Fixed <tt>--homog</tt> for X and changed output format
+<li> Fixed problem with <tt>--out</tt> and <tt>--script</tt> 
+introduced in 0.99q
+</ul>
+
+<b>V0.99q</b> (3-March-2007)
+<ul>
+<li> Support for PED files larger than 4GB
+<li> Added <tt>--tfile</tt> to load transposed (row=SNP,column=person) 
+files (i.e. as from <tt>--recode --transpose</tt>)
+<li> Added <tt>--recodeA</tt> option (like <tt>--recodeAD</tt> but only output additive components)
+<li> Added <tt>--write-covar</tt> option and also ability to include 
+covariate files when recoding or making binary files
+<li> Add simple filters: <tt>--filter-cases</tt>, <tt>--filter-controls</tt>, <tt>--filter-males</tt>,
+<tt>--filter-females</tt>, <tt>--filter-founders</tt> and <tt>--filter-nonfounders</tt>
+<li> Added weighted multimarker tests with <tt>--whap</tt>
+<li> Added X chromosome and haploid models for <tt>--linear</tt> 
+and <tt>--logistic</tt> with <tt>--xchr-model</tt>
+<li> Add <tt>--set-me-missing</tt> -- now, by default, remaining 
+(i.e. for SNPs/individuals not removed) Mendel errors
+are not fixed to zero when recoding (<tt>--make-bed</tt>, etc) 
+a file and filtering on <tt>--me</tt>.
+<li> Fixed bug in loading of covariates which made missing phenotypes
+<li> Changed implementation of <tt>--fast-epistasis</tt>
+<li> Fixed minor <tt>--bmerge</tt> issue with monomorphic alleles in 
+offspring-only subsamples
+<li> Added <tt>--allele1234</tt> and <tt>--alleleACGT</tt> options
+<li> Fixed CMH output to <tt>NA</tt> rather than -9
+<li> Added web-based context-specific warnings
+</ul>
+</p>
+
+<b>V0.99p</b> (16-January-2007)
+<ul>
+<li> Fixed bug in loading of covariates which made missing phenotypes
+no longer missing (e.g. -9 phenotype would have been treated literally
+as -9)
+<li> Fixed bug in <tt>--bmerge</tt> function when merged-in SNPs 
+already exist
+<li> Added <tt>--transpose</tt> option to modify <tt>--recode</tt>
+<li> Fixed bug in <tt>--genotypic</tt> option that lead to incorrect results
+<li> Added <tt>--test-all</tt> option for <tt>--linear</tt> and <tt>--logistic</tt>
+<li> Changed <tt>--fast-epistasis</tt> to use correlational test
+<li> Added <tt>--ci</tt> support for <tt>--linear</tt> and <tt>--logistic</tt>
+<li> Added <tt>--mds-plot</tt> option
+<li> Now allow <tt>--remove</tt> and <tt>--keep</tt> together (similarly for <tt>--extract</tt> and 
+<tt>--exclude</tt>
+<li> Added <tt>--genome-lists</tt> option to facilitate parallization of <tt>--genome</tt>
+<li> Added lower pool size in pool segment output, with <tt>--pool-size</tt> option
+<li> Added odds ratio calculation for <tt>--model</tt> tests
+<li> Modified <tt>--qfam</tt> within test (only model W)
+<li> Added <tt>--check-sex</tt> option
+<li> Cleaned up excessive memory use issue when merging multiple files
+<li> Added speed-up and bug fixes to QFAM routines
+<li> Added <tt>gPLINK</tt> compatibility via <tt>--gplink</tt> flag
+<li> Now treats half-missing genotypes, e.g. <tt>A 0</tt> as missing 
+rather than giving an error (haploid genotypes should still be coded as 
+homozygous)
+<li> Recode file options (<tt>--make-bed</tt>, <tt>--recode</tt>, etc) 
+now do not automatically set haploid heterozygous genotypes to missing,
+unless <tt>--set-hh-missing</tt> specified
+<li> No longer sets p-values <1e-16 to 0
+<li> Now use t-statistic for QTL test
+<li> Improved verbose segmental output (separate files)
+<li> Added <tt>--filter</tt> and <tt>--mfilter</tt> options
+</ul>
+
+</p>
+
+<b>V0.99o</b> 27-November-2006
+<ul>
+<li> Permutation applicable to <tt>--test-missing</tt> option
+<li> Added <tt>--twolocus</tt> output option
+<li> Added <tt>--overlap</tt> option
+<li> Added <tt>--logistic</tt> and <tt>--linear</tt> options
+<li> Added <tt>--genotypic</tt> and <tt>--interaction</tt> options
+<li> Reframed <tt>--homozyg</tt> tests
+<li> Added epistasis using linear (QT) and logistic regression models
+<li> Fixed bug in haplotype-based TDT test (counted transmissions to 
+unaffecteds)
+<li> IBD estimation adjusted, and fixed a minor bug
+</ul>
+
+
+<b>V0.99n</b> 11-October-2006
+<ul>
+<li> Added option to print warning when duplicate individual or marker IDs 
+are found
+<li> Added <tt>--read-segment</tt> option
+<li> Changed output format of HWE and genotypic/model association tests
+<li> Implemented new bias-correct IBD estimators
+<li> Fixed minor bug that could cause problems when merging datasets on some platforms
+<li> Large restructuring of haplotype inference code
+<li> Added <tt>--test-mishap</tt> option
+<li> Added <tt>--indep-pairwise</tt> option
+<li> Added <tt>--hap-window</tt> option
+<li> Added <tt>--ld-window</tt> option 
+<li> Added <tt>--plist</tt> option
+<li> Added <tt>--read-genome</tt> option
+<li> Added <tt>--map3</tt> option
+</ul>
+
+<b>V0.99m</b> 23-August-2006
+<ul>
+<li> Added <tt>--gene</tt> extraction option
+<li> Fixed bug affecting labels after set pruning 
+<li> Added <tt>--list</tt> output option 
+<li> Added <tt>--counts</tt> option to modify <tt>--freq</tt>
+<li> Fixed bug in the Hotelling's T(2) test handling of missing genotypes
+<li> Added permutation options for <tt>--model</tt>
+<li> Fixed minor bug introduced in v0.99l that caused crash when attempting a set-based TDT analysis
+<li> Altered some field headers in various output files for greater consistency
+</ul>
+
+<b>V0.99l</b> 27-July-2006
+<ul>
+<li> Added <tt>--bmerge</tt> option to merge in a binary file
+<li> Added framework for QFAM test (option not yet available in release version)
+<li> Added Wiggington et al (AJHG, 2005) exact Hardy-Weinberg calculation
+<li> Added <tt>--from-kb</tt> etc options to select regions
+</ul>
+
+
+<b>V0.99j</b> 14-July-2006
+<ul>
+<li>Added <tt>--window</tt> option to extract a +/- X kb region around a 
+given SNP
+<li> Fixed bug which made set VIF pruning fail with a set containing a 
+single SNP
+<li> Redircted ambiguous sex and no-non-missing-founders messages to files 
+(plink.nosex and plink.nof) rather than to plink.log
+<li> Fixed bug in HWE tests which meant non-founders were included
+</ul>
+
+
+<b>V0.99i</b> 5-July-2006
+<ul>
+<li> Improved parsing of PED and haplotype specification files; fixed some minor bugs 
+since 0.99h in this regard, mainly DOS versus UNIX issues
+<li> Fixed bug in haploTDT routine
+<li> Implemented gene-based canonical correlation test within PLINK (previously, an R 
+script was generated and this analysis was performed externally)
+<li> Added feature to scan genome and extract a set of SNPs that are relatively 
+uncorrelated with each other (sliding window based on VIF; implemented in the 
+<tt>--indep</tt> option)
+</ul>
+
+
+<b>V0.99h</b> 29-June-2006
+<ul>
+<li> Added option to prune SNPs based on LD (i.e. select an independent 
+subset of SNPs) using the <tt>--indep</tt> option
+<li> Fixed bug that occurred when creating a binary map file if a SNP had 
+no non-missing alleles (i.e. previously one allele field was left blank, 
+meaning that the file would not be properly read in subsequently)
+<li> Improved Hotelling's T(2) calculation -- now it better handles highly or completely correlated 
+SNPs 
+<li> Added singular value decomposition routines and variance inflation calculation
+<li> Add <tt>--allow-no-sex</tt> option to differently handle individuals with ambiguous sex codes
+<li> Fixed bug in <tt>--r</tt> and <tt>--r2</tt> routines
+</ul>
+
+<b>V0.99g</b> 20-June-2006
+<ul>
+<li> Implemented web-based version checking
+<li> Fixed error in which families counted twice when filtering
+on Mendel errors and performing TDT also
+<li> Added column count check for PED files
+<li> Allowed comments in PED files (lines starting #) for basic input and 
+merge commands
+<li> Fixed specification of <tt>--gap</tt> for case-only epistasis tests 
+-- using kb now, not bp
+</ul>
+
+<b>V0.99f</b> 12-June-2006
+<ul>
+<li> Fixed bug that TDT in version 0.99e (but not prior 
+versions), that meant that transmissions to unaffecteds 
+as well as affecteds were counted
+<li> Improved parsing of --merge-list for end-of-file
+</ul>
+
+<b>V0.99e</b> 9-June-2006
+<ul>
+<li> Improved efficiency of haplotype phase routine
+<li> Added nearest neighbour identification in <tt>--neighbour</tt> 
+routine, and fixed a minor bug
+<li> Added support for haplotypic TDT test
+<li> Fixed error in homozygosity-run analysis
+<li> Fixed error in handling of monomorphic variants when 
+creating a binary map file
+<li> Added <tt>--snp</tt> option to select single SNPs
+<li> Added out-of-memory warning
+</ul>
+
+<b>V0.99c</b> 23-May-2006
+<ul>
+<li> Fixed error in conversion from SNP-major to individual-major data representations that 
+effected Mendel error check routines
+</ul>
+
+<b>V0.99b</b> 16-May-2006
+<ul>
+<li> Fixed error in Hardy-Weinberg calculations for quantitative traits
+<li> Implemented <tt>--nudge</tt> and <tt>--impossible</tt> features for IBD calculation
+</ul>
+
+<b>V0.99</b> 30-Apr-2006
+<ul>
+<li> Major internal restructuring to hold data in either row-major or column-major formats, depending 
+on choice of analysis (i.e. order genotypes either by individual or by SNP in memory).
+<li> Added ability to stratify summary statistics by a cluster variable
+<li> Improved parsing of haplotypes ( creates .mishap file for mis-specified haplotypes)
+<li> Fixed bug in CMH tests (problem with individuals who were not assigned to a cluster)
+<li> Fixed problem with extracting SNPs and individuals with binary PED files
+</ul>
+
+<b>V0.98</b> 19-Apr-2006
+<ul>
+<li> Added support for adjusted significance test calculation (Bonferroni, FDR, Sidak, etc)
+<li> Added <tt>--script</tt> feature to allow long command lines
+<li> Added <tt>--1</tt> feature to allow for 0/1 coding of affection variables
+<li> Added <tt>--tab</tt> feature to control field delimiters in recoded PED files
+<li> Added proper support for combined label-swapping and gene-dropping permutation (<tt>--swap-parents</tt>, 
+<tt>--swap-sibs</tt> and <tt>--swap-unrel</tt>
+<li> Corrected bug in filters for binary files that aren't in genomic order (i.e. 
+those that result from merge operations).
+</ul>
+
+<b>V0.97</b> 10-Apr-2006
+<ul>
+<li> Added Hotelling's T2 test for multilocus SNP data
+<li> Added a test for interaction with quantitative traits and a 
+dichotomous covariate
+<li> Added <tt>--merge-list</tt> option to merge more than 
+two filesets simultaneously
+<li> Fixed bug quantitative trait association test (not dealing with 
+missing phenotypes properly) 
+<li> Fixed some minor bugs with parsing the command line
+</ul>
+
+<b>V0.96</b> 30-Mar-2006
+<ul>
+<li> Fixed bug in <tt>--remove</tt> option
+<li> Added Breslow-Day test of homogeneous odds ratios
+<li> Added option to skip nearby SNPs in case-only epistasis test
+<li> Added time/date stamps to output
+<li> Records output in <tt>*.log</tt> file; most remaining output echoed to 
+STDOUT instead of STDERR (aside from errors and warnings)
+<li> Improved parsing of command lines (checking numeric inputs, etc)
+<li> Added <tt>-mcc</tt> option to specify number of cases:controls in 
+clustering, e.g. for 3:1 matching of cases to controls, for example.
+</ul>
+
+<b>V0.95</b> 20-Mar-2006
+<ul>
+<li> Added Cochran-Mantel-Haenszel tests (2x2xK and IxJxK)
+<li> Added homogeneity of odds ratio between clusters test (partitioning 
+chi-square)
+<li> Added support for gene-dropping simulation
+</ul>
+
+<b>V0.94</b> 7-Mar-2006
+<ul>
+<li> Added feature to perform error checking of command line 
+options (scan for unused options)
+<li> Ability to include external matching criteria for <tt>--cluster</tt> 
+added
+<li> Ability to specify merge modes and a <tt>diff</tt> function for PED 
+files
+</ul>
+
+<b>V0.93</b> 1-Mar-2006
+<ul>
+<li> X chromosome support added for basic association test & quantitative 
+traits
+<li> Threshold for <tt>--genome</tt> output based on pi-hat exceeding 
+<tt>--min</tt>
+</ul>
+
+
+<b>V0.92</b> 22-Feb-2006
+<ul>
+ <li> X chromosome support added for case/control tests, quantitative trait association, TDT, genotypic 
+correlations, allele frequency statistics.  Not yet implemented for the population stratification, 
+inbreeding 
+or epistasis tests.
+<li> <tt>--chr</tt> and <tt>--from X</tt> and <tt>--to X</tt> options added
+<li> Some problems with the <tt>--merge</tt> option corrected
+<li> Now only considers founders for the allele frequency and HWE tests
+</ul>
+
+
+
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:26 EST
+</em>
+
+</body>
+
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+
+</html>

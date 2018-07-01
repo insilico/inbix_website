@@ -1,0 +1,2222 @@
+<html>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+
+<h1>Data management tools</h1>
+
+PLINK provides a simple interface for recoding, reordering, merging,
+flipping DNA-strand and extracting subsets of data. </p>
+
+<a name="recode">
+<h2>Recode and reorder a sample</h2>
+</a></p>
+
+A basic, but often useful feature, is to output a dataset: 
+<ol>
+<li> with the PED file markers reordered for physical position, 
+<li> with excluded SNPs (negative values in the MAP file) excluded from the new PED file
+<li> possibly excluding other SNPs based on filters such as genotyping rate
+<li> possibly recoding the SNPs to a 1/2 coding 
+<li> possibly recoding the SNPs between letters and numbers (A,C,G,T / 1,2,3,4)
+<li> possibly transposing the genotype file (SNPs as rows)
+<li> possibly recoding the SNP to an additive and dominant pair of components 
+<li> possibly listing the data with each specific genotype as a distinct row 
+<li> possibly listing the data one genotype per row
+<li> possibly listing only minor alleles
+</ol>
+
+The basic option to generate a new dataset is the <tt>--recode</tt> option:
+<h5>
+plink --file data --recode
+</h5></p>
+
+which will output the allele labels as they appear in the original;
+also, the missing genotype code is preserved if this is different
+from <tt>0</tt>. Also, if <tt>--output-missing-genotype</tt> is specified (which can be as well as <tt>--missing-genotype</tt>) 
+then this value will be used instead (i.e. so that input and output files can have different missing codes; this also applies to
+the phenotype with <tt>--output-missing-phenotype</tt> and <tt>--missing-phenotype</tt>).
+
+</p>
+The <a href="data.shtml#bed"><tt>--make-bed</tt></a> option does the
+same as <tt>--recode</tt> but creates binary files; these can also be
+filtered, etc, as described below.
+</p>
+
+<p>In contrast, 
+<h5>
+plink --file data --recode12
+</h5></p>
+will recode the alleles as <tt>1</tt> and <tt>2</tt> (and the missing genotype will always be 
+<tt>0</tt>). </p>
+Both these commands will create two new files
+<pre>
+     plink.ped
+     plink.map
+</pre>
+
+(where, as usual, "plink" would be replaced by any specified --out 
+{filename} ).
+</p>
+
+</p>
+
+Unless manually specified, for all these options, the usual filters
+for missingness and allele frequency will be set so as not to exclude
+any SNPs or individuals. By explicitly including an option,
+e.g. <tt>--maf 0.05</tt> on the command line, this behaviour is
+overriden (see <a href="thresh.shtml">this page</a>).
+
+<p>
+
+By default, any <tt>--recode</tt> option, and also <tt>--make-bed</tt>
+will preserve all genotypes exactly as they are.  To set to missing
+Mendel errors or heterozygous haploid calls, use the
+options <tt>--set-me-missing</tt> and <tt>--set-hh-missing</tt>
+respectively. For the former, you will also need to specify <tt>--me 1
+1</tt> (i.e. to invole an evalation of Mendel errors, which does not
+occur by default, by not excluding any individuals or SNPs based on
+the results, i.e. if you only want to zero-out certain genotypes).
+
+</p>
+To recode SNP alleles from A,C,G,T to 1,2,3,4 or vice versa,
+use <tt>--allele1234</tt> (to go from letters to numbers)
+and <tt>--alleleACGT</tt> (to go from numbers to letters). These flags
+should be used in conjunction with a data generation command
+(e.g. <tt>--make-bed</tt>), or any other analysis or summary statistic
+option.  Alleles other than A,C,G,T or 1,2,3,4 will be left unchanged.
+
+<p>
+It is sometimes useful to have a PED file that is tab-delimited,
+except that between alleles of the same genotype a space instead of a
+tab is used. A file formatted in this way can load into Excel, for
+example, as a tab-delimited file, but with one genotype per column
+instead of one allele per column. Use the option <tt>--tab</tt> as
+well as <tt>--recode</tt> or <tt>--recode12</tt> to achieve this
+effect. </p>
+
+</p>
+To make a new file in which non-founders without both parents also in
+the same fileset are recoded as founders (i.e. pat and mat codes set
+both to 0), add the <tt>--make-founders</tt> flag.
+
+
+<h6>Transposed genotype files</h6>
+
+When using either <tt>--recode</tt> or <tt>--recode12</tt>, you can obtain a transposed text genotype 
+file by adding the <tt>--transpose</tt> option. This generates two files: 
+<pre>
+     plink.tped
+     plink.fam
+</pre>
+The first contains the genotype data, with SNPs as rows and individuals as columns, for example: if 
+the original file was
+<pre>
+     1 1 0 0 1  1  1 1  G G
+     1 2 0 0 2  1  0 0  A G
+     1 3 0 0 1  1  1 1  A G
+     1 4 0 0 2  1  2 1  A A
+</pre>
+then this would generate
+<pre>
+     1 snp1 0 10001  1 1  0 0  1 1  2 1
+     1 snp2 0 20001  G G  G A  G A  A A
+</pre>
+
+The first four columns are from the MAP file (chromosome, SNP ID,
+genetic position, physical position), followed by the genotype
+data. The <tt>plink.fam</tt> gives the ID, sex and phenotype
+information for each individual.  The order of individuals in this
+file is the same as the order across the columns of the TPED file. The
+FAM file is just the first six columns of the PED file (or literally
+the same FAM file if the input where a binary fileset).
+
+
+<h6>Additive and dominance components</h6>
+
+The following format is often useful if one wants to use a standard, non-genetic statistical package 
+to analyse the data, as here genotypes are coded as a single allele dosage number. 
+To create a file with SNP genotypes recoded in terms of additive and dominant components, use the 
+option:
+<h5>
+plink --file data --recodeAD
+</h5></p>
+which, assuming <tt>C</tt> is the minor allele, will recode genotypes as 
+follows:
+<pre>
+     SNP       SNP_A ,  SNP_HET
+     ---       -----    -----
+     A A   ->    0   ,   0
+     A C   ->    1   ,   1
+     C C   ->    2   ,   0
+     0 0   ->   NA   ,  NA
+</pre>
+
+In otherwords, the default for the additive recoding is to count the
+number of minor alleles per person. The <tt>--recodeAD</tt> option
+produces both an additive and dominance coding: use <tt>--recodeA</tt>
+instead to skip the <tt>SNP_HET</tt> coding.
+
+</p>
+
+The <tt>--recodeAD</tt> option saves the data to a single file
+<pre>
+     plink.raw
+</pre>
+which has a header row indicating the SNP names (with <tt>_A</tt>
+and <tt>_HET</tt> appended to the SNP names to represent additive and
+dominant components, respectively).
+</p>
+For example, consider the following PED file, which has two SNPs:
+<pre>
+     1 1 0 0 1  1  1 1  G G
+     1 2 0 0 2  1  0 0  A G
+     1 3 0 0 1  1  1 1  A G
+     1 4 0 0 2  1  2 1  A A
+</pre>
+
+Using the <tt>--recodeAD</tt> option generates the file 
+<tt>plink-recode.raw</tt>:
+<pre>
+     FID IID PAT MAT SEX PHENOTYPE snp1_2 snp1_HET snp2_G snp2_HET
+     1 1 0 0 1 1  0  0   2 0
+     1 2 0 0 2 1  NA NA  1 1
+     1 3 0 0 1 1  0  0   1 1
+     1 4 0 0 2 1  1  1   0 0
+</pre>
+
+The column labels reflect the snp name (e.g. <tt>snp1</tt>) with the 
+name of the minor allele appended (i.e. <tt>snp1_2</tt> in the first instance, as 
+<tt>2</tt> is the minor allele) for the additive component. The
+dominant component ( a dummy variable reflecting heterozygote state)
+is coded with the <tt>_HET</tt> suffix.
+</p>
+This file can be easily loaded into <tt>R</tt>: for example:
+<pre>
+     d <- read.table("plink.raw",header=T)
+</pre>
+
+For example, for the first SNP, the individuals are coded
+<tt>1/1</tt>, <tt>0/0</tt>,  <tt>1/1</tt> and  <tt>2/1</tt>. 
+
+The additive count of the number of common (<tt>1</tt>) alleles is
+therefore: <tt>2</tt>, <tt>NA</tt>, <tt>2</tt> and <tt>1</tt>, which
+is reflected in the field <tt>snp1_2</tt>. The field <tt>snp1_HET</tt>
+is coded <tt>1</tt> for the fourth individual who is heterozygous --
+this field can be used to model dominance effect of the allele.
+
+</p>
+
+The behavior of the <tt>--recodeA</tt> and <tt>--recodeAD</tt>
+commands can be changed with the <tt>--recode-allele</tt>
+command. This allows for the 0, 1, 2 count to reflect the number of a
+pre-specified allele type per SNP, rather than the number of the minor
+allele. This command takes as a single argument the name of a file
+that lists SNP name and allele to report, e.g. if the
+file <tt>recode.txt</tt> contained
+<pre>
+     snp1   1
+     snp2   A
+</pre>
+then
+<h5>
+ plink --file data --recodeAD --recode-allele recode.txt
+</h5></p>
+would now report in the LOG file
+<pre>
+     Reading allele coding list from [ recode.txt ] 
+     Read allele codes for 2 SNPs
+</pre>
+and the <tt>plink.raw</tt> file would read
+<pre>
+     FID IID PAT MAT SEX PHENOTYPE snp1_1 snp1_HET snp2_A snp2_HET
+     1 1 0 0 1 1   2  0   0 0
+     1 2 0 0 2 1   NA NA  1 1
+     1 3 0 0 1 1   2  0   1 1
+     1 4 0 0 2 1   1  1   2 0
+</pre>
+
+If the SNP is monomorphic, by default the allele code out will
+be <tt>0</tt> and all individuals will have a count of 0
+(or <tt>NA</tt>). If an allele is specified
+in <tt>--recode-allele</tt> that is not seen in the data, similarly
+all individuals will receive a 0 count (i.e. rather than an error
+being given).
+
+</p><strong>NOTE</strong> For alleles that have exactly 0.50 minor
+allele frequency, as for the second SNP in the example above, then
+which allele is labelled as minor will depend on which was first
+encountered in the PED file. 
+</p>
+
+
+<h6>Listing by minor allele count</h6>
+
+The command
+<pre>
+     --recode-rlist
+</pre>
+will generate a files
+<pre> 
+     plink.rlist
+     plink.fam
+     plink.map
+</pre>
+where the <tt>plink.rlist</tt> file format is
+<pre>
+     SNP
+     GENOTYPE (BOTH ALLELES)
+     FID/IID PAIRS ...
+</pre>
+
+For example, consider a particular SNP, <tt>rs2379981</tt> has a minor
+allele (<tt>G</tt>) seen twice (in two heterozygotes) and two individuals with a
+missing genotpe; all other individuals are homozygous for the major allele. In
+this case, we would see two rows in the <tt>pink.rlist</tt> file:
+<pre>
+     rs2379981 HET G A CH18612 NA18612  JA18998 NA18998
+     rs2379981 NIL 0 0 JA18999 NA18999  JA19003 NA19003
+</pre>
+indicating, for example, that individual FID/IID CH18612/NA18612 has a
+rare heterozygote.  
+</p>
+
+This command could be used in conjunction with the
+<tt>--reference</tt> command and <tt>--freq</tt> to list all instances
+of rare non-reference alleles, e.g. from resequencing study data.
+
+
+<h6>Listing by long-format (LGEN)</h6>
+
+To output a file in the LGEN format, use the command
+<pre>
+     --recode-lgen
+</pre>
+which generates files
+<pre>
+      plink.lgen
+      plink.fam
+      plink.map
+</pre>
+that can be read with the <tt>--lfile</tt> command.  The 
+<pre>
+     --with-reference
+</pre>
+with generate a fourth file
+<pre>
+     plink.ref
+</pre>
+that can be read back in with the <tt>--reference</tt> command when using <tt>--lfile</tt>.
+
+
+<h6>Listing by genotype</h6>
+
+Another format that might sometimes be useful is the <tt>--list</tt> option which genetes a file
+<pre>
+     plink.list
+</pre>
+that is ordered one genotype per row, listing all family and individual IDs of people with that genotype. For 
+example, if we have a file with two SNPs <tt>rs1001</tt> and <tt>rs2002</tt> (both on chromosome 1):
+<pre>
+     A 1 0 0 1  2  A A  1 1
+     B 2 0 0 1  2  A C  0 0
+     C 3 0 0 1  1  A C  1 2
+     D 4 0 0 1  1  C C  1 2
+</pre>
+then then option
+<h5>
+plink --file mydata --list 
+</h5></p>
+will generate the file <tt>plink.list</tt>
+<pre>
+     1 rs1001 AA A 1
+     1 rs1001 AC B 2 C 3
+     1 rs1001 CC D 4
+     1 rs1001 00
+     1 rs2002 22
+     1 rs2002 21 C 3 D 4
+     1 rs2002 11 A 1
+     1 rs2002 00 B 2
+</pre>
+which has columns
+<pre>
+     Chromosome
+     SNP identifier
+     Genotype
+     Family ID, Individual ID for 1st person
+     Family ID, Individual ID for 2nd person
+     ...
+     Family ID, Individual ID for final person
+</pre>
+
+Obviously, different rows will have a different number of columns.
+Here, we see that individual <tt>A 1</tt> has the <tt>A/A</tt> genotype for <tt>rs1001</tt>, etc.  
+This option is often useful in conjunction with <tt>--snp</tt>, if you want an easy breakdown of which individuals 
+have which genotypes.
+
+
+<a name="snplist">
+<h2>Write SNP list files</h2>
+</a></p>
+
+To output just the list of SNPs that remain after all filtering, etc, use the 
+<tt>--write-snplist</tt> command, e.g. to get a list of all high frequency, 
+high genotyping-rate SNPs:
+<h5>
+ plink --bfile mydata --maf 0.05 --geno 0.05 --write-snplist
+</h5></p>
+which generates a file
+<pre>
+     plink.snplist
+</pre>
+This file is simply a list of included SNP names, i.e. the same SNPs that a <tt>--recode</tt> or <tt>--make-bed</tt> statement
+would have produced in the corresponding MAP or BIM files.
+
+
+<a name="updatemap">
+<h2>Update SNP information</h2>
+</a></p>
+
+To automatically update either the genetic or physical positions for some or all SNPs in a dataset, use the 
+<tt>--update-map</tt> command, which takes a single parameter of a filename, e.g. 
+<h5>
+plink --bfile mydata --update-map build36.txt --make-bed --out mydata2
+</h5></p> 
+
+where, for example, the file <tt>build36.txt</tt> contains
+new physical positions for SNPs, based on dbSNP126/build 36, in the simple format of SNP/position per line, e.g. 
+<pre>
+     rs100001  1000202
+     rs100002  6252678
+     rs100003  7635353
+     ...
+</pre>
+
+To change genetic position (3rd column in map file) add the
+flag <tt>--update-cm</tt> <em>as well
+as</em> <tt>--update-map</tt>. There is no way to change chromosome
+codes using this command.
+
+Normally, one would want to save the new file with the changed
+positions, as in the example above, although one could combine other
+commands instead (e.g. association testing, etc) although the updated
+positions would then be lost (i.e. the changes are not automatically
+saved).
+</p>
+
+The file with new SNP information does not need to feature all of the SNPs
+in the current dataset: SNPs not in this file will be left unchanged. If a SNP
+is listed more than once in the file, an error will be reported.
+</p>
+
+<strong>NOTE</strong> When updating the map positions, it is possible that the
+implied ordering of SNPs in the dataset might change. If this is the case, a
+message will be written to the LOG file. Although the positions are updated,
+the order is not changed internally: as SNPs might be out of order, it is
+important to correct this by saving and reloading the file.  For example, the if the original
+contains
+<pre>
+     ...
+     rs10001   500000
+     rs10002   520000
+     rs10003   540000
+     rs10004   560000
+     ...
+</pre>
+but we update <tt>rs10002</tt> to position 580000, the data will be
+<pre>
+     ...
+     rs10001   500000
+     rs10002   580000
+     rs10003   540000
+     rs10004   560000
+     ...
+</pre>
+
+Only after saving and reloading (e.g. <tt>--make-bed</tt> / <tt>--bfile</tt> ) will the file be
+in the correct order
+<pre>
+     ...
+     rs10001   500000
+     rs10003   540000
+     rs10004   560000
+     rs10002   580000
+     ...
+</pre>
+
+This will only be an issue for commands which rely on relative SNP
+positions (e.g. --hap-window, --homozyg, etc).  If the LOG file does
+not show a message that the order of SNPs has changed after using <tt>--update-map</tt>,
+one need not worry.
+
+
+</p>
+The name and chromosome code of a SNP can also be changed, by adding the modifiers
+<tt>--update-name</tt> or <tt>--update-chr</tt>, e.g.
+<h5>
+ ./plink --bfile mydata --update-map rsID.lst --update-name --make-bed --out mydata2
+</h5></p>
+or
+<h5>
+ ./plink --bfile mydata --update-map chr-codes.txt --update-chr --make-bed --out mydata2
+</h5></p>
+In both case, the format of the input file should be two columns per line, e.g. 
+<pre>
+    SNP_A-1919191   rs123456
+    SNP_A-64646464  rs222222
+    ...
+</pre>
+or, for chromosome codes (use numeric values and codes X, Y, etc)
+<pre>
+   rs123456     1
+   rs987654     18
+   rs678678     X
+   ..
+</pre>
+
+You cannot update more than one attribute at a time for SNPs.
+
+<a name="updateallele">
+<h2>Update allele information</h2>
+</a></p>
+
+To recode alleles, for example from A,B allele coding to A,C,G,T
+coding, use the command <tt>--update-alleles</tt>, for example
+<h5>
+ ./plink --bfile mydata --update-alleles mylist.txt --make-bed --out newfile
+</h5></p>
+where the file <tt>mylist.txt</tt> contains five columns per row listing,
+<pre>
+     SNP identifier
+     Old allele code for one allele
+     Old allele code for other allele
+     New allele code for first allele
+     New allele code for other allele
+</pre>
+For example,
+<pre>
+    rs10001  A B   G T
+    rs10002  A B   A C
+    ...
+</pre>
+will change allele A to G and allele B to T for rs10001, etc.
+
+<a name="refallele">
+<h2>Force a specific reference allele</h2>
+</a></p>
+
+It is possible to manually specify which allele is the <tt>A1</tt>
+allele and which is <tt>A2</tt>.  By default, the minor allele is
+assigned to be <tt>A1</tt>.  All odds ratios, etc, are calculated
+with respect to the <tt>A1</tt> allele (i.e. an odds ratio greater
+than 1 implies that the <tt>A1</tt> allele increases risk).
+</p>
+To set a particular allele as <tt>A1</tt>, which might not be the minor allele, 
+use the command <tt>--reference-allele</tt>, which can be used with
+any other analysis or data generation command, e.g.
+<h5>
+ ./plink --bfile mydata --reference-allele mylist.txt --assoc
+</h5></p>
+where the file <tt>mylist.txt</tt> contains a list of SNP IDs and
+the allele to be set as <tt>A1</tt>, e.g.
+<pre>
+     rs10001 A
+     rs10002 T
+     rs10003 T
+     ...
+</pre>
+
+This command can make comparing results across studies easier,  so that odds ratios
+reported can be made to be in the same direction as the other study, for example.
+
+<a name="updatefam">
+<h2>Update individual information</h2>
+</a></p>
+
+Rather than try to manually edit PED or FAM files (which is not advised), use these functions
+to change ID codes, sex and parental information for individuals in a fileset. The command
+<h5>
+plink --bfile mydata --update-ids recoded.txt --make-bed --out mydata2
+</h5></p> 
+changes ID codes for individuals specified in <tt>recoded.txt</tt>, which should be 
+in the format of four columnds per row: old FID, old IID, new FID, new IID, e.g. 
+<pre>
+     FA 1001        F0001   I0001
+     FA 1002.dup    F0002   I0002
+     ...
+</pre>
+will, for example find the person <tt>FA/1001</tt> and change their FID/IID
+values to <tt>F0001/I0001</tt>.  Not all people need be listed in the file (they 
+will not be changed; the order of the file need not match the original dataset.
+</p>
+Two simular commands (but that cannot be run at the same time as <tt>--update-ids</tt>) are
+<h5>
+     --update-sex myfile1.txt
+</h5></p>
+that expects 3 columns per row:
+<pre>
+     FID
+     IID
+     SEX    Coded 1/2/0 for M/F/missing
+</pre>
+and
+<h5>
+     --update-parents myfile2.txt
+</h5></p>
+
+that expects 4 columns per row:
+<pre>
+     FID
+     IID
+     PAT   New paternal IID code
+     MAT   New maternal IID code
+</pre>
+PLINK does not check see whether the new parents actually exist in the current file.
+
+</p> 
+With all of these commands, you need to issue a data output command (<tt>--make-bed</tt>, <tt>--recode</tt>, etc) for the changes to be 
+preserved.
+
+
+<a name="wrtcov">
+<h2>Write covariate files</h2>
+</a></p>
+
+If a covariate file is specified along with any of the above <tt>--recode</tt> options or 
+with <tt>--make-bed</tt>, then that covariate file will also be written, as <tt>plink.cov</tt> 
+by default.  This option is useful if the covariate file has a different number of individuals, 
+or is ordered differently, to produce a set of covariate values that line up more easily 
+with the newly-created genotype and phenotype files. 
+<h5>
+     plink --file data --covar myfile.txt --recode 
+</h5></p>
+
+creates also <tt>plink.cov</tt>.  If you want just to create a revised
+version of the covariate file, but without creating a new set of
+genotype files, then use the <tt>--write-covar</tt> option. This can
+be used in conjunction with filters, etc, to output, for example, only
+covariates for high-genotyping (99%) cases, as in this example:
+
+<h5>
+ plink --file data --write-covar myfile.txt  --filter-cases --mind 0.01
+</h5></p>
+will output just the relevant lines of <tt>myfile.txt</tt> to 
+<tt>plink.cov</tt>, sorted to match the order of 
+<tt>data.ped</tt>.
+
+</p>
+
+To also include phenotype information in the <tt>plink.cov</tt> file
+add the flag <tt>--with-phenotype</tt>.  This can be useful, for
+example, when used in conjunction with <tt>--recodeA</tt> to generate
+the files needed to replicate an analysis in R (e.g. extracting the
+appropriate genotype data, and applying filters, etc).
+</p>
+
+To recode a categorical variable to a set of binary dummy variables, add 
+the command 
+<pre>
+     --dummy-coding
+</pre>
+for example
+<h5>
+ ./plink --bfile mydate --covar cdata.raw --write-covar --dummy-coding
+</h5></p>
+
+If the original covariate had two fields, a categorical variable with 8 levels (coded 0 to 7, 
+although it could have any numeric coding, e.g. 100, 150, 200, 250, etc), and a second variable
+that was continuous, e.g. 
+<pre>
+     A8504 1   5  0.606218
+     A8008 1   1  0.442154
+     A8542 1   7  0.388042   
+     A8022 1   2  0.286125
+     A8024 1   3  0.903004
+     A8026 1   4  0.790778  
+     A8524 1   -9 0.713952
+     A8556 1   0  0.814292
+     A8562 1   1  0.803336
+     ...
+</pre>
+then the command above will create <tt>mynewfile.cov</tt>, with added header row, with the fields:
+<pre>
+     FID       Family ID
+     IID       Individual ID
+     COV1_2    Dummy variable for first covariate, coded  1/0 for 2/other
+     COV1_3    Dummy variable for first covariate, coded  1/0 for 3/other
+     COV1_4    etc
+     COV1_5 
+     COV1_6 
+     COV1_7 
+     COV1_0 
+     COV2     Unchanged continuous covariate
+</pre>
+Thus <tt>mynewfile.cov</tt> is as follows (spaces added for clarity):
+<pre>
+     FID IID   COV1_2 COV1_3 COV1_4 COV1_5 COV1_6 COV1_7 COV1_0 COV2 
+     A8504 1   0 0 0 1 0 0 0          0.606218 
+     A8008 1   0 0 0 0 0 0 0          0.442154 
+     A8542 1   0 0 0 0 0 1 0          0.388042 
+     A8022 1   1 0 0 0 0 0 0          0.286125 
+     A8024 1   0 1 0 0 0 0 0          0.903004 
+     A8026 1   0 0 1 0 0 0 0          0.790778 
+     A8524 1   -9 -9 -9 -9 -9 -9 -9   0.713952 
+     A8556 1   0 0 0 0 0 0 1          0.814292 
+     A8562 1   0 0 0 0 0 0 0          0.803336 
+</pre>
+
+That is, for a variable with <em>K</em> categories, <em>K-1</em> new
+dummy variables are created. This new file can be used
+with <tt>--linear</tt> and <tt>--logistic</tt>, and a coefficient for
+each level would now be estimated for the first covariate (otherwise
+PLINK would have incorrectly treated the first covariate as an
+ordinal/ratio measure).  For covariate <tt>Y</tt>, each new dummy
+variable for level <tt>X</tt> is named <tt>Y_X</tt>,
+e.g. <tt>COV1_2</tt>, etc.
+</p>
+Note that one level is automatically excluded (1 in this case,
+i.e. there is no <tt>COV1_1</tt>), which implicitly makes 1 the
+reference category in subsequent analysis.  If PLINK detects more than
+50 levels, it assumes the variable is not categorical
+(i.e. like <tt>COV2</tt>) and so leaves it unchanged.  The command can
+operate on multiple covariates in a single file at the same time. Note
+that missing values are correctly handled (i.e. left as missing).
+</p>
+<strong>NOTE</strong>  Note that, unlike cluster files (see below) PLINK 
+cannot handle any string information in covariate files.
+
+</p>
+<a name="wrtclst">
+<h2>Write cluster files</h2>
+</a></p>
+
+Similar to <tt>--write-covar</tt>, the <tt>--write-cluster</tt> will
+output the <em>single</em> selected cluster from the file specified
+by <tt>--within</tt>. Unlike covariate files, this allows string labels 
+to be used.
+<h5>
+plink --bfile mydata --within clst.dat --write-cluster --out mynewfile
+</h5></p>
+which writes a file
+<pre>
+     mynewfile.clst
+</pre>
+
+Use <tt>--mwithin</tt> to select which of multiple clusters is selected. The 
+<tt>--dummy-coding</tt> can not currently be used with <tt>--write-cluster</tt>
+however.
+
+<a name="flip">
+<h2>Flip DNA strand for SNPs</h2>
+</a></p>
+
+This command will read the list of SNPs in the file <tt>list.txt</tt>
+and flip the strand for these SNPs, then save a new PED or BED fileset
+(i.e. by using either the <tt>--recode</tt> or <tt>--make-bed</tt>
+commands):
+
+<h5>
+     plink --file data --flip list.txt --recode 
+</h5></p>
+
+The <tt>list.txt</tt> should just be a simple list of SNP IDs, one SNP
+per line.
+
+</p>
+Flipping strand means changing alleles 
+<pre>
+   A -> T
+   C -> G
+   G -> C
+   T -> A
+</pre>
+so, for example, a <tt>A/C</tt> SNP will become a <tt>T/G</tt>;
+alternatively, a <tt>A/T</tt> SNP will become a
+<tt>T/A</tt> SNP (i.e. in this case, the labels remain the same, but
+whether the minor allele is <tt>A</tt> or
+<tt>T</tt> will still depend on strand).
+
+</p>
+To flip strand for just a subset of the sample (e.g. if two samples have already been merged, and subsequently 
+a strand issue has been identified for one of those samples) use the option <tt>--flip-subset</tt>, for example
+<h5>
+     plink --file data --flip list.txt --flip-subset mylist.txt --recode 
+</h5></p>
+where <tt>mylist.txt</tt> is a text file containing the individuals (family ID, individual ID) to be flipped.
+
+</p><strong>HINT</strong> When merging two datasets, it is clearly
+very important that the two sets of SNPs are concordant in terms of
+positive or negative strand. Whereas some mismatches will be easy to
+spot as more than two alleles will be observed in the merged dataset,
+other instances will not be so easy to spot, i.e. for <tt>A/T</tt>
+and <tt>C/G</tt> SNPs.
+
+<a name="flipscan">
+<h2>Using LD to identify incorrect strand assignment in a subset of the sample</h2>
+</a></p>
+
+If cases and controls have been genotyped separately and then the data
+merged, it is always possible that strand has been incorrectly or incompletely 
+assigned to each SNP, meaning that the merged data may contain a number of SNPs
+for which the allele coding differs between cases and controls (or between any other 
+grouping, such as collection site, etc). 
+</p>
+If the two mis-matched groups correspond to cases and controls
+exactly, then rare SNPs will show a very strong association with
+disease (e.g. 5% MAF in cases, 95% in controls) and be easy to spot as
+potential problems. More common SNPs could show intermediate levels of
+association that might be easier to confuse with a real signal.
+</p>
+
+A simple approach to detect some proportion of such SNPs uses
+differential patterns of LD in cases versus controls: the command
+<tt>--flip-scan</tt> will query each SNP, and calculate the signed
+correlation between it and a set of nearby SNPs in cases and controls
+separately (of course, with the <tt>--pheno</tt>
+command, <em>case</em> and <em>control</em> status can be set to
+represent any binary split of the sample).
+</p>
+For each index SNP, PLINK identifies other SNPs in which the absolute
+value of the genotypic correlation is above some threshold. For these
+SNP pairs, it counts the number of times the signed correlation is
+different in sign between cases and controls (a <em>negative</em> LD
+pair) versus the same (a <em>positive</em> LD pair). For example, the
+command
+<h5> 
+plink --bfile mydata --flip-scan 
+</h5></p>
+produces the output file
+<pre>
+     plink.flipscan
+</pre>
+with the fields
+<pre>
+     CHR     Chromosome
+     SNP     SNP identifier for index SNP
+     BP      Base-pair position
+     A1      Minor allele code
+     A2      Major allele code
+     F       Allele frequency (A1 allele)
+     POS     Number of positive LD matches
+     R_POS   Average correlation of these 
+     NEG     Number of negative LD matches
+     R_NEG   Average correlation of these
+     NEGSNPS The SNPs showing negative correlation
+</pre>
+For example, the majority of this file should show SNPs have
+a <tt>NEG</tt> value of 0; the value of <tt>POS</tt> will be zero or
+greater, depending on the extent of LD. For example:
+<pre>
+    CHR         SNP       BP  A1  A2      F  POS  R_POS  NEG  R_NEG  NEGSNPS
+      1   rs9439462  1452629   T   C      0    0     NA    0     NA (NONE)
+      1   rs1987191  1457348   C   T      0    0     NA    0     NA (NONE)
+      1   rs3766180  1468016   C   T  0.285    2  0.893    0     NA (NONE)
+</pre>
+However, occasionally one might observe different patterns of results.  Of particular interest is when 
+one SNP shows a large number of <tt>NEG</tt> SNPs. For example, here we show <tt>rs2240344</tt> and nearby 
+SNPs, all of which have at least one <tt>NEG</tt> SNP (lines truncated)
+<pre><font size="-1">
+   CHR          SNP         BP  A1  A2       F  POS    R_POS  NEG    R_NEG  NEGSNPS
+    14   rs12434442   72158039   T   C   0.249    5    0.515    1     0.46  rs2240344
+    14    rs4899437   72190986   G   C   0.394    5    0.802    1    0.987  rs2240344
+    14    rs2803980   72196284   G   A    0.41    5    0.808    1     0.95  rs2240344
+    14    rs2240344   72197893   C   G   0.489    0       NA    7    0.807  rs12434442|rs4899437|...
+    14    rs2286068   72198107   C   T   0.407    7    0.741    1    0.962  rs2240344
+    14    rs7160830   72209491   T   C   0.414    6    0.801    1    0.922  rs2240344
+    14   rs10129954   72220454   T   C   0.413    6    0.729    1     0.73  rs2240344
+    14    rs7140455   72240734   T   C   0.469    4     0.72    1     0.64  rs2240344
+</font></pre>
+
+This pattern of results quite clearly points to <tt>rs2240344</tt> as
+being the odd man out: for 7 other SNPs, there is strong LD
+(<em>r</em> above 0.5) in either cases or controls, <em>but</em> with
+a SNP-SNP correlation in the other phenotype class that has the opposite
+direction. In contrast, there is not a single SNP for which both cases
+and controls have a consistent pattern of LD. For the nearby SNPs, all
+of which have only 1 <tt>NEG</tt> SNP, it is with rs2240344. So, in this particular
+case, it would suggest that stand is flipped in either cases or controls.
+
+</p>
+
+To display the specific sets of correlations in cases and controls for
+each SNP, add the option
+<pre>
+     --flip-scan-verbose
+</pre>
+which generates a file
+<pre>
+     plink.flipscan.verbose
+</pre>
+which lists for any SNP with at least one <tt>NEG</tt> pair of LD values, the correlations 
+between the index SNP and the other flanking SNPs, showing the correlation in cases (<tt>R_A</tt>) 
+and controls (<tt>R_U</tt>):
+<pre>
+ CHR_INDX   SNP_INDX     BP_INDX  A1_INDX    SNP_PAIR    BP_PAIR  A1_PAIR     R_A      R_U
+     14    rs2240344    72197893     C     rs12434442   72158039     T     -0.504    0.416
+     14    rs2240344    72197893     C      rs4899437   72190986     G     -0.99     0.983
+     14    rs2240344    72197893     C      rs2803980   72196284     G     -0.969    0.931
+     14    rs2240344    72197893     C      rs2286068   72198107     C     -0.971    0.952
+     14    rs2240344    72197893     C      rs7160830   72209491     T     -0.935    0.91
+     14    rs2240344    72197893     C     rs10129954   72220454     T     -0.782    0.679
+     14    rs2240344    72197893     C      rs7140455   72240734     T     -0.671    0.609
+</pre>
+
+Here we see a clear pattern in which the correlation is similar between cases and controls in magnitude
+but has the opposite direction, strongly suggestive of a strand flip problem for this C/G SNP. In this case, 
+the allele frequency turns out to be quite different between cases and controls (60% versus 40%) but the LD approach
+would have clearly detected this particular SNP being flipped in either cases or controls even if the true 
+allele frequency were exactly 50%. This latter class of SNP would not cause problems of spurious association 
+in single SNP analysis, but it could cause severe problems in haplotype and imputation analysis. 
+</p>
+
+Naturally, if a SNP does not show strong LD with nearby SNPs, then
+this approach will not be able to resolve strand issues. Also, if more
+than one SNP in a region shows strand flips, or if there is a higher
+level of mis-coding alleles in general, then this approach may
+indicate that there are problems (many <tt>NEG</tt> scores above 0)
+but it might be less clear how to remedy them.
+
+</p>
+
+To know which to resolve (cases or controls) one would need to look at
+the frequency in other panels, or even the correlations, e.g. in
+HapMap. Ideally, one would only need to do this for a small number of
+SNPs if any. The <tt>--flip</tt> and <tt>--flip-subset</tt> commands
+<a href="#flip">described above</a> can then be used to flip the 
+appropriate genotypes.
+</p>
+
+Finally, the default threshold for counting can be changed by the
+following command:
+<pre>
+     --flip-scan-threshold 0.8
+</pre>
+The default is set at 0.5 (i.e. the pair needs to have a correlation
+of 0.5 or greater in either cases or controls). The number of flanking
+SNPs with are considered for each index SNP can be modified with the
+commands
+<pre>
+     --ld-window 10
+</pre>
+to set the number of SNPs considered upstream and downstream; the
+maximum physical distance away from the index SNP (1Mb by default) is
+specified in kb with the command:
+<pre>
+     --ld-window-kb 500
+</pre>
+
+
+<a name="merge">
+<h2>Merge two filesets</h2>
+</a></p>
+
+To merge two PED/MAP files:
+
+<h5>
+     plink --file data1 --merge data2.ped data2.map --recode --out merge
+</h5></p>
+
+The <tt>--merge</tt> option must be followed by 2 arguments: the name
+of the second PED file and the name of the second MAP file. A
+<tt>--recode</tt> (or <tt>--make-bed</tt>, etc) option is necessary to
+output the newly merged file; in this case, <tt>--out</tt> option will
+create the files <tt>merge-recode.ped</tt>
+and <tt>merge-recode.map</tt>.
+
+</p>
+
+The <tt>--merge</tt> option can also be used with binary PED files,
+either as input or output, but not as the second file: i.e.
+<h5>
+     plink --bfile data1 --merge data2.ped data2.map --make-bed --out merge
+</h5></p>
+
+will create <tt>merge.bed</tt>, <tt>merge.fam</tt>
+and <tt>merge.bim</tt>, as the <tt>--make-bed</tt> option was used
+instead of the <tt>--recode</tt> option. Likewise,
+the <tt>data1.*</tt> files point to a binary PED file set.
+</p>
+
+If the second fileset (<tt>data2.*</tt>) were in binary format, then
+you must use <tt>--bmerge</tt> instead of <tt>--merge</tt>
+<h5>
+    plink --bfile data1 --bmerge data2.bed data2.bim data2.fam --make-bed --out merge
+</h5></p>
+which takes 3 parameters (the names of the BED, BIM and FAM files, in that order).
+
+</p>
+
+The two filesets can either overlap completely, partially, or not at
+all both in terms of markers and individuals. Imputed genotypes will
+be set to missing (i.e. if <tt>SNP_B</tt> is not measured in the first
+file, but it is in the second, then any individuals in the first file
+who are not also present in the second file will be set to missing for
+<tt>SNP_B</tt>.  
+</p>
+By default, any existing genotype data (i.e. in <tt>data1.ped</tt>)
+will not be over-written by data in the second file (<tt>data2.ped</tt>).
+By specifying a <tt>--merge-mode</tt> this default behavior can be 
+changed. The modes are:
+<pre>
+     1    Consensus call (default)
+     2    Only overwrite calls which are missing in original PED file
+     3    Only overwrite calls which are not missing in new PED file
+     4    Never overwrite
+     5    Always overwrite mode
+     6    Report all mismatching calls (diff mode -- do not merge)
+     7    Report mismatching non-missing calls (diff mode -- do not merge)
+</pre>
+
+The default (mode 1) behaviour is to call the merged genotype as missing 
+if the original and new files contain different, non-missing calls; 
+otherwise: i.e. 
+<pre>
+                                Merge mode
+    data1.ped ,  data2.ped  ->  1    2    3    4    5    
+    ---------    ---------      -----------------------
+     0/0      ,   0/0       ->  0/0  0/0  0/0  0/0  0/0
+     0/0      ,   A/A       ->  A/A  A/A  A/A  0/0  A/A
+     A/A      ,   0/0       ->  A/A  A/A  A/A  A/A  0/0
+     A/A      ,   A/T       ->  0/0  A/A  A/T  A/A  A/T
+</pre>
+
+Modes 6 and 7 effectively provide a means for comparing two PED 
+files -- no merging is performed in these cases; rather, a list of 
+mismatching SNPs is written to the file
+<pre>
+     plink.diff
+</pre>
+They should also report the concordance rate in the LOG file, based on all SNPs 
+that feature in both sets.
+
+</p>
+A warning will be given if the chromosome and/or physical position
+differ between the two MAP files.
+</p>
+<strong>NOTE</strong>  Alleles must be exactly coded to match: that is, 
+PLINK will not assume that a <tt>{1,2,3,4}</tt> SNP coding maps onto
+a <tt>{A,C,G,T}</tt> coding. You can use the <tt>--allele1234</tt>
+and <tt>--alleleACGT</tt> commands <em>prior</em> to merging to convert
+datasets and then merge these consistently coded files (you cannot 
+convert and merge on the fly, i.e. simply do putting <tt>--allele1234</tt>
+on the command line along with <tt>--merge</tt> will not work: you 
+need to use <tt>--allele1234</tt> and <tt>--make-bed</tt> first).
+
+<a name="mergelist">
+<h2>Merge multiple filesets</h2>
+</a></p>
+
+To merge more than two standard and/or binary filesets, it is often
+more convenient to specify a single file that contains a list of
+PED/MAP and/or BED/BIM/FAM files and use the <tt>--merge-list</tt>
+option. Consider, for an extreme example, the case where each fileset
+contains only a single SNP, and that there are thousands of these
+files -- this option would help build a single fileset, in this case.
+
+</p>
+
+For example, consider we had 4 PED/MAP filesets
+(labelled <tt>fA.*</tt> through <tt>fD.*</tt>) and 4 binary filesets,
+labelled <tt>fE.*</tt> through <tt>fH.*</tt>).  Then using the command
+<h5>
+     plink --file fA --merge-list allfiles.txt --make-bed --out mynewdata
+</h5></p>
+would create the binary fileset 
+<pre>
+     mynewdata.bed
+     mynewdata.bim
+     mynewdata.fam
+</pre>
+(alternatively, the <tt>--recode</tt> option could have been used instead of <tt>--make-bed</tt> 
+to generate a standard ASCII PED/MAP fileset). In this case, the file <tt>allfiles.txt</tt> 
+was a list of the to-be-merged files, one set per row:
+<pre>
+     fB.ped fB.map
+     fC.ped fC.map
+     fD.ped fD.map
+     fE.bed fE.bim fE.fam
+     fF.bed fF.bim fF.fam
+     fG.bed fG.bim fG.fam
+     fH.bed fH.bim fH.fam
+</pre>
+
+</p><strong>Important</strong> Each fileset must be on a line by
+itself: lines with two files are interpreted as PED/MAP filesets;
+lines with three files are interpreted as binary BED/BIM/FAM
+filesets. The files on a line must always be in this order (PED then
+MAP; BED then BIM then FAM)</p>
+
+</p><strong>Note</strong> In this case the first of the 8 files must
+be the starting file, i.e.  associated with <tt>--file</tt> on the
+command line; this file only contains the 8-1 remaining files
+therefore. The final <tt>mynewdata.*</tt> files will contain
+information from all 8 files.
+
+</p> 
+The <tt>--merge-mode</tt> option can also be used with the <tt>--merge-list</tt> option, 
+as described above: however, 
+it is not possible to specify the "diff" features (i.e. modes 6 and 7).
+
+
+<a name="extract">
+<h2>Extract a subset of SNPs: command line options</h2>
+</a></p>
+
+There are multiple ways to extract just specific SNPs for
+analysis; this section describes options that use the command-line
+directly; the next section describes other methods that read a file
+containing the information.
+
+<h6>Based on a single chromosome (<tt>--chr</tt>)</h6>
+
+To analyse only a specific chromosome use 
+<h5>
+     plink --file data --chr 6 
+</h5></p>
+
+<h6>Based on a range of SNPs (<tt>--from</tt> and <tt>--to</tt>)</h6>
+
+To select a specific range of markers (that must all fall on the same chromosome) use, for example:
+<h5>
+     plink --bfile mydata --from rs273744 --to rs89883
+</h5></p>
+
+<h6>Based on single SNP (and window) (<tt>--snp</tt> and <tt>--window</tt>)</h6>
+
+Alternatively, you can specify a single SNP and, optionally, also ask
+for all SNPs in the surrounding region, with the <tt>--window</tt>
+option:
+
+<h5>
+plink --bfile mydata --snp rs652423 --window 20
+</h5></p>
+which extracts only SNPs within +/- 20kb of rs652423.
+
+<h6>Based on multiple SNPs and ranges (<tt>--snps</tt>)</h6>
+
+Alternatively, the newer <tt>--snps</tt> command is more flexible but
+slower than the previously described <tt>--snp</tt>
+and <tt>--from</tt>/<tt>--to</tt> commands. The <tt>--snps</tt>
+command will accept a comma-delimited list of SNPs, including ranges
+based on physical position. For example,
+<h5>
+ plink --bfile mydata --snps rs273744-rs89883,rs12345-rs67890,rs999,rs222
+</h5></p>
+selects the same range as above (<tt>rs273744</tt> to <tt>rs89883</tt>) but also
+the separate range <tt>rs273744</tt> to <tt>rs89883</tt> as well as the two 
+individual SNPs <tt>rs999</tt> and <tt>rs222</tt>.  Note that SNPs need not be on the 
+same chromosome; also, a range can span multiple chromosomes (the range is defined based
+on chromosome code order in that case, as well as physical position, i.e. a range from a SNP
+on chromosome 4 to one on chromosome 6 includes all SNPs on chromosome 5). No spaces are
+allowed between SNP names or ranges, i.e. it is
+<pre>
+     --snps rs1111-rs2222,rs3333,rs4444
+</pre>
+and <b>not</b>
+<pre>
+     --snps rs1111 - rs2222, rs3333 ,rs4444
+</pre>
+
+<strong>Hint</strong> As mentioned above, unlike other methods mentioned above, 
+<tt>--snps</tt> will load in all the data before extracting what it needs,
+whereas <tt>--snp</tt> only loads in what it needs, as so is a much
+faster way to extract a region from a very large dataset: as a result,
+if you really do want only a single SNP or a single range,
+use <tt>--snp</tt> (with <tt>--window</tt>) or some variant of the
+<tt>from</tt>/<tt>--to</tt> commands.
+
+
+<h6>Based on physical position (<tt>--from-kb</tt>, etc)</h6>
+
+One can also select regions based on a window defined in terms of physical distance
+rather than SNP ID, using the command: e.g.
+<h5>
+plink --bfile mydata --chr 2 --from-kb 5000 --to-kb 10000
+</h5></p>
+to select all SNPs within this 5000kb region on chromosome 2 (when using <tt>--from-kb</tt> 
+and <tt>--to-kb</tt> you always need to specify the chromosome 
+with the <tt>--chr</tt> option). 
+
+</p><strong>HINT</strong> Two alternate forms of the <tt>--from-kb</tt> command are 
+<tt>--from-bp</tt> and <tt>--from-mb</tt> that take a parameter in terms of 
+base-pair position or megabase position, instead of kilobase (to be used with the 
+corresponding <tt>--to-bp</tt> and <tt>--to-mb</tt> options).
+
+<h6>Based on a random sampling (<tt>--thin</tt>)</h6>
+
+To keep only a random 20% of SNPs, for example, add the flag
+<pre>
+     --thin 0.2
+</pre>
+
+
+
+</p> &nbsp; </p>
+
+All the above options can be used either with standard pedigree files
+(i.e. using
+<tt>--ped</tt> or <tt>--file</tt>) or with binary format pedigree (BED) 
+files (i.e. using <tt>--bfile</tt>). One must combine this option with the 
+desired analytic (e.g. <tt>--assoc</tt>), summary statistic (e.g. 
+<tt>--freq</tt>) or data-generation (e.g. <tt>--make-bed</tt>) option.
+
+
+
+<a name="extract">
+<h2>Extract a subset of SNPs: file-list options</h2>
+</a></p>
+
+To extract only a subset of SNPs, it is possible to specify a 
+list of required SNPs and make a new file, or perform an analysis on
+this subset, by using the command
+<h5>
+	plink --file data --extract mysnps.txt
+</h5></p>
+where the file is just a list of SNPs, one per line, e.g.
+<pre>
+     snp005
+     snp008
+     snp101
+</pre>
+
+Alternatively, you can use the command <tt>--range</tt> to modify the
+behavior of <tt>--extract</tt> and <tt>--exclude</tt>. If the
+<tt>--range</tt> flag is added, then instead of a list of SNPs, PLINK
+will expect a list of chromosomal ranges to be given instead, one per
+line.
+
+<h5>
+	plink --file data --extract myrange.txt --range
+</h5></p>
+
+All SNPs within that range will then be excluded or extracted. The
+format of <tt>myrange.txt</tt> should be, one range per line,
+whitespace-separated:
+
+<pre>
+     CHR     Chromosome code (1-22, X, Y, XY, MT, 0)
+     BP1     Start of range, physical position in base units
+     BP2     End of range, as above
+     LABEL   Name of range/gene
+</pre>
+
+For example,
+
+<pre>
+     2 30000000 35000000  R1
+     2 60000000 62000000  R2
+     X 10000000 20000000  R3
+</pre>
+
+would extract/exclude all SNPs in these three regions (5Mb and 2Mb on
+chromosome 2 and 10Mb on chromosome X).
+
+</p>
+
+<h6>Based on an attribute file (<tt>--attrib</tt>)</h6>
+
+See <a href="#attrib">below</a>
+
+<h6>Based on a set file (<tt>--gene</tt>)</h6>
+
+Finally, if a SET file is also specified, you can use the <tt>--gene</tt> 
+option to extract all SNPs in that gene/region. For example, if the SET file 
+<tt>genes.set</tt> contains two genes:
+<pre>
+     GENE1
+     rs123456
+     rs10912
+     rs66222
+     END
+
+     GENE2
+     rs929292
+     rs288222
+     rs110191
+     END
+</pre>
+then
+<h5>
+plink --file mydata --set genes.set --gene GENE2 --recode 
+</h5></p>
+
+would, for example, create a new dataset with only the 3 SNPs in
+<tt>GENE2</tt>.
+
+One must combine these options with the desired analytic
+(e.g. <tt>--assoc</tt>), summary statistic (e.g. <tt>--freq</tt>) or
+data-generation (e.g. <tt>--make-bed</tt>) option.
+
+
+<a name="exclude">
+<h2>Remove a subset of SNPs</h2>
+</a></p>
+
+To re-write the PED/MAP files, but with certain SNPs excluded, use the 
+option
+<h5>
+	plink --file data --exclude mysnps.txt
+</h5></p> 
+where the file <tt>mysnps.txt</tt> is, as for the <tt>--extract</tt>
+command, just a list of SNPs, one per line.  As described above,
+the <tt>--range</tt> command can modify the behaviour
+of <tt>--exclude</tt> in the same manner as for <tt>--extract</tt>.
+</p>
+
+
+One must combine this option with the desired analytic
+(e.g. <tt>--assoc</tt>), summary statistic (e.g. <tt>--freq</tt>) or
+data-generation (e.g. <tt>--make-bed</tt>) option.
+
+</p><strong>NOTE</strong> Another way of removing SNPs is to make the
+physical position negative in the MAP file (this can not be done for
+binary filesets (e.g. the <tt>*.bim</tt> file).
+
+
+<a name="zero">
+<h2>Make missing a specific set of genotypes</h2>
+</a></p>
+
+To blank out a specific set of genotypes, use the following commands,
+e.g.
+<pre>
+	--zero-cluster test.zero  --within test.clst
+</pre>
+in conjunction with other data analysis, file generation or summary
+statistic commands, where the file <tt>test.zero</tt> is a list of
+SNPs and clusters, and <tt>test.clust</tt> is a
+standard <a href="data.shtml#clst">cluster file</a>.
+</p>
+If the original PED file is
+<pre>
+     1  1 0 0 1 1   A A  C C  A A 
+     2  1 0 0 1 1   C C  A A  C C 
+     3  1 0 0 1 1   A C  A A  A C 
+     4  1 0 0 1 1   A A  C C  A A 
+     5  1 0 0 1 1   C C  A A  C C 
+     6  1 0 0 1 1   A C  A A  A C 
+     1b 1 0 0 1 1   A A  C C  A A 
+     2b 1 0 0 1 1   C C  A A  C C 
+     3b 1 0 0 1 1   A C  A A  A C 
+     4b 1 0 0 1 1   A A  C C  A A 
+     5b 1 0 0 1 1   C C  A A  C C 
+     6b 1 0 0 1 1   A C  A A  A C 
+</pre>
+and the MAP file is
+<pre>
+     1 snp1 0 1000
+     1 snp2 0 2000
+     1 snp3 0 3000
+</pre>
+and the list of SNPs/clusters to zero out in <tt>test.zero</tt> is
+<pre>
+     snp2   C1
+     snp3   C1
+     snp1   C2
+</pre>
+and the cluster file <tt>test.clst</tt> is
+<pre>
+     1b 1 C1
+     2b 1 C1
+     3b 1 C1
+     4b 1 C1
+     5b 1 C1
+     6b 1 C1
+     2  1 C2
+     3  1 C2
+</pre>
+then the command
+<h5>
+ plink --file test --zero-cluster test.zero --within test.clst --recode
+</h5></p>
+results in a new PED file, <tt>plink.ped</tt>,
+<pre>
+     1  1 0 0 1  1  A A C C A A
+     2  1 0 0 1  1  0 0 A A C C
+     3  1 0 0 1  1  0 0 A A A C
+     4  1 0 0 1  1  A A C C A A
+     5  1 0 0 1  1  C C A A C C
+     6  1 0 0 1  1  A C A A A C
+     1b 1 0 0 1  1  A A 0 0 0 0
+     2b 1 0 0 1  1  C C 0 0 0 0
+     3b 1 0 0 1  1  A C 0 0 0 0
+     4b 1 0 0 1  1  A A 0 0 0 0
+     5b 1 0 0 1  1  C C 0 0 0 0
+     6b 1 0 0 1  1  A C 0 0 0 0
+</pre>
+i.e. with the appropriate genotypes zeroed out.
+</P>
+<strong>HINT</strong> See the section on
+handling <a href="summary.shtml#oblig_missing">obligatory missing</a>
+genotype data, which can often be useful in this context.
+
+
+<a name="keep">
+<h2>Extract a subset of individuals</h2>
+</a></p>
+
+To keep only certain individuals in a file, use the option:
+<h5>
+	plink --file data --keep mylist.txt
+</h5></p>
+where the file <tt>mylist.txt</tt> is, as for the <tt>--remove</tt> 
+command, just a list of Family ID / Individual ID pairs, one set per 
+line, i.e. one person per line. (fields can occur after the 2nd column but
+they will be ignored -- i.e. you could use a FAM file as the parameter of the 
+<tt>--keep</tt> command, or have comments in the file. For example
+<pre>
+   F101   1 
+   F1001  2_B
+   F3033  1_A  Drop this individual because of consent issues   
+   F4442  22
+</pre>
+would be fine.
+</p>
+
+One must combine this option with the desired analytic (e.g. <tt>--assoc</tt>), summary 
+statistic (e.g. <tt>--freq</tt>) or data-generation (e.g. <tt>--make-bed</tt>) option.
+
+
+<a name="remove">
+<h2>Remove a subset of individuals</h2>
+</a></p>
+
+To remove certain individuals from a file 
+<h5>
+	plink --file data --remove mylist.txt
+</h5></p>
+where the file <tt>mylist.txt</tt> is, as for the <tt>--keep</tt> 
+command, just a list of Family ID / Individual ID pairs, one set per 
+line, i.e. one person per line (although, as for <tt>--keep</tt>, fields
+after the 2nd column are allowed but they will be ignored).
+</p>
+
+One must combine this option with the desired analytic
+(e.g. <tt>--assoc</tt>), summary statistic (e.g. <tt>--freq</tt>) or
+data-generation (e.g. <tt>--make-bed</tt>) option.
+
+
+<a name="filter">
+<h2>Filter out a subset of individuals</h2>
+</a></p>
+
+Whereas the options to <a href="#keep">keep</a> or <a href="#remove">remove</a> individuals are based 
+on files containing lists, it is also possible to specify a filter to include only certain 
+individuals based on phenotype, sex or some other variable.
+</p>
+
+The basic form of the command is <tt>--filter</tt> which takes two arguments, a filename and a value to 
+filter on, for example:
+<h5>
+	plink --file data --filter myfile.raw 1 --freq
+</h5></p> implies a file <tt>myfile.raw</tt> exists which has a
+similar format to phenotype and cluster files: that is, the first two
+columns are family and individual IDs; the third column is expected to
+be a numeric value (although the file can have more than 3 columns),
+and only individuals who have a value of
+<tt>1</tt> for this would be included in any subsequent analysis or file generation procedure.  e.g. if 
+<tt>myfile.raw</tt> were
+<pre>
+     F1  I1   2
+     F2  I1   7
+     F3  I1   1
+     F3  I2   1
+     F3  I3   3
+</pre>
+then only two individuals (<tt>F3 I1</tt> and <tt>F3 I2</tt>) would be included based on this filter for 
+the calculation of allele frequencies. The filter can be any integer numeric value. 
+</p>
+
+As with <tt>--pheno</tt> and <tt>--within</tt>, you can specify an
+offset to read the filter from a column other than the first after the
+obligatory ID columns.  Use the <tt>--mfilter</tt> option for
+this. For example, if you have a binary fileset, and so the FAM file
+contains phenotype as the sixth column, then you could specify
+
+<h5>
+ plink --bfile data --filter data.fam 2 --mfilter 4
+</h5></p>
+
+to select cases only; i.e. cases have the value <tt>2</tt>, and this
+is the 4th variable in the file (i.e.  the first two columns are
+ignored, as these are the ID columns).
+
+</p>
+
+Because filtering on cases or controls, or on sex, or on position
+within the family, will be common operations, there are some shortcut
+options that can be used instead of <tt>--filter</tt>. These are
+
+<pre>
+     --filter-cases
+     --filter-controls
+     --filter-males
+     --filter-females
+     --filter-founders
+     --filter-nonfounders
+</pre>
+
+These flags can be used in any circumstances, e.g. to make a file of control founders, 
+<h5>
+ plink --bfile data --filter-controls --filter-founders --make-bed --out newfile
+</h5></p>
+or to analyse only males
+<h5>
+ plink --bfile data --assoc --filter-males
+</h5></p>
+
+</p>
+
+<strong>IMPORTANT</strong> Take care when using these with options to
+merge filesets: the merging occurs <b>before</b> these filters.
+
+<a name="attrib">
+<h2>Attribute filters for markers and individuals</h2>
+</a></p>
+
+One can define an attribute file for SNPs (or for individuals, see
+below) that is simply a list of user-defined attributes for SNPs. For
+example, this might be a file
+<pre>
+     snps.txt
+</pre>
+which contains
+<pre>
+     rs0001   exonic 
+     rs0007   candidate
+     rs0010   failed exonic 
+     rs0012   nssnp
+</pre>
+These codes can be whatever you like, as is appropriate for your
+study; a SNP can have multiple, white-space delimited attributes. Not
+all SNPs need appear in this file; SNPs not in the dataset are allowed
+to appear (they are just ignored); the order does not need to be the
+same. Each SNP should only be listed once however. A SNP can be listed by itself
+without any attributes (for example, to ensure it is not excluded when filtering 
+to exclude SNPs with a certain attribute, see below).
+</p>
+
+To filter SNPs on these, use the command (combined with some other
+data generation or analysis option)
+
+<pre>
+     --attrib snps.txt exonic
+</pre>
+for example, to extract only <em>exonic</em> SNPs (rs0001 and rs0010
+in this example, assuming they've been coded this way).
+</p>
+
+To <em>exclude</em> SNPs that match the attribute, preface the
+attribute with a minus sign on the command line, e.g.
+<pre>
+     --attrib snps.txt -failed
+</pre>
+to extract only non-failed SNPs.  Finally, multiple filters can be
+combined in a comma-delimited list
+<pre>
+     --attrib snps.txt exonic,-failed
+</pre>
+would select exonic SNPs that did not fail. If a SNP does not feature
+in the attribute file, it will always be excluded.
+</p>
+
+<strong>NOTE</strong> Within match type, multiple matches are treated
+as logical ORs; between positive and negative matches as AND. For
+example, matching on <tt>A,B,-C,-D</tt> implies <em>individuals with (
+A or B ) <b>and</b> not ( C or D )</em>
+
+</p>
+This approach works similarly for individuals, except the command is
+now <tt>--attrib-indiv</tt>, e.g.
+<pre>
+     --attrib-indiv inddat.txt  sample1,fullinfo
+</pre> 
+and the attribute file starts with family ID and individual ID before
+listing any attributes, e.g.
+<pre>
+     F1  1   sample2 
+     F2  1   sample1 
+     F3  1   sample2 fullinfo 
+     ...
+</pre>
+
+
+</p>
+<a name="makeset">
+<h2>Create a SET file based on a list of ranges</h2>
+</a></p>
+
+Given a list of ranges in the following format (4 columns per row; no
+header file)
+
+<pre> 
+     Chromosome
+     Start base-pair position 
+     End base-pair position
+     Set/range/gene name
+</pre>
+then the command
+<h5>
+plink --file mydata --make-set gene.list --write-set
+</h5></p>
+will generate the file
+<pre>
+     plink.set
+</pre>
+in the standard <a href="data.shtml#sets">set file</a> format. The
+command <tt>--make-set-border</tt> takes a single integer argument, allowing for a
+certain kb window before and after the gene to be included, e.g. for 20kb upstream 
+and downstream:
+<h5>
+plink --file mydata --make-set gene.list  --make-set-border 20 --write-set
+</h5></p>
+
+<strong>HINT</strong> The <tt>--make-set</tt> command doesn't
+necessarily have to be used with <tt>--write-set</tt>. Rather, it can
+be used anywhere that <tt>--set</tt> can be used, to make sets on the
+fly.  Similar, <tt>--set</tt> and <tt>--write-set</tt> can be
+combined, e.g. to create a new, filtered set file.
+</p>
+
+<h6>Options for <tt>--make-set</tt></h6>
+
+To collapse all ranges into a single set (i.e. to generate one set
+that corresponds to all SNPs in a gene, from a list of gene
+co-ordinates, for example), use
+<pre>
+     --make-set-collapse-all <em>SETNAME</em>
+</pre>
+along with <tt>--make-set</tt>, where <em>SETNAME</em> is any single
+word that you use to name to newly created set. To make a set file of
+all SNPs <b>not</b> in the specified ranges, add
+<pre>
+     --make-set-complement-all <em>SETNAME</em>
+</pre>
+
+Optionally, the range file can contain a fifth column, to specify
+groups of ranges. Sets can be constructed which collapse over these
+groups. That is, the input for <tt>--make-set</tt> is now
+<pre>
+     Chromosome
+     Start base-pair position 
+     End base-pair position
+     Set/range/gene name
+     Group label
+</pre>
+e.g. 
+<pre>
+  1   10001   20003  GENE1  PWAY-A
+  8   80001   99995  GENE2  PWAY-A
+  12  1001    10001  GENE3  PWAY-B
+  5   110001 127362  GENE4  PWAY-B
+  ...
+</pre>
+Normally, the fifth column will just be ignored, unless the command
+<pre>
+      --make-set-collapse-group
+</pre>
+is added, which creates sets of SNPs that correspond to each group
+(i.e. <tt>PWAY-A</tt>, <tt>PWAY-B</tt>, etc, in this example) rather
+than each gene/region (i.e. <tt>GENE1</tt>, etc). The command 
+<pre>
+     --make-set-complement-group
+</pre>
+works in a similar manner, except now forming sets of all
+SNPs <b>not</b> in the given group of ranges.
+
+</p>
+
+
+<strong>HINT</strong> See the <a href="res.shtml#glist">resources
+page</a> for pre-compiled RefSeq gene-lists that can be used here.
+
+</p>
+<a name="tabset">
+<h2>Tabulate set membership for all SNPs</h2>
+</a></p>
+
+It is possible to create a table that maps SNPs to sets, given a <tt>--set</tt> file has been specified, 
+with the <tt>--set-table</tt> command, e.g.
+<h5>
+./plink --bfile mydata --set mydata.set --set-table 
+</h5></p>
+which generates a file 
+<pre>
+     plink.set.table
+</pre>
+which contains the fields
+<pre>
+     SNP                SNP identifier
+     CHR                Chromosome code
+     BP                 Base-pair physical position
+     First set name     Membership of first set
+     Second set name    Membership of second set
+     ...
+</pre>
+
+For each row, a series of 0s and 1s indicate whether or not each SNP
+in the dataset is in a given SET.  This format can be useful for
+subsequent analyses (i.e. it can be easily lined up with other result
+files, e.g. from <tt>--assoc</tt>).
+
+</p>
+<a name="snp-qual">
+<h2>SNP-based quality scores</h2>
+</a></p>
+
+PLINK supports quality scores for SNPs and, described in the next
+section, genotypes.  These can be used to filter on user-defined
+thresholds. The command
+<tt>--qual-scores</tt> indicates the file containing the scores.  Scores are assumed to 
+be numbers between 0 and 1, a higher number representing better quality. The threshold 
+at which SNPs are selected can be set with the command <tt>--qual-threshold</tt>. For example,
+<h5>
+ ./plink --bfile mydata --qual-scores myscores.txt --qual-threshold 0.8 --make-bed --out qc-data
+</h5></p>
+where <tt>myscores.txt</tt> is a text file of SNPs and scores, e.g.
+<pre>
+     rs10001 0.87
+     rs10002 0.46
+     rs10003 1.00
+     ...
+</pre>
+will remove SNPs with scores less than 0.8.  The additional
+flag <tt>--qual-max-threshold</tt> can be used to specify a maximum
+threshold also (i.e. to select low-quality SNPs only).  Not all SNPs
+need be in the file (the SNP is left in, in this case; the order can
+be different, it can contain SNPs not in the data).
+
+</p>
+<a name="geno-qual">
+<h2>Genotype-based quality scores</h2>
+</a></p>
+
+Quality scores for each genotype, rather than each SNP, can also be applied to PLINK datasets, 
+using the <tt>--qual-geno-scores</tt> command, e.g.
+<h5>
+ ./plink --bfile mydata --qual-geno-scores gqual.txt --qual-geno-threshold 0.99 --assoc
+</h5></p>
+(with a similar <tt>--qual-geno-max-threshold</tt> command as well).
+</p>
+The file containing the genotype quality scores should have the following format:
+<pre>
+  Q FID IID SNPID score
+</pre>
+e.g. 
+<pre>
+ Q fam1 ind1 rs10001 0.873
+ Q fam1 ind1 rs10002 0.998
+ ...
+</pre>
+
+Not all genotypes need be in this file. Rather than have a very large
+file, one could only list genotype scores that are below some
+threshold, for example, assuming most genotypes are of very good quality. Genotypes
+not in the this file will be untouched.
+</pre>
+
+This format is designed to accept wildcards, as follows.  Every item should start with a <tt>Q</tt> character, to allow PLINK 
+to check the correctness of the file format. Consider this example file, 
+<pre>
+     Q  A 1  rs1234 0.986
+     Q  B 1  rs1234 0.923
+     Q  A 1  rs5678 0.323
+     Q  B 1  rs5678 0.97
+</pre>
+
+that lists two genotypes for people with FID/IID A/1 and B/1 for SNPs
+rs1234 and rs5678. If a score if below threshold, it is set
+to missing in the data.  The order of this file is arbitrary; not all
+individuals/SNPs need appear. 
+</p>
+PLINK accepts <em>wildcards</em> in this file, to allow for different
+data formats to be specified. With a <em>person wild-card</em>, PLINK
+expects all quality scores for that SNP, in order as in the FAM or PED
+file, e.g.
+<pre>
+     Q * rs1234 0.986 0.923
+     Q * rs5678 0.323 0.97
+</pre>
+With a <em>SNP wildcard</em>, PLINK exects all SNPs for a given person:
+<pre>
+     Q A 1 * 0.986 0.323
+     Q B 1 * 0.923 0.97
+</pre>
+
+All these formats can be mixed together in a single file. These can be combined (in which case, PLINK expects all individuals for the first SNP, all for the second SNP, etc)
+<pre>
+     Q * * 0.986 0.923 0.323 0.97
+</pre>
+
+</p>
+<strong>WARNING</strong> This option is recently added in beta-stage of development.
+Currently, a wild card looks to the current data to get the list of individuals 
+and SNPs to loop over. This could cause a problem if the file has been filtered, etc. 
+The next release will include commands to specify the order of individuals and SNPs, 
+e.g. 
+<pre>
+  --qual-people-list mysamples.lst
+</pre>
+where <tt>mysamples.lst</tt> is a file with 2 columns (FID/IID), and
+<pre>
+  --qual-geno-snp-list mysnp.lst
+</pre>
+where <tt>mysnp.lst</tt> is list of SNPs.  
+
+This way if somebody is in the quality score file but they have been
+removed from the actual genotype dataset (or added), then this can be
+handled properly without needing to change the whole quality score file.
+
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<hr>
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:26 EST
+</em>
+
+
+</body>
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>

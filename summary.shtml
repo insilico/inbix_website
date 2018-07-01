@@ -1,0 +1,1270 @@
+<html>
+<title>PLINK</title>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+<h1>Summary statistics</h1>
+
+<tt>PLINK</tt> will generate a number of standard summary statistics
+that are useful for quality control (e.g. missing genotype rate, minor
+allele frequency, Hardy-Weinberg equilibrium failures and
+non-Mendelian transmission rates). These can also be used as thresholds
+for subsequent analyses (described in the <a href="thresh.shtml">next section</a>).
+
+</p>
+
+All the per-SNP summary statistics described below are conducted after
+removing individuals with high missing genotype rates, as defined by
+the <a href="thresh.shtml#miss2"><tt>--mind</tt></a> option. The
+default value of which is 0 however, i.e. do not exclude any
+individuals.
+
+</p>
+<strong>NOTE</strong> Regarding the calculation of genotype rates for
+sex chromosomes: for the Y, females are ignored completely. For the
+males, heterozygous X and heterozygous Y genotypes are treated as
+missing. Having the correct designation of gender is therefore
+important to obtain accurate genotype rate estimates, or avoid
+incorrectly removing samples, etc.
+
+</p>
+
+
+<a name="missing">
+<h2>Missing genotypes</h2></a>
+</p>
+To generate a list genotyping/missingness rate statistics:
+<h5>
+	plink --file data --missing 
+</h5></p>
+This option creates two files:
+<pre>
+     plink.imiss
+     plink.lmiss 
+</pre>
+
+which detail missingness by individual and by SNP (<b>l</b>ocus),
+respectively. For individuals, the format is:
+
+<pre>
+     FID                Family ID
+     IID                Individual ID
+     MISS_PHENO         Missing phenotype? (Y/N)
+     N_MISS             Number of missing SNPs
+     N_GENO             Number of non-obligatory missing genotypes
+     F_MISS             Proportion of missing SNPs
+</pre>
+
+For each SNP, the format is: 
+
+<pre>
+     SNP                SNP identifier
+     CHR                Chromosome number
+     N_MISS             Number of individuals missing this SNP
+     N_GENO             Number of non-obligatory missing genotypes
+     F_MISS             Proportion of sample missing for this SNP
+</pre>
+
+
+</p><strong>HINT</strong>
+To test for case/control differences in missingness, 
+see the <a href="anal.shtml#testmiss"><tt>--test-missing</tt></a> option.
+
+</p><strong>HINT</strong>
+To produce summary of missingness that is stratified by a categorical
+cluster variable, use the <tt>--within</tt> <em>filename</em> option as 
+well as <tt>--missing</tt>. In this way, the missing rates 
+will be given separately for each level of the categorical variable. For 
+example, the categorical variable could be which plate that sample was on 
+in the genotyping. Details on the format of a cluster file can be found 
+<a href="data.shtml#clst">here</a>.
+
+
+<a name="oblig_missing">
+<h2>Obligatory missing genotypes</h2></a>
+</p>
+
+Often genotypes might be missing obligatorarily rather than because of
+genotyping failure. For example, some proportion of the sample might
+only have been genotyped on a subset of the SNPs. In these cases, one
+might not want to filter out SNPs and individuals based on this type
+of missing data. Alternatively, genotypes for specific plates (sets of
+SNPs/individuals) might have been blanked out with
+the <tt>--zero-cluster</tt> option, but you still might want to be
+able to sensibly set missing data thresholds.
+
+</p><strong>HINT</strong> See the section on
+<a href="dataman.shtml#zero">data management </a> to see how to make
+missing certain sets of genotypes.
+
+</p>
+Two functions allow these 'obligatory missing' values to be identified
+and subsequently handled specially during the filtering steps:
+<h5>
+ plink --bfile mydata --oblig-missing myfile.zero --oblig-clusters myfile.clst --assoc
+</h5></p> 
+
+This command applies the default genotyping thresholds (90% per
+individual and per SNP) but accounting for the fact that certain SNPs
+are obligatory missing (with the 90% only refers to those SNPs
+actually attempted, for example). 
+
+The file specified by <tt>--oblig-clusters</tt> has the same format as
+a <a href="data.shtml#clst">cluster file</a> (except only a single cluster
+field is allowed here, i.e. only 3 columns). For example, 
+<pre> 
+1  1 0 0 1 1   A A  C C  A A 
+2  1 0 0 1 1   C C  A A  C C
+3  1 0 0 1 1   A C  A A  A C 
+4  1 0 0 1 1   A A  C C  A A 
+5  1 0 0 1 1   C C  A A  C C
+6  1 0 0 1 1   A C  A A  A C 
+1b 1 0 0 1 1   A A  0 0  0 0
+2b 1 0 0 1 1   C C  0 0  0 0
+3b 1 0 0 1 1   A C  0 0  0 0
+4b 1 0 0 1 1   A A  0 0  0 0
+5b 1 0 0 1 1   C C  0 0  0 0
+6b 1 0 0 1 1   A C  0 0  0 0
+</pre>
+and MAP file <tt>test.map</tt>
+<pre>
+     1 snp1 0 1000
+     1 snp2 0 2000
+     1 snp3 0 3000
+</pre>
+If the obligatory missing file, <tt>test.oblig</tt> is
+<pre>
+     snp2   C1
+     snp3   C1
+</pre>
+it implies that SNPs <tt>snp2</tt> and <tt>snp3</tt> are obligatory
+missing for all individuals belonging to cluster <tt>C1</tt>.  The corresponding 
+cluster file is <tt>test.clst</tt>
+<pre>
+     1b 1 C1
+     2b 1 C1
+     3b 1 C1
+     4b 1 C1
+     5b 1 C1
+     6b 1 C1
+</pre>
+indicating that the last six individuals belong to
+cluster <tt>C1</tt>. (Not all individuals need be specified in this
+file.)
+</p>
+
+<strong>NOTE</strong> You can have more than one cluster category
+specified in these files (i.e.  implying different patterns of
+obligatory missing data for different sets of individuals).
+</p>
+
+Running a <tt>--missing</tt> command on the basic fileset, ignoring the 
+obligatory missing nature of some of the data, results in the following:
+<h5>
+ plink --file test --missing
+</h5></p>
+which shows in the LOG file that 6 individuals were removed because of missing data
+<pre>
+     ...
+     6 of 12 individuals removed for low genotyping ( MIND > 0.1 )
+     ...
+</pre>
+and the corresponding output files (<tt>plink.imiss</tt>
+and <tt>plink.lmiss</tt>) indicate no missing data (purely because the
+six individuals with 2 of 3 genotypes missing were already filtered
+out and everybody else left happens to have complete genotyping).
+<pre>
+      FID  IID MISS_PHENO   N_MISS   F_MISS
+        1    1          N        0        0
+        2    1          N        0        0
+        3    1          N        0        0
+        4    1          N        0        0
+        5    1          N        0        0
+        6    1          N        0        0
+</pre>
+and
+<pre>
+      CHR  SNP   N_MISS   F_MISS
+        1 snp1        0        0
+        1 snp2        0        0
+        1 snp3        0        0
+</pre>
+
+In contrast, if the obligatory missing data are specified as follows:
+<h5>
+ plink --file test --missing --oblig-missing test.oblig --oblig-clusters test.clst
+</h5></p>
+we now see
+<pre>
+     ...
+     0 of 12 individuals removed for low genotyping ( MIND > 0.1 )
+     ...
+</pre>
+
+and the corresponding output files now include an extra field, <tt>N_GENO</tt>, 
+which indicates the number of non-obligatory missing genotypes, which is the denominator
+for the genotyping rate calculations
+<pre>
+      FID  IID MISS_PHENO   N_MISS   N_GENO   F_MISS
+        1    1          N        0        3        0
+        2    1          N        0        3        0
+        3    1          N        0        3        0
+        4    1          N        0        3        0
+        5    1          N        0        3        0
+        6    1          N        0        3        0
+       1b    1          N        0        1        0
+       2b    1          N        0        1        0
+       3b    1          N        0        1        0
+       4b    1          N        0        1        0
+       5b    1          N        0        1        0
+       6b    1          N        0        1        0
+</pre>
+and
+<pre>
+      CHR  SNP   N_MISS   N_GENO   F_MISS
+        1 snp1        0       12        0
+        1 snp2        0        6        0
+        1 snp3        0        6        0
+</pre>
+
+Seen another way, if one specified <tt>--mind 1</tt> to include all
+individuals (i.e. not apply the default 90% genotyping rate threshold
+for each individual before this step), then the results would not
+change with the obligatory missing specification in place, as
+expected; in contrast, without the specification of obligatory missing
+data, we would see
+<pre>
+      FID  IID MISS_PHENO   N_MISS   F_MISS
+        1    1          N        0        0
+        2    1          N        0        0
+        3    1          N        0        0
+        4    1          N        0        0
+        5    1          N        0        0
+        6    1          N        0        0
+       1b    1          N        2 0.666667
+       2b    1          N        2 0.666667
+       3b    1          N        2 0.666667
+       4b    1          N        2 0.666667
+       5b    1          N        2 0.666667
+       6b    1          N        2 0.666667
+</pre>
+and
+<pre>
+      CHR  SNP   N_MISS   F_MISS
+        1 snp1        0        0
+        1 snp2        6      0.5
+        1 snp3        6      0.5
+</pre>
+
+In this not particularly exciting example, there are no missing
+genotypes that are non-obligatory missing (i.e. that not specified by
+the two files) -- if there were, it would counted appropriately in the
+above files, and used to filter appropriately also.
+
+</p><strong>NOTE</strong> All subsequent analyses do not distingush
+whether genotypes were missing due to failure or were obligatory
+missing -- that is, this option only effects the behavior of
+the <tt>--mind</tt> and <tt>--geno</tt> filters.
+
+</p><strong>NOTE</strong> If a genotype is set to be obligatory missing
+but actually in the genotype file it is not missing, then it will be 
+set to missing and treated as if missing.
+
+<a name="clustermissing">
+<h2>Cluster individuals based on missing genotypes</h2></a>
+</p>
+
+Systematic batch effects that induce missingness in parts of the sample will induce
+correlation between the patterns of missing data that different individuals display. 
+One approach to detecting correlation in these patterns, that might possibly idenity
+such biases, is to cluster individuals based on their <em>identity-by-missingness</em> (IBM). 
+This approach use exactly the same procedure as the IBS clustering for population 
+stratification, except the distance between two individuals is based not on which (non-missing)
+allele they have at each site, but rather the proportion of sites for which two individuals are
+both missing the same genotype. </p>
+
+To use this option:
+<h5>
+plink --file data --cluster-missing 
+</h5></p>
+which creates the files:
+<pre>
+     plink.matrix.missing
+     plink.cluster3.missing
+</pre>
+which have similar formats to the corresponding IBS clustering files. Specifically, the 
+<tt>plink.mdist.missing</tt> file can be subjected to a visualisation technique such as 
+multidimensinoal scaling to reveal any strong systematic patterns of missingness.
+
+</p>
+<strong>Note</strong> The values in the <tt>.mdist</tt> file are distances rather than 
+similarities, unlike for standard IBS clustering. That is, a value of 0 means that two
+individuals have the same profile of missing genotypes. The exact value represents the 
+proportion of all SNPs that are discordantly missing (i.e. where one member of the pair
+is missing that SNP but the other individual is not).
+
+</P>
+The other constraints (significance test, phenotype, cluster size and external matching
+criteria) are not used during IBM clustering.  Also, by default, all individuals and all SNPs 
+are included in an IBM clustering analysis, unlike IBS clustering, i.e. even individuals or 
+SNPs with very low genotyping, or monomorphic alleles.  By explicitly specifying 
+<tt>--mind</tt> or <tt>--geno</tt> or <tt>--maf</tt> certain individuals or SNPs can be 
+excluded (although the default is probably what is usually required for quality control 
+procedures).
+
+
+<a name="testmiss">
+<h2>Test of missingness by case/control status</h2></a>
+</p>
+
+To obtain a <em>missing chi-sq</em> test (i.e. does, for each SNP,
+missingness differ between cases and controls?), use the option:
+
+<h5>
+	plink --file mydata --test-missing
+</h5></p>
+which generates a file
+<pre>
+     plink.missing
+</pre>
+which contains the fields
+<pre>
+     CHR         Chromosome number
+     SNP         SNP identifier
+     F_MISS_A    Missing rate in cases
+     F_MISS_U    Missing rate in controls
+     P           Asymptotic p-value (Fisher's exact test)
+</pre>
+
+The actual counts of missing genotypes are available in the 
+<tt>plink.lmiss</tt> file, which is generated by the <tt>--missing</tt> 
+
+option.
+
+</p><strong>Note</strong> This test is only applicable to case/control 
+data.
+
+<a name="mishap">
+<h2>Haplotype-based test for non-random missing genotype data</h2></a>
+</p>
+
+The previous test asks whether genotypes are missing at random 
+or not with respect to phenotype. This test asks whether or not 
+genotypes are missing at random with respect to the true 
+(unobserved) genotype, based on the observed genotypes of nearby SNPs.
+</P>
+
+<strong>Note</strong> This test assumes dense SNP genotyping such that 
+flanking SNPs are typically in LD with each other. Also bear in mind that 
+a negative result on this test may simply reflect the fact that there is 
+little LD in the region.
+</p>
+
+This test works by taking a SNP at a time (the 'reference' SNP) and asking 
+whether haplotype formed by the two flanking SNPs can predict whether or 
+not the individual is missing at the reference SNP. The test is a simple 
+haplotypic case/control test, where the phenotype is missing status at the 
+reference SNP.  If missingness at the reference is not random with respect 
+to the true (unobserved) genotype, we may often expect to see an 
+association between missingness and flanking haplotypes. 
+
+</p>
+<strong>Note</strong> Again, just because we might not see such an association does 
+not necessarily mean that genotypes are missing at random -- this test has 
+higher specificity than sensitivity. That is, this test will miss a lot; but, when used
+as a QC screening tool, one should pay attention to SNPs that show highly significant 
+patterns of non-random missingness.
+</p>
+
+This option is run with the command:
+<h5>
+ plink --file data --test-mishap 
+</h5></P>
+which generates an output file called
+<pre>
+     plink.missing.hap
+</pre>
+which has the fields
+<pre>
+     LOCUS        Reference SNP
+     HAPLOTYPE    Flanking haplotype, or heterozygosity
+     F_0          Frequency of HAPLOTYPE if missing reference SNP
+     F_1          Frequency of HAPLOTYPE if not missing reference SNP
+     M_H1         N missing/not missing for HAPLOTYPE
+     M_H2         N missing/not missing for not-HAPLOTYPE
+     CHISQ        Chisquare test for non-random missingness
+     P            Asymptotic p-value
+     SNPS         Identifier for flanking SNPs
+</pre>
+
+The <tt>HAPLOTYPE</tt> typically represents each two-SNP flanking haplotype 
+(i.e. not including the reference SNP itself); each reference SNP will also 
+have a row labelled <tt>HETERO</tt> in this column, which means 
+we are testing whether or not being heterozygous for the flanking haplotypes (which would,
+under many sets of haplotype frequencies, increase the chance of being heterozygous 
+for the reference SNP). SNPs with no or very little missing genotype data are skipped. Only haplotypes above the 
+<tt>--maf</tt> threshold are used in analysis.
+
+</p>
+Here is an example from real data (rows split into two sets for clarity):
+<pre>
+     LOCUS         HAPLOTYPE        F_0       F_1         M_H1         M_H2    
+     rs17012390           CT     0.5238   0.01949       55/104      50/5233    
+     rs17012390           TC     0.4762    0.9805      50/5233       55/104    
+     rs17012390       HETERO          1   0.04252       56/114       0/2567    
+
+     LOCUS         HAPLOTYPE      CHISQ         P  SNPS
+     rs17012390           CT      923.4         0  rs17012387|rs17012393
+     rs17012390           TC      923.4         0  rs17012387|rs17012393
+     rs17012390       HETERO      863.3         0  rs17012387|rs17012393
+</pre>
+This clearly shows a huge chi-square (the sample is large, N of over 2500 individuals).
+We see that of 56 missing genotypes for this reference SNP, all occur when the flanking 
+haplotypic background is heterozygous (i.e. <tt>M_H1</tt> shows <tt>56/114</tt>, indicating that there
+are 114 other instances of a heterozygous haplotypic background when the reference SNP is not missing)
+whereas we see not a single missing call when the flanking SNP background is homozygous, of which we see 
+2567 observations. This is clearly indicative of non-random association between the unobserved genotype and
+missing status. 
+</p>
+Looking at the same data a different way, <tt>F_1</tt> indicates that the majority of the sample (people not
+missing at the reference SNP) have haplotype frequencies of <tt>CT</tt> and <tt>TC</tt> haplotypes at approximately 
+0.02 and 0.98 respectively). In contrast, because all people missing this SNP are on heterozygous backgrounds, 
+these frequencies become approximately 50:50 in this group (shown in <tt>F_0</tt>).
+</p>
+In the particular dataset this example comes from, this SNP would have passed a 
+standard quality control test. The <tt>--hardy</tt> command shows that this SNP does 
+not failure the HWE test; also, it does not show excessive amounts 
+of missing data (the <tt>--missing</tt> command indicates a missing rate of 0.021). The genotype
+counts (obtained by the <tt>--hardy</tt> option) are, for the whole sample, <tt>0/104/2584</tt>.
+
+</p>
+In contrast, here are the same results for a different SNP that does not show any evidence 
+of non-random missingness.
+
+<pre>
+          LOCUS    HAPLOTYPE        F_0       F_1         M_H1         M_H2    
+      rs3912752           CC    0.07692   0.06507        2/354      24/5086
+      rs3912752           TT     0.1154     0.205       3/1115      23/4325
+      rs3912752           CT     0.8077      0.73      21/3971       5/1469
+      rs3912752       HETERO     0.2308    0.4279       3/1164      10/1556
+
+          LOCUS    HAPLOTYPE      CHISQ          P   SNPS
+      rs3912752           CC    0.05967      0.807   rs3912751|rs351596
+      rs3912752           TT      1.276     0.2586   rs3912751|rs351596
+      rs3912752           CT     0.7938     0.3729   rs3912751|rs351596
+      rs3912752       HETERO      2.056     0.1516   rs3912751|rs351596
+</pre>
+
+Here we do not see any deviation between the flanking haplotype frequencies between people 
+missing versus genotyped for the reference SNP.  Of course, there is less missingness for this SNP
+(26 missing genotypes) so we might expect power is lower, even if there were non-random missingness. 
+
+This only highlights the point made above that, in general, significant results are more interpretable
+than non-signficant results for this test. But more importantly, if there are only a handful of missing genotypes, 
+we do not particular care whether or not they are missing at random, as they would not bias the association with disease 
+in any case.  Of course, whether there is non-random genotyping <em>error</em> is another question...
+</p>
+
+By default, we currently just select exactly two flanking SNPs. This can be changed with the option <tt>--mishap-window</tt>. For
+example,
+<h5>
+plink --bfile mydata --test-mishap --mishap-window 4
+</h5></p>
+
+ Future releases will feature a more 
+intelligent selection 
+of flanking markers. 
+
+</p>
+<strong>Note</strong>  This routine currently skips the SNPs on the X and Y chromosomes.
+
+
+<a name="hardy">
+<h2>Hardy-Weinberg Equilibrium</h2></a>
+</p>
+
+To generate a list of genotype counts and Hardy-Weinberg test
+statistics for each SNP, use the option:
+<h5>
+	plink --file data --hardy
+</h5></p>
+which creates a file:
+<pre>
+     plink.hwe
+</pre>
+This file has the following format
+<pre>
+     SNP             SNP identifier
+     TEST            Code indicating sample
+     A1              Minor allele code
+     A2              Major allele code
+     GENO            Genotype counts: 11/12/22 
+     O(HET)          Observed heterozygosity
+     E(HET)          Expected heterozygosity
+     P               H-W p-value
+</pre>
+
+For case/control samples, each SNP will have three entries (rows) in this 
+file, with <tt>TEST</tt> being either <tt>ALL</tt>, <tt>AFF</tt> (cases 
+only) or <tt>UNAFF</tt> (controls only). For quantitative traits, only a 
+single row will appear for each SNP, labelled <tt>ALL(QT)</tt>. 
+
+</p>
+Only founders are considered for the Hardy-Weinberg calculations -- ie. 
+for family data, any offspring are ignored.
+
+</p><strong>WARNING</strong> By default, this procedure only considers founders, so 
+no HW results would be given for sibling-only datasets (i.e. if no parents exist). 
+To perform a rough, somewhat biased test, use the <tt>--nonfounders</tt> option 
+which means that all individuals will be included. Alternatively, manually extract
+one person per family for this calculation and recode these individuals as founders 
+(see the <tt>--keep</tt> option to facilitate this).
+
+</p>
+The default test is an exact one, described and implemented by Wigginton <em>et al</em> 
+(see reference below), which is more accurate for rare genotypes.  You can still perform 
+the standard asymptotic test with the <tt>--hardy2</tt> option. </p>
+
+<pre>
+<font size="-1">A Note on Exact Tests of Hardy-Weinberg Equilibrium.
+Wigginton JE, Cutler DJ and Abecasis GR
+Am J Hum Genet (2005) 76: 887-93
+</font></pre>
+
+</p>
+
+<a name="freq">
+<h2>Allele frequency</h2></a>
+</p>
+
+To generate a list of minor allele frequencies (MAF) for each SNP, 
+based on all founders in the sample:
+
+<h5>
+	plink --file data --freq
+</h5></p>
+will create a file:
+<pre>
+     plink.frq
+</pre>
+with five columns:
+<pre>
+     CHR       Chromosome
+     SNP       SNP identifier
+     A1        Allele 1 code (minor allele)
+     A2        Allele 2 code (major allele)
+     MAF       Minor allele frequency
+     NCHROBS   Non-missing allele count
+</pre>
+
+</p><strong>HINT</strong>
+To produce summary of allele frequencies that is stratified by 
+a categorical cluster variable, use the <tt>--within</tt> <em>filename</em> 
+option as well as <tt>--missing</tt>. In this way, the frequencies 
+will be given separately for each level of the categorical variable. Details 
+on the format of a cluster file can be found 
+<a href="data.shtml#clst">here</a>.
+ 
+</p><strong>NOTE</strong> 
+If a SNP fails the genotyping rate threshold (as set by the 
+<tt>--geno</tt> value, which is by default 0.0, i.e. no SNPs will
+fail) the frequency will appear as <tt>NA</tt> in
+the <tt>plink.frq</tt> output file. To obtain frequencies on all SNPs
+irrespective of genotyping rate, set
+<tt>--mind 1</tt>.
+
+
+<a name="prune">
+<h2>Linkage disequilibrium based SNP pruning</h2></a>
+</p>
+
+Sometimes it is useful to generate a pruned subset of SNPs that are in
+approximate linkage equilibrium with each other.  This can be achieved
+via two commands: <tt>--indep</tt> which prunes based on
+the <em>variance inflation factor</em> (VIF), which recursively
+removes SNPs within a sliding window;
+second, <tt>--indep-pairwise</tt> which is similar, except it is based
+only on pairwise genotypic correlation.
+
+</p>
+
+<strong>Hint</strong> The output of either of these commands is two
+lists of SNPs: those that are pruned out and those that are not.  A
+separate command using the <tt>--extract</tt> or <tt>--exclude</tt>
+option is necessary to actually perform the pruning.
+</p>
+The VIF pruning routine is performed:
+<h5>
+	plink --file data --indep 50 5 2
+</h5></p>
+will create files
+<pre>
+     plink.prune.in
+     plink.prune.out
+</pre>
+Each is a simlpe list of SNP IDs; both these files can subsequently be
+specified as the argument for a
+<tt>--extract</tt> or <tt>--exclude</tt> command.
+</p>
+The parameters for <tt>--indep</tt> are: window size in SNPs
+(e.g. 50), the number of SNPs to shift the window at each step
+(e.g. 5), the VIF threshold.  The VIF is <tt>1/(1-R^2)</tt>
+where <tt>R^2</tt> is the multiple correlation coefficient for a SNP
+being regressed on all other SNPs simultaneously. That is, this
+considers the correlations between SNPs but also between linear
+combinations of SNPs. A VIF of 10 is often taken to represent near
+collinearity problems in standard multiple regression analyses
+(i.e. implies R^2 of 0.9). A VIF of 1 would imply that the SNP is
+completely independent of all other SNPs.  Practically, values between
+1.5 and 2 should probably be used; particularly in small samples, if
+this threshold is too low and/or the window size is too large, too
+many SNPs may be removed.
+</p>
+The second procedure is performed:
+<h5>
+	plink --file data --indep-pairwise 50 5 0.5
+</h5></p>
+This generates the same output files as the first version; the only
+difference is that a simple pairwise threshold is used.  The first two
+parameters (50 and 5) are the same as above (window size and step);
+the third parameter represents the
+<tt>r^2</tt> threshold. Note: this represents the pairwise SNP-SNP
+metric now, not the multiple correlation coefficient; also note, this
+is based on the genotypic correlation, i.e. it does not involve
+phasing.
+</p>
+To give a concrete example: the command above that specifies <tt>50 5 0.5</tt> 
+would a) consider a window of 50 SNPs, b) calculate LD between each pair of SNPs in the 
+window, b) remove one of a pair of SNPs if the LD is greater than 0.5, c) shift the window
+5 SNPs forward and repeat the procedure.
+</p>
+To make a new, pruned file, then use something like (in this example,
+we also convert the standard PED fileset to a binary one):
+<h5>
+ plink --file data --extract plink.prune.in --make-bed --out pruneddata
+</h5></p>
+
+&nbsp;
+</p>
+
+
+
+<a name="mendel">
+<h2>Mendel errors</h2></a>
+</p>
+
+To generate a list of Mendel errors for SNPs and families, use the option:
+<h5>
+plink --file data --mendel
+</h5></p>
+which will create files:
+<pre>
+     plink.mendel
+     plink.imendel
+     plink.fmendel
+     plink.lmendel
+</pre>
+
+The <tt>*.mendel</tt> file contains all Mendel errors (i.e. one line
+per error); the <tt>*.imendel</tt> file contains a summary of
+per-individual error rates; the <tt>*.fmendel</tt> file contains a
+summary of per-family error rates; the <tt>*.lmendel</tt> file
+contains a summary of per-SNP error rates.
+</p>
+
+The <tt>*.mendel</tt> file has the following columns:
+<pre>
+     FID            Family ID
+     KID            Child individual ID
+     CHR            Chromosome
+     SNP            SNP ID
+     CODE           A numerical code indicating the type of error (see below)
+     ERROR          Description of the actual error
+</pre>
+
+The error codes are as follows:
+<pre>
+<b>     Code   Pat  ,   Mat   ->    Offspring</b>
+
+     1      AA   ,   AA    ->    AB       
+     2      BB   ,   BB    ->    AB
+
+     3      BB   ,   **    ->    AA
+     4      **   ,   BB    ->    AA
+     5      BB   ,   BB    ->    AA
+
+     6      AA   ,   **    ->    BB
+     7      **   ,   AA    ->    BB
+     8      AA   ,   AA    ->    BB
+
+     9      **   ,   AA    ->    BB    (X chromosome male offspring)
+     10     **   ,   BB    ->    AA    (X chromosome male offspring)
+</pre>
+
+
+</p>
+The <tt>*.lmendel</tt> file has the following columns:
+<pre>
+     CHR            Chromosome
+     SNP            SNP ID
+     N              Number of Mendel errors for this SNP
+</pre>
+
+</p>
+
+The <tt>*.imendel</tt> file has the following columns:
+<pre>
+     FID            Family ID
+     IID            Individual ID
+     N              Number of errors this individual was implicated in
+</pre>
+	
+The following heurtistic is used to provide a rough estimate of Mendel
+error rare 'per individual': error types 1 and 2 count for all 3
+individuals (child, father, mother); error types 5 and 8 count only
+for the child (i.e. otherwise requires two errors, one in each
+parent); error types 3 and 6 count for the child and the father; all
+other types (4, 7, 9 and 10) count for the offspring and the mother.
+This metric might indicate that, for example, in a nuclear family with
+two parents and two offspring, many more Mendel errors can be
+associated with the first sibling; the remaining trio might not show
+any increased rate.
+
+</p>
+Currently, PLINK only scans full trios for Mendel errors. Families
+with fewer than 2 parents in the dataset will not be tested.
+
+</p>
+
+Finally, the <tt>*.fmendel</tt> file has the following columns:
+<pre>
+     FID            Family ID
+     PAT            Paternal individual ID
+     MAT            Maternal individual ID
+     CHLD           Number of offspring in this (nuclear) family
+     N              Number of Mendel errors for this (nuclear) family
+</pre>
+
+
+<a name="sexcheck">
+<h2>Sex check</h2></a>
+</p>
+
+This option uses X chromosome data to determine sex (i.e. based on 
+heterozygosity rates) and flags individuals for whom the reported sex in 
+the PED file does not match the estimated sex (given genomic data).  To 
+run this analysis, use the flag:
+<h5>
+plink --bfile data --check-sex 
+</h5></p>
+which generates a file
+<pre>
+     plink.sexcheck
+</pre>
+which contains the fields
+<pre>
+     FID     Family ID
+     IID     Individual ID
+     PEDSEX  Sex as determined in pedigree file (1=male, 2=female)
+     SNPSEX  Sex as determined by X chromosome
+     STATUS  Displays "PROBLEM" or "OK" for each individual
+     F       The actual X chromosome inbreeding (homozygosity) estimate
+</pre>
+
+A <tt>PROBLEM</tt> arises if the two sexes do not match, or if the
+SNP data or pedigree data are ambiguous with regard to sex. A male 
+call is made if <tt>F</tt> is more than 0.8; a femle call is made if 
+<tt>F</tt> is less than 0.2. 
+
+</p>
+
+The command
+<h5>
+ plink --bfile data --impute-sex --make-bed --out newfile
+</h5></p>
+will impute the sex codes based on the SNP data, and create a new file
+with the revised assignments, in this case a new binary fileset.
+
+
+<a name="pederr">
+<h2>Pedigree errors</h2></a>
+</p>
+
+<tt>PLINK</tt> can accept multigenerational family data for family-based 
+tests and Mendel error checks. It will break multigenerational families 
+down into nuclear family units where appropriate. Extended family 
+information is not used in an optimal manner, however (e.g. to help find 
+Mendel errors using grandparental genotypes if parental genotypes are 
+missing).
+
+</p>
+
+Unless <tt>PLINK</tt> is explicitly told to perform a family-based
+analysis, it will ignore any pedigree structure in the sample and
+analyse the data as if all individuals are unrelated (i.e.
+the <tt>--assoc</tt> option, for example, will ignore family
+structure).  It is therefore the responsibility of the user to ensure
+that the data are appropriate for the type of test (e.g. if performing
+a standard association test with <tt>--assoc</tt>, this implies that
+all individuals should be unrelated for asymptotic significance values
+to be correct).  The exception to this general rule is that certain
+summary statistics are based only on founders.
+
+</p> <tt>PLINK</tt> will spot most pedigree errors (e.g. if an
+individual has two fathers, for example). For a more comprehensive
+evaluation of pedigree errors (invalid or incompletely specified
+pedigree structures) please use a different software package such as
+PEDSTATS
+or <a href="http://zzz.bwh.harvard.edu/famtypes/">famtypes</a>.
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<hr>
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:52:58 EST
+</em>
+
+</body>
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>

@@ -1,0 +1,1724 @@
+<html>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+<h1>Association analysis</h1>
+</p>
+
+The basic association test is for a disease trait and is based on
+comparing allele frequencies between cases and controls (asymptotic
+and empirical p-values are available). Also implemented are the
+Cochran-Armitage trend test, Fisher's exact test, different genetic models 
+(dominant, recessive and general), tests for stratified samples (e.g. 
+Cochran-Mantel-Haenszel, Breslow-Day tests), a test for a quantitative 
+trait; a test for differences in missing genotype rate between cases and 
+controls; multilocus tests, using either Hotelling's T(2) statistic or 
+a sum-statistic approach (evaluated by permutation) as well as <a 
+href="haplo.shtml">haplotype tests</a>. The basic 
+tests can be performed with permutation, described in the 
+<a href="perm.shtml">following section</a> to provide empirical
+p-values, and allow for different designs (e.g. by use of structured,
+within-cluster permutation). Family-based tests are described in
+the <a href="fanal.shtml">next section</a>
+
+</p>
+
+<strong>HINT</strong> The basic association commands (<tt>--assoc</tt>, 
+<tt>--model</tt>, <tt>--fisher</tt>, <tt>--linear</tt> and <tt>--logistic</tt>) will 
+test only a single phenotype. If your alternate phenotype file contains more than one 
+phenotype, then adding the <tt>--all-pheno</tt> flag will make PLINK cycle over each 
+phenotype, e.g. instead of a single  <tt>plink.assoc</tt> output file, if there are 
+100 phenotypes, PLINK will now show
+<pre>
+     plink.P1.assoc
+     plink.P2.assoc
+     ...
+     plink.P100.assoc
+</pre>
+
+Naturally, it will take 100 times longer...  If you are testing a very large number
+of phenotypes, it might be worth specifying <tt>--pfilter</tt> also, to reduce the 
+amount of amount (e.g. only outputing tests significant at p=1e-4 if <tt>--pfilter 
+1e-4</tt> is specified).
+
+<a name="cc">
+<h2>Basic case/control association test</h2>
+</a>
+</p>
+To perform a standard case/control association analysis, use the option:
+<h5>
+	plink --file mydata --assoc 
+</h5></p>
+which generates a file  
+<pre>
+     plink.assoc	
+</pre>
+which contains the fields:  
+<pre>
+     CHR     Chromosome
+     SNP     SNP ID
+     BP      Physical position (base-pair)
+     A1      Minor allele name (based on whole sample)
+     F_A     Frequency of this allele in cases
+     F_U     Frequency of this allele in controls
+     A2      Major allele name
+     CHISQ   Basic allelic test chi-square (1df)
+     P       Asymptotic p-value for this test
+     OR      Estimated odds ratio (for A1, i.e. A2 is reference)
+</pre>
+
+</P><strong>Hint</strong> In addition, if the optional command 
+<tt>--ci</tt> <em>X</em> (where <em>X</em> is the desired coverage for a 
+confidence interval, e.g. 0.95 or 0.99) is included, then two extra 
+fields are appended to this output:
+<pre>
+     L95        Lower bound of 95% confidence interval for odds ratio
+     U95        Upper bound of 95% confidence interval for odds ratio 
+</pre>
+(where 95 would change if a different value was used with the 
+<tt>--ci</tt> option, naturally).
+</p>
+
+Adding the option
+<pre>
+     --counts
+</pre>
+with <tt>--assoc</tt> will make PLINK report allele counts, rather than frequencies, in cases and controls.
+</p>
+
+See the <a href="perm.shtml">next section on permutation</a> to learn how 
+to generate empirical p-values and use other aspects of permutation-based 
+testing.</p>
+
+See the <a href="haplo.shtml">section on multimarker tests</a> to learn how to perform haplotype-based
+tests of association. 
+</p>
+
+This analysis should appropriately handle X/Y chromosome SNPs automatically.
+</p>
+
+<a name="fisher">
+<h2>Fisher's Exact test (allelic association) </h2>
+</a>
+</p>
+
+To perform a standard case/control association analysis using 
+Fisher's exact test to generate significance, use the option:
+<h5>
+	plink --file mydata --fisher
+</h5></p>
+which generates a file  
+<pre>
+     plink.fisher
+</pre>
+which contains the fields:  
+<pre>
+     CHR     Chromosome
+     SNP     SNP ID
+     BP      Physical position (base-pair)
+     A1      Minor allele name (based on whole sample)
+     F_A     Frequency of this allele in cases
+     F_U     Frequency of this allele in controls
+     A2      Major allele name
+     P       Exact p-value for this test
+     OR      Estimated odds ratio (for A1)
+</pre>
+
+As described below, if <tt>--fisher</tt> is specified with <tt>--model</tt> as well, 
+<tt>PLINK</tt> will perform genotypic tests using Fisher's exact test.
+
+</P><strong>Note</strong> You can also use permutation to generate exact,
+empirical significance values that would also be valid in small samples, 
+etc. </p>
+
+
+
+<a name="model">
+<h2>Alternate / full model association tests</h2>
+</a></p>
+
+It is possible to perform tests of association between a disease and a variant other than the 
+basic allelic test (which compares frequencies of alleles in cases versus controls), by using 
+the <tt>--model</tt> option. The tests offered here are (in addition to the basic allelic test):
+<ul>
+ <li> Cochran-Armitage trend test
+ <li> Genotypic (2 df) test
+ <li> Dominant gene action (1df) test
+ <li> Recessive gene action (1df) test
+</ul>
+
+One advantage of the Cochran-Armitage test is that it does not assume Hardy-Weinberg equilibrium, 
+as the individual, not the allele, is the unit of analysis (although the permutation-based empirical 
+p-values from the basic allelic test also have this property). It is important to remember that SNPs 
+showing severe deviations from Hardy-Weinberg are often likely to be bad 
+SNPs, or reflect stratification in the sample, however, and so are probably 
+best excluded in many cases.
+</p>
+The genotypic test provides a general test of association in the 2-by-3 table of disease-by-genotype. The
+dominant and recessive models are tests for the minor allele (which is the 
+minor allele can be found in the output of either the <tt>--assoc</tt> 
+or the <tt>--freq</tt> commands. That is, if <tt>D</tt> is the minor 
+allele (and <tt>d</tt> is the major allele): 
+<pre>
+     Allelic:         D        versus      d
+     Dominant:     (DD, Dd)    versus      dd
+     Recessive:       DD       versus   (Dd, dd)
+     Genotypic:       DD       versus      Dd         versus    dd
+</pre>
+
+As mentioned above, these tests are generated with option:
+<h5>
+	plink --file mydata --model
+</h5></p>
+which generates a file 
+<pre>
+     plink.model
+</pre>
+which contains the following fields:
+<pre>
+     CHR           Chromosome number
+     SNP           SNP identifier
+     TEST          Type of test
+     AFF           Genotypes/alleles in cases
+     UNAFF         Genotypes/alleles in controls
+     CHISQ         Chi-squated statistic
+     DF            Degrees of freedom for test
+     P             Asymptotic p-value
+</pre>
+
+Each SNP will feature on five rows of the output, correspondnig to the
+five tests applied.  The column <tt>TEST</tt> refers to
+either <tt>ALLELIC</tt>, <tt>TREND</tt>, <tt>GENO</tt>,
+<tt>DOM</tt> or <tt>REC</tt>, refering to the different types of test
+mentioned above.  The genotypic or allelic counts are given for cases
+and controls separately. For recessive and dominant tests, the counts
+represent the genotypes, with two of the classes pooled.
+</p>
+These tests only consider diploid genotypes: that is, for the X
+chromosome males will be excluded even from the ALLELIC test. This way
+the same data are used for the five tests presented here. Note that,
+in contrast, the basic association commands (<tt>--assoc</tt>
+and <tt>--linear</tt>, etc) include single male X chromosomes, and so the 
+results may differ.
+
+</p>
+The genotypic and dominant/recessive tests will only be conducted if
+there is a minimum number of observations per cell in the 2-by-3
+table: by default, if at least one of the cells has a frequency less
+than 5, then we skip the alternate tests (<tt>NA</tt> is written in
+the results file). The Cochran-Armitage and allelic tests are
+performed in all cases.  This threshold can be altered with the
+<tt>--cell</tt> option:
+<h5>
+plink --file mydata --model --cell 20
+</h5></p>
+
+</p>
+
+If permutation (with the <tt>--mperm</tt> or <tt>--perm</tt> options)
+is specified, the <tt>-model</tt> option will by default perform a
+permutation test based on the most significant result
+of <tt>ALLELIC</tt>, <tt>DOM</tt> and <tt>REC</tt> models. That is,
+for each SNP, the best original result will be compared against the
+best of these three tests for that SNP for every replicate. In max(T)
+permutation mode, this will also be compared against the best result
+from all SNPs for the <tt>EMP2</tt> field. This procedure controls for
+the fact that we have selected the best out of three correlated tests
+for each SNP. The output will be generated in the file
+<pre>
+     plink.model.best.perm
+</pre>
+or
+<pre>
+     plink.model.best.mperm
+</pre>
+depending on whether adaptive or max(T) permutation was used.
+</p>
+
+The behavior of the <tt>--model</tt> command can be changed by adding
+the <tt>--model-gen</tt>, <tt>--model-trend</tt>, <tt>--model-dom</tt>
+or <tt>--model-rec</tt> flags to make the permutation use the
+genotypic, the Cochram-Armitage trend test, the dominant test or the
+recessive test as the basis for permutation instead. In this case, one
+of the the following files will be generated:
+
+<pre>
+     plink.model.gen.perm         plink.model.gen.mperm
+     plink.model.trend.perm       plink.model.trend.mperm
+     plink.model.dom.perm         plink.model.dom.mperm
+     plink.model.rec.perm         plink.model.rec.mperm
+</pre>
+
+It is also possible to add the <tt>--fisher</tt> flag to obtain exact p-values:
+<h5>
+ ./plink --bfile mydata --model --fisher
+</h5></p> in which case the <tt>CHISQ</tt> field does not appear. Note
+that the genotypic, allelic, dominant and recessive models use the
+Fisher's exact; the trend-test does not and will give the same p-value as without
+the <tt>--fisher</tt> flag.  Also, by default, when <tt>--fisher</tt> is added, the 
+<tt>--cell</tt> field is set to 0, i.e. to include all SNPs.
+
+<a name="strat">
+<h2>Stratified analyses</h2>
+</a>
+</p>
+
+When a cluster variable has been specified, by pointing to a file 
+that contains this information, with the <tt>--within</tt> command, 
+it is possible to perform a number of tests of case/control association 
+that take this clustering into account, or explicitly test for 
+homogeneity of effect between clusters.
+
+</p>
+</p><strong>Note</strong> In many cases, permutation procedures can also 
+be used to account for clusters in 
+the data. See the <a href="perm.shtml">next section</a> for more details. 
+The tests presented below 
+are only applicable for case/control data, so permutation might be useful 
+for quantitative trait outcomes, 
+etc.
+
+</p>
+
+There are two basic classes of test:
+
+<ul>
+ <li> Testing for overall disease/gene association, controlling for clusters
+ <li> Testing for heterogeneity of the disease/gene assocation between different clusters
+</ul>
+
+The type of cluster structure will vary in terms of how many clusters 
+there are in the sample, and how many 
+people belong to each cluster.   At one extreme, we might have two only 2 
+clusters in the sample, each with 
+a large number of cases and controls. At the other extreme, we might have 
+a very large number of clusters, 
+such that each cluster only has 2 individuals.  These factors will 
+influence the choice of stratified 
+analysis. </p>
+
+The tests offered are:
+<ul> 
+ <li> Cochran-Mantel-Haenszel test for 2x2xK stratified tables
+ <li> Cochran-Mantel-Haenszel test for IxJxK stratified tables
+ <li> Breslow-Day test of homogeneity of odds ratio
+ <li> Partitioning the total association chi-square to perform between and within cluster 
+association, and a test of homogeneity of effect
+</ul>
+
+The Cochran-Mantel-Haenszel (CMH) tests are valid with both a large 
+number of small clusters and a small 
+number of large clusters. These tests provide a test based on an 
+"average" odds ratio that controls for the potential confounding due to 
+the cluster variable.
+</p>
+The Breslow-Day test asks whether different clusters have different 
+disease/gene odds ratios: this test 
+assumes a moderate sample size within each cluster. The partitioning 
+total association test, which is 
+conceptually similar to the Breslow-Day test, also makes the same 
+assumption. 
+</p>
+As mentioned above, the CMH test comes in two flavours: 2x2xK and
+IxJxK.  Currently, the 2x2xK test represents a <tt> { disease x SNP |
+cluster }</tt> test.  The generalized form, the IxJxK, represents a
+test of <tt> { cluster x SNP | disease }</tt>, i.e. does the SNP vary
+between clusters, controlling for any possible true SNP/disease
+association. This latter test might be useful in interpreting
+significant associations in stratified samples. Typically, the first
+form of the test will be of more interest, however.  These two tests
+are run by using the options:
+<h5>
+plink --file mydata --mh --within mycluster.dat
+</h5></p>
+for the basic CMH test, or 
+<h5>
+plink --file mydata --mh2 --within mycluster.dat
+</h5></p>
+for the IxJxK test. 
+</p>
+The <tt>--mh</tt> option generates the file
+<pre>
+     plink.cmh
+</pre>
+which contains the fields
+<pre>
+     CHR       Chromosome number
+     SNP       SNP identifier
+     A1        Minor allele code
+     A2        Major allele code
+     BP        Physical position (base-pair)
+     CHISQ     Cochran-Mantel-Haenszel statistic (1df)
+     P         Asymptotic p-value for CMH test
+     OR        CMH odds ratio
+     L95       Lower bound on confidence interval for CMH odds ratio
+     U95       Upper bound on confidence interval for CMH odds ratio
+</pre>
+
+The range of the confidence interval with the <tt>--mh</tt> option can be 
+changed with the <tt>--ci</tt> option:
+<h5>
+plink --file mydata --mh --within mycluster.dat --ci 0.99
+</h5></p>
+
+The <tt>--mh2</tt> option generates the file
+<pre>
+     plink.cmh2
+</pre>
+which contains the fields:
+<pre>
+     CHR         Chromosome
+     SNP         SNP identifier
+     CHISQ_CMH2  Cochran-Mantel-Haenszel test for IxJxK tables
+     P_CMH2      Asymptotic p-value for this test
+</pre>
+It is not possible to obtain confidence intervals or 
+odds ratios for <tt>--mh2</tt> tests.
+
+</p><strong>Hint</strong> A trick to analyse phenotypes with more two
+categories (but only with nominal, not ordinal outcomes) is to use the
+<tt>--mh2</tt> option with the 
+phenotype in the cluster file and the phenotype in the PED file set all 
+to a single value.
+
+
+<a name="homog">
+<h2>Testing for heterogeneous association</h2>
+</a></p>
+
+As mentioned in the previous section, two methods are provided to test
+for between-cluster differences in association when using a case/control
+design. The Breslow-Day test is specified with the option:
+<h5>
+plink --file mydata --bd --within myclst.txt
+</h5></p>
+which runs and generates the same files as the <tt>--mh</tt> 
+option, described above, but with two extra fields appended:
+<pre>
+     CHISQ_BD   Breslow-Day test
+     P_BD       Asymptotic p-value
+</pre>
+where a significant value indicates between-cluster heterogeneoty
+in the odds ratios for the disease/SNP association. 
+</p>
+
+A similar test of the homogeneity of odds ratio tests based on 
+partitioning the chi-square statistic is given by:
+<h5>
+plink --file mydata --homog --within myclst.txt
+</h5></p>
+which generates the file
+<pre>
+     plink.homog
+</pre>
+which contains the fields
+<pre>
+     CHR      Chromosome number
+     SNP      SNP identifier
+     A1       Minor allele code
+     A2       Major allele code
+     F_A      Case allele frequency
+     F_U      Control allele frequency
+     N_A      Case allele count
+     N_U      Control allele count
+     TEST     Type of test
+     CHISQ    Chi-squared association statistic
+     DF       Degrees of freedom
+     P        Asymptotic p-value
+     OR       Odds ratio
+</pre>
+The <tt>TEST</tt> type is either
+<pre>
+     TOTAL    Total SNP & strata association
+     ASSOC    SNP association controlling for strata
+     HOMOG    Between-strata heterogeneity test
+     X_1      Association in first stratum
+     X_2      Association in second stratum
+     ...
+</pre>
+
+
+<a name="hotel">
+<h2>Hotelling's T(2) multilocus association test</h2>
+</a></p>
+
+<strong>IMPORTANT</strong> This command has been temporarily disabled
+</p>
+
+For disease-traits, <tt>PLINK</tt> provides support for a 
+multilocus, genotype-based test using Hotelling's T2 (T-squared) 
+statistic. The <tt>--set</tt> option should be used to specify 
+which SNPs are to be grouped, as follows:
+<h5>
+plink --file data --set mydata.set --T2
+</h5></p>
+
+where <tt>mydata.set</tt> defines which SNPs are in which set (see 
+<a href="data.shtml#sets">this section</a> for more information on 
+defining sets).
+</p>
+This command will generate a file
+<pre>
+     plink.T2
+</pre>
+which contains the fields
+<pre>
+     SET      Set name
+     SIZE     Number of SNPs in this set
+     F        F-statistic from Hotelling's test
+     DF1      Degrees of freedom 1
+     DF2      Degrees of freedom 2
+     P_HOTEL  Asymptotic p-value
+</pre>
+
+</p>
+
+<strong>HINT</strong> Use the <tt>--genedrop</tt> permutation to
+perform a family-based application of the Hotelling's T2 test.
+
+This command can be used with all permutation methods (label-swapping
+or gene-dropping, adaptive or max(T)).  In fact, the permutation test
+is based on 1-p in order to make the between set comparisons for the
+max(T) statistic more meaningful (as different sized sets would have
+F-statistics with different degrees of freedom otherwise). Using
+permutation will generate one of the following files:
+
+<pre>
+     plink.T2.perm
+</pre>
+which contain the fields
+<pre>
+     SET      Set name
+     SIZE     Number of SNPs in this set
+     EMP1     Empirical p-value
+     NR       Number of permutation replicates
+</pre>
+or, if <tt>--mperm</tt> was used, 
+<pre>
+     plink.T2.mperm
+</pre>
+which contain the fields
+<pre>
+     SET      Set name
+     SIZE     Number of SNPs in this set
+     EMP1     Empirical p-value
+     EMP2     max(T) empirical p-value
+</pre>
+
+Note that this test uses a simple approach to missing data: rather
+than case-wise deletion (removing an individual if they have at least
+one missing observation) we impute the mean allelic value. Although
+this retains power under most scenarios, it can also cause some bias
+when there are lots of missing data points. Using permutation is a
+good way around this issue.
+
+
+<a name="qt">
+<h2>Quantitative trait association</h2>
+</a>
+</p>
+
+Quantitative traits can be tested for association also, using either
+asymptotic (likelihood ratio test and Wald test) or empirical
+significance values. If the phenotype (column 6 of the PED file or the
+phenotype as specified with the <tt>--pheno</tt> option) is
+quantitative (i.e. contains values other than 1, 2, 0 or missing)
+then <tt>PLINK</tt> will automatically treat the analysis as a
+quantitative trait analysis. That is, the same command as for
+disease-trait association:
+<h5>
+	plink --file mydata --assoc
+</h5></p>
+will generate the file
+<pre>
+	plink.qassoc
+</pre>
+with fields as follows:
+<pre>
+     CHR      Chromosome number
+     SNP      SNP identifier
+     BP       Physical position (base-pair)
+     NMISS    Number of non-missing genotypes
+     BETA     Regression coefficient
+     SE       Standard error
+     R2       Regression r-squared
+     T        Wald test (based on t-distribtion)
+     P        Wald test asymptotic p-value
+</pre>
+
+If permutations were also requested, then an extra file, either
+<pre>
+     plink.assoc.perm
+</pre>
+or
+<pre>
+     plink.assoc.mperm
+</pre>
+will be generated, depending on whether adaptive or max(T) permutation 
+was used (see the <a href="perm.shtml">next section</a> for more 
+details).  The empirical p-values are based on the Wald statistic. 
+</p>
+
+<a name="qtmeans">
+<h2>Genotype means for quantitative traits</h2>
+</a>
+</p>
+Adding the flag <tt>--qt-means</tt> along with the <tt>--assoc</tt>
+command, when run with a quantitative trait, will produce an
+additional file with a list of means and standard deviations
+stratified by genotype, called 
+<pre>
+     plink.qassoc.means
+</pre>
+and format
+<pre>
+     CHR     Chromosome code
+     SNP     SNP identifier
+     VALUE   Description of next three fields
+     G11     Value for first genotype
+     G12     Value for second genotype
+     G22     Value for third genotype
+</pre>
+where <tt>VALUE</tt> is one of <tt>GENO</tt>, <tt>COUNTS</tt>, <tt>FREQ</tt>, 
+<tt>MEAN</tt> or <tt>SD</tt> (standard deviation). For example:
+<pre>
+      CHR           SNP  VALUE      G11      G12      G22
+        5   hCV26311749   GENO      2/2      2/1      1/1
+        5   hCV26311749 COUNTS        1       60      597
+        5   hCV26311749   FREQ  0.00152  0.09119   0.9073
+        5   hCV26311749   MEAN   0.9367   0.4955   0.5074
+        5   hCV26311749     SD        0    0.273   0.2902
+        5     hCV918000   GENO      2/2      2/1      1/1
+        5     hCV918000 COUNTS       47      237      359
+        5     hCV918000   FREQ  0.07309   0.3686   0.5583
+        5     hCV918000   MEAN    0.505   0.5091   0.5074
+        5     hCV918000     SD   0.2867   0.3064   0.2797
+</pre>
+i.e. each SNP takes up 5 rows.
+</p>
+
+
+<a name="qtgxe">
+<h2>Quantitative trait interaction (GxE)</h2>
+</a></p>
+
+<tt>PLINK</tt> provides the ability to test for a difference in 
+association with a quantitative trait between two environments (or, more
+generally, two groups). This test is simply based on comparing the 
+difference between two regression coefficients. To perform this test:
+<h5>
+	plink --file mydata --gxe --covar mycov.dat
+</h5></p>
+where <tt>mycovar.txt</tt> is a file containing the following fields:
+<pre>
+     Family ID
+     Individual ID
+     Covariate value
+</pre>
+See the <a href="data.shtml#covar">notes</a> on covariate files for more 
+details.
+</p>
+
+This option will generate the file
+<pre>
+     plink.qassoc.gxe
+</pre>
+which contains the fields:
+<pre>
+     CHR       Chromosome number
+     SNP       SNP identifier
+     NMISS1    Number of non-missing genotypes in first group (1)
+     BETA1     Regression coefficient in first group
+     SE1       Standard error of coefficient in first group
+     NMISS2    As above, second group
+     BETA2     As above, second group
+     SE2       As above, second group
+     Z_GXE     Z score, test for interaction
+     P_GXE     Asymptotic p-value for this test
+</pre>
+
+<strong>IMPORTANT!</strong> The covariate must be coded as an affection 
+status variable, i.e. 1 or 2 representing the first or second group. 
+Values of 0 or -9 can be used to indicate missing covariate values, in 
+which case that individual will be excluded from analysis.
+</p>
+
+
+<a name="glm">
+<h2>Linear and logistic models</h2>
+</a></p>
+
+These two features allow for multiple covariates when testing for both 
+quantitative trait and disease trait SNP association, and for  
+interactions with those covariates.  The covariates can either 
+be continuous or binary (i.e. for categorical covariates, 
+you must first make a set of binary dummy variables).
+
+</p>
+
+<strong>WARNING!</strong> These commands are in some ways more flexible than 
+the standard <tt>--assoc</tt> command, but this comes with a price: namely, 
+these run more slowly... 
+</p>
+
+In this section we consider:
+<ul>
+<li> Basic uasge
+<li> Covariate and interactions
+<li> Flexibly specifying the precise model
+<li> Flexibly specifying joint tests
+</ul>
+
+<h6>Basic usage</h6>
+
+For quantitative traits, use 
+<h5>
+plink --bfile mydata --linear 
+</h5></p>
+For disease traits, specify logistic regression with
+<h5>
+plink --bfile mydaya --logistic
+</h5></p>
+instead. All other commands in this section apply equally to both these models.
+</p>
+
+These commands will either generate the output file
+<pre>
+     plink.assoc.linear
+</pre>
+or
+<pre>
+     plink.assoc.logistic
+</pre>
+
+depending on the phenotype/command used. The basic format is:
+
+<pre>
+     CHR       Chromosome
+     SNP       SNP identifier
+     BP        Physical position (base-pair)
+     A1        Tested allele (minor allele by default) 
+     TEST      Code for the test (see below)
+     NMISS     Number of non-missing individuals included in analysis
+     BETA/OR   Regression coefficient (--linear) or odds ratio (--logistic)
+     STAT      Coefficient t-statistic 
+     P         Asymptotic p-value for t-statistic
+</pre>
+
+For the additive effects of SNPs, the direction of the regression
+coefficient represents the effect of each extra <b>minor allele</b>
+(i.e.  a positive regression coefficient means that the minor allele
+increases risk/phenotype mean).  If the <tt>--beta</tt> command is
+added along with <tt>--logistic</tt>, then the regression coefficients
+rather than the odds ratios will be returned.
+
+</p>
+<strong>NOTE</strong> Elsewhere in this documentation, the term
+<em>reference allele</em> is sometimes used to refer to <tt>A1</tt>,
+i.e. the <tt>--reference-allele</tt> command can be used to specify
+which allele is A1. Note that in association testing, the odds ratios,
+etc are typically calculated with A2 as the actual reference allele
+(i.e. a positive OR means A1 increases risk relative to A2).
+
+</p>
+
+<strong>HINT</strong> Adding the <tt>--ci 0.95</tt>, for example,
+option will given 95% confidence intervals for the estimated
+parameters, in additional <tt>L95</tt> and <tt>U95</tt> fields in the
+output files.
+</p>
+
+By itself, the <tt>--linear</tt> command will give identical results to the 
+Wald test from the <tt>--assoc</tt> command when applied to quantitative 
+traits.The <tt>--logistic</tt> command may give slightly different 
+results to the <tt>--assoc</tt> command for disease traits, but this is 
+because a different test/model is being applied (i.e. logistic regression 
+rather than allele counting). The difference may be particularly large for 
+very rare alleles (i.e. if the SNP is monomorphic in cases or controls, 
+then the logistic regression model is not well-defined and asymptotic 
+results might not hold for the basic test either).
+</p>
+When using <tt>--linear</tt>, adding the option
+<pre>
+     --standard-beta
+</pre>
+will first standard the phenotype (mean 0, unit variance), so the
+resulting coefficients will be standardized.
+
+</p>
+
+The <tt>TEST</tt> column is by default <tt>ADD</tt> meaning the additive 
+effects of allele dosage. Adding the option
+
+<pre>
+     --genotypic
+</pre>
+
+will generate file which will have two extra tests per SNP, corresponding 
+to two extra rows: <tt>DOMDEV</tt> and <tt>GENO_2DF</tt> which represent a 
+separate test of the dominance component or a 2 df joint test of both 
+additive and dominance (i.e. corresponding the the general, genotypic 
+model in the <tt>--model</tt> command). Unlike the dominance model is the 
+<tt>--model</tt>, <tt>DOMDEV</tt> refers to a variable coded 0,1,0 
+for the three genotypes <tt>AA,Aa,aa</tt>, i.e. representing the 
+<em>dominance deviation</em> from additivity, rather specifying that a 
+particular allele is dominant or recessive. That is, the <tt>DOMDEV</tt> 
+term is fitted jointly with the <tt>ADD</tt> term in a single model.
+
+</P><strong>NOTE!</strong> The coding PLINK uses with the 2
+df <tt>--genotypic</tt> model involves two variables representing an
+additive effect and a dominance deviation;
+<pre>
+          A   D
+     AA   0   0
+     AB   1   1
+     BB   2   0
+</pre>
+Although the 2df test will be identical, you would <em><b>not</b></em>
+expect to see similar p-values, etc for the two individual terms if
+instead you used a different version of "genotypic" coding, e.g. in
+another analysis package, such as using dummy variables to represent
+genotypes:
+<pre>
+          G1   G2
+     AA   0    0
+     AB   1    0
+     BB   0    1
+</pre>
+That is, although fundamentally the same, in terms of the 2df test,
+the interpretation of the two individual terms is different in these
+two cases.  To achieve this coding in PLINK (v1.02 onwards), add
+the <tt>--hethom</tt> flag as well as <tt>--genotypic</tt>.
+</p>
+In a related note, you would not always expect the <tt>ADD</tt>
+p-value to be the same when entering in the dominance term as it is
+without it; if in doubt, you are advised to stick to just interpreting
+the 2 df test if using the <tt>--genotypic</tt> option.
+
+</p>
+&nbsp;
+</p>
+To specify a model assuming full dominance (or recessive) for the
+minor allele (i.e. rather than the 2 df model mentioned above), you
+can specify with either
+<pre>
+     --dominant
+</pre>
+or
+<pre>
+     --recessive
+</pre>
+
+</p>
+
+<h6>Covariates and interactions</h6>
+
+If a covariate file is also specified, then <b>all</b> covariates in that
+file will be included in the regression model, labelled <tt>COV1</tt>, <tt>COV2</tt>, etc.
+This is different to other commands which take only a single covariate (possibly 
+working in conjunction with the <tt>--mcovar</tt> option).  
+</p><strong>NOTE</strong> The <tt>--covar-name</tt> or <tt>--covar-number</tt> commands can be used
+to select a subset of all covariates in the file, described <a href="data.shtml#covar">here</a>.</p>
+
+</p>
+
+For example, if the covariate file is made as
+described <a href="data.shtml#covar">here</a> and contains 2
+covariates then the command
+<h5>
+plink --bfile mydata --linear --genotypic --covar mycov.txt
+</h5></p>
+will add two extra tests per SNP, <tt>COV1</tt> and <tt>COV2</tt>. The p-value for the SNP term or terms 
+in the model will be adjusted for the covariates; that is, a single model is fit to the data (that also includes 
+a dominance term, as the <tt>--genotypic</tt> flag was also set):
+<pre>
+     Y = b0 + b1.ADD + b2.DOMDEV + b3.COV1 + b4.COV2 + e
+</pre>
+(Note, using this notation, the genotypic test is of <tt>b1=b2=0</tt>.)
+
+</p>
+The output per each SNP might look something like:
+<pre>
+    CHR        SNP      BP  A1       TEST   NMISS       OR      STAT         P
+      5   rs000001   10001   A        ADD     664   0.7806    -1.942   0.05216
+      5   rs000001   10001   A     DOMDEV     664   0.9395   -0.3562    0.7217
+      5   rs000001   10001   A       COV1     664   0.9723   -0.7894    0.4299
+      5   rs000001   10001   A       COV2     664    1.159    0.5132    0.6078
+      5   rs000001   10001   A   GENO_2DF     664       NA     5.059    0.0797   
+</pre>
+
+That is, this represent coefficients from four terms in a multiple
+regression of disease on <tt>ADD</tt>,
+<tt>DOMDEV</tt>, <tt>COV1</tt> and <tt>COV2</tt> jointly. The final
+test is a 2df test that tests the coefficients for <tt>ADD</tt>
+and <tt>DOMDEV</tt> together. Importantly, the p-values for each line
+reflect the effect of the entity under the <tt>TEST</tt> column, not
+of the SNP whilst controlling for that particular covariate. (That is, p=0.0797
+is the 2df test of the SNP whilst controlling for <tt>COV1</tt> and <tt>COV2</tt>.)  
+</p>
+
+<strong>HINT</strong> To suppress the multiple lines of output for
+each covariate (which often are not of interest in themselves) add the
+flag <tt>--hide-covar</tt>, i.e. the above would just read as follows
+for this SNP:
+<pre>
+    CHR        SNP      BP  A1       TEST   NMISS       OR      STAT         P
+      5   rs000001   10001   A        ADD     664   0.7806    -1.942   0.05216
+      5   rs000001   10001   A   GENO_2DF     664       NA     5.059    0.0797   
+</pre>
+
+</p>
+
+<strong>HINT</strong> To condition analysis on a specific SNP when using <tt>--linear</tt> or <tt>--logistic</tt>, 
+use the <tt>--condition</tt> option, e.g. 
+<h5>
+     plink --bfile mydata --linear --condition rs123456
+</h5></p>
+will test all SNPs but adding the allelic dosage for <tt>rs123456</tt> as a covariate. This 
+command can be used in conjunction with <tt>--covar</tt> and the other options listed here. 
+To condition on multiple SNPs, use, for example,
+<h5>
+     plink --bfile mydata --linear --condition-list snps.txt </h5></p> where <tt>snps.txt</tt> is a plain text file 
+contain a list of SNPs which are to be included as covariates. The output will now include terms that correspond
+to the SNPs listed in the file <tt>snps.txt</tt>. 
+</p>
+The conditioning SNPs are entered into the model simply as covariates, 
+using a simple 0, 1, 2 allele dosage coding. That is, for two conditioning SNPs, <tt>rs1001</tt> and <tt>rs1002</tt> say, 
+and also a standard covariate, the model would be
+<pre>
+     Y = b0 + b1.ADD + b2.rs1001 + b3.rs1002 + b4.COV1 + e
+</pre>
+
+If the <tt>b1</tt> coefficient for the test SNP is still significant after entering these covariates, 
+this would suggest that it does indeeed have an effect independent of <tt>rs1001</tt>, <tt>rs1002</tt> and
+the other covariate. (The other coefficients may still be highly significant, but these reflect the effects of 
+the conditioning SNPs and covariates, not the test SNP.)
+
+</p>
+If the <tt>--sex</tt> flag is added, then sex will be entered as a 
+covariate in the model (coded 1 for male, 0 for female), e.g
+<h5>
+   plink --bfile mydata --logistic --sex 
+</h5></p>
+
+If the option <tt>--interaction</tt> is added, then terms will be entered 
+which correspond to SNP x covariate interactions (with <tt>DOMDEV</tt>
+as well as <tt>ADD</tt> if <tt>--genotypic</tt> is specified). In the 
+case of two covariates, without <tt>--genotypic</tt>, for example, the 
+command
+<h5>
+plink --bfile mydata --linear --covar tmp.cov --interaction
+</h5></p>
+results in the model
+<pre>
+     Y = b0 + b1.ADD + b2.COV1 + b3.COV2 + b4.ADDxCOV1 + b5.ADDxCOV2 + e 
+</pre>
+
+</p><strong>NOTE</strong> Please remember that when interaction terms 
+are included in the model, the significance of the main effects can not 
+necessarily be interpreted straightforwardly (i.e. they will depend
+on the arbitrary coding of the variables). In otherwords, when 
+including the <tt>--interaction</tt> flag, you should probably only 
+interpret the interaction p-value. Please refer to any standard text of 
+regression models if you are unclear on this. 
+</p>
+
+Finally, a <tt>--test-all</tt> option drops all the terms in the model
+in a multiple degree of freedom test.
+</p>
+
+<h6>Flexibly specifying the model</h6>
+
+Use command such as <tt>--covar</tt> and <tt>--interaction</tt> will automatically
+enter all covariates and possible SNP x covariate interactions.  If one does not want to 
+test all of these, then use the <tt>--parameters</tt> flag to extract only the ones of 
+interest.  
+</p>
+For example, to take the example above: 
+<pre>
+     Y = b0 + b1.ADD + b2.COV1 + b3.COV2 + b4.ADDxCOV1 + b5.ADDxCOV2 + e 
+</pre>
+If one only wanted <tt>ADD</tt>, the two covariates and the <tt>ADDxCOV2</tt>
+but <b>not</b> the <tt>ADDxCOV1</tt> interaction, then, from the above example,
+ you could use
+<h5>
+ plink --bfile mydata --linear --covar tmp.cov --interaction --parameters 1,2,3,5
+</h5></p>
+
+That is, <tt>--parameters</tt> takes a comman-separated list of integers, starting from 1, 
+that represent the terms in the model (in the order in which they would appear if the 
+command were run without the <tt>--parameters</tt> flag). In this case:
+<pre>
+     ADD          [1]
+     COV1         [2]
+     COV2         [3]
+     ADD x COV1   [4]  <-- excluded
+     ADD x COV2   [5]
+</pre>
+
+<h6>Flexibly specifying joint tests</h6>
+
+To perform a user-defined joint test of more than one parameter, use the 
+<tt>--tests</tt> option.  This takes a comma-delimited set of parameter 
+numbers, for example: if the model is
+<pre>
+     ADD        [1]
+     COV1       [2]
+     COV2       [3]
+     ADDxCOV1   [4]
+     ADDxCOV2   [5]
+</pre>
+then 
+<h5>
+     plink --bfile mydate --linear --covar file.cov --interaction --tests 
+1,4,5
+</h5></p>
+represeents a 3 degree of freedom test of <tt>ADD</tt> and the two 
+interactions.
+</p>
+Note, if this is used in conjunction with the <tt>--parameters</tt> 
+option, then the coding here refers to the reduced model -- for example, 
+the command
+<h5>
+     plink --bfile mydate --linear --covar file.cov --interaction 
+--parameters 1,2,3,5 --tests 1,4
+</h5></p>
+performs a joint test of <tt>ADD</tt> and <tt>ADDxCOV2</tt> (2df test) 
+whilst controlling for main effects of <tt>COV1</tt> and <tt>COV2</tt>, 
+i.e. we <em>do not</em> use <tt>--tests 1,5</tt>, as there are now only 4 
+terms in the model:
+<pre>
+                      --parameters 1,2,3,5    --tests 1,4
+     ADD        [1]             [1]              TEST
+     COV1       [2]             [2]              
+     COV2       [3]             [3]              
+     ADDxCOV1   [4]             n/a              
+     ADDxCOV2   [5]             [4]              TEST
+</pre>
+In other words, we fit the model
+<pre>
+     Y = b0 + b1.ADD + b2.COV1 + b3.COV2 + b4.ADDxCOV2 + e 
+</pre>
+and jointly test the hypothesis
+<pre>
+     H0: b1 = b4 = 0 
+</pre>
+
+</p>
+
+As mentioned above, use <tt>--test-all</tt> to drop all terms in the model 
+in a single joint test.
+
+<h6>Multicollinearity</h6>
+
+A common problem with multiple regression is that of multi-collinearity: 
+when the predictor variables are too strongly correlated to each other, 
+the parameter estimates will become unstable. <tt>PLINK</tt> tries to 
+detect this, and will display <tt>NA</tt> for the test statistic and 
+p-value for all terms in the model if there is evidence of 
+multi-collinearity. One common instance where this would occur would be 
+if one includes the <tt>--genotypic</tt> option but a SNP only has two of 
+the three possible genotype classes: in this case, <tt>ADD</tt> and 
+<tt>DOM</tt> will be perfectly correlated and <tt>PLINK</tt> will 
+display <tt>NA</tt> for both tests; this is basically telling you that 
+you should re-run without the <tt>--genotypic</tt> option for that 
+particular SNP. Similar principles apply to including covariates and 
+interactions terms: the more terms you include, the more likely you are 
+to have problems.
+
+</p>
+The <tt>--vif</tt> option can be used to specify the variance
+inflation factor (VIF) used in the initial test for
+multicollinearity. The default value is 10 -- smaller values represent
+more stringent tests.
+</p>
+
+<strong>HINT</strong> If you have a quantitative trait, only want an additive model
+and have only a single binary covariate, use the <tt>--gxe</tt> option (described above)
+instead of <tt>--linear</tt>: it will run much faster (being based on a more simple
+test of the difference of two regression slopes; it will not necessarily give 
+numerically identical results to the multiple regression approach, but asymptotically both 
+tests should be similar).
+
+<a name="set">
+<h2>Set-based tests</h2>
+</a></p>
+
+These set-based tests are particularly suited to large-scale candidate
+gene studies as opposed to whole genome association studies, as they
+use permutaiton. 
+
+</p>
+
+<strong>NOTE</strong> The basis of the set-based test has been changed in version 1.04 onwards. </p>
+
+This analysis works as follows: 
+<ol>
+<li> For each set, for each SNP determine which other SNPs are in LD,
+above a certain threshold <em>R</em>
+<li> Perform standard single SNP analysis (which might be basic
+case/control association, family-based TDT or quantitative trait
+analysis).
+<li> For each set, select up to <em>N</em> "independent" SNPs (as
+defined in step 1) with p-values below <em>P</em>. The best SNP is
+selected first; subsequent SNPs are selected in order of descreasing
+statistical significance, after removing SNPs in LD with previously
+selected SNPs.
+<li> From these subsets of SNPs, the statistic for each set is calculated
+as the mean of these single SNP statistics
+<li> Permute the dataset a large number of times, keeping LD between
+SNPs constant (i.e. permute phenotype labels)
+<li> For each permuted dataset, repeat steps 2 to 4 above.
+<li> Empirical p-value for set (<tt>EMP1</tt>) is the number of times
+the permuted set-statistic exceeds the original one for that set.
+</ol>
+
+Note that the empirical p-values are corrected for the multiple SNPs
+within a set (taking account of the LD between these SNPs). They are
+not corrected for multiple testing if there is more than one set,
+however (i.e.  there is no equivalent of <tt>EMP2</tt> (see the page
+on <a href="perm.shtml">permutation</a>).
+
+</p>
+
+The critical parameters described above, <em>R</em>, <em>N</em>
+and <em>P</em> can all be altered by the user, as described below.
+
+</p>
+To perform a set-based test the critical keywords are
+<pre>
+     --set-test   
+     --set my.set 
+     --mperm 10000
+</pre>
+
+which state that we are performing a set-based test, which set-file to
+use and how many permutations to perform (this last command is
+necessary).  As mentioned above, the <tt>--assoc</tt> command could be
+replaced by <tt>--tdt</tt>, or <tt>--logistic</tt>, etc.
+</p>
+The set file <tt>my.set</tt> is in form
+<pre>
+     SET1
+     rs1234
+     rs28384
+     rs29334
+     END
+
+     SET2
+     rs4774
+     rs662662
+     rs77262
+     END
+
+     ...
+</pre>
+
+For example, 
+
+<h5>
+     plink --file mydata --set-test --set my.set --mperm 10000 --assoc 
+</h5></p>
+
+would display in the LOG file the following critical parameters with
+their default values
+<pre>
+     Performed LD-based set test, with parameters:
+          r-squared  (--set-r2)   = 0.5
+          p-value    (--set-p)    = 0.05
+          max # SNPs (--set-max)  = 5
+</pre>
+The output is written to a file with a <tt>.set.mperm</tt> extension, for example
+<pre>
+     plink.assoc.set.mperm
+</pre>
+with the fields
+<pre>	
+     SET     Set name
+     NSNP    Number of SNPs in set 
+     NSIG    Total number of SNPs below p-value threshold
+     ISIG    Number of significant SNPs also passing LD-criterion
+     STAT    Average test statistic based on <tt>ISIG</tt> SNPs
+     EMP1    Empirical set-based p-value
+     SNPS    List of SNPs in the set
+</pre>
+
+For example, here is output from a case/control dataset with SNPs for
+five related genes (lines truncated)
+<pre>
+         SET   NSNP   NSIG   ISIG         STAT         EMP1 SNPS
+      GABRB2     45      0      0            0            1 NA
+      GABRA6      6      4      3        5.199      0.09489 rs3811991|rs2197414|...
+      GABRA1     22     11      5        5.951      0.09459 rs4254937|rs4260711|...
+      GABRG2     24      0      0            0            1 NA
+       GABRP     17      2      1         7.64       0.0269 rs7736504
+</pre>
+
+Here the first gene, <em>GABRB2</em> has 45 SNPs, but none of these
+are significant at p=0.05, and so the empirival p-value is necessarily
+1.00. The next gene has 6 SNPs, 4 of which are significant, but only 3
+of which are independently significant based on an r-squared threshold
+of 0.5. The <tt>STAT</tt> of 5.199 is the average chi-squared
+statistic across these three SNPs. It should not be interpreted in
+itself -- rather, you should consider the <tt>EMP1</tt> significance
+value based on it. In this case, P=0.095. The final
+gene, <em>GABRP</em> is nominally significant here, P=0.027, but this
+does not correct for the 5 genes tested of course.
+
+</p>
+ 
+Naturally, different thresholds will produce different
+results. Depending on the unknown genetic architecture, these may vary
+substantially and meaningfully so. In general, if the set represents a
+very large pathway (dozens of genes) you might want to
+increase <tt>--set-max</tt>. There are probably no hard and fast rules
+with regard to how to set <tt>--set-p</tt> and <tt>--set-r2</tt>,
+except to say that running under a large number of settings and
+selecting the most significant is not a good idea.
+</p>
+Running with a "stricter" set of values
+<pre>
+     --set-r2 0.1
+     --set-p 0.01
+     --set-max 2
+</pre>
+we see a broadly similar pattern of results; naturally, the
+thresholding on p-value means that <em>GABRA6</em> goes from showing
+some signal to asbolutely no signal.
+<pre>
+         SET   NSNP   NSIG   ISIG         STAT         EMP1 SNPS
+      GABRB2     45      0      0            0            1 NA
+      GABRA6      6      0      0            0            1 NA
+      GABRA1     22      2      2        7.464      0.05949 rs4254937|rs4260711
+      GABRG2     24      0      0            0            1 NA
+       GABRP     17      1      1         7.64      0.06309 rs7736504
+</pre>
+Alternatively, a more inclusive setting might be something like
+<pre>
+     --set-r2 0.8
+     --set-p 1
+     --set-max 10
+</pre>
+which, in this particular case, happens to yield slightly stronger
+signals for <em>GABRA6</em> and <em>GABRA1</em> but weaker
+for <em>GABRp</em> (lines truncated)
+<pre>
+         SET   NSNP   NSIG   ISIG         STAT         EMP1 SNPS
+      GABRB2     45     12     10        1.749       0.7162 hCV26311691|...
+      GABRA6      6      6      6        3.998       0.0184 rs3811991|...
+      GABRA1     22     13     10        5.277       0.0182 rs4254937|...
+      GABRG2     24     11     10       0.6976       0.9099 hCV3167705|...
+       GABRP     17     10     10        2.753       0.1225 rs7736504|...
+</pre>
+
+</p>
+<strong>HINT</strong> Two extremes are to perform a test based on a) the best single SNP result per set:
+<pre>
+     --set-max 1
+     --set-p 1     
+</pre>
+or to use all SNPs in a set:
+<pre>
+     --set-max 99999
+     --set-p 1
+     --set-r2 1
+</pre>
+
+
+
+<a name="adjust">
+<h2>Adjustment for multiple testing: Bonferroni, Sidak, FDR, etc</h2>
+</a></p>
+
+To generate a file of adjusted significance values that correct for
+all tests performed and other metrics, use the option:
+
+<h5>
+     plink --file mydata --assoc --adjust
+</h5></p>
+
+which generates the file
+<pre>
+     plink.adjust
+</pre>
+which contains the fields
+<pre>
+     CHR         Chromosome number
+     SNP         SNP identifer
+     UNADJ       Unadjusted p-value
+     GC          Genomic-control corrected p-values
+     BONF        Bonferroni single-step adjusted p-values
+     HOLM        Holm (1979) step-down adjusted p-values
+     SIDAK_SS    Sidak single-step adjusted p-values
+     SIDAK_SD    Sidak step-down adjusted p-values
+     FDR_BH      Benjamini & Hochberg (1995) step-up FDR control
+     FDR_BY      Benjamini & Yekutieli (2001) step-up FDR control 
+</pre>
+
+This file is sorted by significance value rather than genomic location, the 
+most significant results being at the top.</p>
+
+</p>
+<strong>WARNING</strong> Currently, these procedures are only
+implemented for asymptotic significance values for the standard TDT
+and association (disease trait and quantitative
+trait, <tt>--assoc</tt>, <tt>--linear</tt>, <tt>--logistic</tt>) tests
+and the 2x2xK Cochran-Mantel-Haenszel test.  Future versions will
+allow these results for empirical significance values and for other
+tests (e.g. epistasis, etc).
+</p>
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<hr>
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:26 EST
+</em>
+
+
+</body>
+
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+
+</html>

@@ -1,0 +1,862 @@
+<html>
+<title>PLINK</title>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+
+<h1>R plugin functions</h1>
+
+This page describes PLINK's limited support for R-based 'plug-in' 
+functions.  In this manner, users can extend the basic functionality 
+of PLINK to better meet their own needs.
+</p>
+
+<a href="http://www.r-project.org/">R</a> is a powerful, freely-available 
+package for statistical computing. PLINK uses the <a  
+href="http://www.rforge.net/Rserve/">Rserve</a> package to communicate 
+with R. There are some notes on installing and running the Rserve 
+package below.
+</p>
+
+The idea is that some analyses, such as survival analysis for example,
+are already implemented in R but not available in
+PLINK. Having a simple interface for accessing such R functionality,
+allows one to benefit from both the data-handling features of PLINK
+(i.e. it being designed specifically to handle large SNP datasets
+efficiently, in a way that the basic R package is not) as well as the
+ever-increasing library of statistical tools in R. Also, this should
+provide an easy way to prototype new methods, etc.
+
+</p>
+
+Currently there is only support for SNP-based analyses. As of version
+1.05, multiple values can be returned for each SNP, as defined by the
+user.  Potentially (if there is interest/specific suggestions) these
+features will be expanded to allow other units of analysis and 
+broader communcation with R.
+
+
+</p><strong>Note</strong> Currently, there is only support for
+R-plugins for Linux-based and Mac OS PLINK distributions. 
+
+</p><strong>Note</strong> Version 1.04 onwards of PLINK has updated
+the client code to support the latest version of Rserve. You should
+re-install Rserve (see notes below) to make sure you have the latest
+version.
+
+
+<a name="rfunc1">
+<h2>Basic usage for R plug-ins</h2></a>
+</p>
+
+Assuming Rserve has been installed and is running locally 
+(see <a href="#rfunc3">below</a>) and that the file 
+<tt>myscript.R</tt> contains the R code conforming to the standard for a 
+PLINK plug-in (see <a href="#rfunc2">here</a>), then the command is simply
+<p><h5>
+ plink --file mydata --R myscript.R
+</h5></p>
+which generates a file
+<pre>
+     plink.auto.R
+</pre>
+
+This file contains the raw output for each SNP, which is whatever vector 
+of numeric values the user returned from their script, and some details about 
+the SNP. There is no header row; each row has the following fields.
+<pre>
+     Chromosome position
+     SNP id
+     Physical position (base-pair)
+     Minor allele (A1)
+     First return value from R-plugin
+     Second return value from R-plugin
+     ...
+</pre>
+
+Depending on how you set up the R script, each row may or may not have the same
+number of columns. Currently it is not possible to return strings of other R
+objects.
+
+</p> 
+If <tt>Rserve</tt> is running on anything other than the default port, you can specify an alternate port number by adding
+<pre>
+     --R-port 8221
+</pre>
+for example.
+
+<a name="rfunc2">
+<h2>Defining the R plug-in function</h2></a>
+</p>
+
+PLINK expects a function in the exact form
+
+<pre>
+     Rplink <- function(PHENO,GENO,CLUSTER,COVAR)
+</pre>
+
+to be defined in the supplied file. This function is expected to return 
+a numeric vector, with as many elements are there are SNPs. Internally, 
+PLINK will call the <tt>Rplink</tt> function -- it must be written exactly 
+as shown here. The objects refer to:
+<pre>
+     PHENO     vector of phenotypes (n)
+     GENO      matrix of genotypes (n x l)
+     CLUSTER   vector of cluster membership codes (n)
+     COVAR     matrix of covariates (n x c)
+</pre>
+where <tt>n</tt> is the number of individuals (after pruning, filtering, 
+etc) and <tt>c</tt> is the number of covariates (if any). PLINK 
+generates these objects internally, so the user can assume these exist 
+for when the <tt>Rplink()</tt> function is called. (In practice, the 
+number of SNPs, <tt>l</tt> will probably be smaller than the total number 
+of SNPs in the file, as PLINK passes the genotype data into R in batches 
+rather than all in one go).
+</p>
+
+Genotypes are coded 0, 1 or 2 copies of the minor allele, 
+and NA, as per the <tt>--recodeA</tt> option.
+</p>
+
+For each SNP, PLINK expects the function to return a numeric vector of values. This need not
+have the same number of values for each SNP (although this will make subsequently parsing of the
+output file harder, potentionally). If the desired return vector is <tt>r</tt>, then the actual 
+return vector must be 
+<pre>
+     c( length(r) , r )
+</pre>
+
+That is, PLINK expects back a long string of values, where it reads how many values to read for the first SNP, reads
+them, then reads how many values to read for the second SNP, reads them, etc.  By also using the abve formulation to 
+specify the return vector, PLINK will be able to parse the output.
+
+</p>
+
+An example R plug-in is shown here -- this is probably the most 
+straightforward template for an R-plugin, in which the <tt>apply()</tt> 
+function is used to iteratively call the nested function (<tt>f1()</tt>), 
+once per SNP, in this case. For example, the file <tt>myscript.R</tt> 
+might contain the following plug-in:
+<pre>
+Rplink <- function(PHENO,GENO,CLUSTER,COVAR)
+{
+
+ f1 <- function(x)   
+ { 
+    r <- mean(x, na.rm=T) / 2 
+    c( length(r) , r )  
+ }
+
+ as.numeric( apply(GENO, 2 , f1) )
+}
+</pre>
+
+If you are not familiar with the R language, there are a number of 
+excellent resources available from the main R <a 
+href="http://www.r-project.org/">webpage</a>.
+</p>
+
+Within the body of the main <tt>Rplink()</tt> function, there are no
+constraints on what you can do, as long as the return value is in the
+proper format, as described above. In this example, within the main
+body of the <tt>Rplink()</tt> function we first define a function
+that will be applied to each SNP, called <tt>f1()</tt>. Unlike
+the <tt>Rplink()</tt> function, you can call this whatever you want,
+or have as many functions as you want.  The function <tt>f1()</tt> 
+calculates the allele frequency for each
+SNP (as the genotypes are coded as the count of the minor allele,
+0,1,2). The second line applies this function to each column of the
+genotype data, using the <tt>apply( <em>data , row/col , function</em>
+)</tt> command.
+</p>
+Another, perhaps more useful, example is implementing survival analysis within PLINK: here 
+we define a function, <tt>f1()</tt> to return the p-value for the first coefficient; we assume
+here that a censoring variable was loaded into PLINK as the first covariate (i.e. the R <tt>Surv</tt> 
+function takes two parameters, the survival time and censoring status). (This is probably not the optimal 
+way to implement this analysis, but is intended purely as an example of what can be done.)
+<pre>
+     library(survival)
+     Rplink <- function(PHENO,GENO,CLUSTER,COVAR)
+     {
+      f1 <- function(s) 
+      {
+        m <- summary( coxph( Surv( PHENO , COVAR[,1] ) ~ s ) )
+        r <- c( m$coef , m$loglik, m$n )
+        c( length(r) , r )
+      }
+     apply( GENO , 2 , f1 )
+     }
+</pre>
+
+In other words, the general format is 
+
+<pre>
+     <em>{ load any libraries or auxiliary data from a file first }</em>
+     <b>Rplink <- function(PHENO,GENO,CLUSTER,COVAR)
+     {</b>
+      f1 <- function(x)
+      {
+      <em> { do something to generate per-SNP return vector r }</em>
+       c( length(r) , r )
+      }
+     apply( GENO , 2 , f1 )
+     <b>}</b>
+</pre>
+
+
+<a name="rfunc2b">
+<h2>Example of debugging an R plug-in</h2></a>
+</p>
+
+
+</p>
+To generate a text file that contains the R commands PLINK would have
+run (rather than actually trying to run them -- this is useful for
+debugging purposes), add the following flag
+<p><h5> plink --file mydata --R myscript.R --R-debug
+</h5></p>
+
+To illustrate the debug function, consider this example, in which we
+try to implement a logistic regression. The file
+<pre>
+     mylog.R
+</pre>
+which contains the function
+<pre>
+     Rplink <- function(PHENO,GENO,CLUSTER,COVAR)
+     {
+       f1 <- function(s) 
+       {
+        m <- glm( PHENO ~ s , family="binomial" )
+        r <- summary(m)$coef[8]
+        c( length(r) , r )
+       }
+      apply( GENO , 2 , f1 )
+     }
+</pre>
+and we have a dataset with three SNPs; the internal PLINK logistic regression command
+<h5>
+plink --file mydata --logistic
+</h5></p>
+yields
+<pre>
+     CHR  SNP         BP   A1       TEST    NMISS       ODDS         STAT            P
+       1 snp0      10000    A        ADD      200      1.256         1.15       0.2501
+       1 snp1      10001    B        ADD      200     0.9028      -0.5112       0.6092
+       1 snp2      10002    B        ADD      200     0.6085       -2.242      0.02499
+</pre>
+
+Trying to run the <tt>R</tt> implementation:
+<h5>
+plink --file mydata --R mylog.R
+</h5></p>
+we obtain a set of invalid p-values in <tt>plink.auto.R</tt>
+<pre>
+     1 snp0 10000  A  NA
+     1 snp1 10001  B  NA
+     1 snp2 10002  B  NA
+</pre>
+
+To find out what is happening, we will run the same command with the debug option
+<h5>
+plink --file mydata --R mylog.R --R-debug
+</h5></p>
+This writes to the file <tt>plink.auto.R</tt> the actual commands that would be passed to 
+R, including the data and the function:
+<pre>
+     n <- 200
+     
+     PHENO <- c( 2, 1, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2,
+     1, 2, 1, 2, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2, 2, 2, 2, 1, 2, 1, 1, 1, 2,
+     2, 2, 1, 1, 1, 1, 1, 2, 2, 1, 1, 2, 2, 2, 2, 1, 1, 1, 2, 1, 1, 2, 1,
+     2, 1, 1, 2, 2, 2, 1, 2, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 2, 1, 2, 1,
+     2, 2, 1, 2, 1, 1, 2, 2, 2, 1, 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1,
+     1, 1, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 1,
+     1, 2, 1, 2, 2, 2, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 2, 1, 1, 2, 1,
+     1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 1,
+     2, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1 )
+     
+     COVAR <- matrix( NA , nrow = n , ncol = 0 , byrow = T)
+     
+     CLUSTER <- c( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) 
+     
+     l <- 3 
+     
+     g <- c( 1, 2, 1, 2, 2, 1, 1, 1, 1, 2, 2, 0, 0, 1, 1, 0, 1, 2, 1, 1, 1,
+     2, 1, 1, 2, 1, 1, 0, 1, 1, 1, 0, 1, 2, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1,
+     1, 1, 1, 1, 0, 1, 2, 1, 1, 1, 1, 0, 1, 1, 0, 2, 2, 0, 1, 1, 2, 0, 1,
+     1, 1, 2, 1, 1, 1, 1, 1, 0, 2, 2, 0, 0, 2, 1, 1, 1, 2, 1, 1, 0, 1, 1,
+     1, 1, 2, 2, 2, 1, 0, 2, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1,
+     0, 2, 2, 1, 0, 0, 0, 1, 0, 1, 2, 2, 2, 1, 0, 0, 0, 2, 1, 2, 2, 1, 1,
+     1, 1, 0, 0, 1, 1, 1, 1, 1, 2, 1, 1, 0, 1, 2, 2, 1, 2, 2, 1, 2, 0, 1,
+     1, 1, 1, 2, 1, 1, 0, 1, 0, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 0, 1, 1, 1,
+     2, 2, 1, 2, 1, 1, 2, 2, 0, 0, 1, 2, 1, 0, 0, 1, 1, 2, 1, 2, 2, 2, 0,
+     1, 1, 0, 2, 1, 1, 2, 1, 0, 1, 1, 0, 1, 1, 1, 1, 2, 1, 1, 0, 1, 1, 0,
+     0, 1, 1, 2, 1, 0, 1, 2, 0, 2, 1, 1, 1, 0, 0, 2, 1, 1, 1, 2, 0, 1, 1,
+     1, 1, 1, 2, 1, 2, 0, 1, 1, 0, 1, 0, 2, 1, 0, 2, 1, 2, 2, 0, 0, 0, 1,
+     1, 2, 1, 1, 1, 0, 2, 1, 0, 2, 2, 1, 1, 2, 1, 1, 1, 2, 0, 1, 1, 0, 1,
+     2, 2, 2, 0, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 2, 0, 0, 2, 0, 2, 1, 1, 1,
+     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0, 0, 1, 1, 0, 2, 1, 1, 1, 2,
+     2, 2, 1, 1, 0, 0, 2, 2, 1, 2, 2, 0, 2, 2, 2, 2, 0, 1, 2, 2, 2, 2, 0,
+     0, 0, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 2, 2, 2, 0, 1, 2, 0, 0, 1, 1, 1,
+     0, 1, 1, 1, 0, 0, 1, 1, 2, 1, 0, 1, 0, 2, 2, 1, 2, 1, 1, 1, 0, 1, 1,
+     1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 2, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 2, 2,
+     2, 2, 1, 2, 1, 1, 1, 2, 1, 2, 0, 0, 1, 0, 1, 2, 1, 0, 2, 0, 1, 1, 0,
+     1, 0, 1, 1, 0, 2, 0, 1, 2, 1, 1, 2, 2, 1, 2, 0, 2, 0, 2, 0, 0, 1, 1,
+     1, 1, 2, 1, 0, 2, 0, 1, 1, 0, 1, 2, 2, 2, 1, 0, 1, 2, 1, 2, 1, 2, 0,
+     0, 1, 0, 1, 1, 2, 0, 1, 1, 2, 1, 0, 1, 2, 1, 0, 2, 2, 2, 2, 2, 2, 1,
+     0, 2, 1, 2, 1, 1, 1, 1, 2, 0, 1, 1, 1, 2, 2, 1, 0, 1, 1, 2, 1, 1, 0,
+     1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 0, 2, 0, 2, 2, 1, 0, 1, 2, 1,
+     0, 2, 0, 0, 1, 0, 2, 1, 0, 2, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 2, 2,
+     0, 1, 2, 1 ) 
+     
+     GENO <- matrix( g , nrow = n ,byrow=T) 
+     GENO[GENO == -1 ] <- NA
+          
+     Rplink <- function(PHENO,GENO,CLUSTER,COVAR)
+     {
+     f1 <- function(s) {
+        m <- glm( PHENO-1 ~ s , family="binomial" )
+        r <- summary(m)$coef[8]
+        c( length(r), r)
+      }
+     apply( GENO , 2 , f1 )
+     }
+</pre>
+
+In R, load this function
+<h5>
+source("plink.auto.R")
+</h5></p>
+and then try to run the <tt>Rplink</tt> function
+<h5>
+Rplink(PHENO,GENO,CLUSTER,COVAR)
+</h5></p>
+and you will see the error message
+<pre>
+     Error in eval(expr, envir, enclos) : y values must be 0 <= y <= 1
+</pre>
+which indicates that <tt>R</tt> is expecting a 0/1 coding for this
+particular function, not the default 1/2 coding used by PLINK for the
+phenotype/dependent variable. You might therefore want to change the
+relevant line of the function from
+<pre>
+     m <- glm( PHENO ~ s , family="binomial" )
+</pre>
+to
+<pre>
+     m <- glm( PHENO==2 ~ s , family="binomial" )
+</pre>
+for example. Then, repeating the above debug procedure, you would see in R
+<h5>
+Rplink(PHENO,GENO,CLUSTER,COVAR)
+</h5></p>
+gives
+<pre>
+     [1] 0.25013412 0.60921037 0.02499268
+</pre>
+which are the correct p-values.  So, now the function is fixed running 
+<h5>
+ plink --file mydata --R mylog.R 
+</h5></p> 
+would generate the same set of p-values as the PLINK
+logistic command, in <tt>plink.auto.R</tt>
+<pre>
+     1 snp0 10000  A  0.250134
+     1 snp1 10001  B  0.60921
+     1 snp2 10002  B  0.0249927
+</pre>
+This basic function could then be extended to return the coefficients also, or to use different analytic approaches 
+available in R.
+
+
+<a name="rfunc3">
+<h2>Setting up the Rserve package</h2></a>
+</p>
+
+First, you must ensure that you have <tt>Rserve</tt> installed on your 
+system. Normally, this will involve just typing, <b><em>at the R command 
+prompt (not the system shell prompt)</em></b>
+<h5>
+ install.packages("Rserve")
+</h5></p>
+
+<strong>HINT</strong> For this to work, R must have been configured with 
+<tt>--enable-R-shlib</tt>.
+</p>
+
+When using any R-based PLINK plug-in, Rserve must be running in the 
+background before invoking the PLINK command. To start Rserve, just type 
+at the shell prompt
+<h5>
+R CMD Rserve
+</h5></p> 
+(note, you may need to change <tt>Rserve</tt> to the full path of where 
+Rserve was installed), or, within R, type at the R prompt
+<h5>
+library(Rserve) <br>
+Rserve()
+</h5></p>
+Please see the <a href="http://www.rforge.net/Rserve/doc.html">Rserve 
+documentation</a> for further support.
+
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:28 EST
+</em>
+
+</body>
+
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>

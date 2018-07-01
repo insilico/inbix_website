@@ -1,0 +1,966 @@
+<html>
+<body>
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+<h1>Multimarker haplotype tests</h1>
+
+All tests described above are based on single SNP tests. It is also
+possible to impute haplotypes based on multimarker predictors using
+the standard E-M algorithm and to perform simple tests based on the
+distribution of probabilistically-inferred set of haplotypes for each
+individual.
+</p>
+As well as the autosomes, X and haploid chromosomes should be
+appropriately handled. Phasing can either be based on a sample of
+unrelated individuals, or certain kinds of family data. First, all
+founders are phased using the E-M algorithm; then all descendents of
+these founders are phased given the set of possible parental phases
+and assuming random-mating.  Currently it is not possible to phase
+sibships without parents. The current implementation of the phasing
+and haplotype testing algorithm is designed focus on relatively small
+regions of the genome, rather than to phase whole chromosomes at once.
+</p>
+
+<strong>HINT!</strong> Another approach to haplotype-testing can be
+found under the page describing <a href="proxy.shtml">proxy
+association</a>. This set of methods essentially just provide a
+different interface to the exact same E-M phasing and
+haplotype-testing algorithms, one that is centered around a specific
+reference SNP.
+
+</p>
+
+<a name="hap1">
+<h2>Specification of haplotypes to be estimated</h2>
+</a></p>
+
+Haplotype testing in PLINK requires that the user supplies a file
+listing the haplotypes to be tested (Some precomputed lists are
+given <a href="#precomputed">below</a> which might be useful in some
+circumstances.) The formats of these files are described below. An
+alternative is to specify a simple, sliding window of fixed haplotype
+size (also described below).
+
+</p>
+The command 
+<h5>
+plink --file mydata --hap myfile.hlist
+</h5></p>
+
+will read the file <tt>myfile.hlist</tt>, each row of which 
+is expected to have one of the three following formats:
+
+</p>
+<b><em>1) Particular allele specified</em></b></p>
+
+The first format specifies a particular haplotype at a given locus. Two 
+example rows of this format are:
+
+<pre>
+     rs1001 5 0 201  1 2   TC    snp1 snp2
+     rs1002 5 0 202  A C   TTA   snp1 snp3 snp4
+     ...
+</pre>
+
+The columns represent:
+
+<pre> 
+     Col 1  : Imputed SNP name
+     Col 2  : Imputed SNP chromosome
+     Col 3  : Imputed SNP genetic distance (default: Morgan coding)
+     Col 4  : Imputed SNP physical position (bp units)
+     Col 5  : Imputed SNP allele 1 name
+     Col 6  : Imputed SNP allele 2 name
+     Col 7  : Tag SNP allele/haplotype that equals imputed SNP allele 1
+     Col 8+ : Tag SNP(s) [in same order as haplotype in Col 7]
+</pre>
+
+Here we have explicitly specified the <tt>TC</tt> and <tt>TTA</tt> 
+haplotypes. For example, in the first case, SNPs <tt>snp1</tt> and 
+<tt>snp2</tt> may have all four common haplotypes seen in the sample, 
+<tt>TT</tt>, <tt>CT</tt> and <tt>CC</tt> as well as <tt>TC</tt>; this 
+command would select only the <tt>TC</tt> haplotype to be imputed, or as 
+the focus of haplotype analysis. The imputed SNP, <tt>rs1001</tt> 
+therefore has the following alleles:
+<pre>
+     TC/TC    1/1
+     TC/*     1/2
+     */*      2/2
+</pre>
+and will be positioned on chromosome 5, and base-positon 201. Haplotypes
+other than <tt>TC</tt> will be coded <tt>2</tt>.
+</p>
+
+The imputed SNP details (alleles, etc) will only be used if the 
+<tt>--hap-impute</tt> option has been requested. For <tt>--hap-assoc</tt> 
+and <tt>--hap-tdt</tt> options (which consider all possible phases rather 
+than just imputing the most likely) these are not considered (but they are 
+still required in this input file).
+</p>
+
+<b><em>2) 'Wildcard' specification</em></b></p>
+
+Alternatively, all haplotypes at a given locus above the <tt>--maf</tt> 
+threshold can be automatically estimated by entering a line in 
+<tt>myfile.hlist</tt> as 
+follows:
+<pre>
+* snp1 snp2 snp3
+* snp1 snp2
+</pre>
+i.e. where the first character is an asterisk <tt>*</tt>, which would, 
+taking just the first line for example, create all 3-SNP haplotypes for 
+the SNPs labelled in the MAP file as <tt>snp1</tt>, <tt>snp2</tt> and 
+<tt>snp3</tt>, above 
+the minor allele frequency threshold. If the haplotypes were, for example, 
+<tt>AAC</tt>, <tt>AGG</tt> and <tt>TGG</tt>, then the following names 
+would be automatically assigned:
+<pre>
+     H1_AAC_
+     H1_AGG_
+     H1_TGG_
+</pre>
+
+Haplotypes based on subsequent lines in the file would be labelled  
+<tt>H2_*_</tt>, <tt>H3_*_</tt>, etc. In this case, all two-SNP haplotypes 
+for <tt>snp1</tt> and <tt>snp2</tt> would start <tt>H2_</tt>. The 
+chromosome and position flags for the new haplotypes are set to equal the 
+first SNP of the set.
+
+</p>
+<b><em>3) 'Named wildcard' specification</em></b></p>
+
+Finally, this format is identical to the previous wildcard specification, 
+except a name can be given to the haplotype. This uses <tt>**</tt> instead of
+<tt>*</tt> to start a row; the second entry is then interpreted as the name
+of the haplotype locus rather than the first SNP. For example:
+
+<pre>
+** BLOCK1 snp1 snp2 snp3
+** BLOCK2 snp6 snp7
+</pre>
+
+The only difference is that <tt>BLOCK1</tt> and <tt>BLOCK2</tt> names will be used
+in the output instead of <tt>H1</tt> and <tt>H2</tt> being assigned automatically.
+
+</p>
+<b><em>4) Sliding window specification</em></b></p>
+
+Finally, instead of specifying a haplotype file with the <tt>--hap</tt> option, 
+you can use the <tt>--hap-window</tt> option to specifty all haplotypes in 
+sliding windows of a fixed number of SNPs (shifting 1 SNP at a time).
+<h5>
+plink --bfile mydata --hap-window 3 --hap-assoc
+</h5></p>
+to form all 3-SNP haplotypes across the entire dataset 
+(respecting chromosome boundaries, however). In this case
+the windows will be automatically named <tt>WIN1</tt>, <tt>WIN2</tt>, etc. This command can take a 
+comma-delimited list of values, e.g. 
+<pre>
+     --hap-window 1,2,3
+</pre>
+to perform all single SNP tests (1-SNP haplotypes) as well as sliding
+windows of all 2-SNP and 3-SNP haplotypes.
+
+</p>
+
+
+<a name="precomputed">
+<h2>Precomputed lists of multimarker tests</h2></a>
+</p>
+
+Below are links to some PLINK-formatted lists of multimarker tests
+selected for Affymetrix 500K and Illumina whole genome products, based
+on consideration of the CEU Phase 2 HapMap (at r-squared=0.8
+threshold). One should download the appropriate file and run with
+the <tt>--hap</tt> option (after ensuring that any strand issues have
+been resolved). These files were generated by Itsik Pe'er and others,
+as described in this manuscript:
+<pre>
+     Pe'er I, de Bakker PI, Maller J, Yelensky R, Altshuler D 
+     & Daly MJ (2006) Evaluating and improving power in whole-genome 
+     association studies using fixed marker sets. Nat Genet, 38(6): 605-6.
+</pre>
+
+<ul>
+<li> 
+<a href="../dist/mmtests/Affymetrix.GeneChip.500k.both.CEU.0.8.tests.zip">
+Affymetrix.GeneChip.500k.both.CEU.0.8.tests.zip
+</a> 
+
+<li> 
+<a href="../dist/mmtests/Illumina.HumanHap.300k.CEU.0.8.tests.zip">
+Illumina.HumanHap.300k.CEU.0.8.tests.zip
+</a>
+
+<li> 
+<a href="../dist/mmtests/Illumina.HumanHap.550k.CEU.0.8.tests.zip">
+Illumina.HumanHap.550k.CEU.0.8.tests.zip
+</a>
+
+<li> 
+<a href="../dist/mmtests/Illumina.HumanHap.650k.CEU.0.8.tests.zip">
+Illumina.HumanHap.650k.CEU.0.8.tests.zip
+</a>
+
+</ul>
+
+These tables list all tags for every common HapMap SNP, at the given
+r-squared threshold. The same haplotype may therefore appear multiple
+times (i.e. if it tags more than 1 SNP). The haplotypes are specified
+in terms of the + (positive) strand relative to the HapMap. You might
+need to reformat your data prior to using these files (using the
+<tt>--flip</tt> command, for instance) before you can use them.
+
+</p>
+<strong>Note</strong> These tables obviously assume that all tags on
+present in the final, post-quality-control dataset: i.e. if certain
+SNPs have been removed, it will be better to reselect the
+predictors -- that is, these lists should really only be used as a
+first pass, for convenience.
+
+</p>
+
+
+<a name="hap2">
+<h2>Estimating haplotype frequencies</h2></a>
+</p>
+
+To obtain the haplotype frequencies for all haplotypes in each window, 
+use the option:
+<h5>
+	plink --file mydata --hap myfile.hlist --hap-freq
+</h5></p>
+which will generate the file
+<pre>
+     plink.freq.hap
+</pre>
+which contains the fields (no header)
+<pre>
+     LOCUS        Haplotype locus / window name
+     HAPLOTYPE    Haplotype identifer
+     F            Frequency in sample (founders)
+</pre>
+
+<a name="hap3">
+<h2>Testing for haplotype-based case/control and quantitative trait association</h2></a>
+</p>
+
+In a population-based sample of unrelated individuals, case/control and quantitative 
+traits can be analysed for haplotype associations, using the option, for example, 
+<h5>
+    plink --file mydata --hap myfile.hlist --hap-assoc
+</h5></p>
+which will generate haplotype-specific tests (1df) for both disease and 
+quantitative traits; for disease traits only, an omnibus association statistic
+will also be computed. This option generates the file
+<pre>
+     plink.assoc.hap
+</pre>
+which contains the following fields:
+<pre>
+     LOCUS        Haplotype locus / window name
+     HAPLOTYPE    Haplotype identifer / "OMNIBUS"
+     F_A          Frequency in cases
+     F_U          Frequency in controls
+     CHISQ        Test for association
+     DF           Degrees of freedom
+     P            Asymptotic p-value
+     SNPS         SNPs forming the haplotype
+</pre>
+or
+<pre>
+     plink.qassoc.hap
+</pre>
+which contains the following fields:
+<pre>
+     LOCUS        Haplotype locus / window name
+     HAPLOTYPE    Haplotype identifer
+     NANAL        Number of individuals in analysis
+     BETA         Regression coefficient
+     RSQ          Proportion variance explained
+     STAT         Test statistic (T)
+     P            Asymptotic p-value
+     SNPS         SNPs forming the haplotype
+</pre>
+
+In all cases, the tests are based on the expected number of haplotypes
+each individual has (which might be fractional). The case/control
+omnibus test is a H-1 degree of freedom test, if there are H
+haplotypes.
+
+<a name="hap3c">
+<h2>Haplotype-based association tests with GLMs</h2></a>
+</p>
+
+The following options use linear and logistic regression to perform
+haplotye-based association analysis. The two main
+commands, <tt>--hap-linear</tt> and <tt>--hap-logistic</tt> are
+analogous to <tt>--linear</tt> and <tt>--logistic</tt>,
+described <a href="anal.shtml#glm">here</a>.
+</p>
+The main advantages of these commands over
+the <a href="#hap3">above</a> approaches, are that they can include
+one or more covariates and allow for permutation.  The disadvantage is
+that they will run a little more slowly.
+</p>
+The basic command is 
+<h5>
+  plink --file mydata --hap myfile.hlist --hap-logistic 
+</h5></p> 
+
+(alternatively, for a quantitative outcome, use <tt>--hap-linear</tt>;
+aside from minor differences in the output, the discussion below
+applies equally to both forms of these commands). 
+</p>
+
+<strong>NOTE</strong> Here the haplotypes to be tested are specified in a file with
+the <tt>--hap</tt> command, but one could alternatively use a sliding
+window analysis, e.g. to cover all 2, 3 and 4-SNP windows, e.g. <tt>--hap-window 2,3,4</tt>
+</p>
+
+The output is in the file
+<pre>
+     plink.assoc.hap.logistic
+</pre>
+(or <tt>plink.assoc.hap.linear</tt>) which has the fields:
+<pre>
+        NSNP    Number of SNPs in this haplotype
+        NHAP    Number of common haplotypes (threshold determined by <tt>--mhf</tt>, 0.01 default)
+         CHR    Chromosome code
+         BP1    Physical position of left-most (5') SNP (base-pair)
+         BP2    Physical position of right-most (3') SNP (base-pair)
+        SNP1    SNP ID of left-most (5') SNP
+        SNP2    SNP ID of left-most (3') SNP
+   HAPLOTYPE    Haplotype 
+           F    Frequency in sample
+          OR    Estimated odds ratio
+        STAT    Test statistic (T from Wald test)
+           P    Asymptotic p-value
+</pre>
+for example: (<em>spaces between rows added for clarity</em>)
+<pre>
+  NSNP NHAP  CHR       BP1       BP2       SNP1       SNP2  HAPLOTYPE       F      OR    STAT       P
+     2    2   22  15462210  15462259 rs11089263 rs11089264         AA   0.345    1.31   0.693   0.405
+     2    2   22  15462210  15462259 rs11089263 rs11089264         CG   0.655   0.762   0.693   0.405
+
+     3    3   22  15688352  15690057   rs165650   rs165757        GTG   0.117   0.544    1.46   0.227
+     3    3   22  15688352  15690057   rs165650   rs165757        CTG  0.0167   0.406   0.525   0.469
+     3    3   22  15688352  15690057   rs165650   rs165757        CGA   0.867     1.7    1.56   0.212
+
+     5    5   22  15691787  15699058   rs175152   rs165914      ACACT   0.129   0.515    2.13   0.144
+     5    5   22  15691787  15699058   rs175152   rs165914      CCACT   0.236   0.917  0.0566   0.812
+     5    5   22  15691787  15699058   rs175152   rs165914      CCACG  0.0169    1.74   0.198   0.656
+     5    5   22  15691787  15699058   rs175152   rs165914      CTGTG   0.085   0.565    1.11   0.292
+     5    5   22  15691787  15699058   rs175152   rs165914      CTATG   0.533    1.88    3.36  0.0666
+
+     5    4   22  15902049  15939567  rs2845389  rs4819958      GTAAA  0.0857   0.719   0.388   0.533
+     5    4   22  15902049  15939567  rs2845389  rs4819958      GTGAA    0.32    1.04  0.0185   0.892
+     5    4   22  15902049  15939567  rs2845389  rs4819958      CCGGG   0.303   0.548    2.97  0.0847
+     5    4   22  15902049  15939567  rs2845389  rs4819958      GCGGG   0.292    1.82    3.28  0.0701
+</pre>
+which illustrates results for the first four haplotype window positions (e.g. the second window position 
+contains 3 SNPs, and there are 3 common haplotypes, <tt>GTG</tt>, <tt>CTG</tt> and <tt>CGA</tt>).
+</p>
+
+The additional command
+<pre>
+     --hap-omnibus
+</pre>
+instructs PLINK to perform instead of H-1 haplotype-specific tests for
+H haplotypes (of each versus all others), a single H-1 df omnibus test
+(jointly estimating a testing all haplotype effects at that
+position). This will result in a single row per window, with the
+following slightly different format. Now the first four window
+positions have only a single line of output, and a single p-value (the
+degree of freedom will be <tt>NHAP</tt>-1). Also, there is no haplotype-specific 
+output (e.g. haplotype names, frequencies or odds ratios):
+<pre>
+   NSNP NHAP  CHR          BP1          BP2       SNP1       SNP2     STAT        P
+      2    2   22     15462210     15462259 rs11089263 rs11089264    0.693    0.405
+      3    3   22     15688352     15690057   rs165650   rs165757     1.57    0.457
+      5    5   22     15691787     15699058   rs175152   rs165914     5.08    0.279
+      5    4   22     15902049     15939567  rs2845389  rs4819958      4.4    0.222
+</pre>
+
+
+As mentioned above, covariates can be incorporated with the 
+<pre>
+     --covar myfile.txt
+</pre>
+command. Note that the coefficients and p-values for the covariates
+are not listed in these output files (unlike the default for
+the <tt>--logistic</tt> command).
+</p>
+Permutation procedures can be used, with the command
+<pre>
+     --mperm 10000
+</pre>
+to specify, for example, ten thousand permutations.  The empirical p-values from 
+this analysis are listed in the file
+<pre>
+     plink.assoc.hap.logistic.mperm
+</pre>
+Note that there will be no SNP name listed in the permutation output file: rather, it 
+will be in the form:
+<pre>
+      TEST         EMP1         EMP2
+        T0       0.4158            1
+        T1       0.1782            1
+        T2       0.2475            1
+        T3       0.1683            1
+      ...
+</pre>
+The number of rows, and the order of the output, will be the same as for the 
+asymptotic results file, so they can be easily aligned. e.g. here <tt>T0</tt> 
+would correspond to either the first omnibus test, or the first haplotype-specific 
+test, <tt>T1</tt> the second, etc.
+
+</p>
+
+
+<a name="hap3b">
+<h2>Haplotype-based TDT association test</h2></a>
+</p>
+
+If the case/control data are being analysed, use the option 
+<h5>
+	plink --file mydata --hap myfile.hlist --hap-tdt
+</h5></p>
+to test for TDT haplotype-specific association. This 
+option generates the file
+<pre>
+     plink.tdt.hap
+</pre>
+which contains the following fields:
+<pre>
+     LOCUS        Haplotype locus / window name
+     HAPLOTYPE    Haplotype identifer / "OMNIBUS"
+     T            Number of transmitted haplotypes
+     U            Number of untransmitted haplotypes
+     CHISQ        Test for association
+     P            Asymptotic p-value
+</pre>
+
+
+<a name="hap4">
+<h2>Imputing multimarker haplotypes</h2></a>
+</p>
+
+If the <tt>--hap-impute</tt> option is also given, this will create two 
+new files:
+<h5>
+	plink --file mydata --hap myfile.hlist --hap-impute
+</h5></p>
+will generate the file:
+<pre>
+     plink.impute.ped
+     plink.impute.map
+</pre>
+
+based on the most likely E-M phase reconstructed haplotypes. One could then 
+simply treat the most likely haplotype assignments as SNPs and use all the 
+standard analytic options of <tt>PLINK</tt>, e.g. <tt>--assoc</tt>.</p>
+
+<strong>Warning</strong> <b><em>This represents a quick and dirty
+approach to haplotype testing</em></b>. Depending on how accurately
+the haplotypes have been imputed (i.e. the range of maximum posterior
+probabilities per individual) some bias will be introduced into
+subsequent tests based on these 'SNPs'. Typically, as long as cases
+and controls are phased together, as they are here, this bias is
+likely to be quite small and so should not substantively impact
+results (unpublished simulation results, SMP).  Furthermore, exact
+methods can be used to refine the association for the putative hits
+discovered by this approach.
+
+</p>
+<strong>NOTE</strong> Future versions will allow for a binary PED 
+file to be created from the <tt>--hap-impute</tt> command.  You do 
+<b>not</b> need to specify <tt>--recode</tt> when using 
+<tt>--hap-impute</tt>.
+
+<a name="hap5">
+<h2>Tabulating individuals' haplotype phases</h2></a>
+</p>
+
+To obtain a summary of all possible haplotype phases and the corresponding
+posterior probabilities (i.e. given genotype data), use the command:
+<h5>
+	plink --file mydata --hap myfile.hlist --hap-phase
+</h5></p>
+which will generate the file
+<pre>
+     plink.phase-*
+</pre>
+where <tt>*</tt> is the name of the 'window' (i.e. the row of the 
+haplotype list file). That is, if the haplotype list contains 
+multiple rows, then multiple phase files will be generated.
+These files contain the fields, where each row is one possible
+haplotype phase for one individual:
+<pre>
+     FID       Family ID
+     IID       Individual ID
+     PH        Phase number for that individual (0-based)
+     HAP1      First haplotype, H1
+     HAP2      Second haplotype, H2
+     POSTPROB  P(H1,H2 | G ) 
+     BEST      1 if most likely phase for that individual
+</pre>     
+
+
+
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<hr>
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:27 EST
+</em>
+
+
+</body>
+
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>

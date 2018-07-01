@@ -1,0 +1,950 @@
+<html>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+<h1>Permutation procedures</h1>
+</p>
+
+Permutation procedures provide a computationally intensive approach to 
+generating significance levels empirically. Such values have desirable 
+properties: for example, relaxing assumptions about normality of 
+continuous phenotypes and Hardy-Weinberg equilibrium, dealing with rare 
+alleles and small sample sizes, providing a framework for 
+correction for multiple testing, and controlling for 
+identified substructure or familial relationships by permuting only 
+within cluster.
+</p>
+
+<h6>Conceptual overview of permutation procedures</h6>
+
+Permutation procedures are available for a variety of tests, as
+described below. For some tests, however, these procedures are not
+available (e.g. SNP x SNP epistasis tests). For other tests,
+permutation is necessary to obtain any significance values at all
+(e.g. set-based tests). </p>
+
+The permutation tests described below come can be categorized in two ways:
+<ul>
+ <li> Label-swapping versus gene-dropping
+ <li> Adaptive versus max(T)
+</ul>
+
+
+<h6>Label-swapping and gene-dropping</h6>
+
+In samples of unrelated individuals, one simply swaps labels (assuming 
+that individuals are 
+interchangeable under the null) to provide a new dataset sampled under 
+the null hypothesis. 
+Note that only the phenotype-genotype relationship is destroyed by 
+permutation: the patterns 
+of LD between SNPs will remain the same under the observed and permuted 
+samples. 
+
+For family data, it might be better (or in the case of affected-only 
+designs such as the TDT, necessary) to perform gene-dropping permutation 
+instead.  In it's most simple form, this just involves flipping which 
+allele is transmitted from parent to offspring with 50:50 probability. 
+This approach can extend to general pedigrees also, dropping genes from 
+founders down the generations. 
+</p>
+For quantitative traits, or samples in which both affected and 
+unaffected non-founders are present, one can then perform a basic test of 
+association (with disease, or with a quantitative trait) treating the 
+pedigree data as if they were all unrelated (i.e. just using the 
+<tt>--assoc</tt> option) but creating permuted datasets by gene-dropping 
+will both control for stratification and the non-independence of  related 
+individuals (i.e. as these will also be properties of every permuted 
+dataset).  It is possible to maintain LD between SNPs by applying the 
+same series of 50:50 flip/no-flip decisions to all SNPs in the 
+same permuted replicate for a given transmission. In addition, it is 
+possible to control for linkage by applying the same series of flip/no-flip 
+decisions to all siblings in the same nuclear family. Both these features 
+are automatically applied 
+in <tt>PLINK</tt>.
+
+<h6>Adaptive and max(T) permutation</h6>
+
+Using either label-swapping or gene-dropping, there are two basic 
+approaches to performing the permutations. The default mode is to use an 
+<b><em>adaptive</em></b> permutation 
+approach, in which we give up permuting SNPs that are clearly going to be non-significant 
+more quickly than SNPs that look interesting. In otherwords, if after only 10 permutations 
+we see that for 9 of these the permuted test statistic for a given SNP is larger than the
+observed test statistic, there is little point in carrying on, as this SNP is incredibly 
+unlikely to ever achieve a highly significant result. This greatly speeds up the permutation
+procedure, as most SNPs (that are not highly significant) will drop out quite quickly, making it possible
+to properly evaluate significance for the handful of SNPs that require millions of permutations.
+Naturally, the precision with which one has estimated the significance p-value (i.e. relating from 
+the number of permutations performed) will be correlated the significance value itself -- but for 
+most purposes, this is precisely what one wants, as it is of little interest whether a clearly 
+un-associated SNP really has a p-value of 0.78 or 0.87.
+
+</p>
+
+In contrast, <b><em>max(T)</em></b> permutation does not drop SNPs along the way. If 1000 permutations are
+specified, then all 1000 will be performed, for all SNPs. The benefit of doing this is that two sets 
+of empirical significance values can then be calculated -- pointwise estimates of an individual SNPs 
+significance, but also a value that controls for that fact that thousands of other SNPs were tested. This
+is achieved by comparing each observed test statistic against the maximum of all permuted statistics (i.e. 
+over all SNPs) for each single replicate. In otherwords, the p-value now controls the familywise error rate, 
+as the p-value reflects the chance of seeing a test statistic this large, given you've performed as many 
+tests as you have.  Because the permutation schemes preserve the correlational structure between SNPs, this
+provides a less stringent correction for multiple testing in comparison to the Bonferroni, which assumes 
+all tests are independent.  Because it is now the corrected p-value that is of interest, it is typically 
+sufficient to perform a much smaller number of tests -- i.e. it is probably not necessary to demonstrate that 
+something is genome-wide significant beyond 0.05 or 0.01. 
+</p>
+
+<h6>Computational issues</h6>
+
+<tt>PLINK</tt> performs the basic tests of association reasonably quickly -- for small datasets both permutation 
+procedures will be feasible. For example, for a dataset comprising 100,000 SNPs measured on 350 individuals, 
+each permutation (for all 100K SNPs) takes approximately 2 seconds on a modern Linux workstation. At this speed, it 
+will take just over 1 day to perform 50,000 permutations using the max(T) mode and label-swapping.  With the same dataset, 
+using adaptive mode, the entire analysis is finished much quicker (although the empirical p-values are, of course, not 
+corrected for multiple testing). For larger datasets (e.g. 1000s of individuals measured on >500K SNPs) things will 
+slow down, although this will be linear with the number of genotypes -- if one has access to a cluster, however, the 
+max(T) approach lends itself to easy parrallelization (i.e. if one can set many jobs running analysing the same data, it 
+is easy to combine the empirical p-values afterwards). 
+
+</p>
+By default, <tt>PLINK</tt> will select a random seed for the
+permutations, based on the system clock. To specify a fixed seed
+instead add the command
+<pre>
+   --seed 6377474
+</pre>
+where the parameter a (large) integer seed.
+</p>
+
+<a name="perm">
+<h2>Basic (adaptive) permutation procedure</h2></a>
+</p>
+
+The default method for permutation is the adaptive method. To obtain a max(T) permutation p-value, 
+see <a href="mperm">the section below</a>. For either either case/control or quantitative trait 
+association analysis, use the option:
+<h5>
+	plink --file mydata --assoc --perm 
+</h5></p>
+to initiate adaptive permutation testing. As well as the <tt>plink.assoc</tt> or <tt>plink.qassoc</tt> output file, 
+adding the <tt>--perm</tt> option will generate a file named:
+<h5>
+	plink.assoc.perm	
+</h5></p>
+which contains the fields:
+<pre>
+     CHR     Chromosome
+     SNP     SNP ID
+     STAT    Test statistic
+     EMP1    Empirical p-value (adaptive)
+     NP      Number of permutations performed for this SNP
+</pre>
+
+An alternate scheme is also available, that may under some circumstances be useful. 
+Specifically, this approach fixes the observed marginal counts for the 2-by-3 tables 
+that is case/control status by the two alleles <em>and the missing allele count</em>. 
+After permuting case/control label, only two cells in the table, e.g. missing and 
+A2 alleles for controls, are counted, the rest of the table is filled in on 
+the basis of the fixed marginal values. This speeds up the permutation procedure 
+a little, and also implicitly downweights association results where there is 
+a lot of missing genotype data that is non-random with respect to genotype 
+and case/control status.  Naturally, this approach can not provide total 
+protection against the problem of non-random missing genotype data. Also, 
+for SNPs with lots of missing data, this test will be conservative, whether 
+the missingness is non-random or not. For these reasons, this is not the 
+default option, although this approach might be one worth exploring further. To 
+use this alternate permutation scheme, use the <tt>--p2</tt> flag:
+<h5>
+	plink --file mydata --assoc --perm --p2
+</h5></p>
+or 
+<h5>
+	plink --file mydata --assoc --mperm 1000 --p2
+</h5></p>
+
+
+
+</p>
+
+<a name="aperm">
+<h2>Adaptive permutation parameters</h2></a>
+</p>
+
+Although the <tt>--perm</tt> option invokes adaptive permutation by 
+default, there are various parameters that alter the behavior of the 
+adaptive process that can be tweaked using the <tt>--aperm</tt> option, 
+followed by six parameters: for example, 
+<h5>
+plink --file mydata --assoc --aperm 10 1000000 0.0001 0.01 5 0.001
+</h5></p>
+
+The six arguments (along with the default values) are:
+<pre>
+     Minimum number of permutations per SNP           5
+     Maximum number of permutations per SNP           1000000
+     Alpha level threshold (alpha)                    0
+     Confidence interval on empirical p-value (beta)  0.0001
+     Interval to prune test list (intercept)          1
+     Interval to prune test list (slope)              0.001
+</pre>
+
+These are interpreted as follows: for every SNP, at least 5 permutations 
+will be performed, but no more than 1000000. After 5 permutations, the 
+p-values will be evaluated to see which SNPs we can prune. The first 
+interval value means to perform this pruning every 5 replicates; 
+the second pruning parameter (0.001) means that the rate of pruning slows down with 
+increasing number of replicates (i.e. pruning is, in this case, performed every 5+0.001R replicates
+where R is the current number of replicates). At each pruning stage, a <tt>100*(1 - beta / 2T)%</tt> 
+confidence interval is calculated for each empirical p-value, where <tt>beta</tt> is, in this case 0.01, 
+and <tt>T</tt> is the number of SNPs. Using the normal approximation to the binomial, we prune any SNP for 
+which the lower confidence bound is greater than <tt>alpha</tt> or the upper confidence bound is less than 
+<tt>alpha</tt>.
+
+
+<a name="mperm">
+<h2>max(T) permutation</h2></a>
+</p>
+
+To perform the max(T) permutation procedure, use the <tt>--mperm</tt> 
+option, which takes a single paramter, the 
+number of permutations to be performed: e.g. to use with the TDT test:
+<h5>
+plink --file mydata --tdt --mperm 5000
+</h5></p>
+which will generate (along with the <tt>plink.tdt</tt> file) an file named
+<pre>
+     plink.tdt.mperm
+</pre>
+which contains the fields:
+<pre>
+     CHR     Chromosome
+     SNP     SNP ID
+     STAT    Test statistic
+     EMP1    Empirical p-value (pointwise)
+     EMP2    Corrected empirical p-valie (max(T) / familywise) 
+</pre>
+
+</p><strong>Hint</strong> If multiple runs of <tt>PLINK</tt> are performed on the same 
+dataset in parallel, using a computer cluster to speed up the max(T) permutations, 
+then the resulting estimates of empirical significance can be combined across runs 
+as follows. Empirical p-values are calculated as <tt>(R+1)/(N+1)</tt> where <tt>R</tt> is 
+the number of times the permuted test is greater than the observed test; <tt>N</tt> is the 
+number of permutations. Therefore, therefore, given <tt>p_i</tt>, the empirical p-value
+for the ith run, this implies that <tt>p_i*(N_i+1)-1</tt> replicates passed the observed 
+value. The overall empirical p-value should then be:
+<pre>
+     ( SUM_i { p_i * ( N_i + 1 ) - 1 } + 1 ) / ( SUM_i { N_i } + 1 ) 
+</pre>
+
+
+</p>
+To produce output files that contain either the best statistic per replicate, or all statistics per replicate, use either option
+<pre>
+     --mperm-save
+</pre>
+or
+<pre>
+     --mperm-save-all
+</pre>
+along with the usual <tt>--mperm</tt> command.  The first command generates a file
+<pre>
+     plink.mperm.dummp.best
+</pre>
+which contains two columns. The first is the replicate number (0 represents the original data, the remaining rows 1 to <em>R</em> where <em>R</em> is the
+number of permutations specified). The second column is the maximum test statistic over all SNPs for that replicate.
+</pre>
+The second command, <tt>--mperm-save-all</tt> produces a file
+<pre>
+     plink.mperm.dump.all
+</pre>
+that could be a very large file: the test statistic for all SNPs for all replicates. As before, the first row is the original data; 
+the first column represents the replicate number; all other columns represent the test statistic values for each SNP (<tt>NA</tt>
+if this cannot be calculated). These two files might be of use if, for example, you wish to create your own wrapper around PLINK to perform higher-order 
+corrections for multiple testing, e.g. if more than one phenotype is tested per SNP. In most cases, for this purpose, 
+the first form should suffice.
+
+
+</p>
+<a name="genedrop">
+<h2>Gene-dropping permutation</h2></a>
+</p>
+
+To perform gene-dropping permutation, use the <tt>--genedrop</tt> option, 
+combined with the standard <tt>--assoc</tt> option. Either adaptive: e.g. 
+<h5>
+   plink --file mydata --assoc --genedrop
+</h5></p>
+or max(T) permutation: e.g. 
+<h5>
+   plink --file mydata --assoc --genedrop --mperm 10000
+</h5></p>
+can be specified.
+
+</p>
+
+This analysis option is equally applicable to disease and quantitative traits, 
+although at least some non-founder individuals should be unaffected. 
+Currently, an individual must have both parents genotyped for genedropping. For founders 
+and for individuals without two genotyped parents, their genotypes are 
+unchanged throughout all genedropping permutations. 
+
+</p>
+It is possible to combine label-swapping with gene-dropping, however, to 
+handle different family/sample configurations. That is, the basic 
+gene-dropping procedure will leave untouched all individuals without two 
+parents, making them uninformative for the test of association. One can 
+think of at least three classes of groups of people without two parents 
+in the dataset: founders/parents, siblings and unrelated singletons. 
+Label-swapping within these groups can provide additional sources 
+information for association that control different levels of the 
+between/within family components of association.
+</p>
+There are three options, which can be used together, are:
+<pre>
+     --swap-sibs                within family
+     --swap-parents             partial within-family
+     --swap-unrel               between family
+</pre>
+
+which label-swap between sibs without genotyped parents (swapping only 
+within families), between parents only (swapping only within families), 
+or between all singletons (unrelated individuals) (swapping between 
+familes).
+
+</P>
+
+<h6>Basic within family QTDT</h6>
+
+This test only considers information from individuals with two genotyped 
+parents:
+
+<h5>
+plink --file mydata --assoc --genedrop
+</h5></p>
+
+
+<h6>Discordant sibling test</h6>
+
+Although gene-dropping only considers individuals with two parents to be 
+informative, valid family-based tests can include information from 
+full-siblings -- by label-swapping only within each full sibship that 
+does not otherwise have parents, it is possible to augment 
+the power of the gene-dropping approach:
+<h5>
+plink --file mydata --assoc --genedrop --swap-sibs
+</h5></p>
+
+<h6>parenTDT/parenQTDT</h6>
+
+This test additionally incorporates information from phenotypically
+discordant parents (for either quantitative or disease triats). This
+provides more information for association, but provides a weaker level
+of protection against stratification (i.e. it assumes that mother and
+father pairs are well matched in terms of subpopulation stratum).
+
+<h5>
+plink --file mydata --assoc --genedrop --swap-parents
+</h5></p>
+
+
+<h6>Standard association for singleton, unrelated individuals</h6>
+
+If a sample is a mixture of families and unrelated individuals (e.g. 
+case/control and offspring/parent trios combined) then adding this 
+option as well as the <tt>--gene-drop</tt> option will perform 
+label-swapping permutation for all unrelated individuals.
+
+<h5>
+plink --file mydata --assoc --genedrop --swap-unrel
+</h5></p>
+
+One or more of these options can be included with the <tt>--genedrop</tt> 
+option. These features allow between and within family components of 
+association to be included in analysis. Below are the results of some 
+simple, proof-of-principle simulations, to illustrate parental 
+discordance test:
+</p>
+Here is a subset of the results: in all cases, we have an unselected
+quantitative trait measured in parent/offspring nuclear families. 
+The four models:
+<ol type=A>
+<li> no stratification, no QTL
+<li> no stratification, QTL
+<li> stratification between families (i.e. mother and father from same subpopulation), no QTL
+<li> stratification within families (i.e. mother and father might not be from same 
+subpopulation), no QTL
+</ol>
+
+The three analytic procedures:
+<ol type=I>
+<li> standard QTL test (i.e. ignore family structure, which we know is incorrect)
+<li> gene-dropping permutation (i.e. within family QTDT)
+<li> gene-dropping + parental label-swapping (i.e. parenQTDT)
+</ol>
+
+From simulation, the empirically estimated power/type I error rates (for 
+a nominal value of 0.05) are:
+<pre>
+     500 trios (QT)
+       I     II    III
+     A 0.121 0.045 0.053
+     B 0.841 0.239 0.563
+     C 0.461 0.056 0.056
+     D 0.505 0.055 0.501
+
+     500 tetrads (QT)
+       I     II    III
+     A 0.173 0.043 0.050
+     B 0.900 0.363 0.653
+     C 0.439 0.042 0.045
+     D 0.390 0.044 0.421
+</pre>
+That is,
+<ol>
+<li> method I is, as expected, liberal (e.g. for tetrads, we see type I
+error rate of 17.3% instead of 5%). Subsequent values for this test should
+therefore be ignored in the table
+
+<li> the parenQTDT (III) (as implemented by gene-dropping) is considerably
+more powerful than the standard within-family test that ignores parental
+phenotypes (II) -- i.e. 65% versus 36% for tetrads, in this particular
+instance.
+
+<li> the parenQTDT is robust to stratification so long as it is
+between-family (condition C) -- i.e. it only assumes that mum and dad are
+matched on strata, not the whole sample.  When this does not hold
+(condition D), then we get spurious association, as expected.
+
+</ol>
+
+</p><strong>HINT</strong> For disease traits, the parenTDT test is 
+automatically performed by the <tt>--tdt</tt> option (as long as there 
+are at least 10 phenotypically discordant parental pairs in the sample). 
+See the section of standard <a href="anal.shtml">association testing</a> 
+for more details.
+
+</p>
+<a name="cluster">
+<h2>Within-cluster permutation</h2></a>
+</p>
+
+To perform label-swapping permutaion only <em>within clusters</em>, you 
+must supply either a cluster file with the <tt>--within</tt> option, 
+or indicate that family ID is to be used as the cluster variable, with the 
+<tt>--family</tt> option. Then any label-swapping permutation procedure 
+will only swap phenotype labels between individuals within the same 
+cluster. For example, 
+<h5>
+   plink --file mydata --assoc --within mydata.clst --perm 
+</h5></p>
+if the file <tt>mydata.clst</tt> were (for a PED file containing only 6 
+individuals, the file format is family ID, individual ID, cluster):
+<pre>
+     F1  1  1
+     F2  1  1
+     F3  1  1
+     F4  1  2
+     F5  1  2
+     F6  1  3
+</pre>
+this would imply that only sets {1,2,3} and {4,5} could be permuted.  That is, 1 and 3 could 
+swap phenotypes, but not 1 and 5, for example. In this way, any between-cluster effects 
+are preserved in each permuted dataset, which thereby controls for them.
+</p>
+To permute with family ID as the cluster variable for label-swapping, use 
+the 
+<h5>
+	plink --file mydata --assoc --family --perm 
+</h5></p>
+
+Note that label-swapping within families is different from gene-dropping. 
+This approach would be appropriate for sibship data, for example, when no 
+parents are available. The assumption is that individuals within family 
+unit are interchangeable under the null -- as such, you should not 
+include mixtures of full siblings and half siblings, or siblings
+and parents, for example, in the same cluster using this approach. 
+
+</p><strong>Note</strong> Other options for stratified analyses are 
+described on the <a href="anal.shtml#strat">previous 
+page</a>
+
+
+</p>
+<a name="mkphe">
+<h2>Generating permuted phenotype filesets</h2></a>
+</p>
+
+To generate a phenotype file with <em>N</em> permuted phenotypes in it, use the function
+<h5>
+ plink --bfile mydata --make-perm-pheno 10
+</h5></p>
+which will make a file
+<pre>
+     plink.pphe
+</pre>
+with 10 phenotypes (listed after the FID and IID as the first two
+columns). This can then be used in any further analysis with PLINK or
+any other program.  This command can be combined
+with <tt>--within</tt>, to generate permuted phenotype files in which
+individuals' phenotypes are only swapped within each level of the stratifying
+cluster variable, e.g. 
+<h5>
+ plink --bfile mydata --make-perm-pheno 10 --within strata1.dat
+</h5></p>
+
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+</p>
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:26 EST
+</em>
+
+
+</body>
+
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+</html>

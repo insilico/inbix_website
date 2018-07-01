@@ -1,0 +1,1018 @@
+<html>
+<body>
+
+<head>
+<link rel="stylesheet" href="plink.css" type="text/css">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<title>PLINK: Whole genome data analysis toolset</title>
+</head>
+
+
+
+<!--<html>-->
+<!--<title>PLINK</title>-->
+<!--<body>-->
+
+<font size="6" color="darkgreen"><b>plink...</b></font>
+
+<div style="position:absolute;right:10px;top:10px;font-size: 
+75%"><em>Last original <tt>PLINK</tt> release is <b>v1.07</b>
+(10-Oct-2009); <b>PLINK 1.9</b> is now <a href="plink2.shtml"> available</a> for beta-testing</em></div>
+
+<h1>Whole genome association analysis toolset</h1>
+
+<font size="1" color="darkgreen">
+<em>
+<a href="index.shtml">Introduction</a> |
+<a href="contact.shtml">Basics</a> |
+<a href="download.shtml">Download</a> |
+<a href="reference.shtml">Reference</a> |
+<a href="data.shtml">Formats</a> |
+<a href="dataman.shtml">Data management</a> |
+<a href="summary.shtml">Summary stats</a> |
+<a href="thresh.shtml">Filters</a> |
+<a href="strat.shtml">Stratification</a> |
+<a href="ibdibs.shtml">IBS/IBD</a> |
+<a href="anal.shtml">Association</a> |
+<a href="fanal.shtml">Family-based</a> |
+<a href="perm.shtml">Permutation</a> |
+<a href="ld.shtml">LD calcualtions</a> |
+<a href="haplo.shtml">Haplotypes</a> |
+<a href="whap.shtml">Conditional tests</a> |
+<a href="proxy.shtml">Proxy association</a> |
+<a href="pimputation.shtml">Imputation</a> |
+<a href="dosage.shtml">Dosage data</a> |
+<a href="metaanal.shtml">Meta-analysis</a> |
+<a href="annot.shtml">Result annotation</a> |
+<a href="clump.shtml">Clumping</a> |
+<a href="grep.shtml">Gene Report</a> |
+<a href="epi.shtml">Epistasis</a> |
+<a href="cnv.shtml">Rare CNVs</a> |
+<a href="gvar.shtml">Common CNPs</a> |
+<a href="rfunc.shtml">R-plugins</a> |
+<a href="psnp.shtml">SNP annotation</a> |
+<a href="simulate.shtml">Simulation</a> |
+<a href="profile.shtml">Profiles</a> |
+<a href="ids.shtml">ID helper</a> |
+<a href="res.shtml">Resources</a> |
+<a href="flow.shtml">Flow chart</a> | 
+<a href="misc.shtml">Misc.</a> |
+<a href="faq.shtml">FAQ</a> |
+<a href="gplink.shtml">gPLINK</a> 
+</em></font>
+</p>
+
+
+<table border=0>
+<tr>
+
+
+<td bgcolor="lightblue" valign="top" width=20%>
+
+<font size="1">
+
+<a href="index.shtml">1. Introduction</a> </p>
+
+<a href="contact.shtml">2. Basic information</a> </p>
+<ul> 
+ <li> <a href="contact.shtml#cite">Citing PLINK</a>
+ <li> <a href="contact.shtml#probs">Reporting problems</a>
+ <li> <a href="news.shtml">What's new?</a>
+ <li> <a href="pdf.shtml">PDF documentation</a>
+</ul>
+
+
+<a href="download.shtml">3. Download and general notes</a> </p>
+<ul> 
+ <li> <a href="download.shtml#download">Stable download</a>
+ <li> <a href="download.shtml#latest">Development code</a>
+ <li> <a href="download.shtml#general">General notes</a>
+ <li> <a href="download.shtml#msdos">MS-DOS notes</a>
+ <li> <a href="download.shtml#nix">Unix/Linux notes</a>
+ <li> <a href="download.shtml#compilation">Compilation</a>
+ <li> <a href="download.shtml#input">Using the command line</a>
+ <li> <a href="download.shtml#output">Viewing output files</a>
+ <li> <a href="changelog.shtml">Version history</a>
+</ul>
+
+<a href="reference.shtml">4. Command reference table</a> </p>
+<ul> 
+ <li> <a href="reference.shtml#options">List of options</a>
+ <li> <a href="reference.shtml#output">List of output files</a> 
+ <li> <a href="newfeat.shtml">Under development</a>
+</ul>
+
+
+<a href="data.shtml">5. Basic usage/data formats</a> 
+<ul> 
+ <li> <a href="data.shtml#plink">Running PLINK</a>
+ <li> <a href="data.shtml#ped">PED files</a>
+ <li> <a href="data.shtml#map">MAP files</a>
+ <li> <a href="data.shtml#tr">Transposed filesets</a>
+ <li> <a href="data.shtml#long">Long-format filesets</a>
+ <li> <a href="data.shtml#bed">Binary PED files</a>
+ <li> <a href="data.shtml#pheno">Alternate phenotypes</a>
+ <li> <a href="data.shtml#covar">Covariate files</a>
+ <li> <a href="data.shtml#clst">Cluster files</a>
+ <li> <a href="data.shtml#sets">Set files</a>
+</ul>
+
+<a href="dataman.shtml">6. Data management</a> </p>
+<ul>
+ <li>  <a href="dataman.shtml#recode">Recode</a>
+ <li>  <a href="dataman.shtml#recode">Reorder</a>
+ <li>  <a href="dataman.shtml#snplist">Write SNP list</a>
+ <li>  <a href="dataman.shtml#updatemap">Update SNP map</a>
+ <li>  <a href="dataman.shtml#updateallele">Update allele information</a>
+ <li>  <a href="dataman.shtml#refallele">Force reference allele</a>
+ <li>  <a href="dataman.shtml#updatefam">Update individuals</a>
+ <li>  <a href="dataman.shtml#wrtcov">Write covariate files</a>
+ <li>  <a href="dataman.shtml#wrtclst">Write cluster files</a>
+ <li>  <a href="dataman.shtml#flip">Flip strand</a>
+ <li>  <a href="dataman.shtml#flipscan">Scan for strand problem</a>
+ <li>  <a href="dataman.shtml#merge">Merge two files</a>
+ <li>  <a href="dataman.shtml#mergelist">Merge multiple files</a>
+ <li>  <a href="dataman.shtml#extract">Extract SNPs</a>
+ <li>  <a href="dataman.shtml#exclude">Remove SNPs</a>
+ <li>  <a href="dataman.shtml#zero">Zero out sets of genotypes</a>
+ <li>  <a href="dataman.shtml#keep">Extract Individuals</a>
+ <li>  <a href="dataman.shtml#remove">Remove Individuals</a>
+ <li>  <a href="dataman.shtml#filter">Filter Individuals</a>
+ <li>  <a href="dataman.shtml#attrib">Attribute filters</a>
+ <li>  <a href="dataman.shtml#makeset">Create a set file</a>
+ <li>  <a href="dataman.shtml#tabset">Tabulate SNPs by sets</a>
+ <li>  <a href="dataman.shtml#snp-qual">SNP quality scores</a>
+ <li>  <a href="dataman.shtml#geno-qual">Genotypic quality scores</a>
+</ul>
+ 
+<a href="summary.shtml">7. Summary stats</a>
+<ul>
+ <li> <a href="summary.shtml#missing">Missingness</a>
+ <li> <a href="summary.shtml#oblig_missing">Obligatory missingness</a>
+ <li> <a href="summary.shtml#clustermissing">IBM clustering</a>
+ <li> <a href="summary.shtml#testmiss">Missingness by phenotype</a>
+ <li> <a href="summary.shtml#mishap">Missingness by genotype</a>
+ <li> <a href="summary.shtml#hardy">Hardy-Weinberg</a>
+ <li> <a href="summary.shtml#freq">Allele frequencies</a>
+ <li> <a href="summary.shtml#prune">LD-based SNP pruning</a>
+ <li> <a href="summary.shtml#mendel">Mendel errors</a>
+ <li> <a href="summary.shtml#sexcheck">Sex check</a>
+ <li> <a href="summary.shtml#pederr">Pedigree errors</a>
+</ul>
+
+<a href="thresh.shtml">8. Inclusion thresholds</a>
+<ul>
+ <li> <a href="thresh.shtml#miss2">Missing/person</a>
+ <li> <a href="thresh.shtml#maf">Allele frequency</a>
+ <li> <a href="thresh.shtml#miss1">Missing/SNP</a>
+ <li> <a href="thresh.shtml#hwd">Hardy-Weinberg</a>
+ <li> <a href="thresh.shtml#mendel">Mendel errors</a>
+</ul>
+
+
+<a href="strat.shtml">9. Population stratification</a>
+<ul>
+ <li> <a href="strat.shtml#cluster">IBS clustering</a>
+ <li> <a href="strat.shtml#permtest">Permutation test</a>
+ <li> <a href="strat.shtml#options">Clustering options</a>
+ <li> <a href="strat.shtml#matrix">IBS matrix</a>
+ <li> <a href="strat.shtml#mds">Multidimensional scaling</a>
+ <li> <a href="strat.shtml#outlier">Outlier detection</a>
+</ul>
+
+<a href="ibdibs.shtml">10. IBS/IBD estimation</a>
+<ul>
+ <li> <a href="ibdibs.shtml#genome">Pairwise IBD</a>
+ <li> <a href="ibdibs.shtml#inbreeding">Inbreeding</a>
+ <li> <a href="ibdibs.shtml#homo">Runs of homozygosity</a>
+ <li> <a href="ibdibs.shtml#segments">Shared segments</a>
+</ul>
+
+
+<a href="anal.shtml">11. Association</a>
+<ul>
+ <li> <a href="anal.shtml#cc">Case/control</a>
+ <li> <a href="anal.shtml#fisher">Fisher's exact</a>
+ <li> <a href="anal.shtml#model">Full model</a>
+ <li> <a href="anal.shtml#strat">Stratified analysis</a>
+ <li> <a href="anal.shtml#homog">Tests of heterogeneity</a>
+ <li> <a href="anal.shtml#hotel">Hotelling's T(2) test</a>
+ <li> <a href="anal.shtml#qt">Quantitative trait</a>
+ <li> <a href="anal.shtml#qtmeans">Quantitative trait means</a>
+ <li> <a href="anal.shtml#qtgxe">Quantitative trait GxE</a>
+ <li> <a href="anal.shtml#glm">Linear and logistic models</a>
+ <li> <a href="anal.shtml#set">Set-based tests</a>
+ <li> <a href="anal.shtml#adjust">Multiple-test correction</a>
+</ul>
+
+<a href="fanal.shtml">12. Family-based association</a>
+<ul>
+ <li> <a href="fanal.shtml#tdt">TDT</a>
+ <li> <a href="fanal.shtml#ptdt">ParenTDT</a>
+ <li> <a href="fanal.shtml#poo">Parent-of-origin</a>
+ <li> <a href="fanal.shtml#dfam">DFAM test</a>
+ <li> <a href="fanal.shtml#qfam">QFAM test</a>
+</ul>
+
+<a href="perm.shtml">13. Permutation procedures</a>
+<ul>
+ <li> <a href="perm.shtml#perm">Basic permutation</a>
+ <li> <a href="perm.shtml#aperm">Adaptive permutation</a>
+ <li> <a href="perm.shtml#mperm">max(T) permutation</a>
+ <li> <a href="perm.shtml#rank">Ranked permutation</a>
+ <li> <a href="perm.shtml#genedropmodel">Gene-dropping</a>
+ <li> <a href="perm.shtml#cluster">Within-cluster</a>
+ <li> <a href="perm.shtml#mkphe">Permuted phenotypes files</a>
+</ul>
+
+<a href="ld.shtml">14. LD calculations</a>
+<ul>
+ <li> <a href="ld.shtml#ld1">2 SNP pairwise LD</a>
+ <li> <a href="ld.shtml#ld2">N SNP pairwise LD</a>
+ <li> <a href="ld.shtml#tags">Tagging options</a>
+ <li> <a href="ld.shtml#blox">Haplotype blocks</a>
+</ul>
+
+<a href="haplo.shtml">15. Multimarker tests</a>
+<ul>
+ <li> <a href="haplo.shtml#hap1">Imputing haplotypes</a>
+ <li> <a href="haplo.shtml#precomputed">Precomputed lists</a>
+ <li> <a href="haplo.shtml#hap2">Haplotype frequencies</a>
+ <li> <a href="haplo.shtml#hap3">Haplotype-based association</a>
+ <li> <a href="haplo.shtml#hap3c">Haplotype-based GLM tests</a>
+ <li> <a href="haplo.shtml#hap3b">Haplotype-based TDT</a>
+ <li> <a href="haplo.shtml#hap4">Haplotype imputation</a>
+ <li> <a href="haplo.shtml#hap5">Individual phases</a>
+</ul>
+
+<a href="whap.shtml">16. Conditional haplotype tests</a>
+<ul>
+ <li> <a href="whap.shtml#whap1">Basic usage</a>
+ <li> <a href="whap.shtml#whap2">Specifying type of test</a>
+ <li> <a href="whap.shtml#whap3">General haplogrouping</a>
+ <li> <a href="whap.shtml#whap4">Covariates and other SNPs</a>
+</ul>
+
+<a href="proxy.shtml">17. Proxy association</a>
+<ul>
+ <li> <a href="proxy.shtml#proxy1">Basic usage</a>
+ <li> <a href="proxy.shtml#proxy2">Refining a signal</a>
+ <li> <a href="proxy.shtml#proxy2b">Multiple reference SNPs</a>
+ <li> <a href="proxy.shtml#proxy3">Haplotype-based SNP tests</a>
+</ul>
+
+<a href="pimputation.shtml">18. Imputation (beta)</a>
+<ul>
+ <li> <a href="pimputation.shtml#impute1">Making reference set</a>
+ <li> <a href="pimputation.shtml#impute2">Basic association test</a>
+ <li> <a href="pimputation.shtml#impute3">Modifying parameters</a>
+ <li> <a href="pimputation.shtml#impute4">Imputing discrete calls</a>
+ <li> <a href="pimputation.shtml#impute5">Verbose output options</a>
+</ul>
+
+<a href="dosage.shtml">19. Dosage data</a>
+<ul>
+ <li> <a href="dosage.shtml#format">Input file formats</a>
+ <li> <a href="dosage.shtml#assoc">Association analysis</a>
+ <li> <a href="dosage.shtml#output">Outputting dosage data</a>
+</ul>
+
+<a href="metaanal.shtml">20. Meta-analysis</a>
+<ul>
+ <li> <a href="metaanal.shtml#basic">Basic usage</a>
+ <li> <a href="metaanal.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="annot.shtml">21. Annotation</a>
+<ul>
+ <li> <a href="annot.shtml#basic">Basic usage</a>
+ <li> <a href="annot.shtml#opt">Misc. options</a>
+</ul>
+
+<a href="clump.shtml">22. LD-based results clumping</a>
+<ul>
+ <li> <a href="clump.shtml#clump1">Basic usage</a>
+ <li> <a href="clump.shtml#clump2">Verbose reporting</a>
+ <li> <a href="clump.shtml#clump3">Combining multiple studies</a>
+ <li> <a href="clump.shtml#clump4">Best single proxy</a>
+</ul>
+
+<a href="grep.shtml">23. Gene-based report</a>
+<ul>
+ <li> <a href="grep.shtml#grep1">Basic usage</a>
+ <li> <a href="grep.shtml#grep2">Other options</a>
+</ul>
+
+<a href="epi.shtml">24. Epistasis</a>
+<ul>
+ <li> <a href="epi.shtml#snp">SNP x SNP</a>
+ <li> <a href="epi.shtml#case">Case-only</a>
+ <li> <a href="epi.shtml#gene">Gene-based</a>
+</ul>
+
+<a href="cnv.shtml">25. Rare CNVs</a>
+<ul>
+ <li> <a href="cnv.shtml#format">File format</a>
+ <li> <a href="cnv.shtml#maps">MAP file construction</a>
+ <li> <a href="cnv.shtml#loading">Loading CNVs</a>
+ <li> <a href="cnv.shtml#olap_check">Check for overlap</a>
+ <li> <a href="cnv.shtml#type_filter">Filter on type </a>
+ <li> <a href="cnv.shtml#gene_filter">Filter on genes </a> 
+ <li> <a href="cnv.shtml#freq_filter">Filter on frequency </a>
+ <li> <a href="cnv.shtml#burden">Burden analysis</a>
+ <li> <a href="cnv.shtml#burden2">Geneset enrichment</a>
+ <li> <a href="cnv.shtml#assoc">Mapping loci</a>
+ <li> <a href="cnv.shtml#reg-assoc">Regional tests</a>
+ <li> <a href="cnv.shtml#qt-assoc">Quantitative traits</a>
+ <li> <a href="cnv.shtml#write_cnvlist">Write CNV lists</a>
+ <li> <a href="cnv.shtml#report">Write gene lists</a>
+ <li> <a href="cnv.shtml#groups">Grouping CNVs </a>
+</ul>
+
+<a href="gvar.shtml">26. Common CNPs</a>
+<ul>
+ <li> <a href="gvar.shtml#cnv2"> CNPs/generic variants</a>
+ <li> <a href="gvar.shtml#cnv2b"> CNP/SNP association</a>
+</ul>
+
+
+<a href="rfunc.shtml">27. R-plugins</a>
+<ul>
+ <li> <a href="rfunc.shtml#rfunc1">Basic usage</a>
+ <li> <a href="rfunc.shtml#rfunc2">Defining the R function</a>
+ <li> <a href="rfunc.shtml#rfunc2b">Example of debugging</a>
+ <li> <a href="rfunc.shtml#rfunc3">Installing Rserve</a>
+</ul>
+
+
+<a href="psnp.shtml">28. Annotation web-lookup</a>
+<ul>
+ <li> <a href="psnp.shtml#psnp1">Basic SNP annotation</a>
+ <li> <a href="psnp.shtml#psnp2">Gene-based SNP lookup</a>
+ <li> <a href="psnp.shtml#psnp3">Annotation sources</a>
+</ul>
+
+
+<a href="simulate.shtml">29. Simulation tools</a>
+<ul>
+ <li> <a href="simulate.shtml#sim1">Basic usage</a>
+ <li> <a href="simulate.shtml#sim2">Resampling a population</a>
+ <li> <a href="simulate.shtml#sim3">Quantitative traits</a>
+</ul>
+
+
+<a href="profile.shtml">30. Profile scoring</a>
+<ul>
+ <li> <a href="profile.shtml#prof1">Basic usage</a>
+ <li> <a href="profile.shtml#prof2">SNP subsets</a>
+ <li> <a href="profile.shtml#dose">Dosage data</a>
+ <li> <a href="profile.shtml#prof3">Misc options</a>
+</ul>
+
+<a href="ids.shtml">31. ID helper</a>
+<ul>
+ <li> <a href="ids.shtml#ex">Overview/example</a>
+ <li> <a href="ids.shtml#intro">Basic usage</a>
+ <li> <a href="ids.shtml#check">Consistency checks</a>
+ <li> <a href="ids.shtml#alias">Aliases</a>
+ <li> <a href="ids.shtml#joint">Joint IDs</a>
+ <li> <a href="ids.shtml#lookup">Lookups</a>
+ <li> <a href="ids.shtml#replace">Replace values</a>
+ <li> <a href="ids.shtml#match">Match files</a>
+ <li> <a href="ids.shtml#qmatch">Quick match files</a>
+ <li> <a href="ids.shtml#misc">Misc.</a>
+</ul>
+
+
+<a href="res.shtml">32. Resources</a>
+<ul>
+ <li> <a href="res.shtml#hapmap">HapMap (PLINK format)</a>
+ <li> <a href="res.shtml#teach">Teaching materials</a>
+ <li> <a href="res.shtml#mmtests">Multimarker tests</a>
+ <li> <a href="res.shtml#sets">Gene-set lists</a>
+ <li> <a href="res.shtml#glist">Gene range lists</a>
+ <li> <a href="res.shtml#attrib">SNP attributes</a>
+</ul>
+
+<a href="flow.shtml">33. Flow-chart</a>
+<ul>
+ <li> <a href="flow.shtml">Order of commands</a>
+</ul>
+
+<a href="misc.shtml">34. Miscellaneous</a>
+<ul>
+ <li> <a href="misc.shtml#opt">Command options/modifiers</a>
+ <li> <a href="misc.shtml#output">Association output modifiers</a>
+ <li> <a href="misc.shtml#species">Different species</a>
+ <li> <a href="misc.shtml#bugs">Known issues</a>
+</ul>
+
+<a href="faq.shtml">35. FAQ & Hints</a>
+</p>
+
+<a href="gplink.shtml">36. gPLINK</a>
+<ul>
+ <li> <a href="gplink.shtml">gPLINK mainpage</a>
+ <li> <a href="gplink_tutorial/index.html">Tour of gPLINK</a>
+ <li> <a href="gplink.shtml#overview">Overview: using gPLINK</a>
+ <li> <a href="gplink.shtml#locrem">Local versus remote modes</a>
+ <li> <a href="gplink.shtml#start">Starting a new project</a>
+ <li> <a href="gplink.shtml#config">Configuring gPLINK</a>
+ <li> <a href="gplink.shtml#plink">Initiating PLINK jobs</a>
+ <li> <a href="gplink.shtml#view">Viewing PLINK output</a>
+ <li> <a href="gplink.shtml#hv">Integration with Haploview</a>
+ <li> <a href="gplink.shtml#down">Downloading gPLINK</a></p>
+</ul>
+
+</font>
+</td><td width=5%>
+
+
+<td valign="top">
+
+
+&nbsp;</p>
+
+
+
+This page contains some important information regarding how to set up
+and use <tt>PLINK</tt>. Individuals familiar with using command line
+programs can probably skip most of this page.
+
+</p>
+
+<a name="download">
+<h2>Download</h2>
+</a>
+</p>
+
+<tt><font color="darkgreen"><b>PLINK</b></font></tt> is now available for 
+free download.   Below are links to ZIP files containing binaries compilied on 
+various platforms as well as the C/C++ source code. Linux/Unix users should 
+download the source code and compile (see notes below).
+
+</p>
+
+These downloads also contain a version of gPLINK, an (optional) GUI for 
+PLINK. Please see <a href="gplink.shtml">these pages</a> for instructions 
+on use of gPLINK.
+</p>
+
+<strong>Remember</strong> This release is considered a <em>stable</em>
+release, although please remember that we cannot guarantee that it,
+just like most computer programs, does not contain bugs...
+</p>
+
+<table border=1 width=80%>
+<tr>
+<th>Platform</th>
+<th>File</th>
+<th>Version</th>
+</tr>
+
+<tr>
+<td>Linux (x86_64) </td>
+<td><a href="dist/plink-1.07-x86_64.zip">plink-1.07-x86_64.zip</a> </td>
+<td>v1.07</td>
+</tr>
+
+<tr>
+<td> Linux (i686) </td>
+<td> <a href="dist/plink-1.07-i686.zip">plink-1.07-i686.zip</a>  </td>
+<td>v1.07</td>
+</tr>
+
+<tr>
+<td> MS-DOS  </td>
+<td> <a href="dist/plink-1.07-dos.zip">plink-1.07-dos.zip</a> </td>
+<td>v1.07</td>
+</tr>
+
+<!---
+<tr>
+<td> Apple Mac (PPC) </td>
+<td> <a href="dist/plink-1.07-mac.zip">plink-1.07-mac.zip</a>  </td>
+<td>v1.07 <b>(to be posted next week)</b></td>
+</tr>
+--->
+
+<tr>
+<td> Apple Mac (Intel) </td>
+<td> <a href="dist/plink-1.07-mac-intel.zip">plink-1.07-mac-intel.zip</a>  
+</td>
+<td>v1.07</td>
+</tr>
+
+<tr>
+<td> C/C++ source (.zip) </td>
+<td> <a href="dist/plink-1.07-src.zip">plink-1.07-src.zip </a> </td>
+<td>v1.07</td>
+</tr>
+
+</table>
+</p>
+
+<strong>One more thing...</strong> If you download
+<tt>PLINK</tt> please either join the very low-volume e-mail list
+(link from Introduction page) or drop an e-mail to <tt>plink AT chgr
+dot mgh dot harvard dot edu</tt> letting me know you've downloaded a
+copy.
+</p>
+
+For old versions of <tt>PLINK</tt> please
+visit <a href="archive.shtml">the archive</a>.
+
+</p>
+
+<strong>Debian users</strong> PLINK is available as a Debian package, see
+<a href="http://packages.debian.org/sid/plink">these notes</a>. Note, the 
+executable is named <tt>snplink</tt> in the Debian <tt>plink</tt> package.
+</p>
+
+<a name="latest">
+<h2>Development version source code</h2>
+</a></p>
+
+You can download the very latest development source code in 
+this <a href="dist/plink-latest.zip">ZIP file</a>. This is
+<b>really, strongly not recommended</b> for most users. 
+The code posted here could change on a daily basis and is not 
+versioned.
+</p>
+
+Development source code versions have a <tt>p</tt> suffix, meaning pre-release. For example, 
+if the current release is <tt>1.04</tt>, the next stable release will be <tt>1.05</tt> and the development code
+will be <tt>1.05p</tt>. Note that <tt>1.05</tt> may differ from <tt>1.05p</tt> and as noted before, 
+from day-to-day the <tt>1.05</tt> development code may change in any case. 
+</p>
+The principle reason for including the source code here is 
+to allow access for specific users to specific, new features. 
+These features are described <a href="newfeat.shtml">here</a>.
+</p>
+
+<a name="general">
+<h2>General installation notes</h2>
+</a>
+
+The <tt>PLINK</tt> executable file should be placed in either the 
+current working directory or somewhere in the command path. This means 
+that typing 
+<h5>
+plink
+</h5></p>
+or
+<h5>
+./plink
+</h5></p>
+at the command line prompt will run <tt>PLINK</tt>, no matter which 
+current directory you happen to be in. <tt>PLINK</tt> is a 
+command line program -- <b>clicking on an icon with the mouse 
+will get you nowhere</b>. 
+</p>
+
+Below, on this page, is a general overview of how to <a href="#input">use the command line</a> to run PLINK.
+The next sections give details about how to install PLINK on different platforms.
+
+<a name="msdos">
+<h2>Windows/MS-DOS notes</h2>
+</a></p>
+
+Unzipping the downloaded ZIP file should reveal a single executable program <tt>plink.exe</tt>. 
+The Windows/MS-DOS version of <tt>PLINK</tt> is also a command line 
+program, and is run by typing
+<h5>
+plink <em>{options...}</em>
+</h5></p>
+not by clicking on the icon with the mouse. Open a DOS windows by selecting "Command 
+Prompt" from the start menu, or entering "command" or "cmd" in the "Run..." option of the start menu. 
+</p>
+
+The folders <tt>c:\windows\</tt> or <tt>c:\winnt\</tt> are typically
+in the path, so these are good places to copy the
+file <tt>plink.exe</tt> to. You can copy the <tt>plink.exe</tt> file
+using Windows, as you would copy-and-paste any file (e.g. using the
+right-button menu or the keyboard shortcuts control-C (paste) and
+control-V (paste). </p>
+
+Alternatively, if you know that you will only ever run <tt>PLINK</tt>
+on files in a single folder, then you can paste <tt>plink.exe</tt>
+into that folder, e.g. <tt>C:\work\genetics\</tt>.  The disadvantage
+of this approach is that <tt>PLINK</tt> will not be available from the
+command line if you are in a folder other than this one.
+
+</p>
+
+Once you have copied <tt>plink.exe</tt> to the correct location, you can test whether or not <tt>PLINK</tt> is 
+available (i.e. in your command path) by simply typing 
+<h5>
+plink
+</h5></p>
+at the command line.  You should see something like the following message:
+<pre>
+     Microsoft Windows XP [Version 5.1.2600]
+     (C) Copyright 1985-2001 Microsoft Corp.
+
+     C:\>plink
+
+     @----------------------------------------------------------@
+     |         PLINK!       |    v0.99l     |   27/Jul/2006     |
+     |----------------------------------------------------------|
+     |  (C) 2006 Shaun Purcell, GNU General Public License, v2  |
+     |----------------------------------------------------------|
+     |       http://pngu.mgh.harvard.edu/purcell/plink/         |
+     @----------------------------------------------------------@
+ 
+     Web-based version check ( --noweb to skip )
+     Connecting to web...  OK, v0.99l is current
+ 
+     *** Pre-Release Testing Version ***
+ 
+     Writing this text to log file [ plink.log ]
+     Analysis started: Fri Jul 28 10:07:57 2006
+ 
+     Options in effect:
+ 
+ 
+     ERROR: No file [ plink.ped ] exists.
+</pre>
+
+Do not worry about this <em>error message</em> -- normally you would
+specify your own PED/MAP file names to analyse (i.e. the default input
+filename is <tt>plink.ped</tt>).
+
+</p>
+Please ask your system administrator for help if you do not understand this. 
+
+</p><strong>HINT</strong> In MS-DOS, you can to increase the width of
+the window to avoid output lines wrapping around and being hard to
+read. To do this under Windows XP DOS: right click on the top
+title/menu bar of the window and select Properties / Layout / Window
+Size / Width -- increse the width value to a larger value (e.g. 120,
+or as large as possible without the window getting too big to fit on
+your screen!).
+
+&nbsp;
+</p>
+
+<a name="nix">
+<h2>UNIX/Linux notes</h2>
+</a></p>
+
+If you are not familiar with the concept of the path variable, ask
+your system administrator to help. In a UNIX/Linux environment, this
+would mean either copying the <tt>PLINK</tt> executable to a folder
+such as
+<pre>
+     /usr/local/bin/
+</pre>
+or
+<pre>
+     ~/bin/
+</pre>
+assuming these directories exist and are in the path.  To see which 
+directories are in the path, typing
+<h5>
+$PATH
+</h5></p>
+at the command prompt will often work. 
+To create a directory, say called <tt>bin</tt> in your home directory and add 
+it to the path, try 
+<h5>
+     mkdir ~/bin
+</h5></p>
+<h5>
+     export PATH=$PATH:~/bin/
+</h5></p>
+although this will depend on which shell you are using. Some shells do not include the current directory in the path: 
+in this case, you might need to prefix all <tt>PLINK</tt> commands 
+with the characters <tt>./</tt>, e.g. 
+<h5>
+./plink --file mydata --assoc
+</h5></p>
+
+&nbsp;
+</p>
+
+<a name="compilation">
+<h2>Source code compilation</h2>
+</a></p>
+
+<tt>PLINK</tt> is also distributed as C/C++ source code, which you can
+compile for your particular system using any standard C/C++ compile.
+Download the <tt>.zip</tt> or <tt>.tar.gz</tt> files and perform the
+following steps:
+
+<h5>
+tar -xzvf plink-0.99s-src.tar.gz
+</h5></p>
+or
+<h5>
+unzip plink-0.99s-src.zip
+</h5></p>
+or use a graphical tool such as WinZip to extract the contents of the archive. This should 
+create a directory called 
+<pre>
+     plink-0.99s-src
+</pre>
+(the exact version number might be different, of course). On the command line, move to that 
+dirctory and simply type <tt>make</tt> : 
+<h5>
+    cd plink-0.99s
+</h5></p>
+
+
+You will need a C/C++ compiler installed on your system for the next 
+step. Linux distributions will include <tt>gcc</tt>/<tt>g++</tt> by 
+default. Ask your system administrator about installing a C/C++ compiler 
+if you do not have one already (Windows, MS-DOS users).
+
+</p><strong>Hint</strong> <tt>PLINK</tt> has not been exhaustively
+tested on different compilers. We sugest you use a recent download of 
+MinGW for Windows, or at least gcc 4.1.
+
+</p><strong>WARNING</strong> We suggest using the most recent 
+stable release of the compiler available on your platform to avoid 
+compilation problems.  For most platforms this means gcc 4.2 as of writing 
+this. Some issues with specific older compiler and specific platforms have 
+been detected, e.g. gcc 3.3.3 on a SGI Altix 3700 system. 
+
+</p>
+Use a standard text editor such as emacs, pico or WordPad to edit the Makefile 
+to suit your particular platform: the top of the Makefile should look like this:
+<pre>
+     # ---------------------------------------------------------------------
+     # 
+     #   Makefile for PLINK 
+     #    
+     #   Supported platforms
+     #       Unix / Linux                LINUX
+     #       Windows                     WIN
+     #       Mac                         MAC
+     #       Solaris                     SOLARIS
+     #  
+     #   Compilation options
+     #       R plugins                   WITH_R_PLUGINS
+     #       Web-based version check     WITH_WEBCHECK
+     #       Ensure 32-bit binary        FORCE_32BIT 
+     #       (Ignored)                   WITH_ZLIB
+     #       Link to LAPACK              WITH_LAPACK
+     #       Force dynamic linking       FORCE_DYNAMIC
+     #
+     # ---------------------------------------------------------------------
+
+     # Set this variable to either UNIX, MAC or WIN
+     SYS = UNIX
+
+     # Leave blank after "=" to disable; put "= 1" to enable
+     WITH_R_PLUGINS = 1
+     WITH_WEBCHECK = 1
+     FORCE_32BIT =
+     WITH_ZLIB =
+     WITH_LAPACK =
+     FORCE_DYNAMIC =
+
+     # Put C++ compiler here; Windows has it's own specific version
+     CXX_UNIX = g++
+     CXX_WIN = c:\bin\mingw\bin\mingw32-g++.exe
+
+     # Any other compiler flags here ( -Wall, -g, etc)
+     CXXFLAGS =
+
+     # Misc
+     LIB_LAPACK = /usr/lib/liblapack.so.3
+
+     # --------------------------------------------------------------------
+     # Do not edit below this line
+     # --------------------------------------------------------------------
+</pre>
+
+The steps to edit this:
+<ol>
+ <li> Change the <tt>SYS</tt> variable to your platform, e.g. <tt>WIN</tt> for Windows
+ <li> For the next set of options, put either a <tt>1</tt> or leave blank to turn on or off 
+ these options, respectively. 
+  <ul>
+   <li> <tt>WITH_R_PLUGINS</tt> This enables support for R plugins
+        using <tt>Rserve</tt> as
+        described <a href="rfunc.shtml">here</a>.  Currently this only
+        works for Unix-based machines.
+   <li> If you want to disable the web-based version check option (not recommended) 
+     or if compilation fails with this on, you might try removing the <tt>1</tt> after <tt>WITH_WEBCHECK</tt>
+   <li> When compiling on a 64-bit machine, this option, <tt>FORCE_32BIT</tt>, can force (when set) a 
+        32 bit binary (assumes all necessary libraries, etc) are in place
+   <li> Other options listed here are described below.
+  </ul>
+ <li> Edit the <tt>CXX_*</tt> variable to point to the C/C++ compiler you wish to use
+ <li> To pass any extra commands to the compiler (e.g. location of
+ libraries, etc), you can edit <tt>CXX_FLAGS</tt>
+</ol>
+
+
+<h6>LAPACK support</h6>
+
+As described <a href="strat.shtml#mds">here</a>, linking to the LAPACK
+library can greatly speed up MDS analysis of population
+stratificaiton. This may take a little tweaking:
+<ul> 
+
+ <li> Obtain and compile
+ LAPACK, <a href="http://www.netlib.org/lapack/">here</a>. This
+ requires the <a href="http://gcc.gnu.org/fortran/">gfortran</a>
+ compiler. I cannot assist in any technical difficulties you have with
+ this: ask you IT staff. It is quite possible that LAPACK is already
+ installed somewhere in your institution.
+
+<li> Determine where the LAPACK library file is located, and whether
+it is a shared (e.g. <tt>liblapack.so.3</tt>) or static
+(e.g. <tt>lapack_LINUX.a</tt>) library. (Libraries ending <tt>.a</tt>
+are static; libraries ending <tt>.so.*</tt> are shared, or dynamically
+linked. If the LAPACK libraries are shared libraries, then set
+the <tt>FORCE_DYNAMIC</tt> flag to have <tt>1</tt> after it in the
+PLINK Makefile.
+
+<li> Set the variable <tt>LIB_LAPACK</tt> to point to the LAPACK
+libraries. This may vary by machine and the precise installation of
+LAPACK. For example, on one machine, I have three static LAPACK libraries in 
+the directory I compiled LAPACK in:
+<pre>
+     ~/src/plink> ls ../lapack-3.2/*a
+     ../lapack-3.2/blas_LINUX.a  ../lapack-3.2/lapack_LINUX.a  ../lapack-3.2/tmglib_LINUX.a
+</pre>
+In this case, set  (all one line)
+<pre>
+  LIB_LAPACK = ../lapack-3.2/lapack_LINUX.a 
+  LIB_LAPACK += ../lapack-3.2/blas_LINUX.a 
+  LIB_LAPACK += ../lapack-3.2/tmglib_LINUX.a
+</pre>
+On this machine, it was also necessary to add 
+<pre>
+  LIB_LAPACK += -lgfortran
+</pre>
+
+On a different (Linux) machine, the LAPACK library was a shared one,
+in <tt>/usr/lib/liblapack.so.3</tt>, that worked as a single file.  In
+this case, the necessary changes were to set the <tt>WITH_LAPACK</tt>
+and <tt>FORCE_DYNAMIC</tt> flags, then set
+<pre>
+   LIB_LAPACK = /usr/lib/liblapack.so.3
+</pre>
+</ul>
+
+Doubtless there is a better way to configure this, but for now I
+present the above as a quick-fix way of achieving LAPACK support. A
+little tweaking by somebody who knows what they are doing should
+suffice. I will not be able to provide detailed help for platforms I
+am unfamiliar with: you are on your own I'm afraid!  You are likely to
+see some linker errors when compiling if things are not right.
+
+</p>
+
+<h6>Starting compilation</h6>
+
+</p>
+You should then just type 
+<h5>
+make
+</h5></p> and <tt>PLINK</tt> should (hopefully) start compiling. You
+should use GNU version, which is sometimes called <tt>gmake</tt> on
+some platforms (e.g. FreeBSD). It is also possible that you have
+installed <tt>make</tt> but it is not in your path and/or your version
+of <tt>make.exe</tt> is called something slightly different, in which
+case use the full path, e.g. change the following to suit your system:
+<h5>
+c:\mingw\bin\mingw32-make
+</h5></p>
+
+</p><strong> NOTE</strong> Often problems in compilation will reflect
+system-specific / compiler-specific problems: unfortunately, we are
+not able to give detailed advice on how to do this. If things do not
+work and you are unsure, you will need to enlist the help of your
+systems/IT department.
+
+</p>
+
+You should see something like the following output (abbreviated)
+<pre>
+g++ -O3 -I. -DUNIX -static -c plink.cpp
+g++ -O3 -I. -DUNIX -static -c options.cpp
+g++ -O3 -I. -DUNIX -static -c input.cpp
+...
+g++ -O3 -static -o plink plink.o options.o input.o binput.o 
+helper.o genome.o snpfilter.o indfilter.o locus.o multi.o 
+regress.o crandom.o cluster.o output.o informative.o affpair.o 
+assoc.o bins.o epi.o phase.o trio.o sharing.o genepi.o sets.o 
+perm.o mh.o genedrop.o gxe.o merge.o hotel.o multiple.o
+</pre>
+
+After a minute or so, this will have created an executable binary file
+called <tt>plink</tt> (or <tt>plink.exe</tt> for Windows/MSDOS users).
+
+
+
+<a name="input">
+<h2>Running PLINK from the command line</h2>
+</a></p>
+
+A typical session might involve running several commands, e.g. to produce 
+summary statistics on missing data, to exclude some SNPs based on these 
+results, to run an association analysis. 
+Each command involves a separate instantiation of plink -- 
+note that <tt>PLINK</tt> does not remember any parameter settings between 
+different runs or store any other 
+information. In otherwords, if you want to perform two association tests with different PED files, but only 
+including SNPs that are above a certain minor allele frequency in both runs, you would use the following:
+<h5>
+plink --ped file1.ped --map file1.map --maf 0.05 --assoc
+</h5></p>
+<h5>
+plink --ped file2.ped --map file2.map --maf 0.05 --assoc
+</h5></p>
+In otherwords, <b>the following sequence would not work</b>:
+<h5>
+plink --ped file1.ped --map file1.map --maf 0.05
+</h5></p>
+<h5>
+plink --ped file1.ped --map file1.map --assoc
+</h5>
+<br> &nbsp; &nbsp; <font="-1"><em>MAF returns to default {0.01}</em></font 
+</p>
+<h5>
+plink --ped file2.ped --map file2.map --assoc
+</h5> 
+<br> &nbsp; &nbsp; <font="-1"><em>As above</em></font> </p>
+
+&nbsp;
+</p>
+	
+<a name="output">
+<h2>Viewing PLINK output files</h2>
+</a></p>
+
+<strong>UPDATE</strong> We are developing the tool <a 
+href="gplink.shtml">gPLINK</a> to integrate 
+<tt>PLINK</tt>
+with <a href="http://www.broad.mit.edu/mpg/haploview/">Haploview</a>.
+Haploview 4.0 provides a number of features for viewing, filtering and
+plotting PLINK results files. This is intended to supplant the methods
+suggested below.
+
+</p>
+
+All the output files that <tt>PLINK</tt> generates are plain-text, space-delimited files. Most 
+files will have the same number of fields per line and will have the field names in the first line, 
+facilitating use of a spreadsheet or statistics package to view and process the results.
+</p>
+
+For small results files, simply printing the files to the terminal or viewing in a text-editor should 
+work well.  In Windows/MS-DOS use the <tt>type</tt> command, e.g. 
+<h5>
+type mydata.assoc
+</h5></p>
+to view a results file. Alternatively, you can call up WordPad from the command line as follows:
+<h5>
+write mydata.assoc
+</h5></p>
+If you are using a Unix/Linux system, then commands such as <tt>cat</tt>, <tt>more</tt> or <tt>less</tt> can 
+be used to display the results; alternatively text-editors such as <tt>pico</tt>, <tt>emacs</tt> or 
+<tt>vi</tt>. </p>
+
+Of course, Unix/Linux users also have available the entire range of text-processing tools (<tt>grep</tt>, 
+<tt>gawk</tt>, <tt>perl</tt>, <tt>sort</tt>, <tt>head</tt>, etc) and shell-scripting tools, as well as 
+powerful text-editors (<tt>emacs</tt>, etc) that are ideal for processing very large result files.  
+Another alternative is to use a statistics package such as the <a href="www.r-project.org">R package</a> 
+which will provide powerful visualisation tools also.
+
+</p>
+Windows/MS-DOS users have fewer options for handling very large results files: 
+For moderate size files (e.g. up to 50K SNPs), you could use Excel. 
+For larger files, you can either install <a href="http://www.cygwin.com/">cygwin</a> to 
+provide a Linux-like environment, or use a statistics package such as the <a href="www.r-project.org">R 
+package</a>.
+
+</p>
+
+<strong>Personal opinion...</strong> Although a MS-DOS version
+of <tt>PLINK</tt> is supported, we would, in general, advise any any
+researchers planning on performing many large-scale analyses to look
+into adopting a Linux environment, if they are not already using this.
+
+
+</td>
+<td width=5%>&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+<em>
+ This document last modified Wednesday, 25-Jan-2017 11:39:26 EST
+</em>
+
+</body>
+
+<HEAD>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</HEAD>
+
+</html>
